@@ -1,0 +1,2513 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-canvas scroll-smooth">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="4TTbwx5LXX74DoBZAyyWKy5lnoHqqTdq7E2JiQuD">
+
+    <!-- SEO Meta Tags -->
+    <title>Pure leaf. Pure intent. — Henley</title>
+    <meta name="description" content="Rare single-estate Himalayan teas, biodynamic botanicals, and handpicked spices preserved in bone-white porcelain cloche jars.">
+    <link rel="canonical" href="http://localhost">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost">
+    <meta property="og:title" content="Pure leaf. Pure intent. — Henley">
+    <meta property="og:description" content="Rare single-estate Himalayan teas, biodynamic botanicals, and handpicked spices preserved in bone-white porcelain cloche jars.">
+    <meta property="og:image" content="http://localhost/images/brand/homepage.jpeg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pure leaf. Pure intent. — Henley">
+    <meta name="twitter:description" content="Rare single-estate Himalayan teas, biodynamic botanicals, and handpicked spices preserved in bone-white porcelain cloche jars.">
+    <meta name="twitter:image" content="http://localhost/images/brand/homepage.jpeg">
+
+    <!-- Self-hosted font preloads for zero Cumulative Layout Shift (CLS) -->
+    <link rel="preload" href="/fonts/cormorant-garamond-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/plus-jakarta-sans-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Organization",
+            "@id": "http://localhost/#organization",
+            "name": "Henley",
+            "url": "http://localhost",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "http://localhost/images/brand/logo.png"
+            },
+            "sameAs": [
+                "https://instagram.com/henleybotanicals",
+                "https://twitter.com/henleytea"
+            ],
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+91-800-436539",
+                "contactType": "customer concierge",
+                "areaServed": "IN",
+                "availableLanguage": "en"
+            }
+        },
+        {
+            "@type": "WebSite",
+            "@id": "http://localhost/#website",
+            "url": "http://localhost",
+            "name": "Henley Botanical Reserve",
+            "publisher": {
+                "@id": "http://localhost/#organization"
+            },
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": {
+                    "@type": "EntryPoint",
+                    "urlTemplate": "http://localhost/collections?q={search_term_string}"
+                },
+                "query-input": "required name=search_term_string"
+            }
+        }
+    ]
+}
+    </script>
+
+    <script type="module" src="http://localhost:5174/@vite/client" data-navigate-track="reload"></script><link rel="stylesheet" href="http://localhost:5174/resources/css/app.css" data-navigate-track="reload" /><script type="module" src="http://localhost:5174/resources/js/app.js" data-navigate-track="reload"></script>    <!-- Livewire Styles --><style >[wire\:loading][wire\:loading], [wire\:loading\.delay][wire\:loading\.delay], [wire\:loading\.inline-block][wire\:loading\.inline-block], [wire\:loading\.inline][wire\:loading\.inline], [wire\:loading\.block][wire\:loading\.block], [wire\:loading\.flex][wire\:loading\.flex], [wire\:loading\.table][wire\:loading\.table], [wire\:loading\.grid][wire\:loading\.grid], [wire\:loading\.inline-flex][wire\:loading\.inline-flex] {display: none;}[wire\:loading\.delay\.none][wire\:loading\.delay\.none], [wire\:loading\.delay\.shortest][wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter][wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short][wire\:loading\.delay\.short], [wire\:loading\.delay\.default][wire\:loading\.delay\.default], [wire\:loading\.delay\.long][wire\:loading\.delay\.long], [wire\:loading\.delay\.longer][wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest][wire\:loading\.delay\.longest] {display: none;}[wire\:offline][wire\:offline] {display: none;}[wire\:dirty]:not(textarea):not(input):not(select) {display: none;}:root {--livewire-progress-bar-color: #2299dd;}[x-cloak] {display: none !important;}[wire\:cloak] {display: none !important;}dialog#livewire-error::backdrop {background-color: rgba(0, 0, 0, .6);}</style>
+</head>
+<body class="min-h-full bg-canvas text-primary font-sans antialiased selection:bg-accent selection:text-inverse flex flex-col justify-between">
+    <!-- Livewire SPA Loading Bar Indicator -->
+    <div wire:loading.class="w-full opacity-100" class="fixed top-0 left-0 h-0.5 bg-accent z-[9999] transition-all duration-300 w-0 opacity-0 pointer-events-none"></div>
+
+    <!-- Global Toast Notifications Listener -->
+    <div
+        x-data="{
+            toasts: [],
+            add(e) {
+                let id = Date.now();
+                this.toasts.push({ id: id, message: e.detail.message || e.detail[0]?.message, tone: e.detail.tone || 'success' });
+                setTimeout(() => this.toasts = this.toasts.filter(t => t.id !== id), 4000);
+            }
+        }"
+        x-on:notify.window="add($event)"
+        class="fixed bottom-6 right-6 z-50 space-y-2 pointer-events-none"
+    >
+        <template x-for="t in toasts" :key="t.id">
+            <div class="pointer-events-auto flex items-center gap-3 rounded-full border border-hairline bg-surface-card px-5 py-3 shadow-card-hover animate-fadeIn">
+                <span x-show="t.tone === 'success'" class="flex h-5 w-5 items-center justify-center rounded-full bg-sage-surface text-sage-text">✓</span>
+                <span x-show="t.tone === 'error'" class="flex h-5 w-5 items-center justify-center rounded-full bg-error-surface text-error">✕</span>
+                <span class="font-sans text-ui font-medium text-primary" x-text="t.message"></span>
+            </div>
+        </template>
+    </div>
+
+    <!-- Storefront Header -->
+    <div wire:snapshot="{&quot;data&quot;:{&quot;cartCount&quot;:0,&quot;isTransparentHero&quot;:true},&quot;memo&quot;:{&quot;id&quot;:&quot;RPI5hzOXmp8RTG5ZUkgw&quot;,&quot;name&quot;:&quot;storefront.header&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;release&quot;:&quot;a-a-a&quot;,&quot;children&quot;:{&quot;lw-697493440-0&quot;:[&quot;div&quot;,&quot;2uH88P7H8lXDgSy2LwUz&quot;]},&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;134c8f65129cd43d29c1efc652e6982310e846062dd075797987a8f3656f4b00&quot;}" wire:effects="{&quot;partials&quot;:[],&quot;listeners&quot;:[&quot;cart-updated&quot;]}" wire:id="RPI5hzOXmp8RTG5ZUkgw"
+    x-data="{
+        scrolled: false,
+        mobileOpen: false,
+        megaOpen: false,
+        megaTimeout: null,
+        bannerDismissed: false,
+        isTransparentHero: true,
+        openMega() {
+            clearTimeout(this.megaTimeout);
+            this.megaOpen = true;
+        },
+        closeMegaWithDelay() {
+            this.megaTimeout = setTimeout(() => {
+                this.megaOpen = false;
+            }, 200);
+        }
+    }"
+    x-init="
+        scrolled = window.pageYOffset > 30;
+        window.addEventListener('scroll', () => {
+            scrolled = window.pageYOffset > 30;
+        });
+    "
+    class="relative z-40 w-full"
+>
+    <!-- 1. Top Announcement Bar (Dismissible, Setting-Driven) -->
+    <!--[if BLOCK]><![endif]-->        <div
+            x-show="!bannerDismissed"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 max-h-12"
+            x-transition:leave-end="opacity-0 max-h-0"
+            class="bg-surface-raised border-b border-hairline py-2 px-4 text-center text-caption text-secondary relative transition-all duration-200"
+        >
+            <div class="max-w-content mx-auto flex items-center justify-center gap-2 pr-6">
+                <span class="inline-block w-1.5 h-1.5 rounded-full bg-gold" aria-hidden="true"></span>
+                <!--[if BLOCK]><![endif]-->                    <a href="/collections" class="hover:text-accent font-medium transition-colors">
+                        Complimentary Express Air Delivery on all Himalayan reserve orders over ₹1,500
+                        <span class="ml-1 inline-block" aria-hidden="true">→</span>
+                    </a>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+
+            <button
+                type="button"
+                x-on:click="bannerDismissed = true"
+                aria-label="Dismiss announcement banner"
+                class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-muted hover:text-primary transition-colors"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5">
+    <path d="M18 6L6 18M6 6l12 12"/>
+</svg>
+            </button>
+        </div>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!-- 2. Sticky Main Header Bar -->
+    <header
+        :class="{
+            'bg-canvas/95 backdrop-blur-md border-b border-hairline shadow-subtle': scrolled || !isTransparentHero,
+            'bg-transparent border-b border-transparent': !scrolled && isTransparentHero
+        }"
+        class="sticky top-0 w-full transition-all duration-300 ease-henley"
+    >
+        <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12 flex items-center justify-between h-20">
+
+            <!-- Mobile Hamburger Trigger (Left) -->
+            <div class="flex items-center lg:hidden">
+                <button
+                    type="button"
+                    x-on:click="mobileOpen = true"
+                    aria-label="Open mobile navigation menu"
+                    class="p-2 -ml-2 text-primary hover:text-accent transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent rounded-lg"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 stroke-[1.5]">
+    <line x1="3" y1="12" x2="21" y2="12"/>
+    <line x1="3" y1="6" x2="21" y2="6"/>
+    <line x1="3" y1="18" x2="21" y2="18"/>
+</svg>
+                </button>
+            </div>
+
+            <!-- Brand Logo (Canonical Henley Vector Mark) -->
+            <div class="flex items-center">
+                <a href="/" class="flex flex-col items-center group select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent rounded">
+                    <span class="font-serif text-2xl sm:text-3xl tracking-[0.22em] font-normal text-primary group-hover:text-accent transition-colors duration-250">
+                        HENLEY
+                    </span>
+                    <span class="text-[9px] uppercase tracking-[0.32em] text-gold font-medium -mt-1 hidden sm:block">
+                        Botanical Reserve
+                    </span>
+                </a>
+            </div>
+
+            <!-- Desktop Primary Navigation -->
+            <nav class="hidden lg:flex items-center space-x-8" aria-label="Primary navigation">
+                <!--[if BLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                        <a
+                            href="/collections"
+                            class="font-sans text-xs uppercase tracking-[0.16em] font-medium text-primary hover:text-accent py-2 transition-colors duration-250 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent rounded"
+                        >
+                            Shop
+                        </a>
+                    <!--[if ENDBLOCK]><![endif]-->                                    <!--[if BLOCK]><![endif]-->                        <div
+                            class="relative"
+                            x-on:mouseenter="openMega()"
+                            x-on:mouseleave="closeMegaWithDelay()"
+                        >
+                            <a
+                                href="/collections"
+                                x-on:click.prevent="megaOpen = !megaOpen"
+                                x-on:keydown.escape="megaOpen = false"
+                                :aria-expanded="megaOpen"
+                                class="inline-flex items-center gap-1 font-sans text-xs uppercase tracking-[0.16em] font-medium text-primary hover:text-accent py-2 transition-colors duration-250 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent rounded"
+                            >
+                                <span>Collections</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 text-secondary transition-transform duration-250" x-bind:class="{ 'rotate-180 text-accent': megaOpen }">
+    <path d="M6 9l6 6 6-6"/>
+</svg>
+                            </a>
+                        </div>
+                    <!--[if ENDBLOCK]><![endif]-->                                    <!--[if BLOCK]><![endif]-->                        <a
+                            href="/collections"
+                            class="font-sans text-xs uppercase tracking-[0.16em] font-medium text-primary hover:text-accent py-2 transition-colors duration-250 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent rounded"
+                        >
+                            Herbal
+                        </a>
+                    <!--[if ENDBLOCK]><![endif]-->                                    <!--[if BLOCK]><![endif]-->                        <a
+                            href="/collections"
+                            class="font-sans text-xs uppercase tracking-[0.16em] font-medium text-primary hover:text-accent py-2 transition-colors duration-250 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent rounded"
+                        >
+                            Gifts
+                        </a>
+                    <!--[if ENDBLOCK]><![endif]-->                                    <!--[if BLOCK]><![endif]-->                        <a
+                            href="/about"
+                            class="font-sans text-xs uppercase tracking-[0.16em] font-medium text-primary hover:text-accent py-2 transition-colors duration-250 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent rounded"
+                        >
+                            Our Story
+                        </a>
+                    <!--[if ENDBLOCK]><![endif]-->                                    <!--[if BLOCK]><![endif]-->                        <a
+                            href="/journal"
+                            class="font-sans text-xs uppercase tracking-[0.16em] font-medium text-primary hover:text-accent py-2 transition-colors duration-250 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent rounded"
+                        >
+                            Journal
+                        </a>
+                    <!--[if ENDBLOCK]><![endif]-->                <!--[if ENDBLOCK]><![endif]-->            </nav>
+
+            <!-- Right Utilities Cluster (Search, Account, Cart) -->
+            <div class="flex items-center space-x-3 sm:space-x-4">
+                <!-- Search Button Overlay Trigger -->
+                <button
+                    type="button"
+                    x-data
+                    x-on:click="$dispatch('open-search')"
+                    aria-label="Search botanical catalogue"
+                    class="p-2 text-primary hover:text-accent hover:bg-surface-raised rounded-full transition duration-250 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 stroke-[1.5]">
+    <circle cx="11" cy="11" r="8"/>
+    <path d="M21 21l-4.35-4.35"/>
+</svg>
+                </button>
+
+                <!-- Account Icon -->
+                <!--[if BLOCK]><![endif]-->                    <a
+                        href="http://localhost/login"
+                        aria-label="Sign in to collector account"
+                        class="p-2 text-primary hover:text-accent hover:bg-surface-raised rounded-full transition duration-250 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 stroke-[1.5]">
+    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+    <circle cx="12" cy="7" r="4"/>
+</svg>
+                    </a>
+                <!--[if ENDBLOCK]><![endif]-->
+                <!-- Cart Button with Live Badge -->
+                <a
+                    href="/cart"
+                    aria-label="View shopping bag"
+                    class="relative p-2 text-primary hover:text-accent hover:bg-surface-raised rounded-full transition duration-250 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 stroke-[1.5]">
+    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/>
+    <path d="M16 10a4 4 0 01-8 0"/>
+</svg>
+                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                </a>
+            </div>
+        </div>
+
+        <!-- 3. Desktop Collections Mega Panel (Accessible, Keyboard-traversable) -->
+        <div
+            x-show="megaOpen"
+            x-on:mouseenter="openMega()"
+            x-on:mouseleave="closeMegaWithDelay()"
+            x-on:keydown.escape.window="megaOpen = false"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 -translate-y-2"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 -translate-y-2"
+            class="hidden lg:block absolute left-0 top-full w-full bg-surface-card border-b border-hairline shadow-2xl z-30"
+            style="display: none;"
+        >
+            <div class="max-w-content mx-auto px-12 py-10">
+                <div class="grid grid-cols-4 gap-8">
+                    <!-- Collection Tiles -->
+                    <div class="col-span-3 grid grid-cols-3 gap-6">
+                        <!--[if BLOCK]><![endif]-->                            <a
+                                href="/collections/restorative-sleep"
+                                class="group flex flex-col p-4 rounded-xl border border-hairline bg-surface-raised/40 hover:border-accent hover:bg-surface-raised transition duration-250"
+                            >
+                                <div class="aspect-[4/3] w-full rounded-lg overflow-hidden bg-surface-raised mb-3 border border-hairline/60">
+                                    <!--[if BLOCK]><![endif]-->                                        <img
+                                            src="/images/brand/test-harvest-2026.webp"
+                                            alt="Restorative Sleep"
+                                            loading="lazy"
+                                            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                        >
+                                    <!--[if ENDBLOCK]><![endif]-->                                </div>
+
+                                <div class="space-y-1">
+                                    <h4 class="font-serif text-lg font-normal text-primary group-hover:text-accent transition-colors">
+                                        Restorative Sleep
+                                    </h4>
+                                    <p class="text-caption text-secondary line-clamp-1">
+                                        Evening tisanes blending wild chamomile, Kashmiri lavender, and adaptogenic ashwagandha.
+                                    </p>
+                                    <span class="text-[11px] font-sans font-semibold text-accent block pt-1">
+                                        4 Rare Lots →
+                                    </span>
+                                </div>
+                            </a>
+                                                    <a
+                                href="/collections/morning-clarity"
+                                class="group flex flex-col p-4 rounded-xl border border-hairline bg-surface-raised/40 hover:border-accent hover:bg-surface-raised transition duration-250"
+                            >
+                                <div class="aspect-[4/3] w-full rounded-lg overflow-hidden bg-surface-raised mb-3 border border-hairline/60">
+                                    <!--[if BLOCK]><![endif]-->                                        <img
+                                            src="/images/brand/test-harvest-2026.webp"
+                                            alt="Morning Clarity"
+                                            loading="lazy"
+                                            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                        >
+                                    <!--[if ENDBLOCK]><![endif]-->                                </div>
+
+                                <div class="space-y-1">
+                                    <h4 class="font-serif text-lg font-normal text-primary group-hover:text-accent transition-colors">
+                                        Morning Clarity
+                                    </h4>
+                                    <p class="text-caption text-secondary line-clamp-1">
+                                        High-elevation green teas and mountain lemongrass crafted for gentle, sustained awakening.
+                                    </p>
+                                    <span class="text-[11px] font-sans font-semibold text-accent block pt-1">
+                                        4 Rare Lots →
+                                    </span>
+                                </div>
+                            </a>
+                                                    <a
+                                href="/collections/heritage-black"
+                                class="group flex flex-col p-4 rounded-xl border border-hairline bg-surface-raised/40 hover:border-accent hover:bg-surface-raised transition duration-250"
+                            >
+                                <div class="aspect-[4/3] w-full rounded-lg overflow-hidden bg-surface-raised mb-3 border border-hairline/60">
+                                    <!--[if BLOCK]><![endif]-->                                        <img
+                                            src="brand/collectionpage.jpeg"
+                                            alt="Heritage Black"
+                                            loading="lazy"
+                                            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                        >
+                                    <!--[if ENDBLOCK]><![endif]-->                                </div>
+
+                                <div class="space-y-1">
+                                    <h4 class="font-serif text-lg font-normal text-primary group-hover:text-accent transition-colors">
+                                        Heritage Black
+                                    </h4>
+                                    <p class="text-caption text-secondary line-clamp-1">
+                                        Single-estate Darjeeling first-flush and malted Assam orthodox whole leaves.
+                                    </p>
+                                    <span class="text-[11px] font-sans font-semibold text-accent block pt-1">
+                                        6 Rare Lots →
+                                    </span>
+                                </div>
+                            </a>
+                                                    <a
+                                href="/collections/luxury-wellness"
+                                class="group flex flex-col p-4 rounded-xl border border-hairline bg-surface-raised/40 hover:border-accent hover:bg-surface-raised transition duration-250"
+                            >
+                                <div class="aspect-[4/3] w-full rounded-lg overflow-hidden bg-surface-raised mb-3 border border-hairline/60">
+                                    <!--[if BLOCK]><![endif]-->                                        <img
+                                            src="brand/collectionpage.jpeg"
+                                            alt="Luxury Wellness Infusions"
+                                            loading="lazy"
+                                            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                        >
+                                    <!--[if ENDBLOCK]><![endif]-->                                </div>
+
+                                <div class="space-y-1">
+                                    <h4 class="font-serif text-lg font-normal text-primary group-hover:text-accent transition-colors">
+                                        Luxury Wellness Infusions
+                                    </h4>
+                                    <p class="text-caption text-secondary line-clamp-1">
+                                        Ayurvedic master-blends featuring royal Kashmiri saffron, holy basil, and licorice root.
+                                    </p>
+                                    <span class="text-[11px] font-sans font-semibold text-accent block pt-1">
+                                        4 Rare Lots →
+                                    </span>
+                                </div>
+                            </a>
+                        <!--[if ENDBLOCK]><![endif]-->                    </div>
+
+                    <!-- Mega Menu Sidebar Benefits & Complete Index Link -->
+                    <div class="border-l border-hairline pl-8 space-y-6 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-gold">
+    The Henley Cellar
+</span>
+                            <h4 class="font-serif text-xl font-normal text-primary leading-tight">
+                                High-Elevation Botanical Harvests
+                            </h4>
+                            <ul class="space-y-2.5 text-caption text-secondary">
+                                <li class="flex items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-sage flex-shrink-0">
+    <path d="M11 20A7 7 0 014 13C4 6 11 3 20 3c0 9-3 16-10 16z"/>
+    <path d="M4 13l7 7"/>
+</svg>
+                                    <span>100% Single-Estate Traceability</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-gold flex-shrink-0">
+    <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/>
+    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+    <line x1="12" y1="22.08" x2="12" y2="12"/>
+</svg>
+                                    <span>Sealed in UV-Proof Porcelain Cloches</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-gold flex-shrink-0">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    <path d="M9 12l2 2 4-4"/>
+</svg>
+                                    <span>Flushed with Nitrogen at Origin</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="pt-4 border-t border-hairline">
+                            <a
+    href="/collections"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent group select-none no-underline text-[11px] px-4 py-2 gap-1.5 bg-accent text-inverse hover:bg-accent-hover active:bg-accent-deep shadow-none w-full"
+>
+    Browse All Collections
+
+    <!--[if BLOCK]><![endif]-->        <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1" aria-hidden="true">→</span>
+    <!--[if ENDBLOCK]><![endif]--></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 4. Mobile Navigation Slide-Over Drawer -->
+    <div
+        x-show="mobileOpen"
+        x-on:keydown.escape.window="mobileOpen = false"
+        class="lg:hidden relative z-50"
+        role="dialog"
+        aria-modal="true"
+        style="display: none;"
+    >
+        <!-- Backdrop -->
+        <div
+            x-show="mobileOpen"
+            x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            x-on:click="mobileOpen = false"
+            class="fixed inset-0 bg-primary/50 backdrop-blur-sm"
+        ></div>
+
+        <!-- Drawer Content from Left -->
+        <div class="fixed inset-y-0 left-0 max-w-xs w-full bg-surface-card shadow-2xl border-r border-hairline flex flex-col justify-between p-6">
+            <div class="space-y-6">
+                <!-- Header -->
+                <div class="flex items-center justify-between pb-6 border-b border-hairline">
+                    <span class="font-serif text-2xl font-normal text-primary tracking-widest">HENLEY</span>
+                    <button
+                        type="button"
+                        x-on:click="mobileOpen = false"
+                        aria-label="Close mobile navigation"
+                        class="p-2 text-secondary hover:text-primary rounded-full hover:bg-surface-raised"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M18 6L6 18M6 6l12 12"/>
+</svg>
+                    </button>
+                </div>
+
+                <!-- Navigation List -->
+                <nav class="space-y-2" aria-label="Mobile navigation">
+                    <!--[if BLOCK]><![endif]-->                        <!--[if BLOCK]><![endif]-->                            <a href="/collections" class="block py-2.5 font-sans text-xs uppercase tracking-[0.16em] font-semibold text-primary hover:text-accent transition-colors">
+                                Shop
+                            </a>
+                        <!--[if ENDBLOCK]><![endif]-->                                            <!--[if BLOCK]><![endif]-->                            <div x-data="{ openSub: false }" class="py-1">
+                                <button
+                                    type="button"
+                                    x-on:click="openSub = !openSub"
+                                    class="w-full flex items-center justify-between py-2.5 font-sans text-xs uppercase tracking-[0.16em] font-semibold text-primary"
+                                >
+                                    <span>Collections</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-secondary transition-transform duration-200" x-bind:class="{ 'rotate-180 text-accent': openSub }">
+    <path d="M6 9l6 6 6-6"/>
+</svg>
+                                </button>
+                                <div x-show="openSub" class="pl-4 pt-2 space-y-2 border-l border-hairline ml-2">
+                                    <!--[if BLOCK]><![endif]-->                                        <a href="/collections/restorative-sleep" class="block text-ui text-secondary hover:text-accent py-1">
+                                            Restorative Sleep
+                                        </a>
+                                                                            <a href="/collections/morning-clarity" class="block text-ui text-secondary hover:text-accent py-1">
+                                            Morning Clarity
+                                        </a>
+                                                                            <a href="/collections/heritage-black" class="block text-ui text-secondary hover:text-accent py-1">
+                                            Heritage Black
+                                        </a>
+                                                                            <a href="/collections/luxury-wellness" class="block text-ui text-secondary hover:text-accent py-1">
+                                            Luxury Wellness Infusions
+                                        </a>
+                                    <!--[if ENDBLOCK]><![endif]-->                                    <a href="/collections" class="block text-caption font-semibold text-accent pt-1">
+                                        All Collections →
+                                    </a>
+                                </div>
+                            </div>
+                        <!--[if ENDBLOCK]><![endif]-->                                            <!--[if BLOCK]><![endif]-->                            <a href="/collections" class="block py-2.5 font-sans text-xs uppercase tracking-[0.16em] font-semibold text-primary hover:text-accent transition-colors">
+                                Herbal
+                            </a>
+                        <!--[if ENDBLOCK]><![endif]-->                                            <!--[if BLOCK]><![endif]-->                            <a href="/collections" class="block py-2.5 font-sans text-xs uppercase tracking-[0.16em] font-semibold text-primary hover:text-accent transition-colors">
+                                Gifts
+                            </a>
+                        <!--[if ENDBLOCK]><![endif]-->                                            <!--[if BLOCK]><![endif]-->                            <a href="/about" class="block py-2.5 font-sans text-xs uppercase tracking-[0.16em] font-semibold text-primary hover:text-accent transition-colors">
+                                Our Story
+                            </a>
+                        <!--[if ENDBLOCK]><![endif]-->                                            <!--[if BLOCK]><![endif]-->                            <a href="/journal" class="block py-2.5 font-sans text-xs uppercase tracking-[0.16em] font-semibold text-primary hover:text-accent transition-colors">
+                                Journal
+                            </a>
+                        <!--[if ENDBLOCK]><![endif]-->                    <!--[if ENDBLOCK]><![endif]-->                </nav>
+            </div>
+
+            <!-- Footer Utilities -->
+            <div class="pt-6 border-t border-hairline space-y-3">
+                <!--[if BLOCK]><![endif]-->                    <a href="http://localhost/login" class="flex items-center gap-2 text-ui text-primary hover:text-accent py-2 font-medium">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+    <circle cx="12" cy="7" r="4"/>
+</svg>
+                        <span>Collector Sign In</span>
+                    </a>
+                <!--[if ENDBLOCK]><![endif]-->
+                <div class="text-caption text-secondary pt-2">
+                    <p>Pure leaf. Pure intent.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Search Overlay Component Instance -->
+    <div wire:snapshot="{&quot;data&quot;:{&quot;isOpen&quot;:false,&quot;query&quot;:&quot;&quot;,&quot;popularSearches&quot;:[[&quot;First Flush Darjeeling&quot;,&quot;Kashmir Mogra Saffron&quot;,&quot;Silver Needle White Tea&quot;,&quot;Malabar Green Cardamom&quot;,&quot;Porcelain Cloche Gift Set&quot;],{&quot;s&quot;:&quot;arr&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;2uH88P7H8lXDgSy2LwUz&quot;,&quot;name&quot;:&quot;storefront.search-overlay&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;release&quot;:&quot;a-a-a&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;1307e3696d5c41bb1ee242d8e620f23fafe8de719edaac95b30d1554ae260fe4&quot;}" wire:effects="{&quot;partials&quot;:[],&quot;listeners&quot;:[&quot;open-search&quot;,&quot;close-search&quot;]}" wire:id="2uH88P7H8lXDgSy2LwUz"
+    x-data="{
+        init() {
+            this.$watch('$wire.isOpen', value => {
+                if (value) {
+                    this.$nextTick(() => this.$refs.searchInput?.focus());
+                }
+            });
+        }
+    }"
+    x-on:keydown.escape.window="$wire.closeSearch()"
+    x-show="$wire.isOpen"
+    x-transition:enter="ease-out duration-300"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="ease-in duration-200"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    class="fixed inset-0 z-50 overflow-y-auto bg-primary/60 backdrop-blur-md p-4 sm:p-6 lg:p-8"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Catalogue Live Search"
+    style="display: none;"
+>
+    <div class="mx-auto max-w-3xl pt-8 sm:pt-16">
+        <div
+            x-show="$wire.isOpen"
+            x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4 scale-95"
+            x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+            x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+            x-transition:leave-end="opacity-0 translate-y-4 scale-95"
+            class="overflow-hidden rounded-2xl border border-hairline bg-surface-card shadow-2xl"
+        >
+            <!-- Search Header Bar -->
+            <div class="relative flex items-center border-b border-hairline px-6 py-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-secondary mr-3">
+    <circle cx="11" cy="11" r="8"/>
+    <path d="M21 21l-4.35-4.35"/>
+</svg>
+
+                <input
+                    x-ref="searchInput"
+                    type="search"
+                    wire:model.live.debounce.250ms="query"
+                    placeholder="Search by harvest, single-estate origin, or botanical profile..."
+                    aria-label="Search catalogue"
+                    class="w-full bg-transparent text-lg font-sans text-primary placeholder:text-muted focus:outline-none"
+                >
+
+                <div wire:loading wire:target="query" class="mr-3">
+                    <svg
+    class="animate-spin h-4 w-4 text-accent"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    role="status"
+    aria-label="Loading"
+    
+>
+    <circle class="opacity-20" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3"></circle>
+    <path class="opacity-80" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+</svg>
+                </div>
+
+                <button
+                    type="button"
+                    wire:click="closeSearch"
+                    aria-label="Close search overlay"
+                    class="rounded-full p-2 text-secondary hover:bg-surface-raised hover:text-primary transition"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+    <path d="M18 6L6 18M6 6l12 12"/>
+</svg>
+                </button>
+            </div>
+
+            <!-- Search Body Content -->
+            <div class="max-h-[65vh] overflow-y-auto p-6 space-y-6">
+                <!--[if BLOCK]><![endif]-->                    <!-- Popular Search Suggestions & Categories -->
+                    <div class="space-y-6">
+                        <div>
+                            <span class="text-caption text-secondary uppercase tracking-widest font-semibold block mb-3">
+                                Popular Curations
+                            </span>
+                            <div class="flex flex-wrap gap-2">
+                                <!--[if BLOCK]><![endif]-->                                    <button
+                                        type="button"
+                                        wire:click="selectPopular('First Flush Darjeeling')"
+                                        class="px-3.5 py-1.5 rounded-full border border-hairline bg-surface-raised text-ui text-secondary hover:border-accent hover:text-accent hover:bg-surface-card transition duration-200"
+                                    >
+                                        First Flush Darjeeling
+                                    </button>
+                                                                    <button
+                                        type="button"
+                                        wire:click="selectPopular('Kashmir Mogra Saffron')"
+                                        class="px-3.5 py-1.5 rounded-full border border-hairline bg-surface-raised text-ui text-secondary hover:border-accent hover:text-accent hover:bg-surface-card transition duration-200"
+                                    >
+                                        Kashmir Mogra Saffron
+                                    </button>
+                                                                    <button
+                                        type="button"
+                                        wire:click="selectPopular('Silver Needle White Tea')"
+                                        class="px-3.5 py-1.5 rounded-full border border-hairline bg-surface-raised text-ui text-secondary hover:border-accent hover:text-accent hover:bg-surface-card transition duration-200"
+                                    >
+                                        Silver Needle White Tea
+                                    </button>
+                                                                    <button
+                                        type="button"
+                                        wire:click="selectPopular('Malabar Green Cardamom')"
+                                        class="px-3.5 py-1.5 rounded-full border border-hairline bg-surface-raised text-ui text-secondary hover:border-accent hover:text-accent hover:bg-surface-card transition duration-200"
+                                    >
+                                        Malabar Green Cardamom
+                                    </button>
+                                                                    <button
+                                        type="button"
+                                        wire:click="selectPopular('Porcelain Cloche Gift Set')"
+                                        class="px-3.5 py-1.5 rounded-full border border-hairline bg-surface-raised text-ui text-secondary hover:border-accent hover:text-accent hover:bg-surface-card transition duration-200"
+                                    >
+                                        Porcelain Cloche Gift Set
+                                    </button>
+                                <!--[if ENDBLOCK]><![endif]-->                            </div>
+                        </div>
+
+                        <!--[if BLOCK]><![endif]-->                            <div class="pt-4 border-t border-hairline">
+                                <span class="text-caption text-secondary uppercase tracking-widest font-semibold block mb-3">
+                                    Explore by Terroir
+                                </span>
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                    <!--[if BLOCK]><![endif]-->                                        <a
+                                            href="/collections/heritage-black"
+                                            wire:click="closeSearch"
+                                            class="p-3 rounded-lg border border-hairline bg-surface-raised/40 text-center hover:border-accent hover:bg-surface-card transition group"
+                                        >
+                                            <span class="font-serif text-sm text-primary group-hover:text-accent block truncate">
+                                                Heritage Black
+                                            </span>
+                                            <span class="text-[10px] uppercase tracking-wider text-muted block mt-0.5">
+                                                Explore Collection →
+                                            </span>
+                                        </a>
+                                                                            <a
+                                            href="/collections/luxury-wellness"
+                                            wire:click="closeSearch"
+                                            class="p-3 rounded-lg border border-hairline bg-surface-raised/40 text-center hover:border-accent hover:bg-surface-card transition group"
+                                        >
+                                            <span class="font-serif text-sm text-primary group-hover:text-accent block truncate">
+                                                Luxury Wellness Infusions
+                                            </span>
+                                            <span class="text-[10px] uppercase tracking-wider text-muted block mt-0.5">
+                                                Explore Collection →
+                                            </span>
+                                        </a>
+                                                                            <a
+                                            href="/collections/artisanal-spices"
+                                            wire:click="closeSearch"
+                                            class="p-3 rounded-lg border border-hairline bg-surface-raised/40 text-center hover:border-accent hover:bg-surface-card transition group"
+                                        >
+                                            <span class="font-serif text-sm text-primary group-hover:text-accent block truncate">
+                                                Artisanal Whole Spices
+                                            </span>
+                                            <span class="text-[10px] uppercase tracking-wider text-muted block mt-0.5">
+                                                Explore Collection →
+                                            </span>
+                                        </a>
+                                                                            <a
+                                            href="/collections/single-origin-reserve"
+                                            wire:click="closeSearch"
+                                            class="p-3 rounded-lg border border-hairline bg-surface-raised/40 text-center hover:border-accent hover:bg-surface-card transition group"
+                                        >
+                                            <span class="font-serif text-sm text-primary group-hover:text-accent block truncate">
+                                                Single-Origin Reserve
+                                            </span>
+                                            <span class="text-[10px] uppercase tracking-wider text-muted block mt-0.5">
+                                                Explore Collection →
+                                            </span>
+                                        </a>
+                                    <!--[if ENDBLOCK]><![endif]-->                                </div>
+                            </div>
+                        <!--[if ENDBLOCK]><![endif]-->                    </div>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+
+            <!-- Footer Shortcut Help -->
+            <div class="border-t border-hairline bg-surface-raised/40 px-6 py-3 flex items-center justify-between text-[11px] text-muted">
+                <span>Press <kbd class="px-1.5 py-0.5 rounded bg-surface-card border border-hairline font-mono text-[10px]">ESC</kbd> to close</span>
+                <span>Direct-to-estate verified catalogue</span>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+    <!-- Main Content Slot -->
+    <main class="flex-1 w-full">
+        <div wire:snapshot="{&quot;data&quot;:[],&quot;memo&quot;:{&quot;id&quot;:&quot;hMVkHmt7eEYZX07uUkxR&quot;,&quot;name&quot;:&quot;storefront.home-page&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;release&quot;:&quot;a-a-a&quot;,&quot;children&quot;:{&quot;lw-4275397065-0&quot;:[&quot;div&quot;,&quot;PCYOPXkG7xsluaCMcaVk&quot;]},&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;50e3074978dcc87c736c074abd727393179b61ee4d99bdf8071666476a17da29&quot;}" wire:effects="{&quot;partials&quot;:[]}" wire:id="hMVkHmt7eEYZX07uUkxR" class="w-full">
+    <!--[if BLOCK]><![endif]-->        
+        <!--[if BLOCK]><![endif]-->            <section class="relative w-full overflow-hidden bg-canvas pt-8 pb-16 sm:pt-12 sm:pb-24 border-b border-hairline">
+    <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+            <!-- Left Column: Editorial Statement (7 cols) -->
+            <div class="lg:col-span-7 space-y-6 sm:space-y-8">
+                <!-- Eyebrow Tag -->
+                <div>
+                    <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-gold">
+    Spring 2026 First Flush Release
+</span>
+                </div>
+
+                <!-- 2-Line Desktop Serif Headline with balanced line wrapping -->
+                <h1 class="font-serif text-display-1-mobile sm:text-display-hero font-normal text-primary tracking-tight leading-[1.08]">
+                    Pure leaf. Pure intent. Fifteen quiet minutes for the senses.
+                </h1>
+
+                <!-- Subtitle / Positioning Narrative -->
+                <p class="text-body-lead text-secondary max-w-xl font-light leading-relaxed">
+                    Rare single-estate orthodox teas and whole spices hand-harvested at 1,800 metres and sealed in UV-blocking porcelain cloche jars.
+                </p>
+
+                <!-- Action CTA Buttons -->
+                <div class="flex flex-wrap items-center gap-4 pt-2">
+                    <a
+    href="/collections"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent group select-none no-underline text-[14px] px-8 py-4 gap-2.5 bg-accent text-inverse hover:bg-accent-hover active:bg-accent-deep shadow-none"
+>
+    Explore the Reserve
+
+    <!--[if BLOCK]><![endif]-->        <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1" aria-hidden="true">→</span>
+    <!--[if ENDBLOCK]><![endif]--></a>
+
+                    <!--[if BLOCK]><![endif]-->                        <a
+    href="/about"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent group select-none no-underline text-[14px] px-8 py-4 gap-2.5 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised"
+>
+    The Cloche Ritual
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></a>
+                    <!--[if ENDBLOCK]><![endif]-->                </div>
+
+                <!-- Trust Line: 5-Star Rating & 3 Proof Points -->
+                <div class="pt-6 border-t border-hairline/80 flex flex-wrap items-center gap-y-3 gap-x-6 text-caption text-secondary">
+                    <div class="flex items-center gap-2">
+                        <div class="inline-flex items-center gap-1.5 select-none" aria-label="Rated 5.0 out of 5 stars">
+    <div class="flex items-center gap-0.5" aria-hidden="true">
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->        <span class="font-sans text-caption text-secondary">
+            (148)
+        </span>
+    <!--[if ENDBLOCK]><![endif]--></div>
+                    </div>
+
+                    <div class="flex items-center gap-3 text-xs uppercase tracking-wider font-medium text-primary">
+                        <!--[if BLOCK]><![endif]-->                            <span class="inline-flex items-center gap-1.5">
+                                <span class="w-1 h-1 rounded-full bg-gold" aria-hidden="true"></span>
+                                1,850m Single Estate
+                            </span>
+                                                    <span class="inline-flex items-center gap-1.5">
+                                <span class="w-1 h-1 rounded-full bg-gold" aria-hidden="true"></span>
+                                First Flush 2026
+                            </span>
+                                                    <span class="inline-flex items-center gap-1.5">
+                                <span class="w-1 h-1 rounded-full bg-gold" aria-hidden="true"></span>
+                                100% Biodynamic
+                            </span>
+                        <!--[if ENDBLOCK]><![endif]-->                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Hero Visual Cloche (5 cols) with LQIP blur-up and explicit dimensions -->
+            <div class="lg:col-span-5 relative">
+                <div class="relative mx-auto max-w-md lg:max-w-none">
+                    <!-- Subtle Arch Frame Motif -->
+                    <div class="relative overflow-hidden rounded-t-[9999px] rounded-b-none bg-surface-raised aspect-[4/5] border border-gold shadow-subtle transition-all duration-350 ease-henley">
+    <img
+                            src="/images/brand/homepage.jpeg"
+                            alt="Henley bone-white porcelain cloche jar revealing vibrant golden saffron and whole leaf tea"
+                            width="800"
+                            height="1000"
+                            fetchpriority="high"
+                            loading="eager"
+                            class="h-full w-full object-cover object-center transition-transform duration-700 hover:scale-105"
+                        >
+</div>
+
+                    <!-- Floating Quality Proof Seal Badge -->
+                    <div class="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 p-4 rounded-2xl bg-surface-card border border-hairline shadow-card-hover flex items-center gap-3 select-none">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-gold-surface border border-gold/30 text-gold-text">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    <path d="M9 12l2 2 4-4"/>
+</svg>
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest font-bold text-gold-text block">Hermetic Cloche</span>
+                            <span class="text-caption text-primary font-serif font-medium">Volatile Terpenes Sealed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+        <!--[if ENDBLOCK]><![endif]-->            
+        <!--[if BLOCK]><![endif]-->            <section class="w-full bg-canvas py-4">
+    <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 py-10 px-6 sm:px-10 rounded-2xl bg-surface-raised border border-hairline my-12 my-6 shadow-none">
+    <!--[if BLOCK]><![endif]-->        <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-gold-surface border border-gold/30 text-gold-text">
+                <!--[if BLOCK]><![endif]-->                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M11 20A7 7 0 014 13C4 6 11 3 20 3c0 9-3 16-10 16z"/>
+    <path d="M4 13l7 7"/>
+</svg>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+
+            <div class="space-y-0.5">
+                <h4 class="font-sans text-xs uppercase tracking-[0.14em] font-semibold text-primary">
+                    Single-Estate Origin
+                </h4>
+                <!--[if BLOCK]><![endif]-->                    <p class="font-sans text-caption text-secondary leading-snug">
+                        Traceable directly to prime mountain slopes
+                    </p>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+        </div>
+            <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-gold-surface border border-gold/30 text-gold-text">
+                <!--[if BLOCK]><![endif]-->                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/>
+    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+    <line x1="12" y1="22.08" x2="12" y2="12"/>
+</svg>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+
+            <div class="space-y-0.5">
+                <h4 class="font-sans text-xs uppercase tracking-[0.14em] font-semibold text-primary">
+                    Apothecary Sealed
+                </h4>
+                <!--[if BLOCK]><![endif]-->                    <p class="font-sans text-caption text-secondary leading-snug">
+                        Flushed with nitrogen in porcelain tins
+                    </p>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+        </div>
+            <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-gold-surface border border-gold/30 text-gold-text">
+                <!--[if BLOCK]><![endif]-->                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <rect x="1" y="3" width="15" height="13"/>
+    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+    <circle cx="5.5" cy="18.5" r="2.5"/>
+    <circle cx="18.5" cy="18.5" r="2.5"/>
+</svg>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+
+            <div class="space-y-0.5">
+                <h4 class="font-sans text-xs uppercase tracking-[0.14em] font-semibold text-primary">
+                    Complimentary Delivery
+                </h4>
+                <!--[if BLOCK]><![endif]-->                    <p class="font-sans text-caption text-secondary leading-snug">
+                        Express air courier on orders over ₹1,500
+                    </p>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+        </div>
+            <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-gold-surface border border-gold/30 text-gold-text">
+                <!--[if BLOCK]><![endif]-->                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    <path d="M9 12l2 2 4-4"/>
+</svg>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+
+            <div class="space-y-0.5">
+                <h4 class="font-sans text-xs uppercase tracking-[0.14em] font-semibold text-primary">
+                    100% Biodynamic Purity
+                </h4>
+                <!--[if BLOCK]><![endif]-->                    <p class="font-sans text-caption text-secondary leading-snug">
+                        Zero synthetic pesticides or artificial aromas
+                    </p>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+        </div>
+    <!--[if ENDBLOCK]><![endif]--></div>
+    </div>
+</section>
+        <!--[if ENDBLOCK]><![endif]-->            
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]-->    <section class="w-full bg-surface-raised/40 py-16 sm:py-24 border-y border-hairline">
+        <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12 space-y-12">
+            <div class="flex flex-col max-w-3xl mb-12 sm:mb-16 text-center items-center mx-auto">
+    <!--[if BLOCK]><![endif]-->        <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent mb-3">
+    Terroir &amp; Taxonomy
+</span>
+    <!--[if ENDBLOCK]><![endif]-->
+    <h2 class="font-serif font-normal text-primary tracking-tight text-display-2-mobile sm:text-display-2">
+        Curated Portals of Origin
+    </h2>
+
+    <!--[if BLOCK]><![endif]-->        <p class="mt-4 text-body-lead text-secondary max-w-2xl font-light leading-relaxed">
+            Explore single-origin harvests grouped by mountain elevation, processing alchemy, and botanical character.
+        </p>
+    <!--[if ENDBLOCK]><![endif]--></div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!--[if BLOCK]><![endif]-->                    <div class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-hairline bg-surface-raised p-6 sm:p-8 transition-all duration-350 ease-henley hover:border-muted hover:shadow-hover">
+    <div>
+        <!-- Optional Arched Image portal -->
+        <div class="relative w-full aspect-[4/3] overflow-hidden rounded-arch border border-hairline bg-surface-raised mb-6">
+            <!--[if BLOCK]><![endif]-->                <img
+                    src="brand/collectionpage.jpeg"
+                    alt="Heritage Black"
+                    loading="lazy"
+                    class="h-full w-full object-cover object-center transition-transform duration-500 ease-henley group-hover:scale-[1.03]"
+                >
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+
+        <div class="space-y-2">
+            <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent">
+    Single Estate
+</span>
+
+            <h3 class="font-serif text-display-2 font-normal text-primary group-hover:text-accent transition-colors duration-250">
+                Heritage Black
+            </h3>
+
+            <!--[if BLOCK]><![endif]-->                <p class="text-body text-secondary line-clamp-2">
+                    Single-estate Darjeeling first-flush and malted Assam orthodox whole leaves.
+                </p>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+    </div>
+
+    <div class="mt-6 pt-4 border-t border-hairline flex items-center justify-between">
+        <a href="/collections/heritage-black" class="font-sans text-xs uppercase tracking-[0.16em] font-semibold text-accent group-hover:text-accent-hover inline-flex items-center gap-1.5">
+            <span>Explore Collection</span>
+            <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1">→</span>
+        </a>
+    </div>
+</div>
+                                    <div class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-hairline bg-surface-raised p-6 sm:p-8 transition-all duration-350 ease-henley hover:border-muted hover:shadow-hover">
+    <div>
+        <!-- Optional Arched Image portal -->
+        <div class="relative w-full aspect-[4/3] overflow-hidden rounded-arch border border-hairline bg-surface-raised mb-6">
+            <!--[if BLOCK]><![endif]-->                <img
+                    src="brand/collectionpage.jpeg"
+                    alt="Luxury Wellness Infusions"
+                    loading="lazy"
+                    class="h-full w-full object-cover object-center transition-transform duration-500 ease-henley group-hover:scale-[1.03]"
+                >
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+
+        <div class="space-y-2">
+            <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent">
+    Single Estate
+</span>
+
+            <h3 class="font-serif text-display-2 font-normal text-primary group-hover:text-accent transition-colors duration-250">
+                Luxury Wellness Infusions
+            </h3>
+
+            <!--[if BLOCK]><![endif]-->                <p class="text-body text-secondary line-clamp-2">
+                    Ayurvedic master-blends featuring royal Kashmiri saffron, holy basil, and licorice root.
+                </p>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+    </div>
+
+    <div class="mt-6 pt-4 border-t border-hairline flex items-center justify-between">
+        <a href="/collections/luxury-wellness" class="font-sans text-xs uppercase tracking-[0.16em] font-semibold text-accent group-hover:text-accent-hover inline-flex items-center gap-1.5">
+            <span>Explore Collection</span>
+            <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1">→</span>
+        </a>
+    </div>
+</div>
+                                    <div class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-hairline bg-surface-raised p-6 sm:p-8 transition-all duration-350 ease-henley hover:border-muted hover:shadow-hover">
+    <div>
+        <!-- Optional Arched Image portal -->
+        <div class="relative w-full aspect-[4/3] overflow-hidden rounded-arch border border-hairline bg-surface-raised mb-6">
+            <!--[if BLOCK]><![endif]-->                <img
+                    src="brand/collectionpage.jpeg"
+                    alt="Artisanal Whole Spices"
+                    loading="lazy"
+                    class="h-full w-full object-cover object-center transition-transform duration-500 ease-henley group-hover:scale-[1.03]"
+                >
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+
+        <div class="space-y-2">
+            <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent">
+    Single Estate
+</span>
+
+            <h3 class="font-serif text-display-2 font-normal text-primary group-hover:text-accent transition-colors duration-250">
+                Artisanal Whole Spices
+            </h3>
+
+            <!--[if BLOCK]><![endif]-->                <p class="text-body text-secondary line-clamp-2">
+                    High-curcumin Alleppey turmeric, royal green cardamom, and Tellicherry peppercorns.
+                </p>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+    </div>
+
+    <div class="mt-6 pt-4 border-t border-hairline flex items-center justify-between">
+        <a href="/collections/artisanal-spices" class="font-sans text-xs uppercase tracking-[0.16em] font-semibold text-accent group-hover:text-accent-hover inline-flex items-center gap-1.5">
+            <span>Explore Collection</span>
+            <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1">→</span>
+        </a>
+    </div>
+</div>
+                                    <div class="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-hairline bg-surface-raised p-6 sm:p-8 transition-all duration-350 ease-henley hover:border-muted hover:shadow-hover">
+    <div>
+        <!-- Optional Arched Image portal -->
+        <div class="relative w-full aspect-[4/3] overflow-hidden rounded-arch border border-hairline bg-surface-raised mb-6">
+            <!--[if BLOCK]><![endif]-->                <img
+                    src="brand/collectionpage.jpeg"
+                    alt="Single-Origin Reserve"
+                    loading="lazy"
+                    class="h-full w-full object-cover object-center transition-transform duration-500 ease-henley group-hover:scale-[1.03]"
+                >
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+
+        <div class="space-y-2">
+            <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent">
+    Single Estate
+</span>
+
+            <h3 class="font-serif text-display-2 font-normal text-primary group-hover:text-accent transition-colors duration-250">
+                Single-Origin Reserve
+            </h3>
+
+            <!--[if BLOCK]><![endif]-->                <p class="text-body text-secondary line-clamp-2">
+                    Rare, numbered micro-lot flushes harvested from distinct elevation plots above 1,800 metres.
+                </p>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+    </div>
+
+    <div class="mt-6 pt-4 border-t border-hairline flex items-center justify-between">
+        <a href="/collections/single-origin-reserve" class="font-sans text-xs uppercase tracking-[0.16em] font-semibold text-accent group-hover:text-accent-hover inline-flex items-center gap-1.5">
+            <span>Explore Collection</span>
+            <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1">→</span>
+        </a>
+    </div>
+</div>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+
+            <div class="text-center pt-4">
+                <a
+    href="/collections"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent group select-none no-underline text-[13px] px-6 py-3 gap-2 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised"
+>
+    View All 7 Terroir Collections
+
+    <!--[if BLOCK]><![endif]-->        <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1" aria-hidden="true">→</span>
+    <!--[if ENDBLOCK]><![endif]--></a>
+            </div>
+        </div>
+    </section>
+<!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->            
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]-->    <section class="w-full bg-canvas py-16 sm:py-24">
+        <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12 space-y-12">
+            <div class="flex flex-col max-w-3xl mb-12 sm:mb-16 text-center items-center mx-auto">
+    <!--[if BLOCK]><![endif]-->        <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent mb-3">
+    Current Season Micro-Lots
+</span>
+    <!--[if ENDBLOCK]><![endif]-->
+    <h2 class="font-serif font-normal text-primary tracking-tight text-display-2-mobile sm:text-display-2">
+        Featured Seasonal Allocations
+    </h2>
+
+    <!--[if BLOCK]><![endif]-->        <p class="mt-4 text-body-lead text-secondary max-w-2xl font-light leading-relaxed">
+            Direct from the morning plucking of premier estates, each lot sealed at source in numbered cloche jars.
+        </p>
+    <!--[if ENDBLOCK]><![endif]--></div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!--[if BLOCK]><![endif]-->                    <article class="group relative flex flex-col rounded-xl border border-hairline bg-surface-raised/40 p-4 transition-all duration-350 ease-henley hover:border-muted hover:bg-surface-raised hover:shadow-hover">
+    <!-- Product Image Container with gentle 1.03x scale -->
+    <a href="/products/morning-clarity-lemongrass-green-tea" class="relative block aspect-square w-full overflow-hidden rounded-lg bg-surface-raised">
+        <!--[if BLOCK]><![endif]-->            <img
+                src="brand/packagingrender.png"
+                alt="Morning Clarity Lemongrass Green Tea"
+                loading="lazy"
+                class="h-full w-full object-cover object-center transition-transform duration-500 ease-henley group-hover:scale-[1.03]"
+            >
+        <!--[if ENDBLOCK]><![endif]-->
+        <!--[if BLOCK]><![endif]-->            <div class="absolute top-3 left-3">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-badge uppercase font-bold tracking-[0.12em] select-none bg-gold-surface text-gold-text border border-gold/30">
+    Spring 2026
+</span>
+            </div>
+        <!--[if ENDBLOCK]><![endif]-->    </a>
+
+    <!-- Card Content -->
+    <div class="mt-4 flex flex-1 flex-col justify-between space-y-3">
+        <div class="space-y-1.5">
+            <!--[if BLOCK]><![endif]-->                <div class="flex items-center justify-between">
+                    <div class="inline-flex items-center gap-1.5 select-none" aria-label="Rated 4.8 out of 5 stars">
+    <div class="flex items-center gap-0.5" aria-hidden="true">
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <defs>
+        <linearGradient id="halfStarGrad">
+            <stop offset="50%" stop-color="currentColor"/>
+            <stop offset="50%" stop-color="transparent"/>
+        </linearGradient>
+    </defs>
+    <path fill="url(#halfStarGrad)" stroke="currentColor" stroke-width="1.5" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->        <span class="font-sans text-caption text-secondary">
+            (9)
+        </span>
+    <!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <h3 class="font-serif text-display-3 font-normal text-primary group-hover:text-accent transition-colors duration-250">
+                <a href="/products/morning-clarity-lemongrass-green-tea" class="focus:outline-none">
+                    Morning Clarity Lemongrass Green Tea
+                </a>
+            </h3>
+
+            <!--[if BLOCK]><![endif]-->                <p class="font-sans text-caption text-secondary">
+                    High-grown pan-fired green tea leaves with freshly cut Nilgiri mountain lemongrass and ginger root.
+                </p>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+
+        <div class="pt-2 flex items-center justify-between border-t border-hairline/60">
+            <div class="inline-flex items-baseline gap-2 font-serif text-primary tracking-tight select-none text-price-card">
+    <!--[if BLOCK]><![endif]-->        <span>₹1,250.00</span>
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    <!--[if ENDBLOCK]><![endif]--></div>
+
+            <!--[if BLOCK]><![endif]-->                <div>
+                    <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[11px] px-4 py-2 gap-1.5 bg-accent text-inverse hover:bg-accent-hover active:bg-accent-deep shadow-none" x-data="" x-on:click.prevent="$dispatch('notify', { message: 'Morning Clarity Lemongrass Green Tea added to ritual basket.', tone: 'success' }); $dispatch('cart-updated', { count: 1 })"
+    >
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    Quick Add
+
+    <!--[if BLOCK]><![endif]-->        <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1" aria-hidden="true">→</span>
+    <!--[if ENDBLOCK]><![endif]--></button>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+    </div>
+</article>
+                                    <article class="group relative flex flex-col rounded-xl border border-hairline bg-surface-raised/40 p-4 transition-all duration-350 ease-henley hover:border-muted hover:bg-surface-raised hover:shadow-hover">
+    <!-- Product Image Container with gentle 1.03x scale -->
+    <a href="/products/first-flush-darjeeling-castleton-estate" class="relative block aspect-square w-full overflow-hidden rounded-lg bg-surface-raised">
+        <!--[if BLOCK]><![endif]-->            <img
+                src="brand/packagingrender.png"
+                alt="First Flush Darjeeling Castleton Estate"
+                loading="lazy"
+                class="h-full w-full object-cover object-center transition-transform duration-500 ease-henley group-hover:scale-[1.03]"
+            >
+        <!--[if ENDBLOCK]><![endif]-->
+        <!--[if BLOCK]><![endif]-->            <div class="absolute top-3 left-3">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-badge uppercase font-bold tracking-[0.12em] select-none bg-gold-surface text-gold-text border border-gold/30">
+    Spring 2026
+</span>
+            </div>
+        <!--[if ENDBLOCK]><![endif]-->    </a>
+
+    <!-- Card Content -->
+    <div class="mt-4 flex flex-1 flex-col justify-between space-y-3">
+        <div class="space-y-1.5">
+            <!--[if BLOCK]><![endif]-->                <div class="flex items-center justify-between">
+                    <div class="inline-flex items-center gap-1.5 select-none" aria-label="Rated 4.8 out of 5 stars">
+    <div class="flex items-center gap-0.5" aria-hidden="true">
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <defs>
+        <linearGradient id="halfStarGrad">
+            <stop offset="50%" stop-color="currentColor"/>
+            <stop offset="50%" stop-color="transparent"/>
+        </linearGradient>
+    </defs>
+    <path fill="url(#halfStarGrad)" stroke="currentColor" stroke-width="1.5" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->        <span class="font-sans text-caption text-secondary">
+            (12)
+        </span>
+    <!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <h3 class="font-serif text-display-3 font-normal text-primary group-hover:text-accent transition-colors duration-250">
+                <a href="/products/first-flush-darjeeling-castleton-estate" class="focus:outline-none">
+                    First Flush Darjeeling Castleton Estate
+                </a>
+            </h3>
+
+            <!--[if BLOCK]><![endif]-->                <p class="font-sans text-caption text-secondary">
+                    The Champagne of teas. Plucked in mid-March from the historic Castleton garden at 1,800m.
+                </p>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+
+        <div class="pt-2 flex items-center justify-between border-t border-hairline/60">
+            <div class="inline-flex items-baseline gap-2 font-serif text-primary tracking-tight select-none text-price-card">
+    <!--[if BLOCK]><![endif]-->        <span>₹2,400.00</span>
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    <!--[if ENDBLOCK]><![endif]--></div>
+
+            <!--[if BLOCK]><![endif]-->                <div>
+                    <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[11px] px-4 py-2 gap-1.5 bg-accent text-inverse hover:bg-accent-hover active:bg-accent-deep shadow-none" x-data="" x-on:click.prevent="$dispatch('notify', { message: 'First Flush Darjeeling Castleton Estate added to ritual basket.', tone: 'success' }); $dispatch('cart-updated', { count: 1 })"
+    >
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    Quick Add
+
+    <!--[if BLOCK]><![endif]-->        <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1" aria-hidden="true">→</span>
+    <!--[if ENDBLOCK]><![endif]--></button>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+    </div>
+</article>
+                                    <article class="group relative flex flex-col rounded-xl border border-hairline bg-surface-raised/40 p-4 transition-all duration-350 ease-henley hover:border-muted hover:bg-surface-raised hover:shadow-hover">
+    <!-- Product Image Container with gentle 1.03x scale -->
+    <a href="/products/imperial-royal-kashmiri-saffron-kehwa" class="relative block aspect-square w-full overflow-hidden rounded-lg bg-surface-raised">
+        <!--[if BLOCK]><![endif]-->            <img
+                src="brand/packagingrender.png"
+                alt="Imperial Royal Kashmiri Saffron Kehwa"
+                loading="lazy"
+                class="h-full w-full object-cover object-center transition-transform duration-500 ease-henley group-hover:scale-[1.03]"
+            >
+        <!--[if ENDBLOCK]><![endif]-->
+        <!--[if BLOCK]><![endif]-->            <div class="absolute top-3 left-3">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-badge uppercase font-bold tracking-[0.12em] select-none bg-gold-surface text-gold-text border border-gold/30">
+    Spring 2026
+</span>
+            </div>
+        <!--[if ENDBLOCK]><![endif]-->    </a>
+
+    <!-- Card Content -->
+    <div class="mt-4 flex flex-1 flex-col justify-between space-y-3">
+        <div class="space-y-1.5">
+            <!--[if BLOCK]><![endif]-->                <div class="flex items-center justify-between">
+                    <div class="inline-flex items-center gap-1.5 select-none" aria-label="Rated 4.8 out of 5 stars">
+    <div class="flex items-center gap-0.5" aria-hidden="true">
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <defs>
+        <linearGradient id="halfStarGrad">
+            <stop offset="50%" stop-color="currentColor"/>
+            <stop offset="50%" stop-color="transparent"/>
+        </linearGradient>
+    </defs>
+    <path fill="url(#halfStarGrad)" stroke="currentColor" stroke-width="1.5" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->        <span class="font-sans text-caption text-secondary">
+            (14)
+        </span>
+    <!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <h3 class="font-serif text-display-3 font-normal text-primary group-hover:text-accent transition-colors duration-250">
+                <a href="/products/imperial-royal-kashmiri-saffron-kehwa" class="focus:outline-none">
+                    Imperial Royal Kashmiri Saffron Kehwa
+                </a>
+            </h3>
+
+            <!--[if BLOCK]><![endif]-->                <p class="font-sans text-caption text-secondary">
+                    Grade-A Pampore saffron threads, green tea, crushed green cardamom pods, and cinnamon bark.
+                </p>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+
+        <div class="pt-2 flex items-center justify-between border-t border-hairline/60">
+            <div class="inline-flex items-baseline gap-2 font-serif text-primary tracking-tight select-none text-price-card">
+    <!--[if BLOCK]><![endif]-->        <span>₹3,200.00</span>
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    <!--[if ENDBLOCK]><![endif]--></div>
+
+            <!--[if BLOCK]><![endif]-->                <div>
+                    <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[11px] px-4 py-2 gap-1.5 bg-accent text-inverse hover:bg-accent-hover active:bg-accent-deep shadow-none" x-data="" x-on:click.prevent="$dispatch('notify', { message: 'Imperial Royal Kashmiri Saffron Kehwa added to ritual basket.', tone: 'success' }); $dispatch('cart-updated', { count: 1 })"
+    >
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    Quick Add
+
+    <!--[if BLOCK]><![endif]-->        <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1" aria-hidden="true">→</span>
+    <!--[if ENDBLOCK]><![endif]--></button>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+    </div>
+</article>
+                                    <article class="group relative flex flex-col rounded-xl border border-hairline bg-surface-raised/40 p-4 transition-all duration-350 ease-henley hover:border-muted hover:bg-surface-raised hover:shadow-hover">
+    <!-- Product Image Container with gentle 1.03x scale -->
+    <a href="/products/tellicherry-reserve-whole-black-peppercorns-estate-lot-22" class="relative block aspect-square w-full overflow-hidden rounded-lg bg-surface-raised">
+        <!--[if BLOCK]><![endif]-->            <img
+                src="brand/packagingrender.png"
+                alt="Tellicherry Reserve Whole Black Peppercorns (Estate Lot #22)"
+                loading="lazy"
+                class="h-full w-full object-cover object-center transition-transform duration-500 ease-henley group-hover:scale-[1.03]"
+            >
+        <!--[if ENDBLOCK]><![endif]-->
+        <!--[if BLOCK]><![endif]-->            <div class="absolute top-3 left-3">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-badge uppercase font-bold tracking-[0.12em] select-none bg-gold-surface text-gold-text border border-gold/30">
+    Spring 2026
+</span>
+            </div>
+        <!--[if ENDBLOCK]><![endif]-->    </a>
+
+    <!-- Card Content -->
+    <div class="mt-4 flex flex-1 flex-col justify-between space-y-3">
+        <div class="space-y-1.5">
+            <!--[if BLOCK]><![endif]-->                <div class="flex items-center justify-between">
+                    <div class="inline-flex items-center gap-1.5 select-none" aria-label="Rated 4.8 out of 5 stars">
+    <div class="flex items-center gap-0.5" aria-hidden="true">
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <defs>
+        <linearGradient id="halfStarGrad">
+            <stop offset="50%" stop-color="currentColor"/>
+            <stop offset="50%" stop-color="transparent"/>
+        </linearGradient>
+    </defs>
+    <path fill="url(#halfStarGrad)" stroke="currentColor" stroke-width="1.5" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->        <span class="font-sans text-caption text-secondary">
+            (10)
+        </span>
+    <!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <h3 class="font-serif text-display-3 font-normal text-primary group-hover:text-accent transition-colors duration-250">
+                <a href="/products/tellicherry-reserve-whole-black-peppercorns-estate-lot-22" class="focus:outline-none">
+                    Tellicherry Reserve Whole Black Peppercorns (Estate Lot #22)
+                </a>
+            </h3>
+
+            <!--[if BLOCK]><![endif]-->                <p class="font-sans text-caption text-secondary">
+                    Extra-bold 4.75mm peppercorns left on the vine to full maturity in Malabar.
+                </p>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+
+        <div class="pt-2 flex items-center justify-between border-t border-hairline/60">
+            <div class="inline-flex items-baseline gap-2 font-serif text-primary tracking-tight select-none text-price-card">
+    <!--[if BLOCK]><![endif]-->        <span>₹1,375.00</span>
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    <!--[if ENDBLOCK]><![endif]--></div>
+
+            <!--[if BLOCK]><![endif]-->                <div>
+                    <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[11px] px-4 py-2 gap-1.5 bg-accent text-inverse hover:bg-accent-hover active:bg-accent-deep shadow-none" x-data="" x-on:click.prevent="$dispatch('notify', { message: 'Tellicherry Reserve Whole Black Peppercorns (Estate Lot #22) added to ritual basket.', tone: 'success' }); $dispatch('cart-updated', { count: 1 })"
+    >
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    Quick Add
+
+    <!--[if BLOCK]><![endif]-->        <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1" aria-hidden="true">→</span>
+    <!--[if ENDBLOCK]><![endif]--></button>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+    </div>
+</article>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+
+            <div class="text-center pt-4">
+                <a
+    href="/collections"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent group select-none no-underline text-[13px] px-6 py-3 gap-2 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised"
+>
+    Explore Complete Spring Catalogue
+
+    <!--[if BLOCK]><![endif]-->        <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1" aria-hidden="true">→</span>
+    <!--[if ENDBLOCK]><![endif]--></a>
+            </div>
+        </div>
+    </section>
+<!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->            
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]-->    <section class="w-full bg-surface-raised/40 py-16 sm:py-24 border-y border-hairline overflow-hidden">
+        <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12 space-y-12">
+            <div class="flex flex-col max-w-3xl mb-12 sm:mb-16 text-center items-center mx-auto">
+    <!--[if BLOCK]><![endif]-->        <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent mb-3">
+    Collector Staples
+</span>
+    <!--[if ENDBLOCK]><![endif]-->
+    <h2 class="font-serif font-normal text-primary tracking-tight text-display-2-mobile sm:text-display-2">
+        The Henley Hallmarks
+    </h2>
+
+    <!--[if BLOCK]><![endif]-->        <p class="mt-4 text-body-lead text-secondary max-w-2xl font-light leading-relaxed">
+            Our most celebrated harvests, re-ordered continuously by tea collectors worldwide.
+        </p>
+    <!--[if ENDBLOCK]><![endif]--></div>
+
+            <!-- Mobile Native Scroll-Snap Scroller & Desktop Grid -->
+            <div class="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto sm:overflow-x-visible pb-4 sm:pb-0 snap-x snap-mandatory no-scrollbar -mx-5 px-5 sm:mx-0 sm:px-0">
+                <!--[if BLOCK]><![endif]-->                    <div class="w-[280px] sm:w-auto flex-shrink-0 snap-center">
+                        <article class="group relative flex flex-col rounded-xl border border-hairline bg-surface-raised/40 p-4 transition-all duration-350 ease-henley hover:border-muted hover:bg-surface-raised hover:shadow-hover">
+    <!-- Product Image Container with gentle 1.03x scale -->
+    <a href="/products/morning-clarity-lemongrass-green-tea" class="relative block aspect-square w-full overflow-hidden rounded-lg bg-surface-raised">
+        <!--[if BLOCK]><![endif]-->            <img
+                src="brand/packagingrender.png"
+                alt="Morning Clarity Lemongrass Green Tea"
+                loading="lazy"
+                class="h-full w-full object-cover object-center transition-transform duration-500 ease-henley group-hover:scale-[1.03]"
+            >
+        <!--[if ENDBLOCK]><![endif]-->
+        <!--[if BLOCK]><![endif]-->            <div class="absolute top-3 left-3">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-badge uppercase font-bold tracking-[0.12em] select-none bg-gold-surface text-gold-text border border-gold/30">
+    #1 Bestseller
+</span>
+            </div>
+        <!--[if ENDBLOCK]><![endif]-->    </a>
+
+    <!-- Card Content -->
+    <div class="mt-4 flex flex-1 flex-col justify-between space-y-3">
+        <div class="space-y-1.5">
+            <!--[if BLOCK]><![endif]-->                <div class="flex items-center justify-between">
+                    <div class="inline-flex items-center gap-1.5 select-none" aria-label="Rated 4.8 out of 5 stars">
+    <div class="flex items-center gap-0.5" aria-hidden="true">
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <defs>
+        <linearGradient id="halfStarGrad">
+            <stop offset="50%" stop-color="currentColor"/>
+            <stop offset="50%" stop-color="transparent"/>
+        </linearGradient>
+    </defs>
+    <path fill="url(#halfStarGrad)" stroke="currentColor" stroke-width="1.5" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->        <span class="font-sans text-caption text-secondary">
+            (9)
+        </span>
+    <!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <h3 class="font-serif text-display-3 font-normal text-primary group-hover:text-accent transition-colors duration-250">
+                <a href="/products/morning-clarity-lemongrass-green-tea" class="focus:outline-none">
+                    Morning Clarity Lemongrass Green Tea
+                </a>
+            </h3>
+
+            <!--[if BLOCK]><![endif]-->                <p class="font-sans text-caption text-secondary">
+                    High-grown pan-fired green tea leaves with freshly cut Nilgiri mountain lemongrass and ginger root.
+                </p>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+
+        <div class="pt-2 flex items-center justify-between border-t border-hairline/60">
+            <div class="inline-flex items-baseline gap-2 font-serif text-primary tracking-tight select-none text-price-card">
+    <!--[if BLOCK]><![endif]-->        <span>₹1,250.00</span>
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    <!--[if ENDBLOCK]><![endif]--></div>
+
+            <!--[if BLOCK]><![endif]-->                <div>
+                    <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[11px] px-4 py-2 gap-1.5 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised" x-data="" x-on:click.prevent="$dispatch('notify', { message: 'Morning Clarity Lemongrass Green Tea added to ritual.', tone: 'success' }); $dispatch('cart-updated', { count: 1 })"
+    >
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    Add
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></button>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+    </div>
+</article>
+                    </div>
+                                    <div class="w-[280px] sm:w-auto flex-shrink-0 snap-center">
+                        <article class="group relative flex flex-col rounded-xl border border-hairline bg-surface-raised/40 p-4 transition-all duration-350 ease-henley hover:border-muted hover:bg-surface-raised hover:shadow-hover">
+    <!-- Product Image Container with gentle 1.03x scale -->
+    <a href="/products/first-flush-darjeeling-castleton-estate" class="relative block aspect-square w-full overflow-hidden rounded-lg bg-surface-raised">
+        <!--[if BLOCK]><![endif]-->            <img
+                src="brand/packagingrender.png"
+                alt="First Flush Darjeeling Castleton Estate"
+                loading="lazy"
+                class="h-full w-full object-cover object-center transition-transform duration-500 ease-henley group-hover:scale-[1.03]"
+            >
+        <!--[if ENDBLOCK]><![endif]-->
+        <!--[if BLOCK]><![endif]-->            <div class="absolute top-3 left-3">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-badge uppercase font-bold tracking-[0.12em] select-none bg-gold-surface text-gold-text border border-gold/30">
+    #2 Bestseller
+</span>
+            </div>
+        <!--[if ENDBLOCK]><![endif]-->    </a>
+
+    <!-- Card Content -->
+    <div class="mt-4 flex flex-1 flex-col justify-between space-y-3">
+        <div class="space-y-1.5">
+            <!--[if BLOCK]><![endif]-->                <div class="flex items-center justify-between">
+                    <div class="inline-flex items-center gap-1.5 select-none" aria-label="Rated 4.8 out of 5 stars">
+    <div class="flex items-center gap-0.5" aria-hidden="true">
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <defs>
+        <linearGradient id="halfStarGrad">
+            <stop offset="50%" stop-color="currentColor"/>
+            <stop offset="50%" stop-color="transparent"/>
+        </linearGradient>
+    </defs>
+    <path fill="url(#halfStarGrad)" stroke="currentColor" stroke-width="1.5" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->        <span class="font-sans text-caption text-secondary">
+            (12)
+        </span>
+    <!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <h3 class="font-serif text-display-3 font-normal text-primary group-hover:text-accent transition-colors duration-250">
+                <a href="/products/first-flush-darjeeling-castleton-estate" class="focus:outline-none">
+                    First Flush Darjeeling Castleton Estate
+                </a>
+            </h3>
+
+            <!--[if BLOCK]><![endif]-->                <p class="font-sans text-caption text-secondary">
+                    The Champagne of teas. Plucked in mid-March from the historic Castleton garden at 1,800m.
+                </p>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+
+        <div class="pt-2 flex items-center justify-between border-t border-hairline/60">
+            <div class="inline-flex items-baseline gap-2 font-serif text-primary tracking-tight select-none text-price-card">
+    <!--[if BLOCK]><![endif]-->        <span>₹2,400.00</span>
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    <!--[if ENDBLOCK]><![endif]--></div>
+
+            <!--[if BLOCK]><![endif]-->                <div>
+                    <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[11px] px-4 py-2 gap-1.5 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised" x-data="" x-on:click.prevent="$dispatch('notify', { message: 'First Flush Darjeeling Castleton Estate added to ritual.', tone: 'success' }); $dispatch('cart-updated', { count: 1 })"
+    >
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    Add
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></button>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+    </div>
+</article>
+                    </div>
+                                    <div class="w-[280px] sm:w-auto flex-shrink-0 snap-center">
+                        <article class="group relative flex flex-col rounded-xl border border-hairline bg-surface-raised/40 p-4 transition-all duration-350 ease-henley hover:border-muted hover:bg-surface-raised hover:shadow-hover">
+    <!-- Product Image Container with gentle 1.03x scale -->
+    <a href="/products/imperial-royal-kashmiri-saffron-kehwa" class="relative block aspect-square w-full overflow-hidden rounded-lg bg-surface-raised">
+        <!--[if BLOCK]><![endif]-->            <img
+                src="brand/packagingrender.png"
+                alt="Imperial Royal Kashmiri Saffron Kehwa"
+                loading="lazy"
+                class="h-full w-full object-cover object-center transition-transform duration-500 ease-henley group-hover:scale-[1.03]"
+            >
+        <!--[if ENDBLOCK]><![endif]-->
+        <!--[if BLOCK]><![endif]-->            <div class="absolute top-3 left-3">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-badge uppercase font-bold tracking-[0.12em] select-none bg-gold-surface text-gold-text border border-gold/30">
+    #3 Bestseller
+</span>
+            </div>
+        <!--[if ENDBLOCK]><![endif]-->    </a>
+
+    <!-- Card Content -->
+    <div class="mt-4 flex flex-1 flex-col justify-between space-y-3">
+        <div class="space-y-1.5">
+            <!--[if BLOCK]><![endif]-->                <div class="flex items-center justify-between">
+                    <div class="inline-flex items-center gap-1.5 select-none" aria-label="Rated 4.8 out of 5 stars">
+    <div class="flex items-center gap-0.5" aria-hidden="true">
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <defs>
+        <linearGradient id="halfStarGrad">
+            <stop offset="50%" stop-color="currentColor"/>
+            <stop offset="50%" stop-color="transparent"/>
+        </linearGradient>
+    </defs>
+    <path fill="url(#halfStarGrad)" stroke="currentColor" stroke-width="1.5" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->        <span class="font-sans text-caption text-secondary">
+            (14)
+        </span>
+    <!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <h3 class="font-serif text-display-3 font-normal text-primary group-hover:text-accent transition-colors duration-250">
+                <a href="/products/imperial-royal-kashmiri-saffron-kehwa" class="focus:outline-none">
+                    Imperial Royal Kashmiri Saffron Kehwa
+                </a>
+            </h3>
+
+            <!--[if BLOCK]><![endif]-->                <p class="font-sans text-caption text-secondary">
+                    Grade-A Pampore saffron threads, green tea, crushed green cardamom pods, and cinnamon bark.
+                </p>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+
+        <div class="pt-2 flex items-center justify-between border-t border-hairline/60">
+            <div class="inline-flex items-baseline gap-2 font-serif text-primary tracking-tight select-none text-price-card">
+    <!--[if BLOCK]><![endif]-->        <span>₹3,200.00</span>
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    <!--[if ENDBLOCK]><![endif]--></div>
+
+            <!--[if BLOCK]><![endif]-->                <div>
+                    <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[11px] px-4 py-2 gap-1.5 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised" x-data="" x-on:click.prevent="$dispatch('notify', { message: 'Imperial Royal Kashmiri Saffron Kehwa added to ritual.', tone: 'success' }); $dispatch('cart-updated', { count: 1 })"
+    >
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    Add
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></button>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+    </div>
+</article>
+                    </div>
+                                    <div class="w-[280px] sm:w-auto flex-shrink-0 snap-center">
+                        <article class="group relative flex flex-col rounded-xl border border-hairline bg-surface-raised/40 p-4 transition-all duration-350 ease-henley hover:border-muted hover:bg-surface-raised hover:shadow-hover">
+    <!-- Product Image Container with gentle 1.03x scale -->
+    <a href="/products/the-henley-signature-cloche-gift-collection-reserve-25" class="relative block aspect-square w-full overflow-hidden rounded-lg bg-surface-raised">
+        <!--[if BLOCK]><![endif]-->            <img
+                src="brand/packagingrender.png"
+                alt="The Henley Signature Cloche Gift Collection (Reserve #25)"
+                loading="lazy"
+                class="h-full w-full object-cover object-center transition-transform duration-500 ease-henley group-hover:scale-[1.03]"
+            >
+        <!--[if ENDBLOCK]><![endif]-->
+        <!--[if BLOCK]><![endif]-->            <div class="absolute top-3 left-3">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-badge uppercase font-bold tracking-[0.12em] select-none bg-gold-surface text-gold-text border border-gold/30">
+    #4 Bestseller
+</span>
+            </div>
+        <!--[if ENDBLOCK]><![endif]-->    </a>
+
+    <!-- Card Content -->
+    <div class="mt-4 flex flex-1 flex-col justify-between space-y-3">
+        <div class="space-y-1.5">
+            <!--[if BLOCK]><![endif]-->                <div class="flex items-center justify-between">
+                    <div class="inline-flex items-center gap-1.5 select-none" aria-label="Rated 4.9 out of 5 stars">
+    <div class="flex items-center gap-0.5" aria-hidden="true">
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <defs>
+        <linearGradient id="halfStarGrad">
+            <stop offset="50%" stop-color="currentColor"/>
+            <stop offset="50%" stop-color="transparent"/>
+        </linearGradient>
+    </defs>
+    <path fill="url(#halfStarGrad)" stroke="currentColor" stroke-width="1.5" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->        <span class="font-sans text-caption text-secondary">
+            (8)
+        </span>
+    <!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <h3 class="font-serif text-display-3 font-normal text-primary group-hover:text-accent transition-colors duration-250">
+                <a href="/products/the-henley-signature-cloche-gift-collection-reserve-25" class="focus:outline-none">
+                    The Henley Signature Cloche Gift Collection (Reserve #25)
+                </a>
+            </h3>
+
+            <!--[if BLOCK]><![endif]-->                <p class="font-sans text-caption text-secondary">
+                    Three 50g tasting cloche jars in a debossed ivory gift box with solid brass cloche scoop.
+                </p>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+
+        <div class="pt-2 flex items-center justify-between border-t border-hairline/60">
+            <div class="inline-flex items-baseline gap-2 font-serif text-primary tracking-tight select-none text-price-card">
+    <!--[if BLOCK]><![endif]-->        <span>₹5,100.00</span>
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    <!--[if ENDBLOCK]><![endif]--></div>
+
+            <!--[if BLOCK]><![endif]-->                <div>
+                    <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[11px] px-4 py-2 gap-1.5 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised" x-data="" x-on:click.prevent="$dispatch('notify', { message: 'The Henley Signature Cloche Gift Collection (Reserve #25) added to ritual.', tone: 'success' }); $dispatch('cart-updated', { count: 1 })"
+    >
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    Add
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></button>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+    </div>
+</article>
+                    </div>
+                                    <div class="w-[280px] sm:w-auto flex-shrink-0 snap-center">
+                        <article class="group relative flex flex-col rounded-xl border border-hairline bg-surface-raised/40 p-4 transition-all duration-350 ease-henley hover:border-muted hover:bg-surface-raised hover:shadow-hover">
+    <!-- Product Image Container with gentle 1.03x scale -->
+    <a href="/products/smoked-lapsang-souchong-pine-needle-tea-reserve-29" class="relative block aspect-square w-full overflow-hidden rounded-lg bg-surface-raised">
+        <!--[if BLOCK]><![endif]-->            <img
+                src="brand/packagingrender.png"
+                alt="Smoked Lapsang Souchong Pine Needle Tea (Reserve #29)"
+                loading="lazy"
+                class="h-full w-full object-cover object-center transition-transform duration-500 ease-henley group-hover:scale-[1.03]"
+            >
+        <!--[if ENDBLOCK]><![endif]-->
+        <!--[if BLOCK]><![endif]-->            <div class="absolute top-3 left-3">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-badge uppercase font-bold tracking-[0.12em] select-none bg-gold-surface text-gold-text border border-gold/30">
+    #5 Bestseller
+</span>
+            </div>
+        <!--[if ENDBLOCK]><![endif]-->    </a>
+
+    <!-- Card Content -->
+    <div class="mt-4 flex flex-1 flex-col justify-between space-y-3">
+        <div class="space-y-1.5">
+            <!--[if BLOCK]><![endif]-->                <div class="flex items-center justify-between">
+                    <div class="inline-flex items-center gap-1.5 select-none" aria-label="Rated 4.8 out of 5 stars">
+    <div class="flex items-center gap-0.5" aria-hidden="true">
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <defs>
+        <linearGradient id="halfStarGrad">
+            <stop offset="50%" stop-color="currentColor"/>
+            <stop offset="50%" stop-color="transparent"/>
+        </linearGradient>
+    </defs>
+    <path fill="url(#halfStarGrad)" stroke="currentColor" stroke-width="1.5" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->        <span class="font-sans text-caption text-secondary">
+            (12)
+        </span>
+    <!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <h3 class="font-serif text-display-3 font-normal text-primary group-hover:text-accent transition-colors duration-250">
+                <a href="/products/smoked-lapsang-souchong-pine-needle-tea-reserve-29" class="focus:outline-none">
+                    Smoked Lapsang Souchong Pine Needle Tea (Reserve #29)
+                </a>
+            </h3>
+
+            <!--[if BLOCK]><![endif]-->                <p class="font-sans text-caption text-secondary">
+                    Black orthodox leaves dried over smoking Himalayan pine wood embers.
+                </p>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+
+        <div class="pt-2 flex items-center justify-between border-t border-hairline/60">
+            <div class="inline-flex items-baseline gap-2 font-serif text-primary tracking-tight select-none text-price-card">
+    <!--[if BLOCK]><![endif]-->        <span>₹2,500.00</span>
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    <!--[if ENDBLOCK]><![endif]--></div>
+
+            <!--[if BLOCK]><![endif]-->                <div>
+                    <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[11px] px-4 py-2 gap-1.5 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised" x-data="" x-on:click.prevent="$dispatch('notify', { message: 'Smoked Lapsang Souchong Pine Needle Tea (Reserve #29) added to ritual.', tone: 'success' }); $dispatch('cart-updated', { count: 1 })"
+    >
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    Add
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></button>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+    </div>
+</article>
+                    </div>
+                                    <div class="w-[280px] sm:w-auto flex-shrink-0 snap-center">
+                        <article class="group relative flex flex-col rounded-xl border border-hairline bg-surface-raised/40 p-4 transition-all duration-350 ease-henley hover:border-muted hover:bg-surface-raised hover:shadow-hover">
+    <!-- Product Image Container with gentle 1.03x scale -->
+    <a href="/products/restorative-sleep-nighttime-infusion" class="relative block aspect-square w-full overflow-hidden rounded-lg bg-surface-raised">
+        <!--[if BLOCK]><![endif]-->            <img
+                src="brand/packagingrender.png"
+                alt="Restorative Sleep Nighttime Infusion"
+                loading="lazy"
+                class="h-full w-full object-cover object-center transition-transform duration-500 ease-henley group-hover:scale-[1.03]"
+            >
+        <!--[if ENDBLOCK]><![endif]-->
+        <!--[if BLOCK]><![endif]-->            <div class="absolute top-3 left-3">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-badge uppercase font-bold tracking-[0.12em] select-none bg-gold-surface text-gold-text border border-gold/30">
+    #6 Bestseller
+</span>
+            </div>
+        <!--[if ENDBLOCK]><![endif]-->    </a>
+
+    <!-- Card Content -->
+    <div class="mt-4 flex flex-1 flex-col justify-between space-y-3">
+        <div class="space-y-1.5">
+            <!--[if BLOCK]><![endif]-->                <div class="flex items-center justify-between">
+                    <div class="inline-flex items-center gap-1.5 select-none" aria-label="Rated 4.9 out of 5 stars">
+    <div class="flex items-center gap-0.5" aria-hidden="true">
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->                    <!--[if BLOCK]><![endif]-->                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <defs>
+        <linearGradient id="halfStarGrad">
+            <stop offset="50%" stop-color="currentColor"/>
+            <stop offset="50%" stop-color="transparent"/>
+        </linearGradient>
+    </defs>
+    <path fill="url(#halfStarGrad)" stroke="currentColor" stroke-width="1.5" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+            <!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->        <span class="font-sans text-caption text-secondary">
+            (13)
+        </span>
+    <!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <h3 class="font-serif text-display-3 font-normal text-primary group-hover:text-accent transition-colors duration-250">
+                <a href="/products/restorative-sleep-nighttime-infusion" class="focus:outline-none">
+                    Restorative Sleep Nighttime Infusion
+                </a>
+            </h3>
+
+            <!--[if BLOCK]><![endif]-->                <p class="font-sans text-caption text-secondary">
+                    Organic Himalayan chamomile blossoms, lavender buds, and adaptogenic root in our bone-white cloche.
+                </p>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+
+        <div class="pt-2 flex items-center justify-between border-t border-hairline/60">
+            <div class="inline-flex items-baseline gap-2 font-serif text-primary tracking-tight select-none text-price-card">
+    <!--[if BLOCK]><![endif]-->        <span>₹1,450.00</span>
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    <!--[if ENDBLOCK]><![endif]--></div>
+
+            <!--[if BLOCK]><![endif]-->                <div>
+                    <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[11px] px-4 py-2 gap-1.5 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised" x-data="" x-on:click.prevent="$dispatch('notify', { message: 'Restorative Sleep Nighttime Infusion added to ritual.', tone: 'success' }); $dispatch('cart-updated', { count: 1 })"
+    >
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    Add
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></button>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->        </div>
+    </div>
+</article>
+                    </div>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+        </div>
+    </section>
+<!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->            
+        <!--[if BLOCK]><![endif]-->            <section class="w-full bg-canvas py-16 sm:py-28 overflow-hidden">
+    <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+            <!-- Left: Large Lifestyle Image in Arched Apothecary Mask Frame -->
+            <div class="lg:col-span-5 relative order-2 lg:order-1">
+                <div class="relative overflow-hidden rounded-t-[9999px] rounded-b-none bg-surface-raised aspect-[4/5] border border-hairline shadow-subtle transition-all duration-350 ease-henley">
+    <img
+                        src="/images/brand/product.jpeg"
+                        alt="Henley porcelain cylinder and botanical leaf harvest"
+                        loading="lazy"
+                        width="800"
+                        height="1000"
+                        class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                    >
+</div>
+            </div>
+
+            <!-- Right: Brand Narrative & Proof -->
+            <div class="lg:col-span-7 space-y-6 sm:space-y-8 order-1 lg:order-2">
+                <div>
+                    <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent">
+    The Henley Philosophy
+</span>
+                </div>
+
+                <h2 class="font-serif text-display-2 font-normal text-primary tracking-tight leading-tight">
+                    Handpicked, small batch, organically extracted.
+                </h2>
+
+                <div class="space-y-4 text-body text-secondary leading-relaxed">
+                    <p>We believe tea should be approached the way a master perfumer approaches scent. We partner exclusively with high-altitude growers who reject industrial homogenization. Every leaf is plucked at dawn before mountain dew evaporates, preserving delicate volatile aromatic compounds that mass-market processing burns away.</p>
+                </div>
+
+                <div class="pt-4 border-t border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="font-sans text-xs uppercase tracking-[0.16em] font-semibold text-primary block">
+                            Dr. Alistair Henley
+                        </span>
+                        <span class="text-caption text-secondary">
+                            Master Botanical Curator
+                        </span>
+                    </div>
+
+                    <div>
+                        <a
+    href="/about"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent group select-none no-underline text-[13px] px-6 py-3 gap-2 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised"
+>
+    Read Our Full Story
+
+    <!--[if BLOCK]><![endif]-->        <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1" aria-hidden="true">→</span>
+    <!--[if ENDBLOCK]><![endif]--></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+        <!--[if ENDBLOCK]><![endif]-->            
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]-->    <section class="w-full bg-surface-raised/80 py-10 border-y border-hairline my-6">
+        <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 p-6 sm:p-8 rounded-2xl bg-surface-card border border-gold/40 shadow-subtle">
+                <div class="flex items-center gap-4 text-center md:text-left">
+                    <div class="hidden sm:flex h-12 w-12 items-center justify-center rounded-full bg-gold-surface border border-gold/30 text-gold-text flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+    <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z"/>
+</svg>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2 justify-center md:justify-start">
+                            <span class="font-serif text-xl font-normal text-primary">First Ritual Welcome Offering</span>
+                            <span class="px-2.5 py-0.5 rounded-full bg-gold-surface text-gold-text font-mono text-xs font-bold tracking-wider border border-gold/20">
+                                RITUAL15
+                            </span>
+                        </div>
+                        <p class="text-caption text-secondary">Enjoy 10% privilege on your first single-origin harvest collection.</p>
+                    </div>
+                </div>
+
+                <div class="flex-shrink-0">
+                    <a
+    href="/collections"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent group select-none no-underline text-[13px] px-6 py-3 gap-2 bg-accent text-inverse hover:bg-accent-hover active:bg-accent-deep shadow-none"
+>
+    Claim Invitation
+
+    <!--[if BLOCK]><![endif]-->        <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1" aria-hidden="true">→</span>
+    <!--[if ENDBLOCK]><![endif]--></a>
+                </div>
+            </div>
+        </div>
+    </section>
+<!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->            
+        <!--[if BLOCK]><![endif]-->            <!--[if BLOCK]><![endif]-->    <section class="w-full bg-canvas py-16 sm:py-24">
+        <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12 space-y-12">
+            <div class="flex flex-col max-w-3xl mb-12 sm:mb-16 text-center items-center mx-auto">
+    <!--[if BLOCK]><![endif]-->        <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent mb-3">
+    The Botanical Journal
+</span>
+    <!--[if ENDBLOCK]><![endif]-->
+    <h2 class="font-serif font-normal text-primary tracking-tight text-display-2-mobile sm:text-display-2">
+        Field Notes &amp; Brewing Alchemy
+    </h2>
+
+    <!--[if BLOCK]><![endif]-->        <p class="mt-4 text-body-lead text-secondary max-w-2xl font-light leading-relaxed">
+            Essays on high-altitude terroir, aromatic chemistry, and the unhurried ritual of tea extraction.
+        </p>
+    <!--[if ENDBLOCK]><![endif]--></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!--[if BLOCK]><![endif]-->                    <article class="group flex flex-col justify-between rounded-2xl border border-hairline bg-surface-raised/40 overflow-hidden hover:border-muted hover:shadow-hover transition-all duration-350">
+                        <div>
+                            <!-- Cover Image -->
+                            <div class="aspect-[16/10] w-full overflow-hidden bg-surface-raised">
+                                <img
+                                    src="/brand/productpage.jpeg"
+                                    alt="Water Temperature and Mineralization: The Lost Halves of Tea Extraction"
+                                    loading="lazy"
+                                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                >
+                            </div>
+
+                            <!-- Content -->
+                            <div class="p-6 space-y-3">
+                                <div class="flex items-center justify-between text-caption text-secondary">
+                                    <span>Aug 12, 2026</span>
+                                    <span>4 min read</span>
+                                </div>
+
+                                <h3 class="font-serif text-xl font-normal text-primary group-hover:text-accent transition-colors leading-snug">
+                                    <a href="/journal/water-temperature-and-mineralization">
+                                        Water Temperature and Mineralization: The Lost Halves of Tea Extraction
+                                    </a>
+                                </h3>
+
+                                <p class="text-body text-secondary line-clamp-2 leading-relaxed">
+                                    How total dissolved solids and steep curve dictate tannin release.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="px-6 pb-6 pt-2">
+                            <a href="/journal/water-temperature-and-mineralization" class="font-sans text-xs uppercase tracking-[0.16em] font-semibold text-accent group-hover:text-accent-hover inline-flex items-center gap-1.5">
+                                <span>Read Essay</span>
+                                <span class="inline-block transition-transform duration-250 group-hover:translate-x-1">→</span>
+                            </a>
+                        </div>
+                    </article>
+                                    <article class="group flex flex-col justify-between rounded-2xl border border-hairline bg-surface-raised/40 overflow-hidden hover:border-muted hover:shadow-hover transition-all duration-350">
+                        <div>
+                            <!-- Cover Image -->
+                            <div class="aspect-[16/10] w-full overflow-hidden bg-surface-raised">
+                                <img
+                                    src="/brand/productpage.jpeg"
+                                    alt="Wild Chamomile and Nightshade Botanicals: An Herbalist’s Field Notes"
+                                    loading="lazy"
+                                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                >
+                            </div>
+
+                            <!-- Content -->
+                            <div class="p-6 space-y-3">
+                                <div class="flex items-center justify-between text-caption text-secondary">
+                                    <span>Aug 09, 2026</span>
+                                    <span>5 min read</span>
+                                </div>
+
+                                <h3 class="font-serif text-xl font-normal text-primary group-hover:text-accent transition-colors leading-snug">
+                                    <a href="/journal/wild-chamomile-field-notes">
+                                        Wild Chamomile and Nightshade Botanicals: An Herbalist’s Field Notes
+                                    </a>
+                                </h3>
+
+                                <p class="text-body text-secondary line-clamp-2 leading-relaxed">
+                                    Field notes from our Nilgiri herbal harvests at 2,000m elevation.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="px-6 pb-6 pt-2">
+                            <a href="/journal/wild-chamomile-field-notes" class="font-sans text-xs uppercase tracking-[0.16em] font-semibold text-accent group-hover:text-accent-hover inline-flex items-center gap-1.5">
+                                <span>Read Essay</span>
+                                <span class="inline-block transition-transform duration-250 group-hover:translate-x-1">→</span>
+                            </a>
+                        </div>
+                    </article>
+                                    <article class="group flex flex-col justify-between rounded-2xl border border-hairline bg-surface-raised/40 overflow-hidden hover:border-muted hover:shadow-hover transition-all duration-350">
+                        <div>
+                            <!-- Cover Image -->
+                            <div class="aspect-[16/10] w-full overflow-hidden bg-surface-raised">
+                                <img
+                                    src="/brand/productpage.jpeg"
+                                    alt="The Chemistry of Spring First Flush: Why Altitude Changes Everything"
+                                    loading="lazy"
+                                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                >
+                            </div>
+
+                            <!-- Content -->
+                            <div class="p-6 space-y-3">
+                                <div class="flex items-center justify-between text-caption text-secondary">
+                                    <span>Aug 03, 2026</span>
+                                    <span>5 min read</span>
+                                </div>
+
+                                <h3 class="font-serif text-xl font-normal text-primary group-hover:text-accent transition-colors leading-snug">
+                                    <a href="/journal/chemistry-of-first-flush">
+                                        The Chemistry of Spring First Flush: Why Altitude Changes Everything
+                                    </a>
+                                </h3>
+
+                                <p class="text-body text-secondary line-clamp-2 leading-relaxed">
+                                    An exploration into the diurnal shifts and ultraviolet light of Himalayan slopes.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="px-6 pb-6 pt-2">
+                            <a href="/journal/chemistry-of-first-flush" class="font-sans text-xs uppercase tracking-[0.16em] font-semibold text-accent group-hover:text-accent-hover inline-flex items-center gap-1.5">
+                                <span>Read Essay</span>
+                                <span class="inline-block transition-transform duration-250 group-hover:translate-x-1">→</span>
+                            </a>
+                        </div>
+                    </article>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+
+            <div class="text-center pt-4">
+                <a
+    href="/journal"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent group select-none no-underline text-[13px] px-6 py-3 gap-2 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised"
+>
+    Read The Complete Botanical Journal
+
+    <!--[if BLOCK]><![endif]-->        <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1" aria-hidden="true">→</span>
+    <!--[if ENDBLOCK]><![endif]--></a>
+            </div>
+        </div>
+    </section>
+<!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->            
+        <!--[if BLOCK]><![endif]-->            <section class="w-full bg-surface-raised py-20 border-t border-hairline relative overflow-hidden">
+    <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
+        <div class="max-w-2xl mx-auto text-center space-y-4">
+            <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-gold">
+    Private Allocation Dispatch
+</span>
+
+            <h2 class="font-serif text-display-2 font-normal text-primary tracking-tight">
+                Join the Henley Collector Circle
+            </h2>
+
+            <p class="text-body text-secondary max-w-lg mx-auto leading-relaxed">
+                Receive first notification when limited single-estate spring flushes and wild saffron reserves are bottled.
+            </p>
+
+            <div class="pt-4 max-w-md mx-auto">
+                <div wire:snapshot="{&quot;data&quot;:{&quot;email&quot;:&quot;&quot;,&quot;subscribed&quot;:false},&quot;memo&quot;:{&quot;id&quot;:&quot;PCYOPXkG7xsluaCMcaVk&quot;,&quot;name&quot;:&quot;storefront.newsletter-signup&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;release&quot;:&quot;a-a-a&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;d660a6240048e34b162dfb2d54d930f8400ac3c8f4a3a6fae3bc9b4f2518bd76&quot;}" wire:effects="{&quot;partials&quot;:[]}" wire:id="PCYOPXkG7xsluaCMcaVk">
+    <!--[if BLOCK]><![endif]-->        <form wire:submit="subscribe" class="space-y-3">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 max-w-md mx-auto">
+                <div class="relative flex-1">
+                    <input
+                        type="email"
+                        wire:model="email"
+                        placeholder="collector@henleytea.com"
+                        required
+                        aria-label="Email address for newsletter"
+                        class="w-full rounded-full border border-hairline bg-surface-card px-5 py-3 text-ui text-primary placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition duration-250 "
+                    >
+                </div>
+
+                <button
+    type="submit"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[13px] px-6 py-3 gap-2 bg-accent text-inverse hover:bg-accent-hover active:bg-accent-deep shadow-none" wire:loading.attr="disabled"
+    >
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <span wire:loading.remove wire:target="subscribe">Join Circle</span>
+                    <span wire:loading wire:target="subscribe" class="inline-flex items-center gap-1.5">
+                        <svg
+    class="animate-spin h-4 w-4 text-inverse"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    role="status"
+    aria-label="Loading"
+    
+>
+    <circle class="opacity-20" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3"></circle>
+    <path class="opacity-80" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+</svg>
+                        <span>Joining...</span>
+                    </span>
+
+    <!--[if BLOCK]><![endif]-->        <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1" aria-hidden="true">→</span>
+    <!--[if ENDBLOCK]><![endif]--></button>
+            </div>
+
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <p class="text-[11px] text-muted text-center">
+                Strictly botanical dispatches & rare allocation notifications. Zero commercial noise.
+            </p>
+        </form>
+    <!--[if ENDBLOCK]><![endif]--></div>
+            </div>
+        </div>
+    </div>
+</section>
+        <!--[if ENDBLOCK]><![endif]-->    <!--[if ENDBLOCK]><![endif]--></div>
+    </main>
+
+    <!-- Storefront Footer -->
+    <footer class="w-full bg-surface-raised border-t border-hairline pt-16 pb-12 text-primary select-none">
+    <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12 space-y-16">
+
+        <!-- 1. Top Dispatch / Newsletter Band (with Gold Rule & Diamond Ornament) -->
+        <div class="space-y-8">
+            <div class="relative my-8 flex items-center justify-center" role="separator">
+        <div class="w-full border-t border-gold/40"></div>
+                    <span class="absolute bg-canvas px-3 text-gold" aria-hidden="true">
+                <svg class="h-3 w-3" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="12,2 22,12 12,22 2,12"/>
+                </svg>
+            </span>
+            </div>
+
+            <div class="max-w-2xl mx-auto text-center space-y-3">
+                <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-gold">
+    Private Allocation Dispatch
+</span>
+                <h3 class="font-serif text-display-2 font-normal text-primary tracking-tight">
+                    Join the Henley Collector Circle
+                </h3>
+                <p class="text-body text-secondary leading-relaxed max-w-lg mx-auto">
+                    Receive first notification when limited single-estate spring flushes and wild saffron reserves are bottled.
+                </p>
+
+                <!-- Livewire Newsletter Signup Component -->
+                <div class="pt-3">
+                    <div wire:snapshot="{&quot;data&quot;:{&quot;email&quot;:&quot;&quot;,&quot;subscribed&quot;:false},&quot;memo&quot;:{&quot;id&quot;:&quot;7KiFxQ5HyWHECiiCAB3i&quot;,&quot;name&quot;:&quot;storefront.newsletter-signup&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;release&quot;:&quot;a-a-a&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;530191afdd7f4bc9e900f0156acca6bc16781594b515e70c8b61d02e6111fbde&quot;}" wire:effects="{&quot;partials&quot;:[]}" wire:id="7KiFxQ5HyWHECiiCAB3i">
+    <!--[if BLOCK]><![endif]-->        <form wire:submit="subscribe" class="space-y-3">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 max-w-md mx-auto">
+                <div class="relative flex-1">
+                    <input
+                        type="email"
+                        wire:model="email"
+                        placeholder="collector@henleytea.com"
+                        required
+                        aria-label="Email address for newsletter"
+                        class="w-full rounded-full border border-hairline bg-surface-card px-5 py-3 text-ui text-primary placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition duration-250 "
+                    >
+                </div>
+
+                <button
+    type="submit"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[13px] px-6 py-3 gap-2 bg-accent text-inverse hover:bg-accent-hover active:bg-accent-deep shadow-none" wire:loading.attr="disabled"
+    >
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <span wire:loading.remove wire:target="subscribe">Join Circle</span>
+                    <span wire:loading wire:target="subscribe" class="inline-flex items-center gap-1.5">
+                        <svg
+    class="animate-spin h-4 w-4 text-inverse"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    role="status"
+    aria-label="Loading"
+    
+>
+    <circle class="opacity-20" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3"></circle>
+    <path class="opacity-80" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+</svg>
+                        <span>Joining...</span>
+                    </span>
+
+    <!--[if BLOCK]><![endif]-->        <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1" aria-hidden="true">→</span>
+    <!--[if ENDBLOCK]><![endif]--></button>
+            </div>
+
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <p class="text-[11px] text-muted text-center">
+                Strictly botanical dispatches & rare allocation notifications. Zero commercial noise.
+            </p>
+        </form>
+    <!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+            </div>
+
+            <hr class="my-8 border-0 border-t border-hairline" role="separator">
+        </div>
+
+        <!-- 2. Main Navigation Columns -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+
+            <!-- Column 1: Brand Statement (2 cols on large screen) -->
+            <div class="lg:col-span-2 space-y-4">
+                <a href="/" class="inline-block">
+                    <span class="font-serif text-3xl tracking-[0.22em] font-normal text-primary">
+                        HENLEY
+                    </span>
+                </a>
+                <p class="text-body text-secondary max-w-sm leading-relaxed">
+                    Pure leaf. Pure intent. Henley approaches single-origin tea, botanicals, and spices with the restraint, precision, and quiet luxury of a fine fragrance house.
+                </p>
+                <div class="pt-2 text-caption text-secondary space-y-1">
+                    <p>Concierge: <a href="mailto:concierge@henleytea.com" class="text-primary hover:text-accent underline decoration-hairline">concierge@henleytea.com</a></p>
+                    <p>Estate Office: Kurseong Division, Darjeeling, WB 734203</p>
+                </div>
+            </div>
+
+            <!-- Column 2: Shop -->
+            <div class="space-y-3">
+                <h4 class="font-sans text-xs uppercase tracking-[0.16em] font-semibold text-primary">
+                    The Cellar
+                </h4>
+                <ul class="space-y-2.5 text-ui text-secondary">
+                    <li><a href="/collections/single-origin-reserve" class="hover:text-accent transition-colors">First Flush Darjeeling</a></li>
+                    <li><a href="/collections/imperial-white-tea" class="hover:text-accent transition-colors">Silver Needle White</a></li>
+                    <li><a href="/collections/herbal-botanicals" class="hover:text-accent transition-colors">Nilgiri Herbal Elixirs</a></li>
+                    <li><a href="/collections/kashmiri-saffron" class="hover:text-accent transition-colors">Wild Kashmiri Saffron</a></li>
+                    <li><a href="/collections/curated-gift-sets" class="hover:text-accent transition-colors">Porcelain Gift Cloches</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Company -->
+            <div class="space-y-3">
+                <h4 class="font-sans text-xs uppercase tracking-[0.16em] font-semibold text-primary">
+                    Philosophy
+                </h4>
+                <ul class="space-y-2.5 text-ui text-secondary">
+                    <li><a href="/about" class="hover:text-accent transition-colors">Our Story & Heritage</a></li>
+                    <li><a href="/pages/estates-and-terroir" class="hover:text-accent transition-colors">Estates & Terroir</a></li>
+                    <li><a href="/pages/the-cloche-ritual" class="hover:text-accent transition-colors">The Cloche Ritual</a></li>
+                    <li><a href="/journal" class="hover:text-accent transition-colors">The Botanical Journal</a></li>
+                    <li><a href="/vendor/login" class="hover:text-accent transition-colors">Estate & Grower Portal</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Support & Concierge -->
+            <div class="space-y-3">
+                <h4 class="font-sans text-xs uppercase tracking-[0.16em] font-semibold text-primary">
+                    Concierge
+                </h4>
+                <ul class="space-y-2.5 text-ui text-secondary">
+                    <li><a href="/pages/faq" class="hover:text-accent transition-colors">Steeping & Care FAQ</a></li>
+                    <li><a href="/pages/shipping-policy" class="hover:text-accent transition-colors">Express Shipping Policy</a></li>
+                    <li><a href="/pages/returns-exchanges" class="hover:text-accent transition-colors">Returns & Guarantee</a></li>
+                    <li><a href="/pages/contact" class="hover:text-accent transition-colors">Concierge Desk</a></li>
+                    <li><a href="/pages/authenticity" class="hover:text-accent transition-colors">Certificate of Origin</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 3. Bottom Bar: Payment Marks, Socials & Legal -->
+        <div class="pt-8 border-t border-hairline flex flex-col md:flex-row items-center justify-between gap-6 text-caption text-secondary">
+            <!-- Copyright -->
+            <div>
+                <p>© 2026 Henley Botanical Ltd. All rights reserved.</p>
+            </div>
+
+            <!-- Payment Badges (Clean Vector Typography Marks) -->
+            <div class="flex items-center gap-3 text-[10px] tracking-wider uppercase font-semibold text-muted">
+                <span class="px-2.5 py-1 rounded bg-surface-card border border-hairline text-primary">UPI</span>
+                <span class="px-2.5 py-1 rounded bg-surface-card border border-hairline text-primary">Visa</span>
+                <span class="px-2.5 py-1 rounded bg-surface-card border border-hairline text-primary">Mastercard</span>
+                <span class="px-2.5 py-1 rounded bg-surface-card border border-hairline text-primary">RuPay</span>
+                <span class="px-2.5 py-1 rounded bg-surface-card border border-hairline text-primary">NetBanking</span>
+            </div>
+
+            <!-- Legal Policy Links -->
+            <div class="flex items-center gap-4 text-xs">
+                <a href="/pages/privacy-policy" class="hover:text-accent transition-colors">Privacy</a>
+                <span>•</span>
+                <a href="/pages/terms-of-service" class="hover:text-accent transition-colors">Terms</a>
+                <span>•</span>
+                <a href="/pages/shipping-policy" class="hover:text-accent transition-colors">Shipping</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- Livewire Scripts -->
+<script src="/livewire/livewire.js?id=df86bb7e"   data-csrf="4TTbwx5LXX74DoBZAyyWKy5lnoHqqTdq7E2JiQuD" data-update-uri="/livewire/update" data-navigate-once="true"></script>
+</body>
+</html>

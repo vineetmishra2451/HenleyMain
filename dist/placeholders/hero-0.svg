@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+    <defs>
+        <style>
+            .bg { fill: #FBF9F6; }
+            .hairline { stroke: #E5DFD6; stroke-width: 2; fill: none; }
+            .gold-arch { stroke: #B08B4F; stroke-width: 1.5; fill: none; opacity: 0.45; }
+            .gold-fill { fill: #B08B4F; opacity: 0.12; }
+            .brand { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28px; font-weight: 500; fill: #231C18; letter-spacing: 0.25em; text-anchor: middle; }
+            .meta { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 13px; font-weight: 600; fill: #6E635B; letter-spacing: 0.16em; text-transform: uppercase; text-anchor: middle; }
+            .sub { font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-size: 11px; font-weight: 400; fill: #8E8278; letter-spacing: 0.08em; text-anchor: middle; }
+        </style>
+    </defs>
+    <!-- Background Canvas -->
+    <rect width="1920" height="1080" class="bg" />
+    <!-- 1px Inset Hairline Border -->
+    <rect x="8" y="8" width="1904" height="1064" class="hairline" rx="8" />
+
+    <!-- Centered Apothecary Arch Motif -->
+    <g transform="translate(841.2, 373.68)">
+        <!-- Arch Niche -->
+        <path d="M 0,237.6 L 0,106.92 A 118.8,118.8 0 0,1 237.6,106.92 L 237.6,237.6 Z" class="gold-fill" />
+        <path d="M 0,237.6 L 0,106.92 A 118.8,118.8 0 0,1 237.6,106.92 L 237.6,237.6 Z" class="gold-arch" />
+        <!-- Cloche Handle Top Notch -->
+        <circle cx="118.8" cy="-17.88" r="4" stroke="#B08B4F" stroke-width="1.5" fill="none" opacity="0.45" />
+    </g>
+
+    <!-- Typography Block -->
+    <text x="960" y="646.92" class="brand">HENLEY</text>
+    <text x="960" y="676.92" class="meta">Hero Lifestyle Cloche</text>
+    <text x="960" y="698.92" class="sub">1920 × 1080px • 16:9</text>
+</svg>

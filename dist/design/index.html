@@ -1,0 +1,2374 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-canvas scroll-smooth">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="4TTbwx5LXX74DoBZAyyWKy5lnoHqqTdq7E2JiQuD">
+
+    <title>Henley — Living Component Gallery &amp; Design System</title>
+
+    <!-- Self-hosted font preloading for above-the-fold render -->
+    <link rel="preload" href="/fonts/cormorant-garamond-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/plus-jakarta-sans-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+    <script type="module" src="http://localhost:5174/@vite/client" data-navigate-track="reload"></script><link rel="stylesheet" href="http://localhost:5174/resources/css/app.css" data-navigate-track="reload" /><script type="module" src="http://localhost:5174/resources/js/app.js" data-navigate-track="reload"></script>    <!-- Livewire Styles --><style >[wire\:loading][wire\:loading], [wire\:loading\.delay][wire\:loading\.delay], [wire\:loading\.inline-block][wire\:loading\.inline-block], [wire\:loading\.inline][wire\:loading\.inline], [wire\:loading\.block][wire\:loading\.block], [wire\:loading\.flex][wire\:loading\.flex], [wire\:loading\.table][wire\:loading\.table], [wire\:loading\.grid][wire\:loading\.grid], [wire\:loading\.inline-flex][wire\:loading\.inline-flex] {display: none;}[wire\:loading\.delay\.none][wire\:loading\.delay\.none], [wire\:loading\.delay\.shortest][wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter][wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short][wire\:loading\.delay\.short], [wire\:loading\.delay\.default][wire\:loading\.delay\.default], [wire\:loading\.delay\.long][wire\:loading\.delay\.long], [wire\:loading\.delay\.longer][wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest][wire\:loading\.delay\.longest] {display: none;}[wire\:offline][wire\:offline] {display: none;}[wire\:dirty]:not(textarea):not(input):not(select) {display: none;}:root {--livewire-progress-bar-color: #2299dd;}[x-cloak] {display: none !important;}[wire\:cloak] {display: none !important;}dialog#livewire-error::backdrop {background-color: rgba(0, 0, 0, .6);}</style>
+</head>
+<body class="min-h-full bg-canvas text-primary antialiased selection:bg-accent selection:text-inverse">
+    <!-- Livewire SPA Loading Bar Indicator -->
+    <div wire:loading.class="w-full opacity-100" class="fixed top-0 left-0 h-0.5 bg-accent z-[9999] transition-all duration-300 w-0 opacity-0 pointer-events-none"></div>
+
+    <div class="min-h-screen bg-canvas text-primary flex">
+        <!-- Sticky Left Sidebar Index (Desktop) -->
+        <aside class="hidden lg:block w-72 h-screen sticky top-0 overflow-y-auto border-r border-hairline bg-surface-raised/60 p-6 z-30">
+            <div class="space-y-6">
+                <!-- Brand Masthead -->
+                <div class="pb-6 border-b border-hairline">
+                    <span class="font-serif text-2xl font-normal tracking-tight text-primary">HENLEY</span>
+                    <div class="mt-1">
+                        <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent text-[10px]">
+    Living Design System
+</span>
+                    </div>
+                </div>
+
+                <!-- Navigation Index -->
+                <nav class="space-y-1 text-xs uppercase tracking-[0.14em] font-medium" aria-label="Component sections">
+                    <a href="#foundations" class="block px-3 py-2 rounded-lg text-secondary hover:text-accent hover:bg-surface-raised transition">01. Foundations</a>
+                    <a href="#typography" class="block px-3 py-2 rounded-lg text-secondary hover:text-accent hover:bg-surface-raised transition">02. Typography</a>
+                    <a href="#actions" class="block px-3 py-2 rounded-lg text-secondary hover:text-accent hover:bg-surface-raised transition">03. Actions & Buttons</a>
+                    <a href="#forms" class="block px-3 py-2 rounded-lg text-secondary hover:text-accent hover:bg-surface-raised transition">04. Form Controls</a>
+                    <a href="#layout" class="block px-3 py-2 rounded-lg text-secondary hover:text-accent hover:bg-surface-raised transition">05. Layout & Dividers</a>
+                    <a href="#content" class="block px-3 py-2 rounded-lg text-secondary hover:text-accent hover:bg-surface-raised transition">06. Editorial Content</a>
+                    <a href="#commerce" class="block px-3 py-2 rounded-lg text-secondary hover:text-accent hover:bg-surface-raised transition">07. Commerce Elements</a>
+                    <a href="#feedback" class="block px-3 py-2 rounded-lg text-secondary hover:text-accent hover:bg-surface-raised transition">08. Overlays & Feedback</a>
+                    <a href="#navigation" class="block px-3 py-2 rounded-lg text-secondary hover:text-accent hover:bg-surface-raised transition">09. Navigation & Disclosure</a>
+                    <a href="#media" class="block px-3 py-2 rounded-lg text-secondary hover:text-accent hover:bg-surface-raised transition">10. Media & Apothecary Arch</a>
+                    <a href="#icons" class="block px-3 py-2 rounded-lg text-secondary hover:text-accent hover:bg-surface-raised transition">11. Line Iconography</a>
+                </nav>
+
+                <!-- Environment & Accessibility Badges -->
+                <div class="pt-6 border-t border-hairline space-y-2">
+                    <div class="flex items-center justify-between text-caption text-secondary">
+                        <span>Environment</span>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-badge uppercase font-bold tracking-[0.12em] select-none bg-sage-surface text-sage-text border border-sage/20">
+    local
+</span>
+                    </div>
+                    <div class="flex items-center justify-between text-caption text-secondary">
+                        <span>WCAG 2.1</span>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-badge uppercase font-bold tracking-[0.12em] select-none bg-gold-surface text-gold-text border border-gold/30">
+    Level AA / AAA
+</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 w-full overflow-x-hidden">
+            <!-- Header Bar -->
+            <header class="border-b border-hairline bg-surface-raised/40 px-6 sm:px-12 py-6 sticky top-0 z-20 backdrop-blur-md flex items-center justify-between">
+                <div>
+                    <h1 class="font-serif text-display-3 font-normal text-primary">Henley Design System</h1>
+                    <p class="font-sans text-caption text-secondary mt-0.5">Semantic tokens, atomic components, and living visual standards</p>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <a href="/" class="text-xs uppercase tracking-widest font-semibold text-secondary hover:text-accent transition">
+                        Storefront ↗
+                    </a>
+                </div>
+            </header>
+
+            <div class="px-6 sm:px-12 lg:px-16 py-12 max-w-7xl mx-auto space-y-24">
+
+                <!-- ------------------------------------------------------------------- -->
+                <!-- 01. FOUNDATIONS                                                     -->
+                <!-- ------------------------------------------------------------------- -->
+                <section id="foundations" class="scroll-mt-24 space-y-8">
+                    <div class="flex flex-col max-w-3xl mb-12 sm:mb-16 text-left items-start">
+            <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent mb-3">
+    01. Brand Foundations
+</span>
+    
+    <h2 class="font-serif font-normal text-primary tracking-tight text-display-2-mobile sm:text-display-2">
+        Semantic Color Roles &amp; Surface Hierarchy
+    </h2>
+
+            <p class="mt-4 text-body-lead text-secondary max-w-2xl font-light leading-relaxed">
+            Henley rejects stark cold grays and synthetic shadows. Depth is created via warm paper transitions and calibrated contrast ratios.
+        </p>
+    </div>
+
+                    <!-- Color Swatches Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <!-- Canvas Base -->
+                        <div class="p-4 rounded-xl border border-hairline bg-canvas space-y-3 shadow-none">
+                            <div class="h-16 w-full rounded-lg bg-canvas border border-hairline"></div>
+                            <div>
+                                <span class="font-sans text-xs uppercase tracking-wider font-semibold block text-primary">Canvas Base</span>
+                                <span class="text-caption text-secondary">bg-canvas • #FBF9F6</span>
+                                <span class="text-[11px] text-accent block mt-1">15.98:1 AAA vs Primary</span>
+                            </div>
+                        </div>
+
+                        <!-- Raised Surface -->
+                        <div class="p-4 rounded-xl border border-hairline bg-surface-raised space-y-3">
+                            <div class="h-16 w-full rounded-lg bg-surface-raised border border-hairline"></div>
+                            <div>
+                                <span class="font-sans text-xs uppercase tracking-wider font-semibold block text-primary">Surface Raised</span>
+                                <span class="text-caption text-secondary">bg-surface-raised • #F5F3EF</span>
+                                <span class="text-[11px] text-accent block mt-1">15.15:1 AAA vs Primary</span>
+                            </div>
+                        </div>
+
+                        <!-- Accent Oxblood -->
+                        <div class="p-4 rounded-xl border border-hairline bg-canvas space-y-3">
+                            <div class="h-16 w-full rounded-lg bg-accent"></div>
+                            <div>
+                                <span class="font-sans text-xs uppercase tracking-wider font-semibold block text-primary">Oxblood (Primary Action)</span>
+                                <span class="text-caption text-secondary">bg-accent • #5C2225</span>
+                                <span class="text-[11px] text-accent block mt-1">12.28:1 AAA vs White</span>
+                            </div>
+                        </div>
+
+                        <!-- Saffron -->
+                        <div class="p-4 rounded-xl border border-hairline bg-canvas space-y-3">
+                            <div class="h-16 w-full rounded-lg bg-saffron"></div>
+                            <div>
+                                <span class="font-sans text-xs uppercase tracking-wider font-semibold block text-primary">Saffron (Product Star)</span>
+                                <span class="text-caption text-secondary">bg-saffron • #A6332F</span>
+                                <span class="text-[11px] text-accent block mt-1">6.37:1 AA vs Canvas</span>
+                            </div>
+                        </div>
+
+                        <!-- Antique Gold -->
+                        <div class="p-4 rounded-xl border border-hairline bg-canvas space-y-3">
+                            <div class="h-16 w-full rounded-lg bg-gold"></div>
+                            <div>
+                                <span class="font-sans text-xs uppercase tracking-wider font-semibold block text-primary">Antique Gold (Foil Only)</span>
+                                <span class="text-caption text-secondary">border-gold • #B08B4F</span>
+                                <span class="text-[11px] text-accent block mt-1">3.00:1 UI AA Non-Text</span>
+                            </div>
+                        </div>
+
+                        <!-- Sage -->
+                        <div class="p-4 rounded-xl border border-hairline bg-canvas space-y-3">
+                            <div class="h-16 w-full rounded-lg bg-sage"></div>
+                            <div>
+                                <span class="font-sans text-xs uppercase tracking-wider font-semibold block text-primary">Sage (Botanical & Stock)</span>
+                                <span class="text-caption text-secondary">bg-sage • #7F8A6E</span>
+                                <span class="text-[11px] text-accent block mt-1">8.12:1 AAA (text over pill)</span>
+                            </div>
+                        </div>
+
+                        <!-- Hairline Neutral -->
+                        <div class="p-4 rounded-xl border border-hairline bg-canvas space-y-3">
+                            <div class="h-16 w-full rounded-lg bg-hairline"></div>
+                            <div>
+                                <span class="font-sans text-xs uppercase tracking-wider font-semibold block text-primary">Hairline Neutral</span>
+                                <span class="text-caption text-secondary">border-hairline • #E5DFD6</span>
+                                <span class="text-[11px] text-secondary block mt-1">Structural 1px separator</span>
+                            </div>
+                        </div>
+
+                        <!-- Surface Dark -->
+                        <div class="p-4 rounded-xl border border-hairline bg-canvas space-y-3">
+                            <div class="h-16 w-full rounded-lg bg-surface-dark"></div>
+                            <div>
+                                <span class="font-sans text-xs uppercase tracking-wider font-semibold block text-primary">Surface Dark</span>
+                                <span class="text-caption text-secondary">bg-surface-dark • #1D1714</span>
+                                <span class="text-[11px] text-accent block mt-1">High contrast sections</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="my-8 border-0 border-t border-hairline" role="separator">
+
+                <!-- ------------------------------------------------------------------- -->
+                <!-- 02. TYPOGRAPHY                                                      -->
+                <!-- ------------------------------------------------------------------- -->
+                <section id="typography" class="scroll-mt-24 space-y-8">
+                    <div class="flex flex-col max-w-3xl mb-12 sm:mb-16 text-left items-start">
+            <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent mb-3">
+    02. Typographic Scale
+</span>
+    
+    <h2 class="font-serif font-normal text-primary tracking-tight text-display-2-mobile sm:text-display-2">
+        Display Serif &amp; Grotesque Pairing
+    </h2>
+
+            <p class="mt-4 text-body-lead text-secondary max-w-2xl font-light leading-relaxed">
+            Self-hosted Cormorant Garamond provides fragrance-house editorial refinement, balanced by Plus Jakarta Sans for precision UI controls.
+        </p>
+    </div>
+
+                    <div class="space-y-6 rounded-2xl border border-hairline bg-surface-raised p-6 sm:p-10 divide-y divide-hairline">
+                        <div class="pb-6">
+                            <span class="text-caption text-secondary uppercase tracking-widest font-semibold block mb-1">Display Hero (56px / 3.5rem)</span>
+                            <div class="font-serif text-display-hero text-primary leading-tight">
+                                Pure leaf. Pure intent.
+                            </div>
+                        </div>
+
+                        <div class="py-6">
+                            <span class="text-caption text-secondary uppercase tracking-widest font-semibold block mb-1">Display 1 (42px / 2.625rem)</span>
+                            <div class="font-serif text-display-1 text-primary leading-tight">
+                                First Flush Darjeeling — Castleton Lot 04
+                            </div>
+                        </div>
+
+                        <div class="py-6">
+                            <span class="text-caption text-secondary uppercase tracking-widest font-semibold block mb-1">Display 2 (32px / 2.0rem)</span>
+                            <div class="font-serif text-display-2 text-primary">
+                                The Unhurried Ritual of Single-Estate Botanicals
+                            </div>
+                        </div>
+
+                        <div class="py-6">
+                            <span class="text-caption text-secondary uppercase tracking-widest font-semibold block mb-1">Display 3 (24px / 1.5rem)</span>
+                            <div class="font-serif text-display-3 text-primary">
+                                Imperial Silver Needle White Tea
+                            </div>
+                        </div>
+
+                        <div class="py-6">
+                            <span class="text-caption text-secondary uppercase tracking-widest font-semibold block mb-1">Price Hero & Price Card</span>
+                            <div class="flex items-center gap-8">
+                                <div>
+                                    <span class="text-[11px] text-secondary block">Hero Price:</span>
+                                    <div class="inline-flex items-baseline gap-2 font-serif text-primary tracking-tight select-none text-price-hero">
+            <span>₹3,800.00</span>
+
+                    <span class="font-sans text-sm font-normal text-muted line-through">
+                ₹4,200.00
+            </span>
+            </div>
+                                </div>
+                                <div>
+                                    <span class="text-[11px] text-secondary block">Card Price:</span>
+                                    <div class="inline-flex items-baseline gap-2 font-serif text-primary tracking-tight select-none text-price-card">
+            <span>₹1,450.00</span>
+
+            </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="py-6">
+                            <span class="text-caption text-secondary uppercase tracking-widest font-semibold block mb-1">Body Lead & Standard Body (18px & 16px)</span>
+                            <p class="text-body-lead text-secondary mb-2">
+                                Hand-harvested during the first seventy-two hours of Himalayan spring thaw at an elevation of 1,800 meters.
+                            </p>
+                            <p class="text-body text-primary">
+                                Every batch is packed within 24 hours of firing into porcelain cloche jars, protecting volatile monoterpenes and floral muscatel esters.
+                            </p>
+                        </div>
+
+                        <div class="pt-6">
+                            <span class="text-caption text-secondary uppercase tracking-widest font-semibold block mb-1">Eyebrow & Badge</span>
+                            <div class="flex items-center gap-4">
+                                <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent">
+    Single Estate • Spring 2026
+</span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-badge uppercase font-bold tracking-[0.12em] select-none bg-sage-surface text-sage-text border border-sage/20">
+    100% Biodynamic
+</span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-badge uppercase font-bold tracking-[0.12em] select-none bg-gold-surface text-gold-text border border-gold/30">
+    Bestseller
+</span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-badge uppercase font-bold tracking-[0.12em] select-none bg-saffron-surface text-saffron-text border border-saffron/20">
+    Limited Harvest
+</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="my-8 border-0 border-t border-hairline" role="separator">
+
+                <!-- ------------------------------------------------------------------- -->
+                <!-- 03. ACTIONS & BUTTONS                                               -->
+                <!-- ------------------------------------------------------------------- -->
+                <section id="actions" class="scroll-mt-24 space-y-8">
+                    <div class="flex flex-col max-w-3xl mb-12 sm:mb-16 text-left items-start">
+            <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent mb-3">
+    03. Interactive Controls
+</span>
+    
+    <h2 class="font-serif font-normal text-primary tracking-tight text-display-2-mobile sm:text-display-2">
+        Actions, Buttons &amp; Tactile States
+    </h2>
+
+            <p class="mt-4 text-body-lead text-secondary max-w-2xl font-light leading-relaxed">
+            Buttons use oxblood fills, hairline outlines, and responsive hover transitions with a signature 3px trailing arrow motion.
+        </p>
+    </div>
+
+                    <!-- Variants & Sizes Grid -->
+                    <div class="p-6 sm:p-10 rounded-2xl border border-hairline bg-surface-raised space-y-8">
+                        <!-- Primary Buttons with Trailing Arrow -->
+                        <div>
+                            <span class="text-caption text-secondary uppercase tracking-widest font-semibold block mb-4">Primary Variant (Oxblood Fill)</span>
+                            <div class="flex flex-wrap items-center gap-4">
+                                <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[14px] px-8 py-4 gap-2.5 bg-accent text-inverse hover:bg-accent-hover active:bg-accent-deep shadow-none"
+    >
+    
+    Add to Ritual
+
+            <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1" aria-hidden="true">→</span>
+    </button>
+                                <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[13px] px-6 py-3 gap-2 bg-accent text-inverse hover:bg-accent-hover active:bg-accent-deep shadow-none"
+    >
+    
+    Explore Harvest
+
+            <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1" aria-hidden="true">→</span>
+    </button>
+                                <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[11px] px-4 py-2 gap-1.5 bg-accent text-inverse hover:bg-accent-hover active:bg-accent-deep shadow-none"
+    >
+    
+    Quick Add
+
+            <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1" aria-hidden="true">→</span>
+    </button>
+                                <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[13px] px-6 py-3 gap-2 bg-accent text-inverse hover:bg-accent-hover active:bg-accent-deep shadow-none"
+    >
+            <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+    
+    Processing
+
+    </button>
+                                <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[13px] px-6 py-3 gap-2 bg-accent text-inverse hover:bg-accent-hover active:bg-accent-deep shadow-none"
+     disabled >
+    
+    Sold Out
+
+    </button>
+                            </div>
+                        </div>
+
+                        <!-- Secondary Buttons -->
+                        <div>
+                            <span class="text-caption text-secondary uppercase tracking-widest font-semibold block mb-4">Secondary Variant (Hairline Outline)</span>
+                            <div class="flex flex-wrap items-center gap-4">
+                                <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[14px] px-8 py-4 gap-2.5 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised"
+    >
+    
+    View Tasting Notes
+
+    </button>
+                                <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[13px] px-6 py-3 gap-2 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised"
+    >
+    
+    Filter Catalog
+
+    </button>
+                                <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[11px] px-4 py-2 gap-1.5 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised"
+    >
+    
+    Select Size
+
+    </button>
+                                <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[13px] px-6 py-3 gap-2 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised"
+     disabled >
+    
+    Unavailable
+
+    </button>
+                            </div>
+                        </div>
+
+                        <!-- Ghost & Destructive -->
+                        <div>
+                            <span class="text-caption text-secondary uppercase tracking-widest font-semibold block mb-4">Ghost & Destructive</span>
+                            <div class="flex flex-wrap items-center gap-4">
+                                <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[13px] px-6 py-3 gap-2 bg-transparent text-secondary hover:text-accent hover:bg-surface-raised active:bg-hairline/40"
+    >
+    
+    Clear All Filters
+
+    </button>
+                                <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[13px] px-6 py-3 gap-2 bg-error text-inverse hover:opacity-90 active:opacity-100"
+    >
+    
+    Remove Item
+
+    </button>
+                                <a
+    href="#foundations"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent group select-none no-underline text-[11px] px-4 py-2 gap-1.5 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised"
+>
+    Back to Top
+
+            <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1" aria-hidden="true">→</span>
+    </a>
+                            </div>
+                        </div>
+
+                        <!-- Icon Buttons -->
+                        <div>
+                            <span class="text-caption text-secondary uppercase tracking-widest font-semibold block mb-4">Icon Buttons</span>
+                            <div class="flex items-center gap-4">
+                                <button
+    type="button"
+    aria-label="Add to Wishlist"
+    class="inline-flex items-center justify-center rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer select-none w-10 h-10 p-2.5 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised"
+>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+</svg>
+</button>
+                                <button
+    type="button"
+    aria-label="Shopping Bag"
+    class="inline-flex items-center justify-center rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer select-none w-10 h-10 p-2.5 bg-accent text-inverse hover:bg-accent-hover active:bg-accent-deep"
+>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/>
+    <path d="M16 10a4 4 0 01-8 0"/>
+</svg>
+</button>
+                                <button
+    type="button"
+    aria-label="Search"
+    class="inline-flex items-center justify-center rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer select-none w-10 h-10 p-2.5 bg-transparent text-secondary hover:text-accent hover:bg-surface-raised active:bg-hairline/40"
+>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+    <circle cx="11" cy="11" r="8"/>
+    <path d="M21 21l-4.35-4.35"/>
+</svg>
+</button>
+                                <button
+    type="button"
+    aria-label="Filter"
+    class="inline-flex items-center justify-center rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer select-none w-8 h-8 p-1.5 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised"
+>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5">
+    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+</svg>
+</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="my-8 border-0 border-t border-hairline" role="separator">
+
+                <!-- ------------------------------------------------------------------- -->
+                <!-- 04. FORM CONTROLS                                                   -->
+                <!-- ------------------------------------------------------------------- -->
+                <section id="forms" class="scroll-mt-24 space-y-8">
+                    <div class="flex flex-col max-w-3xl mb-12 sm:mb-16 text-left items-start">
+            <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent mb-3">
+    04. Forms &amp; Input Wells
+</span>
+    
+    <h2 class="font-serif font-normal text-primary tracking-tight text-display-2-mobile sm:text-display-2">
+        Calibrated Form Architecture
+    </h2>
+
+            <p class="mt-4 text-body-lead text-secondary max-w-2xl font-light leading-relaxed">
+            Form inputs utilize high-contrast pure white wells against the warm paper canvas, with saffron error announcements.
+        </p>
+    </div>
+
+                    <div class="p-6 sm:p-10 rounded-2xl border border-hairline bg-surface-raised space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-1.5">
+            <label for="full_name" class="block text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+            Full Name
+                            <span class="text-accent ml-0.5" aria-hidden="true">*</span>
+                    </label>
+    
+    <div class="relative">
+        <input
+            type="text"
+            name="full_name"
+            id="full_name"
+            placeholder="Lady Margaret Henley"
+             required aria-required="true"                             aria-describedby="full_name-hint"
+                        class="block w-full rounded-md border bg-surface-card px-4 py-2.5 text-ui text-primary shadow-none placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors duration-250 ease-henley border-hairline hover:border-muted"
+        >
+    </div>
+
+            <p id="full_name-hint" class="text-caption text-secondary">
+            As you would like it inscribed on certificate
+        </p>
+    
+    </div>
+
+                            <div class="space-y-1.5">
+            <label for="email_error" class="block text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+            Email Address
+                            <span class="text-accent ml-0.5" aria-hidden="true">*</span>
+                    </label>
+    
+    <div class="relative">
+        <input
+            type="text"
+            name="email_error"
+            id="email_error"
+            placeholder=""
+             required aria-required="true"                             aria-invalid="true"
+                aria-describedby="email_error-error"
+                        class="block w-full rounded-md border bg-surface-card px-4 py-2.5 text-ui text-primary shadow-none placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors duration-250 ease-henley border-saffron ring-1 ring-saffron bg-saffron-surface/20" value="invalid-email-format"
+        >
+    </div>
+
+    
+            <p id="email_error-error" role="alert" class="text-caption text-saffron font-medium">
+            Please enter a valid email address.
+        </p>
+    </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-1.5">
+            <label for="flush_season" class="block text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+            Harvest Season
+                    </label>
+    
+    <div class="relative">
+        <select
+            name="flush_season"
+            id="flush_season"
+                                    class="block w-full appearance-none rounded-md border bg-surface-card px-4 py-2.5 pr-10 text-ui text-primary shadow-none focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors duration-250 ease-henley border-hairline hover:border-muted"
+        >
+            
+                            <option value="first_flush">First Flush (Early Spring)</option>
+                            <option value="second_flush">Second Flush (Muscatel Summer)</option>
+                            <option value="autumnal">Autumnal Harvest (Rich &amp; Roasted)</option>
+            
+            
+        </select>
+
+        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-secondary" aria-hidden="true">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </div>
+    </div>
+
+    
+    </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-[0.14em] text-primary mb-1.5">Search Catalogue</label>
+                                <div x-data="{ query: 'Darjeeling Spring' }" class="relative w-full">
+    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-secondary" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+    <circle cx="11" cy="11" r="8"/>
+    <path d="M21 21l-4.35-4.35"/>
+</svg>
+    </div>
+
+    <input
+        type="search"
+        name="search"
+        id="search"
+        x-model="query"
+        placeholder="Search by harvest, single origin, or aromatic notes..."
+        aria-label="Search by harvest, single origin, or aromatic notes..."
+        class="block w-full rounded-full border border-hairline bg-surface-card pl-11 pr-10 py-3 text-ui text-primary placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors duration-250 ease-henley"
+    >
+
+    <button
+        type="button"
+        x-show="query.length > 0"
+        x-on:click="query = ''; $el.previousElementSibling.focus()"
+        class="absolute inset-y-0 right-0 flex items-center pr-4 text-muted hover:text-primary transition-colors"
+        aria-label="Clear search query"
+        style="display: none;"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+    <path d="M18 6L6 18M6 6l12 12"/>
+</svg>
+    </button>
+</div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+            <label for="gift_note" class="block text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+            Apothecary Gift Inscription
+                    </label>
+    
+    <div class="relative">
+        <textarea
+            name="gift_note"
+            id="gift_note"
+            rows="3"
+            placeholder="Add a personalized calligraphy message to accompany your gift cloche..."
+                                    class="block w-full rounded-md border bg-surface-card px-4 py-2.5 text-ui text-primary shadow-none placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors duration-250 ease-henley border-hairline hover:border-muted"
+        ></textarea>
+    </div>
+
+    
+    </div>
+
+                        <!-- Variant Radio Cards -->
+                        <div>
+                            <span class="text-caption text-secondary uppercase tracking-widest font-semibold block mb-3">Variant Selector (Radio Cards)</span>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <label for="packaging_variant_jar-100g" class="relative flex items-center justify-between p-4 rounded-lg border border-hairline bg-surface-card hover:border-muted hover:bg-surface-raised/40 transition-all duration-250 ease-henley cursor-pointer select-none group has-[:checked]:border-accent has-[:checked]:bg-surface-raised has-[:checked]:ring-1 has-[:checked]:ring-accent">
+    <div class="flex items-center gap-3.5">
+        <input
+            type="radio"
+            name="packaging_variant"
+            value="jar_100g"
+            id="packaging_variant_jar-100g"
+             checked             class="h-4 w-4 border-hairline text-accent focus:ring-accent focus:ring-offset-0 cursor-pointer"
+        >
+
+        <div>
+            <div class="flex items-center gap-2">
+                <span class="text-ui font-medium text-primary">100g Porcelain Cloche Jar</span>
+                                    <span class="px-2 py-0.5 text-[10px] uppercase tracking-wider font-bold rounded-full bg-gold-surface text-gold-text">
+                        Signature
+                    </span>
+                            </div>
+                            <p class="text-caption text-secondary mt-0.5">Hermetically sealed with nitrogen cloche</p>
+                    </div>
+    </div>
+
+            <div class="font-serif text-lg font-medium text-primary tracking-tight">
+            ₹1,850
+        </div>
+    </label>
+
+                                <label for="packaging_variant_pouch-250g" class="relative flex items-center justify-between p-4 rounded-lg border border-hairline bg-surface-card hover:border-muted hover:bg-surface-raised/40 transition-all duration-250 ease-henley cursor-pointer select-none group has-[:checked]:border-accent has-[:checked]:bg-surface-raised has-[:checked]:ring-1 has-[:checked]:ring-accent">
+    <div class="flex items-center gap-3.5">
+        <input
+            type="radio"
+            name="packaging_variant"
+            value="pouch_250g"
+            id="packaging_variant_pouch-250g"
+                        class="h-4 w-4 border-hairline text-accent focus:ring-accent focus:ring-offset-0 cursor-pointer"
+        >
+
+        <div>
+            <div class="flex items-center gap-2">
+                <span class="text-ui font-medium text-primary">250g Biodegradable Refill Pouch</span>
+                            </div>
+                            <p class="text-caption text-secondary mt-0.5">Eco-friendly UV-shielded botanical pouch</p>
+                    </div>
+    </div>
+
+            <div class="font-serif text-lg font-medium text-primary tracking-tight">
+            ₹3,200
+        </div>
+    </label>
+                            </div>
+                        </div>
+
+                        <!-- Checkbox & Quantity Stepper -->
+                        <div class="flex flex-wrap items-center justify-between gap-6 pt-4 border-t border-hairline">
+                            <div class="space-y-3">
+                                <div class="space-y-1">
+    <label for="gift_wrap" class="flex items-start gap-3 cursor-pointer group select-none">
+        <input
+            type="checkbox"
+            name="gift_wrap"
+            id="gift_wrap"
+             checked             class="mt-0.5 h-4 w-4 rounded border-hairline bg-surface-card text-accent focus:ring-accent focus:ring-offset-0 transition duration-250 ease-henley cursor-pointer group-hover:border-accent"
+        >
+
+                    <div class="text-ui text-primary leading-tight">
+                Include handmade Japanese mulberry gift wrap (+₹250)
+                                    <p class="text-caption text-secondary mt-0.5 font-normal">Wrapped by hand with antique gold sealing wax</p>
+                            </div>
+            </label>
+
+    </div>
+
+                                <div class="space-y-1">
+    <label for="newsletter" class="flex items-start gap-3 cursor-pointer group select-none">
+        <input
+            type="checkbox"
+            name="newsletter"
+            id="newsletter"
+                        class="mt-0.5 h-4 w-4 rounded border-hairline bg-surface-card text-accent focus:ring-accent focus:ring-offset-0 transition duration-250 ease-henley cursor-pointer group-hover:border-accent"
+        >
+
+                    <div class="text-ui text-primary leading-tight">
+                Notify me when limited seasonal harvests drop
+                            </div>
+            </label>
+
+    </div>
+                            </div>
+
+                            <div>
+                                <span class="text-caption text-secondary uppercase tracking-widest font-semibold block mb-2">Quantity Stepper</span>
+                                <div
+    x-data="{ count: 2, min: 1, max: 10 }"
+    class="inline-flex items-center rounded-full border border-hairline bg-surface-card p-1 shadow-none"
+>
+    <button
+        type="button"
+        x-on:click="if (count > min) count--"
+        :disabled="count <= min"
+        aria-label="Decrease quantity"
+        class="flex h-8 w-8 items-center justify-center rounded-full text-secondary hover:text-accent hover:bg-surface-raised disabled:opacity-30 disabled:cursor-not-allowed transition duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+    >
+        <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/>
+        </svg>
+    </button>
+
+    <input
+        type="number"
+        name="qty"
+        x-model="count"
+        min="1"
+        max="10"
+        readonly
+        aria-label="Quantity"
+        class="w-10 bg-transparent text-center font-sans text-ui font-semibold text-primary focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+        
+    >
+
+    <button
+        type="button"
+        x-on:click="if (count < max) count++"
+        :disabled="count >= max"
+        aria-label="Increase quantity"
+        class="flex h-8 w-8 items-center justify-center rounded-full text-secondary hover:text-accent hover:bg-surface-raised disabled:opacity-30 disabled:cursor-not-allowed transition duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+    >
+        <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+        </svg>
+    </button>
+</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="my-8 border-0 border-t border-hairline" role="separator">
+
+                <!-- ------------------------------------------------------------------- -->
+                <!-- 05. LAYOUT & DIVIDERS                                               -->
+                <!-- ------------------------------------------------------------------- -->
+                <section id="layout" class="scroll-mt-24 space-y-8">
+                    <div class="flex flex-col max-w-3xl mb-12 sm:mb-16 text-left items-start">
+            <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent mb-3">
+    05. Structural Layout
+</span>
+    
+    <h2 class="font-serif font-normal text-primary tracking-tight text-display-2-mobile sm:text-display-2">
+        Dividers &amp; Section Wrappers
+    </h2>
+
+            <p class="mt-4 text-body-lead text-secondary max-w-2xl font-light leading-relaxed">
+            1px structural hairlines and gold foil rules with central diamond accents create ceremonial pacing between content chapters.
+        </p>
+    </div>
+
+                    <div class="space-y-6">
+                        <div>
+                            <span class="text-caption text-secondary uppercase tracking-widest font-semibold block mb-2">Standard Hairline Divider</span>
+                            <hr class="my-8 border-0 border-t border-hairline" role="separator">
+                        </div>
+
+                        <div>
+                            <span class="text-caption text-secondary uppercase tracking-widest font-semibold block mb-2">Antique Gold Foil Rule (with Center Diamond)</span>
+                            <div class="relative my-8 flex items-center justify-center" role="separator">
+        <div class="w-full border-t border-gold/40"></div>
+                    <span class="absolute bg-canvas px-3 text-gold" aria-hidden="true">
+                <svg class="h-3 w-3" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="12,2 22,12 12,22 2,12"/>
+                </svg>
+            </span>
+            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="my-8 border-0 border-t border-hairline" role="separator">
+
+                <!-- ------------------------------------------------------------------- -->
+                <!-- 06. EDITORIAL CONTENT                                               -->
+                <!-- ------------------------------------------------------------------- -->
+                <section id="content" class="scroll-mt-24 space-y-8">
+                    <div class="flex flex-col max-w-3xl mb-12 sm:mb-16 text-left items-start">
+            <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent mb-3">
+    06. Editorial Voice
+</span>
+    
+    <h2 class="font-serif font-normal text-primary tracking-tight text-display-2-mobile sm:text-display-2">
+        Prose, Blockquotes &amp; Fact Strips
+    </h2>
+
+            <p class="mt-4 text-body-lead text-secondary max-w-2xl font-light leading-relaxed">
+            Designed for long-form origin essays, botanical monographs, and master grower quotes.
+        </p>
+    </div>
+
+                    <div class="space-y-8">
+                        <figure class="my-12 relative max-w-3xl mx-auto text-center px-6 py-10 bg-surface-raised/40 rounded-2xl border border-hairline">
+    <!-- Delicate gold quotation glyph -->
+    <div class="font-serif text-5xl text-gold/60 leading-none select-none mb-3" aria-hidden="true">“</div>
+
+    <blockquote class="font-serif text-display-3 text-primary italic font-normal leading-snug">
+        Tea is not merely a beverage; it is fifteen unhurried minutes stolen from the frantic churn of the world.
+    </blockquote>
+
+            <figcaption class="mt-6 flex flex-col items-center">
+            <cite class="not-italic font-sans text-xs uppercase tracking-[0.16em] font-semibold text-primary">
+                Dr. Arthur Henley
+            </cite>
+                            <span class="font-sans text-caption text-secondary mt-0.5">
+                    Botanical Founder, 1892
+                </span>
+                    </figcaption>
+    </figure>
+
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 py-8 border-y border-hairline my-12">
+            <div class="text-center px-4 space-y-1">
+            <div class="font-serif text-3xl sm:text-4xl font-normal text-primary tracking-tight">
+                1,850m
+            </div>
+            <div class="text-xs uppercase tracking-[0.16em] font-semibold text-accent">
+                Elevation
+            </div>
+                            <p class="text-caption text-secondary">
+                    Misty Himalayan slopes
+                </p>
+                    </div>
+            <div class="text-center px-4 space-y-1">
+            <div class="font-serif text-3xl sm:text-4xl font-normal text-primary tracking-tight">
+                72 hrs
+            </div>
+            <div class="text-xs uppercase tracking-[0.16em] font-semibold text-accent">
+                Flush Window
+            </div>
+                            <p class="text-caption text-secondary">
+                    First spring budburst
+                </p>
+                    </div>
+            <div class="text-center px-4 space-y-1">
+            <div class="font-serif text-3xl sm:text-4xl font-normal text-primary tracking-tight">
+                100%
+            </div>
+            <div class="text-xs uppercase tracking-[0.16em] font-semibold text-accent">
+                Single Estate
+            </div>
+                            <p class="text-caption text-secondary">
+                    Zero blended filler leaves
+                </p>
+                    </div>
+            <div class="text-center px-4 space-y-1">
+            <div class="font-serif text-3xl sm:text-4xl font-normal text-primary tracking-tight">
+                0%
+            </div>
+            <div class="text-xs uppercase tracking-[0.16em] font-semibold text-accent">
+                Additives
+            </div>
+                            <p class="text-caption text-secondary">
+                    Pure unadulterated terroir
+                </p>
+                    </div>
+    
+    
+</div>
+                    </div>
+                </section>
+
+                <hr class="my-8 border-0 border-t border-hairline" role="separator">
+
+                <!-- ------------------------------------------------------------------- -->
+                <!-- 07. COMMERCE ELEMENTS                                               -->
+                <!-- ------------------------------------------------------------------- -->
+                <section id="commerce" class="scroll-mt-24 space-y-8">
+                    <div class="flex flex-col max-w-3xl mb-12 sm:mb-16 text-left items-start">
+            <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent mb-3">
+    07. Commerce Components
+</span>
+    
+    <h2 class="font-serif font-normal text-primary tracking-tight text-display-2-mobile sm:text-display-2">
+        Product Cards, Ratings &amp; Trust Badges
+    </h2>
+
+            <p class="mt-4 text-body-lead text-secondary max-w-2xl font-light leading-relaxed">
+            Atomic building blocks for catalogue grids, collection showcases, and product detail displays.
+        </p>
+    </div>
+
+                    <!-- Product Cards Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <article class="group relative flex flex-col rounded-xl border border-hairline bg-surface-raised/40 p-4 transition-all duration-350 ease-henley hover:border-muted hover:bg-surface-raised hover:shadow-hover">
+    <!-- Product Image Container with gentle 1.03x scale -->
+    <a href="#" class="relative block aspect-square w-full overflow-hidden rounded-lg bg-surface-raised">
+                    <div class="flex h-full w-full items-center justify-center bg-surface-raised text-muted">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-12 w-12 stroke-[1.2]">
+    <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/>
+    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+    <line x1="12" y1="22.08" x2="12" y2="12"/>
+</svg>
+            </div>
+        
+                    <div class="absolute top-3 left-3">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-badge uppercase font-bold tracking-[0.12em] select-none bg-gold-surface text-gold-text border border-gold/30">
+    Spring 2026
+</span>
+            </div>
+            </a>
+
+    <!-- Card Content -->
+    <div class="mt-4 flex flex-1 flex-col justify-between space-y-3">
+        <div class="space-y-1.5">
+                            <div class="flex items-center justify-between">
+                    <div class="inline-flex items-center gap-1.5 select-none" aria-label="Rated 5.0 out of 5 stars">
+    <div class="flex items-center gap-0.5" aria-hidden="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+                        </div>
+
+            <span class="font-sans text-caption text-secondary">
+            (38)
+        </span>
+    </div>
+                </div>
+            
+            <h3 class="font-serif text-display-3 font-normal text-primary group-hover:text-accent transition-colors duration-250">
+                <a href="#" class="focus:outline-none">
+                    Castleton First Flush Darjeeling
+                </a>
+            </h3>
+
+                            <p class="font-sans text-caption text-secondary">
+                    Lot 04 • Single Estate Orthodox
+                </p>
+                    </div>
+
+        <div class="pt-2 flex items-center justify-between border-t border-hairline/60">
+            <div class="inline-flex items-baseline gap-2 font-serif text-primary tracking-tight select-none text-price-card">
+            <span>₹1,850.00</span>
+
+                    <span class="font-sans text-sm font-normal text-muted line-through">
+                ₹2,100.00
+            </span>
+            </div>
+
+                            <a
+                    href="#"
+                    aria-label="View Castleton First Flush Darjeeling"
+                    class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-hairline text-secondary hover:border-accent hover:text-accent hover:bg-surface-raised transition duration-250"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5">
+    <path d="M5 12h14M12 5l7 7-7 7"/>
+</svg>
+                </a>
+                    </div>
+    </div>
+</article>
+
+                        <article class="group relative flex flex-col rounded-xl border border-hairline bg-surface-raised/40 p-4 transition-all duration-350 ease-henley hover:border-muted hover:bg-surface-raised hover:shadow-hover">
+    <!-- Product Image Container with gentle 1.03x scale -->
+    <a href="#" class="relative block aspect-square w-full overflow-hidden rounded-lg bg-surface-raised">
+                    <div class="flex h-full w-full items-center justify-center bg-surface-raised text-muted">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-12 w-12 stroke-[1.2]">
+    <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/>
+    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+    <line x1="12" y1="22.08" x2="12" y2="12"/>
+</svg>
+            </div>
+        
+                    <div class="absolute top-3 left-3">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-badge uppercase font-bold tracking-[0.12em] select-none bg-sage-surface text-sage-text border border-sage/20">
+    100% Organic
+</span>
+            </div>
+            </a>
+
+    <!-- Card Content -->
+    <div class="mt-4 flex flex-1 flex-col justify-between space-y-3">
+        <div class="space-y-1.5">
+                            <div class="flex items-center justify-between">
+                    <div class="inline-flex items-center gap-1.5 select-none" aria-label="Rated 4.8 out of 5 stars">
+    <div class="flex items-center gap-0.5" aria-hidden="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <defs>
+        <linearGradient id="halfStarGrad">
+            <stop offset="50%" stop-color="currentColor"/>
+            <stop offset="50%" stop-color="transparent"/>
+        </linearGradient>
+    </defs>
+    <path fill="url(#halfStarGrad)" stroke="currentColor" stroke-width="1.5" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+                        </div>
+
+            <span class="font-sans text-caption text-secondary">
+            (19)
+        </span>
+    </div>
+                </div>
+            
+            <h3 class="font-serif text-display-3 font-normal text-primary group-hover:text-accent transition-colors duration-250">
+                <a href="#" class="focus:outline-none">
+                    Malabar Forest Cardamom Pods
+                </a>
+            </h3>
+
+                            <p class="font-sans text-caption text-secondary">
+                    Extra Bold 8mm • Wayanad Terroir
+                </p>
+                    </div>
+
+        <div class="pt-2 flex items-center justify-between border-t border-hairline/60">
+            <div class="inline-flex items-baseline gap-2 font-serif text-primary tracking-tight select-none text-price-card">
+            <span>₹950.00</span>
+
+            </div>
+
+                            <a
+                    href="#"
+                    aria-label="View Malabar Forest Cardamom Pods"
+                    class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-hairline text-secondary hover:border-accent hover:text-accent hover:bg-surface-raised transition duration-250"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5">
+    <path d="M5 12h14M12 5l7 7-7 7"/>
+</svg>
+                </a>
+                    </div>
+    </div>
+</article>
+
+                        <article class="group relative flex flex-col rounded-xl border border-hairline bg-surface-raised/40 p-4 transition-all duration-350 ease-henley hover:border-muted hover:bg-surface-raised hover:shadow-hover">
+    <!-- Product Image Container with gentle 1.03x scale -->
+    <a href="#" class="relative block aspect-square w-full overflow-hidden rounded-lg bg-surface-raised">
+                    <div class="flex h-full w-full items-center justify-center bg-surface-raised text-muted">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-12 w-12 stroke-[1.2]">
+    <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/>
+    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+    <line x1="12" y1="22.08" x2="12" y2="12"/>
+</svg>
+            </div>
+        
+                    <div class="absolute top-3 left-3">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-sans text-badge uppercase font-bold tracking-[0.12em] select-none bg-saffron-surface text-saffron-text border border-saffron/20">
+    Limited Reserve
+</span>
+            </div>
+            </a>
+
+    <!-- Card Content -->
+    <div class="mt-4 flex flex-1 flex-col justify-between space-y-3">
+        <div class="space-y-1.5">
+                            <div class="flex items-center justify-between">
+                    <div class="inline-flex items-center gap-1.5 select-none" aria-label="Rated 4.9 out of 5 stars">
+    <div class="flex items-center gap-0.5" aria-hidden="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5">
+    <defs>
+        <linearGradient id="halfStarGrad">
+            <stop offset="50%" stop-color="currentColor"/>
+            <stop offset="50%" stop-color="transparent"/>
+        </linearGradient>
+    </defs>
+    <path fill="url(#halfStarGrad)" stroke="currentColor" stroke-width="1.5" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>
+                        </div>
+
+            <span class="font-sans text-caption text-secondary">
+            (42)
+        </span>
+    </div>
+                </div>
+            
+            <h3 class="font-serif text-display-3 font-normal text-primary group-hover:text-accent transition-colors duration-250">
+                <a href="#" class="focus:outline-none">
+                    Wild Saffron Threads (Kashmir)
+                </a>
+            </h3>
+
+                            <p class="font-sans text-caption text-secondary">
+                    Grade A1 Mogra • Pampore Valley
+                </p>
+                    </div>
+
+        <div class="pt-2 flex items-center justify-between border-t border-hairline/60">
+            <div class="inline-flex items-baseline gap-2 font-serif text-primary tracking-tight select-none text-price-card">
+            <span>₹3,400.00</span>
+
+                    <span class="font-sans text-sm font-normal text-muted line-through">
+                ₹3,800.00
+            </span>
+            </div>
+
+                            <a
+                    href="#"
+                    aria-label="View Wild Saffron Threads (Kashmir)"
+                    class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-hairline text-secondary hover:border-accent hover:text-accent hover:bg-surface-raised transition duration-250"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5">
+    <path d="M5 12h14M12 5l7 7-7 7"/>
+</svg>
+                </a>
+                    </div>
+    </div>
+</article>
+                    </div>
+
+                    <!-- Stock Indicators -->
+                    <div class="p-6 rounded-xl border border-hairline bg-surface-raised space-y-3">
+                        <span class="text-caption text-secondary uppercase tracking-widest font-semibold block mb-1">Live Stock States</span>
+                        <div class="flex flex-wrap items-center gap-8">
+                            <div class="inline-flex items-center gap-2.5 font-sans text-caption text-secondary">
+    <span class="inline-block h-2 w-2 rounded-full bg-sage ring-4 ring-sage-surface" aria-hidden="true"></span>
+    <span>In stock — Harvested &amp; sealed at origin</span>
+</div>
+                            <div class="inline-flex items-center gap-2.5 font-sans text-caption text-secondary">
+    <span class="inline-block h-2 w-2 rounded-full bg-saffron ring-4 ring-saffron-surface" aria-hidden="true"></span>
+    <span>Only 4 remaining</span>
+</div>
+                            <div class="inline-flex items-center gap-2.5 font-sans text-caption text-secondary">
+    <span class="inline-block h-2 w-2 rounded-full bg-muted ring-4 ring-hairline" aria-hidden="true"></span>
+    <span>Harvest currently resting (Sold out)</span>
+</div>
+                        </div>
+                    </div>
+
+                    <!-- Trust Badge Strip -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 py-10 px-6 sm:px-10 rounded-2xl bg-surface-raised border border-hairline my-12">
+            <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-gold-surface border border-gold/30 text-gold-text">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M11 20A7 7 0 014 13C4 6 11 3 20 3c0 9-3 16-10 16z"/>
+    <path d="M4 13l7 7"/>
+</svg>
+                            </div>
+
+            <div class="space-y-0.5">
+                <h4 class="font-sans text-xs uppercase tracking-[0.14em] font-semibold text-primary">
+                    Single-Estate Origin
+                </h4>
+                                    <p class="font-sans text-caption text-secondary leading-snug">
+                        Traceable directly to prime mountain slopes
+                    </p>
+                            </div>
+        </div>
+            <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-gold-surface border border-gold/30 text-gold-text">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/>
+    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+    <line x1="12" y1="22.08" x2="12" y2="12"/>
+</svg>
+                            </div>
+
+            <div class="space-y-0.5">
+                <h4 class="font-sans text-xs uppercase tracking-[0.14em] font-semibold text-primary">
+                    Apothecary Sealed
+                </h4>
+                                    <p class="font-sans text-caption text-secondary leading-snug">
+                        Flushed with nitrogen in bone porcelain tins
+                    </p>
+                            </div>
+        </div>
+            <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-gold-surface border border-gold/30 text-gold-text">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <rect x="1" y="3" width="15" height="13"/>
+    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+    <circle cx="5.5" cy="18.5" r="2.5"/>
+    <circle cx="18.5" cy="18.5" r="2.5"/>
+</svg>
+                            </div>
+
+            <div class="space-y-0.5">
+                <h4 class="font-sans text-xs uppercase tracking-[0.14em] font-semibold text-primary">
+                    Complimentary Delivery
+                </h4>
+                                    <p class="font-sans text-caption text-secondary leading-snug">
+                        Express air courier on orders over ₹1,500
+                    </p>
+                            </div>
+        </div>
+            <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-gold-surface border border-gold/30 text-gold-text">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    <path d="M9 12l2 2 4-4"/>
+</svg>
+                            </div>
+
+            <div class="space-y-0.5">
+                <h4 class="font-sans text-xs uppercase tracking-[0.14em] font-semibold text-primary">
+                    100% Biodynamic Purity
+                </h4>
+                                    <p class="font-sans text-caption text-secondary leading-snug">
+                        Zero synthetic pesticides or artificial aromas
+                    </p>
+                            </div>
+        </div>
+    </div>
+                </section>
+
+                <hr class="my-8 border-0 border-t border-hairline" role="separator">
+
+                <!-- ------------------------------------------------------------------- -->
+                <!-- 08. OVERLAYS & FEEDBACK                                             -->
+                <!-- ------------------------------------------------------------------- -->
+                <section id="feedback" class="scroll-mt-24 space-y-8">
+                    <div class="flex flex-col max-w-3xl mb-12 sm:mb-16 text-left items-start">
+            <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent mb-3">
+    08. Feedback &amp; Overlays
+</span>
+    
+    <h2 class="font-serif font-normal text-primary tracking-tight text-display-2-mobile sm:text-display-2">
+        Alerts, Skeletons, Modals &amp; Slide-over Drawers
+    </h2>
+
+            <p class="mt-4 text-body-lead text-secondary max-w-2xl font-light leading-relaxed">
+            Accessible dialogs, slide-over carts, and feedback banners tuned to brand colors.
+        </p>
+    </div>
+
+                    <!-- Alerts Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div
+    x-data="{ show: true }"
+    x-show="show"
+    role="alert"
+    class="relative flex items-start gap-3.5 p-4 rounded-xl border bg-sage-surface border-sage/30 text-sage-text transition-all duration-250 ease-henley"
+>
+    <div class="flex-shrink-0 mt-0.5" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+    <polyline points="22 4 12 14.01 9 11.01"/>
+</svg>
+    </div>
+
+    <div class="flex-1 space-y-1 text-ui">
+                    <h5 class="font-sans font-semibold tracking-wide text-xs uppercase">
+                Harvest Verified
+            </h5>
+                <div class="leading-relaxed">
+            Castleton Estate Lot 04 certified 100% biodynamic by the Himalayan Tea Board.
+        </div>
+    </div>
+
+    </div>
+
+                        <div
+    x-data="{ show: true }"
+    x-show="show"
+    role="alert"
+    class="relative flex items-start gap-3.5 p-4 rounded-xl border bg-gold-surface border-gold/40 text-gold-text transition-all duration-250 ease-henley"
+>
+    <div class="flex-shrink-0 mt-0.5" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <circle cx="12" cy="12" r="10"/>
+    <line x1="12" y1="8" x2="12" y2="12"/>
+    <line x1="12" y1="16" x2="12.01" y2="16"/>
+</svg>
+    </div>
+
+    <div class="flex-1 space-y-1 text-ui">
+                    <h5 class="font-sans font-semibold tracking-wide text-xs uppercase">
+                Seasonal Allocation
+            </h5>
+                <div class="leading-relaxed">
+            Only 14 units remaining of this spring harvest allocation.
+        </div>
+    </div>
+
+    </div>
+
+                        <div
+    x-data="{ show: true }"
+    x-show="show"
+    role="alert"
+    class="relative flex items-start gap-3.5 p-4 rounded-xl border bg-error-surface border-error/30 text-error transition-all duration-250 ease-henley"
+>
+    <div class="flex-shrink-0 mt-0.5" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <circle cx="12" cy="12" r="10"/>
+    <line x1="12" y1="8" x2="12" y2="12"/>
+    <line x1="12" y1="16" x2="12.01" y2="16"/>
+</svg>
+    </div>
+
+    <div class="flex-1 space-y-1 text-ui">
+                    <h5 class="font-sans font-semibold tracking-wide text-xs uppercase">
+                Payment Verification Error
+            </h5>
+                <div class="leading-relaxed">
+            Your card issuer requested additional 3D-Secure verification.
+        </div>
+    </div>
+
+    </div>
+
+                        <div
+    x-data="{ show: true }"
+    x-show="show"
+    role="alert"
+    class="relative flex items-start gap-3.5 p-4 rounded-xl border bg-surface-raised border-hairline text-primary transition-all duration-250 ease-henley"
+>
+    <div class="flex-shrink-0 mt-0.5" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <circle cx="12" cy="12" r="10"/>
+    <line x1="12" y1="16" x2="12" y2="12"/>
+    <line x1="12" y1="8" x2="12.01" y2="8"/>
+</svg>
+    </div>
+
+    <div class="flex-1 space-y-1 text-ui">
+                    <h5 class="font-sans font-semibold tracking-wide text-xs uppercase">
+                Complimentary Shipping
+            </h5>
+                <div class="leading-relaxed">
+            Add ₹250 more to unlock complimentary express air courier.
+        </div>
+    </div>
+
+    </div>
+                    </div>
+
+                    <!-- Interactive Modals & Drawers Trigger Buttons -->
+                    <div class="p-6 sm:p-10 rounded-2xl border border-hairline bg-surface-raised space-y-4">
+                        <span class="text-caption text-secondary uppercase tracking-widest font-semibold block">Interactive Overlays Demo</span>
+                        <div class="flex flex-wrap items-center gap-4">
+                            <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[13px] px-6 py-3 gap-2 bg-accent text-inverse hover:bg-accent-hover active:bg-accent-deep shadow-none" x-data="" x-on:click="$dispatch('open-modal', 'tasting-notes-modal')"
+    >
+    
+    Open Tasting Notes Modal
+
+    </button>
+
+                            <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[13px] px-6 py-3 gap-2 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised" x-data="" x-on:click="$dispatch('open-drawer', 'cart-drawer-demo')"
+    >
+    
+    Open Cart Slide-Over Drawer
+
+    </button>
+                        </div>
+                    </div>
+
+                    <!-- Skeleton Loaders -->
+                    <div class="p-6 rounded-2xl border border-hairline bg-surface-raised space-y-4">
+                        <span class="text-caption text-secondary uppercase tracking-widest font-semibold block">Skeleton Loading States</span>
+                        <div class="space-y-3 max-w-md">
+                            <div
+    aria-hidden="true"
+    class="animate-pulse bg-surface-raised border border-hairline/40 rounded-md w-3/4 h-6"
+></div>
+                            <div
+    aria-hidden="true"
+    class="animate-pulse bg-surface-raised border border-hairline/40 rounded-md w-full h-4"
+></div>
+                            <div
+    aria-hidden="true"
+    class="animate-pulse bg-surface-raised border border-hairline/40 rounded-md w-5/6 h-4"
+></div>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="my-8 border-0 border-t border-hairline" role="separator">
+
+                <!-- ------------------------------------------------------------------- -->
+                <!-- 09. NAVIGATION & DISCLOSURE                                         -->
+                <!-- ------------------------------------------------------------------- -->
+                <section id="navigation" class="scroll-mt-24 space-y-8">
+                    <div class="flex flex-col max-w-3xl mb-12 sm:mb-16 text-left items-start">
+            <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent mb-3">
+    09. Navigation &amp; Disclosure
+</span>
+    
+    <h2 class="font-serif font-normal text-primary tracking-tight text-display-2-mobile sm:text-display-2">
+        Breadcrumbs, Pagination, Tabs &amp; Accordions
+    </h2>
+
+            <p class="mt-4 text-body-lead text-secondary max-w-2xl font-light leading-relaxed">
+            Smooth accordions and tab bars with keyboard accessibility.
+        </p>
+    </div>
+
+                    <!-- Breadcrumbs -->
+                    <div class="p-6 rounded-xl border border-hairline bg-surface-raised space-y-2">
+                        <span class="text-caption text-secondary uppercase tracking-widest font-semibold block">Breadcrumbs</span>
+                        <nav aria-label="Breadcrumb" class="flex items-center text-caption text-secondary">
+    <ol class="flex items-center space-x-2">
+        <li>
+            <a href="/" class="hover:text-accent transition-colors duration-250">Home</a>
+        </li>
+
+                    <li class="flex items-center space-x-2">
+                <span class="text-muted/60" aria-hidden="true">/</span>
+                                    <a href="#" class="hover:text-accent transition-colors duration-250">
+                        Single-Estate Teas
+                    </a>
+                            </li>
+                    <li class="flex items-center space-x-2">
+                <span class="text-muted/60" aria-hidden="true">/</span>
+                                    <a href="#" class="hover:text-accent transition-colors duration-250">
+                        Himalayan Harvests
+                    </a>
+                            </li>
+                    <li class="flex items-center space-x-2">
+                <span class="text-muted/60" aria-hidden="true">/</span>
+                                    <span class="text-primary font-medium" aria-current="page">
+                        Castleton First Flush Darjeeling 2026
+                    </span>
+                            </li>
+            </ol>
+</nav>
+                    </div>
+
+                    <!-- Tabs Component -->
+                    <div class="p-6 rounded-xl border border-hairline bg-surface-raised space-y-4">
+                        <span class="text-caption text-secondary uppercase tracking-widest font-semibold block">Tabbed Content</span>
+                        <div
+    x-data="{ activeTab: 'notes' }"
+    class="w-full space-y-8"
+>
+    <!-- Tab Bar with active Oxblood bottom border -->
+    <div class="border-b border-hairline flex items-center gap-8 overflow-x-auto no-scrollbar">
+                    <button
+                type="button"
+                x-on:click="activeTab = 'notes'"
+                :class="activeTab === 'notes' ? 'border-accent text-accent font-semibold' : 'border-transparent text-secondary hover:text-primary hover:border-hairline font-normal'"
+                class="pb-4 border-b-2 font-sans text-xs uppercase tracking-[0.16em] transition-all duration-250 ease-henley whitespace-nowrap cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+            >
+                Tasting Notes
+            </button>
+                    <button
+                type="button"
+                x-on:click="activeTab = 'terroir'"
+                :class="activeTab === 'terroir' ? 'border-accent text-accent font-semibold' : 'border-transparent text-secondary hover:text-primary hover:border-hairline font-normal'"
+                class="pb-4 border-b-2 font-sans text-xs uppercase tracking-[0.16em] transition-all duration-250 ease-henley whitespace-nowrap cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+            >
+                Estate &amp; Terroir
+            </button>
+                    <button
+                type="button"
+                x-on:click="activeTab = 'brewing'"
+                :class="activeTab === 'brewing' ? 'border-accent text-accent font-semibold' : 'border-transparent text-secondary hover:text-primary hover:border-hairline font-normal'"
+                class="pb-4 border-b-2 font-sans text-xs uppercase tracking-[0.16em] transition-all duration-250 ease-henley whitespace-nowrap cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+            >
+                Steeping Ritual
+            </button>
+            </div>
+
+    <!-- Tab Panels Container -->
+    <div>
+        <div x-show="activeTab === 'notes'" class="text-body text-secondary space-y-2">
+                                <p>Delicate notes of Muscatel grape, white peach blossom, and freshly cut Himalayan pine. Pale amber liquor with an effervescent floral finish.</p>
+                            </div>
+                            <div x-show="activeTab === 'terroir'" class="text-body text-secondary space-y-2" style="display: none;">
+                                <p>Plucked at Castleton Estate, Kurseong South, at an elevation of 1,800m. Sandy loam soil enriched with oak leaf compost.</p>
+                            </div>
+                            <div x-show="activeTab === 'brewing'" class="text-body text-secondary space-y-2" style="display: none;">
+                                <p>Infuse 2.5g in 200ml of mineral spring water at 85°C for exactly 3 minutes. Strain through porcelain filter.</p>
+                            </div>
+    </div>
+</div>
+                    </div>
+
+                    <!-- Accordion Component -->
+                    <div class="p-6 rounded-xl border border-hairline bg-surface-raised space-y-4">
+                        <span class="text-caption text-secondary uppercase tracking-widest font-semibold block">Accordion (Single or Multiple Open)</span>
+                        <div
+    x-data="{
+        type: 'single',
+        activeItems: [],
+        toggle(id) {
+            if (this.type === 'single') {
+                this.activeItems = this.activeItems.includes(id) ? [] : [id];
+            } else {
+                if (this.activeItems.includes(id)) {
+                    this.activeItems = this.activeItems.filter(i => i !== id);
+                } else {
+                    this.activeItems.push(id);
+                }
+            }
+        },
+        isOpen(id) {
+            return this.activeItems.includes(id);
+        }
+    }"
+    class="w-full divide-y divide-hairline border-y border-hairline"
+>
+    <div class="py-4 select-none">
+    <button
+        type="button"
+        x-on:click="toggle('acc_uLqjko9A')"
+        class="w-full flex items-center justify-between text-left py-2 font-serif text-display-3 text-primary hover:text-accent transition-colors duration-250 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+        :aria-expanded="isOpen('acc_uLqjko9A')"
+        aria-controls="acc_uLqjko9A-content"
+    >
+        <span>How should I store my loose-leaf tea?</span>
+
+        <span class="ml-4 flex items-center text-secondary transition-transform duration-300" :class="{ 'rotate-180 text-accent': isOpen('acc_uLqjko9A') }">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+    <path d="M6 9l6 6 6-6"/>
+</svg>
+        </span>
+    </button>
+
+    <div
+        id="acc_uLqjko9A-content"
+        x-show="isOpen('acc_uLqjko9A')"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 -translate-y-2"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-2"
+        class="pt-3 pb-2 text-body text-secondary"
+        style="display: none;"
+    >
+        Keep the porcelain cloche jar sealed tightly in a cool, dry pantry away from direct sunlight and pungent spices.
+    </div>
+</div>
+
+                            <div class="py-4 select-none">
+    <button
+        type="button"
+        x-on:click="toggle('acc_BCC5gw41')"
+        class="w-full flex items-center justify-between text-left py-2 font-serif text-display-3 text-primary hover:text-accent transition-colors duration-250 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+        :aria-expanded="isOpen('acc_BCC5gw41')"
+        aria-controls="acc_BCC5gw41-content"
+    >
+        <span>What is the difference between First Flush and Second Flush?</span>
+
+        <span class="ml-4 flex items-center text-secondary transition-transform duration-300" :class="{ 'rotate-180 text-accent': isOpen('acc_BCC5gw41') }">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+    <path d="M6 9l6 6 6-6"/>
+</svg>
+        </span>
+    </button>
+
+    <div
+        id="acc_BCC5gw41-content"
+        x-show="isOpen('acc_BCC5gw41')"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 -translate-y-2"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-2"
+        class="pt-3 pb-2 text-body text-secondary"
+        style="display: none;"
+    >
+        First flush is harvested during early spring, resulting in light, brisk, floral liquors. Second flush leaves are harvested in summer and yield rich, amber cups with deep muscatel character.
+    </div>
+</div>
+
+                            <div class="py-4 select-none">
+    <button
+        type="button"
+        x-on:click="toggle('acc_5NWlir8M')"
+        class="w-full flex items-center justify-between text-left py-2 font-serif text-display-3 text-primary hover:text-accent transition-colors duration-250 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+        :aria-expanded="isOpen('acc_5NWlir8M')"
+        aria-controls="acc_5NWlir8M-content"
+    >
+        <span>Are your teas certified organic?</span>
+
+        <span class="ml-4 flex items-center text-secondary transition-transform duration-300" :class="{ 'rotate-180 text-accent': isOpen('acc_5NWlir8M') }">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+    <path d="M6 9l6 6 6-6"/>
+</svg>
+        </span>
+    </button>
+
+    <div
+        id="acc_5NWlir8M-content"
+        x-show="isOpen('acc_5NWlir8M')"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 -translate-y-2"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-2"
+        class="pt-3 pb-2 text-body text-secondary"
+        style="display: none;"
+    >
+        All our grower estates operate strictly under biodynamic standards with zero synthetic pesticides or artificial aroma sprays.
+    </div>
+</div>
+</div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="p-6 rounded-xl border border-hairline bg-surface-raised">
+                        <nav aria-label="Pagination" class="flex items-center justify-between border-t border-hairline pt-6 px-4">
+    <div class="flex flex-1 justify-between sm:hidden">
+                    <a href="?page=1" class="px-4 py-2 border border-hairline rounded-full text-caption uppercase tracking-wider font-medium text-primary hover:border-accent hover:text-accent">
+                Previous
+            </a>
+        
+                    <a href="?page=3" class="px-4 py-2 border border-hairline rounded-full text-caption uppercase tracking-wider font-medium text-primary hover:border-accent hover:text-accent">
+                Next
+            </a>
+            </div>
+
+    <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+        <p class="text-caption text-secondary">
+            Showing Page <span class="font-medium text-primary">2</span> of <span class="font-medium text-primary">5</span>
+        </p>
+
+        <div class="flex items-center space-x-1.5">
+                            <a href="?page=1" aria-label="Previous page" class="p-2 rounded-full border border-hairline text-secondary hover:border-accent hover:text-accent hover:bg-surface-raised transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 rotate-180">
+    <path d="M9 18l6-6-6-6"/>
+</svg>
+                </a>
+            
+                                                <a href="?page=1" class="w-9 h-9 flex items-center justify-center rounded-full border border-hairline text-primary hover:border-accent hover:text-accent hover:bg-surface-raised transition font-sans text-xs font-medium">
+                        1
+                    </a>
+                                                                <span aria-current="page" class="w-9 h-9 flex items-center justify-center rounded-full bg-accent text-inverse font-sans text-xs font-semibold select-none">
+                        2
+                    </span>
+                                                                <a href="?page=3" class="w-9 h-9 flex items-center justify-center rounded-full border border-hairline text-primary hover:border-accent hover:text-accent hover:bg-surface-raised transition font-sans text-xs font-medium">
+                        3
+                    </a>
+                                                                <a href="?page=4" class="w-9 h-9 flex items-center justify-center rounded-full border border-hairline text-primary hover:border-accent hover:text-accent hover:bg-surface-raised transition font-sans text-xs font-medium">
+                        4
+                    </a>
+                                                                <a href="?page=5" class="w-9 h-9 flex items-center justify-center rounded-full border border-hairline text-primary hover:border-accent hover:text-accent hover:bg-surface-raised transition font-sans text-xs font-medium">
+                        5
+                    </a>
+                            
+                            <a href="?page=3" aria-label="Next page" class="p-2 rounded-full border border-hairline text-secondary hover:border-accent hover:text-accent hover:bg-surface-raised transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+    <path d="M9 18l6-6-6-6"/>
+</svg>
+                </a>
+                    </div>
+    </div>
+</nav>
+                    </div>
+                </section>
+
+                <hr class="my-8 border-0 border-t border-hairline" role="separator">
+
+                <!-- ------------------------------------------------------------------- -->
+                <!-- 10. MEDIA & APOTHECARY ARCH                                         -->
+                <!-- ------------------------------------------------------------------- -->
+                <section id="media" class="scroll-mt-24 space-y-8">
+                    <div class="flex flex-col max-w-3xl mb-12 sm:mb-16 text-left items-start">
+            <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent mb-3">
+    10. Signature Geometry
+</span>
+    
+    <h2 class="font-serif font-normal text-primary tracking-tight text-display-2-mobile sm:text-display-2">
+        The Signature Apothecary Arch Frame
+    </h2>
+
+            <p class="mt-4 text-body-lead text-secondary max-w-2xl font-light leading-relaxed">
+            Derived directly from the arched window of the bone-white cloche cylinder packaging. Used with restraint on hero portals.
+        </p>
+    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                        <div class="space-y-3 text-center">
+                            <div class="relative overflow-hidden rounded-t-[9999px] rounded-b-none bg-surface-raised aspect-[3/4] border border-hairline shadow-subtle transition-all duration-350 ease-henley">
+    <div class="h-full w-full flex flex-col items-center justify-center p-6 bg-surface-raised/80 text-center space-y-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 text-gold stroke-[1]">
+    <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/>
+    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+    <line x1="12" y1="22.08" x2="12" y2="12"/>
+</svg>
+                                    <span class="font-serif text-lg text-primary">Standard Arch</span>
+                                    <span class="text-caption text-secondary">Apothecary Portal</span>
+                                </div>
+</div>
+                            <span class="text-caption text-secondary font-medium">Standard Arch Window</span>
+                        </div>
+
+                        <div class="space-y-3 text-center">
+                            <div class="relative overflow-hidden rounded-t-[9999px] rounded-b-none bg-surface-raised aspect-[3/4] border border-gold shadow-subtle transition-all duration-350 ease-henley">
+    <div class="h-full w-full flex flex-col items-center justify-center p-6 bg-surface-raised/80 text-center space-y-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 text-gold stroke-[1]">
+    <path d="M11 20A7 7 0 014 13C4 6 11 3 20 3c0 9-3 16-10 16z"/>
+    <path d="M4 13l7 7"/>
+</svg>
+                                    <span class="font-serif text-lg text-primary">Gold Rimmed</span>
+                                    <span class="text-caption text-secondary">Foil Accent Border</span>
+                                </div>
+</div>
+                            <span class="text-caption text-secondary font-medium">Gold Foil Rim Arch</span>
+                        </div>
+
+                        <div class="space-y-3 text-center">
+                            <div class="relative overflow-hidden rounded-t-[9999px] rounded-b-none bg-surface-raised aspect-[3/4] border border-hairline/60 transition-all duration-350 ease-henley">
+    <div class="h-full w-full flex flex-col items-center justify-center p-6 bg-surface-raised/40 text-center space-y-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 text-gold stroke-[1]">
+    <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z"/>
+</svg>
+                                    <span class="font-serif text-lg text-primary">Subtle Tint</span>
+                                    <span class="text-caption text-secondary">Architectural Niche</span>
+                                </div>
+</div>
+                            <span class="text-caption text-secondary font-medium">Subtle Editorial Niche</span>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="my-8 border-0 border-t border-hairline" role="separator">
+
+                <!-- ------------------------------------------------------------------- -->
+                <!-- 11. LINE ICONOGRAPHY                                                -->
+                <!-- ------------------------------------------------------------------- -->
+                <section id="icons" class="scroll-mt-24 space-y-8 pb-20">
+                    <div class="flex flex-col max-w-3xl mb-12 sm:mb-16 text-left items-start">
+            <span class="inline-block font-sans text-eyebrow uppercase font-semibold tracking-[0.18em] select-none text-accent mb-3">
+    11. Line Iconography
+</span>
+    
+    <h2 class="font-serif font-normal text-primary tracking-tight text-display-2-mobile sm:text-display-2">
+        Bespoke Vector Line Icons
+    </h2>
+
+            <p class="mt-4 text-body-lead text-secondary max-w-2xl font-light leading-relaxed">
+            Single stroke-width vector line icons matching the delicate fragrance-house aesthetic.
+        </p>
+    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 p-6 sm:p-10 rounded-2xl border border-hairline bg-surface-raised">
+                        
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M5 12h14M12 5l7 7-7 7"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    arrow-right
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M19 12H5M12 19l-7-7 7-7"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    arrow-left
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M6 9l6 6 6-6"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    chevron-down
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M9 18l6-6-6-6"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    chevron-right
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M18 15l-6-6-6 6"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    chevron-up
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M20 6L9 17l-5-5"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    check
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M18 6L6 18M6 6l12 12"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    close
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <circle cx="11" cy="11" r="8"/>
+    <path d="M21 21l-4.35-4.35"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    search
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/>
+    <path d="M16 10a4 4 0 01-8 0"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    bag
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    heart
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+    <circle cx="12" cy="7" r="4"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    user
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M11 20A7 7 0 014 13C4 6 11 3 20 3c0 9-3 16-10 16z"/>
+    <path d="M4 13l7 7"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    leaf
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    filter
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <line x1="12" y1="5" x2="12" y2="19"/>
+    <line x1="5" y1="12" x2="19" y2="12"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    plus
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <line x1="5" y1="12" x2="19" y2="12"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    minus
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    <path d="M9 12l2 2 4-4"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    shield-check
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <rect x="1" y="3" width="15" height="13"/>
+    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+    <circle cx="5.5" cy="18.5" r="2.5"/>
+    <circle cx="18.5" cy="18.5" r="2.5"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    truck
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    sparkles
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <line x1="3" y1="12" x2="21" y2="12"/>
+    <line x1="3" y1="6" x2="21" y2="6"/>
+    <line x1="3" y1="18" x2="21" y2="18"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    menu
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/>
+    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+    <line x1="12" y1="22.08" x2="12" y2="12"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    package
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <circle cx="12" cy="12" r="10"/>
+    <polyline points="12 6 12 12 16 14"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    clock
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <circle cx="12" cy="12" r="10"/>
+    <line x1="12" y1="16" x2="12" y2="12"/>
+    <line x1="12" y1="8" x2="12.01" y2="8"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    info
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <circle cx="12" cy="12" r="10"/>
+    <line x1="12" y1="8" x2="12" y2="12"/>
+    <line x1="12" y1="16" x2="12.01" y2="16"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    alert-circle
+                                </span>
+                            </div>
+                                                    <div class="flex flex-col items-center justify-center p-3 rounded-lg border border-hairline bg-surface-card hover:border-accent transition group">
+                                <div class="text-secondary group-hover:text-accent transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+    <polyline points="22 4 12 14.01 9 11.01"/>
+</svg>
+                                </div>
+                                <span class="text-[10px] text-muted font-sans mt-2 text-center truncate w-full">
+                                    check-circle
+                                </span>
+                            </div>
+                                            </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Interactive Modal Instance for Demo -->
+    <div
+    x-data="{
+        open: false,
+        lastFocused: null,
+        toggle() {
+            if (this.open) {
+                this.close();
+            } else {
+                this.lastFocused = document.activeElement;
+                this.open = true;
+                $nextTick(() => {
+                    let focusable = $el.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex=\'-1\'])');
+                    if (focusable) focusable.focus();
+                });
+            }
+        },
+        close() {
+            this.open = false;
+            if (this.lastFocused) {
+                this.lastFocused.focus();
+            }
+        }
+    }"
+    x-on:open-modal.window="if ($event.detail === 'tasting-notes-modal') toggle()"
+    x-on:close-modal.window="if ($event.detail === 'tasting-notes-modal') close()"
+    x-on:keydown.escape.window="if (open) close()"
+    class="relative z-50"
+    role="dialog"
+    aria-modal="true"
+     aria-labelledby="tasting-notes-modal-title"     style="display: none;"
+    x-show="open"
+>
+    <!-- Backdrop with soft paper blur -->
+    <div
+        x-show="open"
+        x-transition:enter="ease-out duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="ease-in duration-200"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 bg-primary/40 backdrop-blur-sm transition-opacity"
+        x-on:click="close()"
+        aria-hidden="true"
+    ></div>
+
+    <!-- Dialog container -->
+    <div class="fixed inset-0 z-10 overflow-y-auto p-4 sm:p-6 lg:p-8 flex items-center justify-center">
+        <div
+            x-show="open"
+            x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            class="relative w-full sm:max-w-md rounded-2xl bg-surface-card p-6 sm:p-8 border border-hairline shadow-2xl transition-all"
+        >
+            <!-- Close Button -->
+            <button
+                type="button"
+                x-on:click="close()"
+                aria-label="Close dialog"
+                class="absolute top-4 right-4 p-2 text-secondary hover:text-primary rounded-full hover:bg-surface-raised transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+    <path d="M18 6L6 18M6 6l12 12"/>
+</svg>
+            </button>
+
+                            <h3 id="tasting-notes-modal-title" class="font-serif text-display-3 font-normal text-primary mb-4 pr-8">
+                    Castleton First Flush — Terroir Profile
+                </h3>
+            
+            <div class="text-body text-primary">
+                <div class="space-y-4 text-body text-secondary">
+            <p>Harvested exclusively from the highest south-facing slopes of Kurseong Valley at 1,850m elevation during the 2026 spring budburst.</p>
+            <div class="p-4 rounded-xl bg-surface-raised border border-hairline space-y-1">
+                <span class="text-xs uppercase tracking-widest font-semibold text-primary block">Aroma Compounds:</span>
+                <p class="text-caption text-secondary">Linalool, geraniol, and methyl salicylate yielding crisp peach floral bouquet.</p>
+            </div>
+            <div class="flex justify-end gap-3 pt-4 border-t border-hairline">
+                <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[11px] px-4 py-2 gap-1.5 bg-transparent text-primary border border-hairline hover:border-accent hover:text-accent active:bg-surface-raised" x-on:click="$dispatch('close-modal', 'tasting-notes-modal')"
+    >
+    
+    Close
+
+    </button>
+                <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[11px] px-4 py-2 gap-1.5 bg-accent text-inverse hover:bg-accent-hover active:bg-accent-deep shadow-none"
+    >
+    
+    Add to Basket
+
+            <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1" aria-hidden="true">→</span>
+    </button>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Interactive Drawer Instance for Demo -->
+    <div
+    x-data="{
+        open: false,
+        lastFocused: null,
+        toggle() {
+            if (this.open) {
+                this.close();
+            } else {
+                this.lastFocused = document.activeElement;
+                this.open = true;
+                $nextTick(() => {
+                    let focusable = $el.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex=\'-1\'])');
+                    if (focusable) focusable.focus();
+                });
+            }
+        },
+        close() {
+            this.open = false;
+            if (this.lastFocused) {
+                this.lastFocused.focus();
+            }
+        }
+    }"
+    x-on:open-drawer.window="if ($event.detail === 'cart-drawer-demo') toggle()"
+    x-on:close-drawer.window="if ($event.detail === 'cart-drawer-demo') close()"
+    x-on:keydown.escape.window="if (open) close()"
+    class="relative z-50"
+    role="dialog"
+    aria-modal="true"
+     aria-labelledby="cart-drawer-demo-title"     style="display: none;"
+    x-show="open"
+>
+    <!-- Backdrop -->
+    <div
+        x-show="open"
+        x-transition:enter="ease-out duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="ease-in duration-200"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 bg-primary/40 backdrop-blur-sm transition-opacity"
+        x-on:click="close()"
+        aria-hidden="true"
+    ></div>
+
+    <!-- Drawer Panel -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full">
+                <div
+                    x-show="open"
+                    x-transition:enter="transform transition ease-henley duration-400"
+                    x-transition:enter-start="translate-x-full"
+                    x-transition:enter-end="translate-x-0"
+                    x-transition:leave="transform transition ease-henley duration-300"
+                    x-transition:leave-start="translate-x-0"
+                    x-transition:leave-end="translate-x-full"
+                    class="pointer-events-auto w-screen max-w-md bg-surface-card shadow-2xl border-l border-hairline flex flex-col justify-between"
+                >
+                    <!-- Header -->
+                    <div class="flex items-center justify-between p-6 border-b border-hairline">
+                                                    <h3 id="cart-drawer-demo-title" class="font-serif text-display-3 font-normal text-primary">
+                                Your Ritual Basket (1)
+                            </h3>
+                        
+                        <button
+                            type="button"
+                            x-on:click="close()"
+                            aria-label="Close drawer"
+                            class="p-2 text-secondary hover:text-primary rounded-full hover:bg-surface-raised transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+    <path d="M18 6L6 18M6 6l12 12"/>
+</svg>
+                        </button>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="flex-1 overflow-y-auto p-6">
+                        <div class="space-y-6">
+            <!-- Basket Item -->
+            <div class="flex items-start gap-4 pb-6 border-b border-hairline">
+                <div class="w-16 h-16 rounded-lg bg-surface-raised flex items-center justify-center text-muted">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8">
+    <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/>
+    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+    <line x1="12" y1="22.08" x2="12" y2="12"/>
+</svg>
+                </div>
+                <div class="flex-1 space-y-1">
+                    <h4 class="font-serif text-lg text-primary">Castleton First Flush 2026</h4>
+                    <p class="text-caption text-secondary">100g Porcelain Cloche Jar</p>
+                    <div class="flex items-center justify-between pt-2">
+                        <div
+    x-data="{ count: 1, min: 1, max: 5 }"
+    class="inline-flex items-center rounded-full border border-hairline bg-surface-card p-1 shadow-none"
+>
+    <button
+        type="button"
+        x-on:click="if (count > min) count--"
+        :disabled="count <= min"
+        aria-label="Decrease quantity"
+        class="flex h-8 w-8 items-center justify-center rounded-full text-secondary hover:text-accent hover:bg-surface-raised disabled:opacity-30 disabled:cursor-not-allowed transition duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+    >
+        <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/>
+        </svg>
+    </button>
+
+    <input
+        type="number"
+        name="drawer_qty"
+        x-model="count"
+        min="1"
+        max="5"
+        readonly
+        aria-label="Quantity"
+        class="w-10 bg-transparent text-center font-sans text-ui font-semibold text-primary focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+        
+    >
+
+    <button
+        type="button"
+        x-on:click="if (count < max) count++"
+        :disabled="count >= max"
+        aria-label="Increase quantity"
+        class="flex h-8 w-8 items-center justify-center rounded-full text-secondary hover:text-accent hover:bg-surface-raised disabled:opacity-30 disabled:cursor-not-allowed transition duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+    >
+        <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+        </svg>
+    </button>
+</div>
+                        <span class="font-serif text-lg text-primary">₹1,850</span>
+                    </div>
+                </div>
+            </div>
+
+            <div
+    x-data="{ show: true }"
+    x-show="show"
+    role="alert"
+    class="relative flex items-start gap-3.5 p-4 rounded-xl border bg-surface-raised border-hairline text-primary transition-all duration-250 ease-henley"
+>
+    <div class="flex-shrink-0 mt-0.5" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+    <circle cx="12" cy="12" r="10"/>
+    <line x1="12" y1="16" x2="12" y2="12"/>
+    <line x1="12" y1="8" x2="12.01" y2="8"/>
+</svg>
+    </div>
+
+    <div class="flex-1 space-y-1 text-ui">
+                <div class="leading-relaxed">
+            You are ₹150 away from complimentary express courier delivery.
+        </div>
+    </div>
+
+    </div>
+        </div>
+                    </div>
+
+                    <!-- Optional Footer -->
+                                            <div class="p-6 border-t border-hairline bg-surface-raised/40">
+                            <div class="space-y-4">
+                <div class="flex items-center justify-between text-ui text-primary font-medium">
+                    <span>Estimated Subtotal</span>
+                    <span class="font-serif text-xl">₹1,850</span>
+                </div>
+                <button
+    type="button"
+    class="inline-flex items-center justify-center font-sans font-medium uppercase tracking-[0.16em] rounded-full transition-all duration-250 ease-henley focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer group select-none text-[14px] px-8 py-4 gap-2.5 bg-accent text-inverse hover:bg-accent-hover active:bg-accent-deep shadow-none w-full"
+    >
+    
+    Proceed to Checkout
+
+            <span class="inline-block transition-transform duration-250 ease-henley group-hover:translate-x-1" aria-hidden="true">→</span>
+    </button>
+            </div>
+                        </div>
+                                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Livewire Scripts -->
+<script src="/livewire/livewire.js?id=df86bb7e"   data-csrf="4TTbwx5LXX74DoBZAyyWKy5lnoHqqTdq7E2JiQuD" data-update-uri="/livewire/update" data-navigate-once="true"></script>
+</body>
+</html>

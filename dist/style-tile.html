@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Henley — Brand Visual Language & Style Tile</title>
+  
+  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* -------------------------------------------------------------
+       1. CSS CUSTOM PROPERTIES (DESIGN TOKENS)
+       ------------------------------------------------------------- */
+    :root {
+      /* Surfaces & Canvases */
+      --page-base: #FBF9F6;
+      --surface-raised: #F5F3EF;
+      --surface-card: #FFFFFF;
+      --surface-dark: #1D1714;
+      
+      /* Hairlines & Rules */
+      --hairline-neutral: #E5DFD6;
+      --hairline-gold: #B08B4F;
+      --border-error: #E53E3E;
+      
+      /* Typography */
+      --text-primary: #231C18;
+      --text-secondary: #6E635B;
+      --text-muted: #8E8278;
+      --text-on-dark: #FBF9F6;
+      
+      /* Brand Accents */
+      --oxblood: #5C2225;
+      --oxblood-hover: #4A1B1D;
+      --oxblood-deep: #3E1517;
+      
+      --saffron: #A6332F;
+      --saffron-surface: #FAECEB;
+      --saffron-text: #8E2824;
+      
+      --antique-gold: #B08B4F;
+      --gold-surface: #F7F3E8;
+      --gold-text: #755A25;
+      
+      --sage: #7F8A6E;
+      --sage-surface: #E8ECE3;
+      --sage-text: #3B4833;
+      
+      --error-text: #9B2C2C;
+      --error-surface: #FFF5F5;
+
+      /* Radii */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --radius-full: 9999px;
+      
+      /* Transitions */
+      --ease-henley: cubic-bezier(0.25, 1, 0.5, 1);
+      --duration-fast: 200ms;
+      --duration-base: 300ms;
+    }
+
+    /* -------------------------------------------------------------
+       2. RESET & BASE STYLES
+       ------------------------------------------------------------- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--page-base);
+      color: var(--text-primary);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 40px 20px 100px;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    /* -------------------------------------------------------------
+       3. MASTHEAD & BRAND HEADER
+       ------------------------------------------------------------- */
+    .style-tile-header {
+      text-align: center;
+      padding: 40px 0 60px;
+      border-bottom: 1px solid var(--hairline-neutral);
+      margin-bottom: 60px;
+    }
+
+    .brand-logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .brand-logo-img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-tagline {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--antique-gold);
+      margin-top: 8px;
+    }
+
+    .header-subtext {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 24px;
+      font-style: italic;
+      color: var(--text-secondary);
+      margin-top: 12px;
+    }
+
+    /* -------------------------------------------------------------
+       4. SECTION LAYOUT & HEADINGS
+       ------------------------------------------------------------- */
+    .tile-section {
+      margin-bottom: 70px;
+    }
+
+    .section-eyebrow {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-eyebrow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: var(--hairline-neutral);
+      max-width: 80px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+    }
+
+    .section-lead {
+      color: var(--text-secondary);
+      font-size: 16px;
+      max-width: 720px;
+      margin-bottom: 32px;
+    }
+
+    /* -------------------------------------------------------------
+       5. COLOR SWATCHES GRID
+       ------------------------------------------------------------- */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .swatch-card {
+      background: var(--surface-raised);
+      border: 1px solid var(--hairline-neutral);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--duration-fast) var(--ease-henley);
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .swatch-color {
+      height: 90px;
+      width: 100%;
+      border-bottom: 1px solid rgba(35, 28, 24, 0.06);
+      position: relative;
+    }
+
+    .swatch-body {
+      padding: 16px;
+    }
+
+    .swatch-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .swatch-hex {
+      font-family: monospace;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .swatch-role {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .swatch-contrast {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: var(--radius-sm);
+      background: rgba(35, 28, 24, 0.05);
+      color: var(--text-secondary);
+    }
+
+    .contrast-pass {
+      background: var(--sage-surface);
+      color: var(--sage-text);
+    }
+
+    /* -------------------------------------------------------------
+       6. TYPOGRAPHY SPECIMEN
+       ------------------------------------------------------------- */
+    .type-specimen-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface-raised);
+      border: 1px solid var(--hairline-neutral);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .type-row {
+      border-bottom: 1px solid var(--hairline-neutral);
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      padding: 24px;
+      align-items: baseline;
+      gap: 24px;
+    }
+
+    .type-row:last-child {
+      border-bottom: none;
+    }
+
+    .type-meta {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .type-meta strong {
+      display: block;
+      color: var(--text-primary);
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .type-sample {
+      color: var(--text-primary);
+    }
+
+    /* Typography Classes */
+    .font-hero {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 52px;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      font-weight: 400;
+    }
+
+    .font-h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 40px;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      font-weight: 500;
+    }
+
+    .font-h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 30px;
+      line-height: 1.18;
+      letter-spacing: -0.015em;
+      font-weight: 500;
+    }
+
+    .font-h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 22px;
+      line-height: 1.25;
+      font-weight: 500;
+    }
+
+    .font-price-hero {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 32px;
+      line-height: 1.1;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .font-body-lead {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .font-body {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text-primary);
+    }
+
+    .font-eyebrow-sample {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .font-caption {
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--text-secondary);
+    }
+
+    /* -------------------------------------------------------------
+       7. BUTTONS & ACTIONS
+       ------------------------------------------------------------- */
+    .components-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .panel-box {
+      background: var(--surface-raised);
+      border: 1px solid var(--hairline-neutral);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+    }
+
+    .panel-subtitle {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+    }
+
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    /* Henley Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 13px 28px;
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-henley);
+      border: 1px solid transparent;
+      outline: none;
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--oxblood);
+      outline-offset: 2px;
+    }
+
+    .btn-arrow {
+      transition: transform var(--duration-fast) var(--ease-henley);
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    .btn:hover .btn-arrow {
+      transform: translateX(4px);
+    }
+
+    /* Button Variants */
+    .btn-primary {
+      background-color: var(--oxblood);
+      color: var(--text-on-dark);
+      border-color: var(--oxblood);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--oxblood-hover);
+      border-color: var(--oxblood-hover);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-primary);
+      border-color: var(--hairline-neutral);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-primary);
+      background-color: rgba(35, 28, 24, 0.03);
+    }
+
+    .btn-ghost {
+      background-color: transparent;
+      color: var(--text-primary);
+      padding: 13px 16px;
+      border-color: transparent;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .btn-ghost:hover {
+      color: var(--oxblood);
+    }
+
+    .btn-disabled {
+      background-color: var(--hairline-neutral);
+      color: var(--text-muted);
+      border-color: var(--hairline-neutral);
+      cursor: not-allowed;
+    }
+
+    .btn-disabled .btn-arrow {
+      opacity: 0.5;
+    }
+
+    /* -------------------------------------------------------------
+       8. FORM CONTROLS
+       ------------------------------------------------------------- */
+    .form-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .form-input {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      color: var(--text-primary);
+      background-color: var(--surface-card);
+      border: 1px solid var(--hairline-neutral);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      outline: none;
+      transition: border-color var(--duration-fast) var(--ease-henley);
+    }
+
+    .form-input:focus {
+      border-color: var(--oxblood);
+      box-shadow: 0 0 0 1px var(--oxblood);
+    }
+
+    .form-input.is-error {
+      border-color: var(--border-error);
+      background-color: var(--error-surface);
+    }
+
+    .form-input.is-error:focus {
+      box-shadow: 0 0 0 1px var(--border-error);
+    }
+
+    .form-helper {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .form-error-msg {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--error-text);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Radio / Pill Selectors */
+    .pill-selectors {
+      display: flex;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .pill-option {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border: 1px solid var(--hairline-neutral);
+      border-radius: var(--radius-full);
+      background: var(--surface-card);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-henley);
+    }
+
+    .pill-option.active {
+      border-color: var(--text-primary);
+      background: var(--page-base);
+      font-weight: 600;
+      box-shadow: inset 0 0 0 1px var(--text-primary);
+    }
+
+    /* -------------------------------------------------------------
+       9. BADGES & STATUS TAGS
+       ------------------------------------------------------------- */
+    .badge-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .badge-bestseller {
+      background-color: var(--gold-surface);
+      color: var(--gold-text);
+      border: 1px solid rgba(176, 139, 79, 0.25);
+    }
+
+    .badge-organic {
+      background-color: var(--sage-surface);
+      color: var(--sage-text);
+      border: 1px solid rgba(127, 138, 110, 0.25);
+    }
+
+    .badge-sale {
+      background-color: var(--saffron-surface);
+      color: var(--saffron-text);
+      border: 1px solid rgba(166, 51, 47, 0.25);
+    }
+
+    .badge-stock {
+      background-color: var(--surface-card);
+      color: var(--text-secondary);
+      border: 1px solid var(--hairline-neutral);
+      font-weight: 500;
+    }
+
+    .stock-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--sage);
+      display: inline-block;
+    }
+
+    /* -------------------------------------------------------------
+       10. PRODUCT CARD & APOTHECARY GEOMETRY
+       ------------------------------------------------------------- */
+    .product-showcase-grid {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .product-card {
+      background: var(--surface-raised);
+      border: 1px solid var(--hairline-neutral);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--duration-base) var(--ease-henley), box-shadow var(--duration-base) var(--ease-henley);
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px -4px rgba(35, 28, 24, 0.07);
+    }
+
+    .product-image-container {
+      position: relative;
+      background: #EFECE6;
+      border-radius: var(--radius-md);
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .product-image-container img {
+      max-height: 90%;
+      max-width: 90%;
+      object-fit: contain;
+      transition: transform 500ms var(--ease-henley);
+    }
+
+    .product-card:hover .product-image-container img {
+      transform: scale(1.04);
+    }
+
+    .card-badge-pos {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+    }
+
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .stars {
+      color: var(--saffron);
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+
+    .review-count {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .product-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.25;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .product-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .product-price {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    /* Apothecary Arch Showcase */
+    .arch-feature-panel {
+      background: var(--surface-raised);
+      border: 1px solid var(--hairline-neutral);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .arch-frame-demo {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-top: 24px;
+    }
+
+    .apothecary-arch-shape {
+      width: 140px;
+      height: 200px;
+      background: var(--oxblood);
+      border-radius: 9999px 9999px 0 0;
+      border: 1px solid var(--hairline-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--page-base);
+      text-align: center;
+      padding: 16px;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.25);
+    }
+
+    .arch-info {
+      flex: 1;
+    }
+
+    .arch-info h4 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .arch-info p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* -------------------------------------------------------------
+       11. DIVIDERS & FOIL HAIRLINES
+       ------------------------------------------------------------- */
+    .divider-demo-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      background: var(--surface-raised);
+      border: 1px solid var(--hairline-neutral);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+    }
+
+    .hairline-rule {
+      height: 1px;
+      width: 100%;
+      background-color: var(--hairline-neutral);
+      border: none;
+    }
+
+    .hairline-gold-rule {
+      height: 1px;
+      width: 100%;
+      background-color: var(--hairline-gold);
+      border: none;
+    }
+
+    .ornament-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: var(--antique-gold);
+    }
+
+    .ornament-divider::before,
+    .ornament-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: var(--hairline-gold);
+    }
+
+    /* -------------------------------------------------------------
+       12. FOUR PILLARS / BRAND PROMISE ICONS
+       ------------------------------------------------------------- */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      background: var(--surface-raised);
+      border: 1px solid var(--hairline-neutral);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+    }
+
+    .pillar-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px;
+    }
+
+    .pillar-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--hairline-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--antique-gold);
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    .pillar-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .pillar-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* -------------------------------------------------------------
+       13. RESPONSIVE BREAKPOINTS (375px & 1440px)
+       ------------------------------------------------------------- */
+    @media (max-width: 900px) {
+      .components-grid {
+        grid-template-columns: 1fr;
+      }
+      .product-showcase-grid {
+        grid-template-columns: 1fr;
+      }
+      .pillars-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+      .type-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 20px 12px 60px;
+      }
+      .font-hero {
+        font-size: 36px;
+      }
+      .font-h1 {
+        font-size: 28px;
+      }
+      .font-h2 {
+        font-size: 24px;
+      }
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+      .arch-frame-demo {
+        flex-direction: column;
+        text-align: center;
+      }
+      .button-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn {
+        width: 100%;
+      }
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- BRAND MASTHEAD -->
+    <header class="style-tile-header">
+      <div class="brand-logo-wrap">
+        <!-- Canonical Vector Wordmark: Geometric Dotted Sans -->
+        <img src="./brand/logo.png" alt="HENLEY" class="brand-logo-img" onerror="this.outerHTML='<h1 style=\'font-family:Plus Jakarta Sans; font-size:32px; letter-spacing:0.25em; font-weight:700;\'>H E N L E Y</h1>'">
+      </div>
+      <div class="brand-tagline">Pure leaf. Pure intent.</div>
+      <div class="header-subtext">Visual Language & Style Tile Specification</div>
+    </header>
+
+    <!-- SECTION 1: COLOR PALETTE -->
+    <section class="tile-section">
+      <div class="section-eyebrow">Pillar 01</div>
+      <h2 class="section-title">Foundational Palette & Semantic Roles</h2>
+      <p class="section-lead">
+        Warm neutrals inspired by uncoated paper stock, anchored by an authoritative oxblood accent, saffron product highlights, and hairline antique gold foil.
+      </p>
+
+      <div class="palette-grid">
+        <!-- Page Base -->
+        <div class="swatch-card">
+          <div class="swatch-color" style="background-color: #FBF9F6;"></div>
+          <div class="swatch-body">
+            <div class="swatch-name">Page Base</div>
+            <div class="swatch-hex">#FBF9F6</div>
+            <div class="swatch-role">Global canvas. Heavy uncoated paper stock feel.</div>
+            <span class="swatch-contrast contrast-pass">15.98:1 Contrast</span>
+          </div>
+        </div>
+
+        <!-- Raised Surface -->
+        <div class="swatch-card">
+          <div class="swatch-color" style="background-color: #F5F3EF;"></div>
+          <div class="swatch-body">
+            <div class="swatch-name">Raised Surface</div>
+            <div class="swatch-hex">#F5F3EF</div>
+            <div class="swatch-role">Cards, sidebar rails, accordions, footer well.</div>
+            <span class="swatch-contrast contrast-pass">15.15:1 Contrast</span>
+          </div>
+        </div>
+
+        <!-- Hairline Neutral -->
+        <div class="swatch-card">
+          <div class="swatch-color" style="background-color: #E5DFD6;"></div>
+          <div class="swatch-body">
+            <div class="swatch-name">Hairline Border</div>
+            <div class="swatch-hex">#E5DFD6</div>
+            <div class="swatch-role">1px dividers, card rules, input resting states.</div>
+            <span class="swatch-contrast">1px Structural</span>
+          </div>
+        </div>
+
+        <!-- Text Primary -->
+        <div class="swatch-card">
+          <div class="swatch-color" style="background-color: #231C18;"></div>
+          <div class="swatch-body">
+            <div class="swatch-name">Text Primary</div>
+            <div class="swatch-hex">#231C18</div>
+            <div class="swatch-role">Warm near-black for headlines, body, prices.</div>
+            <span class="swatch-contrast contrast-pass">AAA Compliant</span>
+          </div>
+        </div>
+
+        <!-- Text Secondary -->
+        <div class="swatch-card">
+          <div class="swatch-color" style="background-color: #6E635B;"></div>
+          <div class="swatch-body">
+            <div class="swatch-name">Text Secondary</div>
+            <div class="swatch-hex">#6E635B</div>
+            <div class="swatch-role">Subtitles, captions, metadata, eyebrow labels.</div>
+            <span class="swatch-contrast contrast-pass">5.55:1 Contrast</span>
+          </div>
+        </div>
+
+        <!-- Oxblood (Primary Action) -->
+        <div class="swatch-card">
+          <div class="swatch-color" style="background-color: #5C2225;"></div>
+          <div class="swatch-body">
+            <div class="swatch-name">Oxblood (Primary)</div>
+            <div class="swatch-hex">#5C2225</div>
+            <div class="swatch-role">Sole primary CTA fill & active navigation.</div>
+            <span class="swatch-contrast contrast-pass">12.28:1 vs White</span>
+          </div>
+        </div>
+
+        <!-- Saffron (Product Highlight) -->
+        <div class="swatch-card">
+          <div class="swatch-color" style="background-color: #A6332F;"></div>
+          <div class="swatch-body">
+            <div class="swatch-name">Saffron (Product)</div>
+            <div class="swatch-hex">#A6332F</div>
+            <div class="swatch-role">Review star ratings, sale flags, spice potency.</div>
+            <span class="swatch-contrast contrast-pass">6.37:1 Contrast</span>
+          </div>
+        </div>
+
+        <!-- Antique Gold (Foil) -->
+        <div class="swatch-card">
+          <div class="swatch-color" style="background-color: #B08B4F;"></div>
+          <div class="swatch-body">
+            <div class="swatch-name">Antique Gold</div>
+            <div class="swatch-hex">#B08B4F</div>
+            <div class="swatch-role">1px foil hairlines, circular seals, subtle icons.</div>
+            <span class="swatch-contrast contrast-pass">3.00:1 UI AA</span>
+          </div>
+        </div>
+
+        <!-- Sage (Botanical & Stock) -->
+        <div class="swatch-card">
+          <div class="swatch-color" style="background-color: #7F8A6E;"></div>
+          <div class="swatch-body">
+            <div class="swatch-name">Sage (Botanical)</div>
+            <div class="swatch-hex">#7F8A6E</div>
+            <div class="swatch-role">Organic badge cue, single-origin icons, stock dot.</div>
+            <span class="swatch-contrast contrast-pass">8.12:1 Pill AA</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: TYPOGRAPHY MODULAR SCALE -->
+    <section class="tile-section">
+      <div class="section-eyebrow">Pillar 02</div>
+      <h2 class="section-title">Typography Hierarchy & Authentic Copy</h2>
+      <p class="section-lead">
+        High-contrast display serif (Cormorant Garamond) paired with calm, legible grotesque sans (Plus Jakarta Sans). Permissive SIL Open Font License, 100% self-hostable.
+      </p>
+
+      <div class="type-specimen-table">
+        <!-- Display Hero -->
+        <div class="type-row">
+          <div class="type-meta">
+            <strong>Display Hero (56px)</strong>
+            Cormorant Garamond 400<br>
+            Line height: 1.08<br>
+            Letter-spacing: -0.025em
+          </div>
+          <div class="type-sample font-hero">
+            Tea, The Way Nature Intended.
+          </div>
+        </div>
+
+        <!-- Display 1 (H1) -->
+        <div class="type-row">
+          <div class="type-meta">
+            <strong>Display 1 / H1 (42px)</strong>
+            Cormorant Garamond 500<br>
+            Line height: 1.12<br>
+            Letter-spacing: -0.02em
+          </div>
+          <div class="type-sample font-h1">
+            Curated Single-Origin Collections
+          </div>
+        </div>
+
+        <!-- Display 2 (H2) -->
+        <div class="type-row">
+          <div class="type-meta">
+            <strong>Display 2 / H2 (32px)</strong>
+            Cormorant Garamond 500<br>
+            Line height: 1.18
+          </div>
+          <div class="type-sample font-h2">
+            Fifteen Quiet Minutes for the Senses
+          </div>
+        </div>
+
+        <!-- Display 3 (H3) -->
+        <div class="type-row">
+          <div class="type-meta">
+            <strong>Display 3 / H3 (24px)</strong>
+            Cormorant Garamond 500<br>
+            Line height: 1.25
+          </div>
+          <div class="type-sample font-h3">
+            Restorative Sleep Botanical Infusion
+          </div>
+        </div>
+
+        <!-- Considered Price -->
+        <div class="type-row">
+          <div class="type-meta">
+            <strong>Price Display (32px / 22px)</strong>
+            Cormorant Garamond 600<br>
+            Considered, not transactional
+          </div>
+          <div class="type-sample font-price-hero">
+            $48.00 <span style="font-size: 20px; color: var(--text-secondary); font-weight: 400; margin-left: 8px;">/ ₹3,800</span>
+          </div>
+        </div>
+
+        <!-- Eyebrow Tag -->
+        <div class="type-row">
+          <div class="type-meta">
+            <strong>Eyebrow / Overline (12px)</strong>
+            Plus Jakarta Sans 600<br>
+            Tracking: +0.18em (Small Caps)
+          </div>
+          <div class="type-sample font-eyebrow-sample">
+            PURE LEAF. PURE INTENT. — ⌀
+          </div>
+        </div>
+
+        <!-- Body Lead -->
+        <div class="type-row">
+          <div class="type-meta">
+            <strong>Body Lead (18px)</strong>
+            Plus Jakarta Sans 400<br>
+            Line height: 1.6
+          </div>
+          <div class="type-sample font-body-lead">
+            Organically extracted from handpicked pure leaves, crafted to preserve natural aroma, antioxidants, and authentic taste in every cup.
+          </div>
+        </div>
+
+        <!-- Standard Body -->
+        <div class="type-row">
+          <div class="type-meta">
+            <strong>Body Regular (16px)</strong>
+            Plus Jakarta Sans 400<br>
+            Line height: 1.65
+          </div>
+          <div class="type-sample font-body">
+            A restorative botanical blend crafted to soothe the mind and rejuvenate the body. Notes of wild chamomile, holy basil, and roasted dandelion root gently unfold into a golden amber infusion.
+          </div>
+        </div>
+
+        <!-- Caption / Helper -->
+        <div class="type-row">
+          <div class="type-meta">
+            <strong>Caption / Metadata (13px)</strong>
+            Plus Jakarta Sans 400
+          </div>
+          <div class="type-sample font-caption">
+            Complimentary standard shipping on all ritual orders over $100. Small batch blended in Berkshire.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: INTERACTIVE CONTROLS & FORMS -->
+    <section class="tile-section">
+      <div class="section-eyebrow">Pillar 03</div>
+      <h2 class="section-title">Interactive Elements & Form States</h2>
+      <p class="section-lead">
+        Decisive pill buttons, hairline focus indicators, and accessible validation states.
+      </p>
+
+      <div class="components-grid">
+        <!-- BUTTONS PANEL -->
+        <div class="panel-box">
+          <div class="panel-subtitle">Button Hierarchy & States</div>
+          
+          <div class="button-group">
+            <button class="btn btn-primary">
+              Add to Ritual <span class="btn-arrow">→</span>
+            </button>
+            <button class="btn btn-secondary">
+              Discover Our Process <span class="btn-arrow">→</span>
+            </button>
+          </div>
+
+          <div class="button-group">
+            <button class="btn btn-ghost">
+              Learn More <span class="btn-arrow">→</span>
+            </button>
+            <button class="btn btn-disabled" disabled>
+              Sold Out <span class="btn-arrow">→</span>
+            </button>
+          </div>
+
+          <!-- BADGES & CHIPS -->
+          <div class="panel-subtitle" style="margin-top: 32px;">Pill Badges & Live Status</div>
+          <div class="badge-wrap">
+            <span class="badge badge-bestseller">★ Bestseller</span>
+            <span class="badge badge-organic">100% Organic</span>
+            <span class="badge badge-sale">First Harvest</span>
+            <span class="badge badge-stock">
+              <span class="stock-dot"></span> In Stock • 100g
+            </span>
+          </div>
+        </div>
+
+        <!-- FORM CONTROLS PANEL -->
+        <div class="panel-box">
+          <div class="panel-subtitle">Form Fields & Validation</div>
+          
+          <div class="form-stack">
+            <!-- Normal Field -->
+            <div class="form-group">
+              <label class="form-label" for="input-email">Your Email Address</label>
+              <input class="form-input" id="input-email" type="email" placeholder="ritual@henleytea.com" value="collector@henley.co">
+              <div class="form-helper">We send quarterly dispatches on rare seasonal harvests.</div>
+            </div>
+
+            <!-- Error Field -->
+            <div class="form-group">
+              <label class="form-label" for="input-code">Invitation or Promo Code</label>
+              <input class="form-input is-error" id="input-code" type="text" value="SPRING10">
+              <div class="form-error-msg">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                This harvest code has expired or is invalid for single-origin canisters.
+              </div>
+            </div>
+
+            <!-- Pill Variant Selector -->
+            <div class="form-group">
+              <label class="form-label">Select Ritual Format</label>
+              <div class="pill-selectors">
+                <div class="pill-option active">100g Porcelain Cylinder</div>
+                <div class="pill-option">250g Botanical Refill</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: PRODUCT CARD & SIGNATURE APOTHECARY GEOMETRY -->
+    <section class="tile-section">
+      <div class="section-eyebrow">Pillar 04</div>
+      <h2 class="section-title">Product Card & Signature Geometry</h2>
+      <p class="section-lead">
+        The bone cylinder packaging with its arched apothecary window is Henley's core geometry, applied with architectural restraint.
+      </p>
+
+      <div class="product-showcase-grid">
+        <!-- PRODUCT CARD -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <span class="badge badge-bestseller card-badge-pos">Bestseller</span>
+            <!-- Rendered packaging image from brand folder -->
+            <img src="./brand/product.jpeg" alt="Restorative Sleep Tea Canister" onerror="this.src='./brand/productpage.jpeg'">
+          </div>
+          
+          <div class="product-rating">
+            <span class="stars">★★★★★</span>
+            <span class="review-count">(124 reviews)</span>
+          </div>
+          
+          <h3 class="product-title">Restorative Sleep</h3>
+          <div class="product-subtitle">Wild Chamomile & Lavender Blend</div>
+          <div class="product-price">$34.00</div>
+          
+          <button class="btn btn-secondary" style="width: 100%; justify-content: center;">
+            Add to Ritual <span class="btn-arrow">→</span>
+          </button>
+        </div>
+
+        <!-- APOTHECARY ARCH SHOWCASE -->
+        <div class="arch-feature-panel">
+          <div class="section-eyebrow" style="color: var(--antique-gold);">Signature Motif</div>
+          <h3 style="font-family: Cormorant Garamond; font-size: 28px; margin-bottom: 12px;">The Arched Apothecary Window</h3>
+          <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px;">
+            The pointed apothecary arch from the physical packaging is reused selectively as an image mask and editorial portal. It signals craftsmanship and transparency.
+          </p>
+
+          <div class="arch-frame-demo">
+            <div class="apothecary-arch-shape">
+              <div>
+                <div style="font-size: 24px; color: var(--hairline-gold); margin-bottom: 4px;">⌀</div>
+                <div style="font-family: 'Cormorant Garamond'; font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase;">Apothecary Portal</div>
+              </div>
+            </div>
+
+            <div class="arch-info">
+              <h4>Restrained Architectural Placement</h4>
+              <p>
+                • Featured on hero background niches and collection chapter gateways.<br>
+                • Limited to 1–2 appearances per page to preserve luxury cachet.<br>
+                • Never duplicated on standard catalog grid cards.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: DIVIDERS & BRAND PILLARS -->
+    <section class="tile-section">
+      <div class="section-eyebrow">Pillar 05</div>
+      <h2 class="section-title">Dividers, Hairlines & Brand Pillars</h2>
+      
+      <div class="divider-demo-stack" style="margin-bottom: 32px;">
+        <div>
+          <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">1px Neutral Structural Hairline (#E5DFD6)</div>
+          <hr class="hairline-rule">
+        </div>
+
+        <div>
+          <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">1px Antique Gold Foil Divider (#B08B4F)</div>
+          <hr class="hairline-gold-rule">
+        </div>
+
+        <div>
+          <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">Ornamental Foil Divider with Apothecary Monogram</div>
+          <div class="ornament-divider">
+            <span style="font-family: 'Cormorant Garamond'; font-size: 18px; letter-spacing: 0.2em;">HENLEY</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 BRAND PILLARS -->
+      <div class="pillars-grid">
+        <div class="pillar-item">
+          <div class="pillar-icon">🌿</div>
+          <div class="pillar-title">100% Organic</div>
+          <div class="pillar-desc">Pure leaves & whole spices</div>
+        </div>
+
+        <div class="pillar-item">
+          <div class="pillar-icon">☕</div>
+          <div class="pillar-title">Pure Leaf</div>
+          <div class="pillar-desc">Zero artificial flavourings</div>
+        </div>
+
+        <div class="pillar-item">
+          <div class="pillar-icon">✨</div>
+          <div class="pillar-title">Handpicked Harvest</div>
+          <div class="pillar-desc">Finest biodynamic estates</div>
+        </div>
+
+        <div class="pillar-item">
+          <div class="pillar-icon">🏺</div>
+          <div class="pillar-title">Freshly Sealed</div>
+          <div class="pillar-desc">Bone porcelain & UV protection</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER SIGN-OFF -->
+    <footer style="text-align: center; padding-top: 40px; border-top: 1px solid var(--hairline-neutral); color: var(--text-secondary); font-size: 13px;">
+      Henley Brand Visual Language System • Phase 00 Approval Gate
+    </footer>
+
+  </div>
+
+</body>
+</html>
