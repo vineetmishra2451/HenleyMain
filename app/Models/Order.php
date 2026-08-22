@@ -26,9 +26,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property float $tax_amount
  * @property float $shipping_amount
  * @property float $grand_total
- * @property array $customer_snapshot
- * @property array $shipping_address
- * @property array $billing_address
+ * @property array<string, mixed> $customer_snapshot
+ * @property array<string, mixed> $shipping_address
+ * @property array<string, mixed> $billing_address
  */
 class Order extends Model
 {

@@ -27,7 +27,7 @@ class PaymentFactory extends Factory
             'gateway_signature' => fake()->sha256(),
             'amount' => 1260.00,
             'currency' => 'INR',
-            'status' => PaymentStatus::PAID,
+            'status' => PaymentStatus::CAPTURED,
             'payment_method' => 'upi',
             'payload' => ['bank' => 'HDFC', 'vpa' => 'collector@okaxis'],
             'captured_at' => now(),

@@ -64,7 +64,7 @@ class OrderFactory extends Factory
             'grand_total' => $grandTotal,
             'coupon_id' => null,
             'status' => OrderStatus::PROCESSING,
-            'payment_status' => PaymentStatus::PAID,
+            'payment_status' => PaymentStatus::CAPTURED,
             'currency' => 'INR',
             'placed_at' => now()->subDays(fake()->numberBetween(1, 45)),
             'fulfilled_at' => null,

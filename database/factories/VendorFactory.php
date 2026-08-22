@@ -39,7 +39,7 @@ class VendorFactory extends Factory
             'approved_at' => now(),
             'bank_details' => [
                 'bank_name' => 'HDFC Bank',
-                'account_number' => fake()->bankAccountNumber(),
+                'account_number' => fake()->numerify('50100#########'),
                 'ifsc_code' => 'HDFC0001234',
                 'account_holder_name' => $name,
             ],

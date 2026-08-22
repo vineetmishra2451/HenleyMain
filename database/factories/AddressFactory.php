@@ -23,7 +23,7 @@ class AddressFactory extends Factory
             'recipient_name' => fake()->name(),
             'phone' => fake()->numerify('+91##########'),
             'line_1' => fake()->buildingNumber().', '.fake()->streetName(),
-            'line_2' => fake()->secondaryAddress(),
+            'line_2' => 'Apothecary Suite '.fake()->numberBetween(1, 20),
             'landmark' => 'Opposite Botanical Conservatory',
             'city' => fake()->randomElement(['Mumbai', 'Bengaluru', 'New Delhi', 'Kolkata', 'Chennai', 'Pune']),
             'state' => fake()->randomElement(['Maharashtra', 'Karnataka', 'Delhi', 'West Bengal', 'Tamil Nadu']),

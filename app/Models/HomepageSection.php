@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $type
  * @property int $sort_order
  * @property bool $is_active
- * @property array $payload
+ * @property array<string, mixed> $payload
  */
 class HomepageSection extends Model
 {
