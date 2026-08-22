@@ -4,16 +4,20 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Contracts\TwoFactorAuthenticatable;
 use App\Enums\UserRole;
+use App\Models\Concerns\HasTwoFactorAuthentication;
 use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
@@ -30,11 +34,14 @@ use Spatie\Permission\Traits\HasRoles;
  * @property UserRole $role
  * @property int|null $vendor_id
  * @property bool $is_active
+ * @property string|null $two_factor_secret
+ * @property string|null $two_factor_recovery_codes
+ * @property \Illuminate\Support\Carbon|null $two_factor_confirmed_at
  */
-class User extends Authenticatable implements FilamentUser
+class User extends Authenticatable implements FilamentUser, MustVerifyEmail, TwoFactorAuthenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, HasRoles, LogsActivity, Notifiable;
+    use HasFactory, HasRoles, HasTwoFactorAuthentication, LogsActivity, Notifiable;
 
     /**
      * @var list<string>
@@ -47,6 +54,9 @@ class User extends Authenticatable implements FilamentUser
         'role',
         'vendor_id',
         'is_active',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
+        'two_factor_confirmed_at',
     ];
 
     /**
@@ -55,6 +65,8 @@ class User extends Authenticatable implements FilamentUser
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
     ];
 
     /**
@@ -150,6 +162,13 @@ class User extends Authenticatable implements FilamentUser
         }
 
         return false;
+    }
+
+    public function logoutOtherDevices(string $currentPassword): bool
+    {
+        Auth::logoutOtherDevices($currentPassword);
+
+        return true;
     }
 
     public function getActivitylogOptions(): LogOptions

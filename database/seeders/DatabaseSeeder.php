@@ -94,20 +94,69 @@ class DatabaseSeeder extends Seeder
     private function seedRolesAndPermissions(): void
     {
         $permissions = [
-            'view_admin_panel',
-            'manage_users',
-            'manage_vendors',
-            'manage_catalogue',
-            'manage_orders',
-            'manage_inventory',
-            'manage_coupons',
-            'manage_cms',
-            'manage_settings',
-            'view_vendor_portal',
-            'manage_vendor_products',
-            'manage_vendor_orders',
-            'manage_vendor_inventory',
-            'manage_vendor_shipments',
+            // Panel Access
+            'admin.access',
+            'vendor.access',
+
+            // Products & Catalog
+            'products.view',
+            'products.create',
+            'products.update',
+            'products.delete',
+            'products.publish',
+            'categories.manage',
+            'brands.manage',
+            'taxonomies.manage',
+
+            // Inventory
+            'inventory.view',
+            'inventory.update',
+            'inventory.adjust',
+
+            // Orders & Shipments
+            'orders.view',
+            'orders.view-own',
+            'orders.create',
+            'orders.update-status',
+            'orders.cancel',
+            'shipments.view',
+            'shipments.manage',
+
+            // Payments & Refunds
+            'payments.view',
+            'refunds.process',
+
+            // Promotions & Coupons
+            'coupons.view',
+            'coupons.manage',
+
+            // Vendors
+            'vendors.view',
+            'vendors.manage',
+            'vendors.approve',
+
+            // Customers & Reviews
+            'customers.view',
+            'customers.manage',
+            'profile.manage',
+            'reviews.view',
+            'reviews.create',
+            'reviews.moderate',
+
+            // Content & CMS
+            'cms.manage',
+            'journal.manage',
+            'banners.manage',
+
+            // Operations & Admin
+            'reports.view',
+            'analytics.view',
+            'users.view',
+            'users.manage',
+            'roles.manage',
+            'settings.view',
+            'settings.manage',
+            'wishlists.manage',
         ];
 
         foreach ($permissions as $permissionName) {
@@ -119,24 +168,62 @@ class DatabaseSeeder extends Seeder
 
         $adminRole = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'web']);
         $adminRole->syncPermissions([
-            'view_admin_panel',
-            'manage_catalogue',
-            'manage_orders',
-            'manage_inventory',
-            'manage_coupons',
-            'manage_cms',
+            'admin.access',
+            'products.view',
+            'products.create',
+            'products.update',
+            'products.delete',
+            'products.publish',
+            'categories.manage',
+            'brands.manage',
+            'taxonomies.manage',
+            'inventory.view',
+            'inventory.update',
+            'inventory.adjust',
+            'orders.view',
+            'orders.update-status',
+            'orders.cancel',
+            'shipments.view',
+            'shipments.manage',
+            'payments.view',
+            'refunds.process',
+            'coupons.view',
+            'coupons.manage',
+            'vendors.view',
+            'vendors.approve',
+            'customers.view',
+            'reviews.view',
+            'reviews.moderate',
+            'cms.manage',
+            'journal.manage',
+            'banners.manage',
+            'reports.view',
+            'analytics.view',
+            'settings.view',
         ]);
 
         $vendorRole = Role::firstOrCreate(['name' => 'vendor', 'guard_name' => 'web']);
         $vendorRole->syncPermissions([
-            'view_vendor_portal',
-            'manage_vendor_products',
-            'manage_vendor_orders',
-            'manage_vendor_inventory',
-            'manage_vendor_shipments',
+            'vendor.access',
+            'products.view',
+            'products.create',
+            'products.update',
+            'products.delete',
+            'inventory.view',
+            'inventory.update',
+            'orders.view',
+            'orders.update-status',
+            'shipments.view',
+            'shipments.manage',
         ]);
 
-        Role::firstOrCreate(['name' => 'customer', 'guard_name' => 'web']);
+        $customerRole = Role::firstOrCreate(['name' => 'customer', 'guard_name' => 'web']);
+        $customerRole->syncPermissions([
+            'profile.manage',
+            'orders.view-own',
+            'reviews.create',
+            'wishlists.manage',
+        ]);
     }
 
     /**
@@ -241,7 +328,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Alistair Henley',
             'email' => 'admin@henleytea.com',
             'phone' => '+919820011223',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('Botanical#2026!Secure'),
             'role' => UserRole::SUPER_ADMIN,
             'is_active' => true,
             'email_verified_at' => now(),
@@ -253,7 +340,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Evelyn Vance',
             'email' => 'curator@henleytea.com',
             'phone' => '+919820044556',
-            'password' => Hash::make('password'),
+            'password' => Hash::make('Botanical#2026!Secure'),
             'role' => UserRole::ADMIN,
             'is_active' => true,
             'email_verified_at' => now(),
@@ -274,7 +361,7 @@ class DatabaseSeeder extends Seeder
                 'name' => $creds['name'],
                 'email' => $creds['email'],
                 'phone' => '+91982009988'.$vIdx++,
-                'password' => Hash::make('password'),
+                'password' => Hash::make('Botanical#2026!Secure'),
                 'role' => UserRole::VENDOR,
                 'vendor_id' => $vendors[$key]->id,
                 'is_active' => true,
@@ -306,7 +393,7 @@ class DatabaseSeeder extends Seeder
                 'name' => $cust['name'],
                 'email' => $cust['email'],
                 'phone' => '+9198111000'.str_pad((string) ($cIdx + 1), 2, '0', STR_PAD_LEFT),
-                'password' => Hash::make('password'),
+                'password' => Hash::make('Botanical#2026!Secure'),
                 'role' => UserRole::CUSTOMER,
                 'is_active' => true,
                 'email_verified_at' => now(),

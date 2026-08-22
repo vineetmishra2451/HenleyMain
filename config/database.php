@@ -43,6 +43,7 @@ return [
             'prefix_indexes' => true,
             'search_path' => env('DB_SEARCH_PATH', 'public'),
             'sslmode' => env('DB_SSLMODE', 'prefer'),
+            'timezone' => env('DB_TIMEZONE', 'Asia/Kolkata'),
         ],
 
     ],

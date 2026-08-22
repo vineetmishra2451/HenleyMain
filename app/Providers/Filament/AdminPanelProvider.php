@@ -27,7 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->login()
+            ->login(\App\Filament\Pages\Auth\Login::class)
             ->brandName('Henley — Business Management')
             ->brandLogo(fn () => view('filament.admin.logo'))
             ->favicon(asset('favicon.ico'))

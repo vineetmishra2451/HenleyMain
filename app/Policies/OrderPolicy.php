@@ -42,6 +42,19 @@ class OrderPolicy
         return $user->role === UserRole::ADMIN;
     }
 
+    public function updateStatus(User $user, Order $order): bool
+    {
+        if ($user->role === UserRole::ADMIN) {
+            return true;
+        }
+
+        if ($user->role === UserRole::VENDOR) {
+            return $order->items()->where('vendor_id', $user->vendor_id)->exists();
+        }
+
+        return false;
+    }
+
     public function delete(User $user, Order $order): bool
     {
         return false; // Financial records are immutable / never hard deleted

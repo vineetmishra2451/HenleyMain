@@ -58,4 +58,15 @@ return [
         'admin_path' => 'admin',
         'vendor_path' => 'vendor',
     ],
+
+    'auth' => [
+        'otp_enabled' => (bool) env('HENLEY_OTP_LOGIN_ENABLED', false),
+        'otp_expiry_minutes' => 5,
+        'otp_max_attempts' => 3,
+        'sms_driver' => env('HENLEY_SMS_DRIVER', 'log'),
+        'max_login_attempts' => 5,
+        'lockout_minutes' => 15,
+        'guest_checkout_enabled' => true,
+        'min_password_length' => 12,
+    ],
 ];

@@ -1,0 +1,3 @@
+<div {{ $attributes->merge(['class' => 'max-w-prose mx-auto font-sans text-body text-primary space-y-6 [&>p]:leading-relaxed [&>h2]:font-serif [&>h2]:text-display-2 [&>h2]:font-normal [&>h2]:mt-10 [&>h2]:mb-4 [&>h3]:font-serif [&>h3]:text-display-3 [&>h3]:font-normal [&>h3]:mt-8 [&>h3]:mb-3 [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2 [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:space-y-2 [&>blockquote]:border-l-2 [&>blockquote]:border-gold [&>blockquote]:pl-4 [&>blockquote]:italic [&>blockquote]:text-secondary [&>a]:text-accent [&>a]:underline [&>a]:underline-offset-4 [&>a]:decoration-hairline [&>a:hover]:decoration-accent']) }}>
+    {{ $slot }}
+</div>

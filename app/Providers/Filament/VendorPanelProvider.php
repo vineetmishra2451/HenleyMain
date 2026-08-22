@@ -26,7 +26,7 @@ class VendorPanelProvider extends PanelProvider
         return $panel
             ->id('vendor')
             ->path('vendor')
-            ->login()
+            ->login(\App\Filament\Pages\Auth\Login::class)
             ->brandName('Henley — Estate & Vendor Portal')
             ->brandLogo(fn () => view('filament.vendor.logo'))
             ->favicon(asset('favicon.ico'))
