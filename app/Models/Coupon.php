@@ -128,4 +128,15 @@ class Coupon extends Model
             ->where(fn (Builder $q) => $q->whereNull('starts_at')->orWhere('starts_at', '<=', now()))
             ->where(fn (Builder $q) => $q->whereNull('expires_at')->orWhere('expires_at', '>=', now()));
     }
+
+    protected static function booted(): void
+    {
+        static::saved(function (): void {
+            \App\Services\HomepageService::clearCache();
+        });
+
+        static::deleted(function (): void {
+            \App\Services\HomepageService::clearCache();
+        });
+    }
 }

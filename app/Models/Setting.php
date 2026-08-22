@@ -42,4 +42,15 @@ class Setting extends Model
             default => $setting->value,
         };
     }
+
+    protected static function booted(): void
+    {
+        static::saved(function (): void {
+            \App\Services\HomepageService::clearCache();
+        });
+
+        static::deleted(function (): void {
+            \App\Services\HomepageService::clearCache();
+        });
+    }
 }

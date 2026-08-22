@@ -192,6 +192,16 @@ class Product extends Model
     }
 
     /**
+     * Alias for published products.
+     *
+     * @param  Builder<Product>  $query
+     */
+    public function scopeActive(Builder $query): void
+    {
+        $this->scopePublished($query);
+    }
+
+    /**
      * Scope for featured items.
      *
      * @param  Builder<Product>  $query
@@ -264,5 +274,16 @@ class Product extends Model
             ->logOnly(['name', 'status', 'base_price', 'is_featured', 'is_bestseller'])
             ->logOnlyDirty()
             ->dontSubmitEmptyLogs();
+    }
+
+    protected static function booted(): void
+    {
+        static::saved(function (): void {
+            \App\Services\HomepageService::clearCache();
+        });
+
+        static::deleted(function (): void {
+            \App\Services\HomepageService::clearCache();
+        });
     }
 }

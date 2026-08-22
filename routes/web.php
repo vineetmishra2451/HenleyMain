@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\HomeController;
 use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\OtpLogin;
@@ -13,10 +14,8 @@ use App\Livewire\Auth\VerifyEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-// Storefront Home Placeholder
-Route::get('/', function () {
-    return view('storefront.placeholder');
-})->name('home');
+// Storefront Home Page
+Route::get('/', HomeController::class)->name('home');
 
 // Guest Storefront Authentication Routes
 Route::middleware('guest')->group(function (): void {

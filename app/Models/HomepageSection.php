@@ -48,4 +48,15 @@ class HomepageSection extends Model
     {
         $query->where('is_active', true)->orderBy('sort_order');
     }
+
+    protected static function booted(): void
+    {
+        static::saved(function (): void {
+            \App\Services\HomepageService::clearCache();
+        });
+
+        static::deleted(function (): void {
+            \App\Services\HomepageService::clearCache();
+        });
+    }
 }
