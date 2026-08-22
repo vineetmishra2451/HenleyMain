@@ -29,7 +29,7 @@ class VendorPanelProvider extends PanelProvider
             ->login(\App\Filament\Pages\Auth\Login::class)
             ->brandName('Henley — Estate & Vendor Portal')
             ->brandLogo(fn () => view('filament.vendor.logo'))
-            ->favicon(asset('favicon.ico'))
+            ->favicon('/favicon.ico')
             ->colors([
                 'primary' => Color::hex('#7F8A6E'), // Botanical Sage
                 'secondary' => Color::hex('#5C2225'), // Oxblood

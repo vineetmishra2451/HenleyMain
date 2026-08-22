@@ -1351,42 +1351,58 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        // 2. Homepage Dynamic Sections (All 9 Sections)
+        // 2. Homepage Dynamic Sections (9 Reorderable Section Types)
         HomepageSection::create([
             'key' => 'hero_section',
-            'title' => 'Storefront Hero Cloche',
+            'title' => 'Editorial Hero Statement',
             'type' => 'hero',
             'sort_order' => 1,
             'is_active' => true,
             'payload' => [
                 'eyebrow' => 'Spring 2026 First Flush Release',
-                'headline' => 'Pure leaf. Pure intent.',
-                'subhead' => 'Rare single-estate botanicals and high-grown spices preserved in bone-white porcelain cloche jars.',
-                'primary_cta' => ['label' => 'Explore the Reserve', 'url' => '/collections/single-origin-reserve'],
-                'secondary_cta' => ['label' => 'The Cloche Ritual', 'url' => '/pages/the-cloche-ritual'],
-                'image' => '/images/brand/homepage.jpeg',
+                'headline' => 'Pure leaf. Pure intent. Fifteen quiet minutes for the senses.',
+                'subhead' => 'Rare single-estate orthodox teas and whole spices hand-harvested at 1,800 metres and sealed in UV-blocking porcelain cloche jars.',
+                'primary_cta' => ['label' => 'Explore the Reserve', 'url' => '/collections'],
+                'secondary_cta' => ['label' => 'The Cloche Ritual', 'url' => '/about'],
+                'proof_points' => [
+                    '1,850m Single Estate',
+                    'First Flush 2026',
+                    '100% Biodynamic',
+                ],
+                'rating' => 5.0,
+                'rating_count' => 148,
+                'image_url' => '/images/brand/homepage.jpeg',
+                'image_alt' => 'Henley bone-white porcelain cloche jar revealing vibrant golden saffron and whole leaf tea',
             ],
         ]);
 
         HomepageSection::create([
             'key' => 'trust_strip_section',
-            'title' => 'Brand Pillars & Rituals',
+            'title' => 'Brand Pillars & Quality Proofs',
             'type' => 'trust_strip',
             'sort_order' => 2,
             'is_active' => true,
-            'payload' => [],
+            'payload' => [
+                'items' => [
+                    ['icon' => 'leaf', 'label' => 'Single-Estate Origin', 'caption' => 'Traceable directly to prime mountain slopes'],
+                    ['icon' => 'package', 'label' => 'Apothecary Sealed', 'caption' => 'Flushed with nitrogen in porcelain tins'],
+                    ['icon' => 'truck', 'label' => 'Complimentary Delivery', 'caption' => 'Express air courier on orders over ₹1,500'],
+                    ['icon' => 'shield-check', 'label' => '100% Biodynamic Purity', 'caption' => 'Zero synthetic pesticides or artificial aromas'],
+                ],
+            ],
         ]);
 
         HomepageSection::create([
             'key' => 'featured_collections_section',
-            'title' => 'Curated Collections',
+            'title' => 'Curated Cellar Portals',
             'type' => 'featured_collections',
             'sort_order' => 3,
             'is_active' => true,
             'payload' => [
-                'eyebrow' => 'The Scent of Terroir',
-                'title' => 'Curated Collections',
-                'description' => 'Single-origin flushes, rare restorative tisanes, and sun-dried wild botanicals categorized by harvest altitude and flavor signature.',
+                'eyebrow' => 'Terroir & Taxonomy',
+                'title' => 'Curated Portals of Origin',
+                'description' => 'Explore single-origin harvests grouped by mountain elevation, processing alchemy, and botanical character.',
+                'limit' => 4,
             ],
         ]);
 
@@ -1397,70 +1413,86 @@ class DatabaseSeeder extends Seeder
             'sort_order' => 4,
             'is_active' => true,
             'payload' => [
-                'eyebrow' => 'Spring 2026 Micro-Lots',
-                'title' => 'The Seasonal Reserve',
-                'description' => 'Small-batch flushes harvested at the height of aromatic expression, sealed at garden origin.',
+                'eyebrow' => 'Current Season Micro-Lots',
+                'title' => 'Featured Seasonal Allocations',
+                'description' => 'Direct from the morning plucking of premier estates, each lot sealed at source in numbered cloche jars.',
+                'limit' => 4,
             ],
         ]);
 
         HomepageSection::create([
-            'key' => 'best_sellers_section',
-            'title' => 'Bestselling Rituals',
-            'type' => 'best_sellers',
+            'key' => 'bestsellers_section',
+            'title' => 'Collector Favorites',
+            'type' => 'bestsellers',
             'sort_order' => 5,
             'is_active' => true,
             'payload' => [
-                'eyebrow' => 'Most Coveted Rituals',
-                'title' => 'The Definitive Bestsellers',
-                'description' => 'Our definitive single-estate lots and aromatic staples celebrated by tea masters and collectors.',
+                'eyebrow' => 'Collector Staples',
+                'title' => 'The Henley Hallmarks',
+                'description' => 'Our most celebrated harvests, re-ordered continuously by tea collectors worldwide.',
+                'limit' => 6,
             ],
         ]);
 
         HomepageSection::create([
             'key' => 'story_band_section',
-            'title' => 'Philosophy of Terroir',
+            'title' => 'Our Botanical Philosophy',
             'type' => 'story_band',
             'sort_order' => 6,
             'is_active' => true,
             'payload' => [
-                'eyebrow' => 'The Philosophy of Terroir',
-                'title' => 'The Architecture of Purity',
-                'image' => '/images/brand/productpage.jpeg',
+                'eyebrow' => 'The Henley Philosophy',
+                'title' => 'Handpicked, small batch, organically extracted.',
+                'body' => 'We believe tea should be approached the way a master perfumer approaches scent. We partner exclusively with high-altitude growers who reject industrial homogenization. Every leaf is plucked at dawn before mountain dew evaporates, preserving delicate volatile aromatic compounds that mass-market processing burns away.',
+                'author' => 'Dr. Alistair Henley',
+                'author_title' => 'Master Botanical Curator',
+                'cta_label' => 'Read Our Full Story',
+                'cta_url' => '/about',
+                'image_url' => '/images/brand/product.jpeg',
+                'image_alt' => 'Henley porcelain cylinder and botanical leaf harvest',
             ],
         ]);
 
         HomepageSection::create([
             'key' => 'offers_section',
-            'title' => 'Seasonal Allocation Offers',
+            'title' => 'Seasonal Gift Allocation',
             'type' => 'offers',
             'sort_order' => 7,
             'is_active' => true,
-            'payload' => [],
-        ]);
-
-        HomepageSection::create([
-            'key' => 'journal_preview_section',
-            'title' => 'Field Notes Journal',
-            'type' => 'journal_preview',
-            'sort_order' => 8,
-            'is_active' => true,
             'payload' => [
-                'eyebrow' => 'Field Notes & Extraction Science',
-                'title' => 'The Botanical Journal',
-                'description' => 'Essays on high-altitude terroir, aromatic chemistry, and the unhurried rituals of master growers.',
+                'code' => 'RITUAL10',
+                'title' => 'First Ritual Welcome Offering',
+                'description' => 'Enjoy 10% privilege on your first single-origin harvest collection.',
+                'expiry_text' => 'Valid on orders over ₹1,500',
+                'cta_label' => 'Claim Invitation',
+                'cta_url' => '/collections',
             ],
         ]);
 
         HomepageSection::create([
-            'key' => 'instagram_mosaic_section',
-            'title' => 'Rituals from the Field',
-            'type' => 'instagram_mosaic',
+            'key' => 'journal_preview_section',
+            'title' => 'The Botanical Journal',
+            'type' => 'journal_preview',
+            'sort_order' => 8,
+            'is_active' => true,
+            'payload' => [
+                'eyebrow' => 'The Botanical Journal',
+                'title' => 'Field Notes & Brewing Alchemy',
+                'description' => 'Essays on high-altitude terroir, aromatic chemistry, and the unhurried ritual of tea extraction.',
+                'limit' => 3,
+            ],
+        ]);
+
+        HomepageSection::create([
+            'key' => 'newsletter_band_section',
+            'title' => 'Private Allocation Dispatch',
+            'type' => 'newsletter_band',
             'sort_order' => 9,
             'is_active' => true,
             'payload' => [
-                'eyebrow' => '@HenleyBotanicals',
-                'title' => 'Rituals from the Field',
-                'description' => 'Glimpses of dawn harvests, high-mountain mist, and orthodox hand-rolling from our partner gardens.',
+                'eyebrow' => 'Private Allocation Dispatch',
+                'title' => 'Join the Henley Collector Circle',
+                'description' => 'Receive first notification when limited single-estate spring flushes and wild saffron reserves are bottled.',
             ],
         ]);
 
@@ -1468,7 +1500,7 @@ class DatabaseSeeder extends Seeder
         Banner::create([
             'title' => 'Complimentary Brass Tasting Spoon on Orders Above ₹2,000',
             'placement' => 'promo_strip',
-            'image_url' => '/images/brand/homepage.jpeg',
+            'image_url' => '/images/brand/collectionpage.jpeg',
             'link_url' => '/collections/curated-gift-sets',
             'starts_at' => now()->subDays(10),
             'expires_at' => now()->addMonths(2),
@@ -1528,7 +1560,7 @@ class DatabaseSeeder extends Seeder
                 'slug' => $p['slug'],
                 'excerpt' => $p['excerpt'],
                 'body' => "High above the clouds in the Eastern Himalayas, microclimatic shifts between day and night force the tea bush to synthesize high concentrations of aromatic linalool.\n\nWhen harvested at first light before the mountain mist evaporates, the leaves capture an ephemeral floral brightness that cannot be manufactured.\n\nAt Henley, our single-estate partners practice biodynamic agriculture, allowing the soil's natural mycorrhizal network to nourish the plant naturally.",
-                'cover_image' => '/images/brand/productpage.jpeg',
+                'cover_image' => 'brand/productpage.jpeg',
                 'author_name' => $p['author'],
                 'reading_time_minutes' => $p['read_time'],
                 'is_published' => true,
@@ -1545,22 +1577,38 @@ class DatabaseSeeder extends Seeder
             ['group' => 'general', 'key' => 'brand_tagline', 'value' => 'Pure leaf. Pure intent.', 'type' => 'string'],
             ['group' => 'general', 'key' => 'contact_email', 'value' => 'concierge@henleytea.com', 'type' => 'string'],
             ['group' => 'general', 'key' => 'contact_phone', 'value' => '+91 800 HENLEY (436539)', 'type' => 'string'],
-            ['group' => 'general', 'key' => 'announcement_text', 'value' => 'Complimentary express air courier on single-estate orders over ₹1,500', 'type' => 'string'],
-            ['group' => 'general', 'key' => 'announcement_link', 'value' => '/collections/single-origin-reserve', 'type' => 'string'],
             ['group' => 'shipping', 'key' => 'free_shipping_threshold_paise', 'value' => '150000', 'type' => 'integer'],
             ['group' => 'shipping', 'key' => 'standard_shipping_rate_paise', 'value' => '9000', 'type' => 'integer'],
             ['group' => 'tax', 'key' => 'default_gst_rate_percent', 'value' => '5.0', 'type' => 'float'],
             ['group' => 'currency', 'key' => 'currency_symbol', 'value' => '₹', 'type' => 'string'],
             [
+                'group' => 'announcement',
+                'key' => 'banner_enabled',
+                'value' => '1',
+                'type' => 'boolean',
+            ],
+            [
+                'group' => 'announcement',
+                'key' => 'banner_text',
+                'value' => 'Complimentary Express Air Delivery on all Himalayan reserve orders over ₹1,500',
+                'type' => 'string',
+            ],
+            [
+                'group' => 'announcement',
+                'key' => 'banner_link',
+                'value' => '/collections',
+                'type' => 'string',
+            ],
+            [
                 'group' => 'navigation',
-                'key' => 'nav_main_items',
+                'key' => 'main_menu',
                 'value' => json_encode([
-                    ['label' => 'Shop', 'url' => '/shop', 'mega' => false],
-                    ['label' => 'Collections', 'url' => '/collections', 'mega' => true],
-                    ['label' => 'Herbal & Spices', 'url' => '/collections/herbal-botanicals', 'mega' => false],
-                    ['label' => 'Gifts', 'url' => '/collections/curated-gift-sets', 'mega' => false],
-                    ['label' => 'Our Story', 'url' => '/pages/the-cloche-ritual', 'mega' => false],
-                    ['label' => 'Journal', 'url' => '/journal', 'mega' => false],
+                    ['label' => 'Shop', 'url' => '/collections', 'has_mega' => false],
+                    ['label' => 'Collections', 'url' => '/collections', 'has_mega' => true],
+                    ['label' => 'Herbal', 'url' => '/collections', 'has_mega' => false],
+                    ['label' => 'Gifts', 'url' => '/collections', 'has_mega' => false],
+                    ['label' => 'Our Story', 'url' => '/about', 'has_mega' => false],
+                    ['label' => 'Journal', 'url' => '/journal', 'has_mega' => false],
                 ]),
                 'type' => 'json',
             ],

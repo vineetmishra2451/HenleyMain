@@ -82,6 +82,17 @@ class Product extends Model
         ];
     }
 
+    protected static function booted(): void
+    {
+        static::saved(function (): void {
+            \Illuminate\Support\Facades\Cache::tags(['products', 'homepage'])->flush();
+        });
+
+        static::deleted(function (): void {
+            \Illuminate\Support\Facades\Cache::tags(['products', 'homepage'])->flush();
+        });
+    }
+
     public function getRouteKeyName(): string
     {
         return 'slug';
@@ -168,11 +179,45 @@ class Product extends Model
     }
 
     /**
+     * Get first assigned category as primary category.
+     */
+    public function getPrimaryCategoryAttribute(): ?Category
+    {
+        return $this->categories->first();
+    }
+
+    /**
+     * Primary image URL accessor.
+     */
+    public function getPrimaryImageAttribute(): ?string
+    {
+        $firstImage = $this->images->first();
+
+        return $this->primaryImage->url ?? ($firstImage ? $firstImage->url : null);
+    }
+
+    /**
      * Formatted Money value object for base price.
      */
     public function getPriceMoney(): Money
     {
         return Money::fromDecimal($this->base_price);
+    }
+
+    /**
+     * Price accessor returning Money object.
+     */
+    public function getPriceAttribute(): Money
+    {
+        return $this->getPriceMoney();
+    }
+
+    /**
+     * Compare at price Money accessor.
+     */
+    public function getCompareAtPriceMoneyAttribute(): ?Money
+    {
+        return $this->compare_at_price !== null ? Money::fromDecimal($this->compare_at_price) : null;
     }
 
     // -------------------------------------------------------------------------
@@ -192,7 +237,7 @@ class Product extends Model
     }
 
     /**
-     * Alias for published products.
+     * Scope for active products (alias of published).
      *
      * @param  Builder<Product>  $query
      */
@@ -274,16 +319,5 @@ class Product extends Model
             ->logOnly(['name', 'status', 'base_price', 'is_featured', 'is_bestseller'])
             ->logOnlyDirty()
             ->dontSubmitEmptyLogs();
-    }
-
-    protected static function booted(): void
-    {
-        static::saved(function (): void {
-            \App\Services\HomepageService::clearCache();
-        });
-
-        static::deleted(function (): void {
-            \App\Services\HomepageService::clearCache();
-        });
     }
 }

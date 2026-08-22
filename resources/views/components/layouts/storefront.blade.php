@@ -1,57 +1,54 @@
 @props([
     'title' => null,
-    'description' => 'Pure leaf. Pure intent. Henley approaches single-estate tea, rare botanicals, and whole spices with the precision and quiet luxury of a fine fragrance house.',
-    'image' => '/images/brand/homepage.jpeg',
-    'transparentHeader' => false,
-    'announcementText' => 'Complimentary express air courier on single-estate orders over ₹1,500',
-    'announcementLink' => '/collections/single-origin-reserve',
-    'navItems' => [],
-    'featuredCollections' => [],
+    'description' => null,
+    'canonical' => null,
+    'image' => null,
+    'transparentHero' => false,
 ])
 
 @php
-$pageTitle = $title ? "{$title} — Henley" : "Henley — Pure Leaf. Pure Intent. Single-Origin Botanicals";
-$canonicalUrl = url()->current();
-$appUrl = config('app.url', 'https://henleytea.com');
+$metaTitle = $title ? "{$title} — Henley" : "Henley — Pure leaf. Pure intent. Single-Origin Botanicals";
+$metaDescription = $description ?? "Rare single-estate Himalayan teas, biodynamic botanicals, and handpicked spices preserved in bone-white porcelain cloche jars.";
+$metaCanonical = $canonical ?? url()->current();
+$metaImage = $image ?? asset('images/brand/homepage.jpeg');
 
 $jsonLd = [
     '@context' => 'https://schema.org',
     '@graph' => [
         [
             '@type' => 'Organization',
-            '@id' => "{$appUrl}/#organization",
-            'name' => 'Henley Botanicals Private Limited',
-            'url' => $appUrl,
+            '@id' => url('/') . '/#organization',
+            'name' => 'Henley',
+            'url' => url('/'),
             'logo' => [
                 '@type' => 'ImageObject',
-                'url' => asset('/images/brand/logo.png'),
-                'caption' => 'Henley',
+                'url' => asset('images/brand/logo.png'),
             ],
             'sameAs' => [
                 'https://instagram.com/henleybotanicals',
+                'https://twitter.com/henleytea',
             ],
             'contactPoint' => [
                 '@type' => 'ContactPoint',
                 'telephone' => '+91-800-436539',
-                'contactType' => 'Customer Concierge',
+                'contactType' => 'customer concierge',
                 'areaServed' => 'IN',
                 'availableLanguage' => 'en',
             ],
         ],
         [
             '@type' => 'WebSite',
-            '@id' => "{$appUrl}/#website",
-            'url' => $appUrl,
-            'name' => 'Henley',
-            'description' => $description,
+            '@id' => url('/') . '/#website',
+            'url' => url('/'),
+            'name' => 'Henley Botanical Reserve',
             'publisher' => [
-                '@id' => "{$appUrl}/#organization",
+                '@id' => url('/') . '/#organization',
             ],
             'potentialAction' => [
                 '@type' => 'SearchAction',
                 'target' => [
                     '@type' => 'EntryPoint',
-                    'urlTemplate' => "{$appUrl}/shop?q={search_term_string}",
+                    'urlTemplate' => url('/collections') . '?q={search_term_string}',
                 ],
                 'query-input' => 'required name=search_term_string',
             ],
@@ -67,35 +64,29 @@ $jsonLd = [
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $pageTitle }}</title>
-    <meta name="description" content="{{ $description }}">
-    <link rel="canonical" href="{{ $canonicalUrl }}">
+    <!-- SEO Meta Tags -->
+    <title>{{ $metaTitle }}</title>
+    <meta name="description" content="{{ $metaDescription }}">
+    <link rel="canonical" href="{{ $metaCanonical }}">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ $canonicalUrl }}">
-    <meta property="og:title" content="{{ $pageTitle }}">
-    <meta property="og:description" content="{{ $description }}">
-    <meta property="og:image" content="{{ asset($image) }}">
-    <meta property="og:site_name" content="Henley">
+    <meta property="og:url" content="{{ $metaCanonical }}">
+    <meta property="og:title" content="{{ $metaTitle }}">
+    <meta property="og:description" content="{{ $metaDescription }}">
+    <meta property="og:image" content="{{ $metaImage }}">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="{{ $canonicalUrl }}">
-    <meta name="twitter:title" content="{{ $pageTitle }}">
-    <meta name="twitter:description" content="{{ $description }}">
-    <meta name="twitter:image" content="{{ asset($image) }}">
+    <meta name="twitter:title" content="{{ $metaTitle }}">
+    <meta name="twitter:description" content="{{ $metaDescription }}">
+    <meta name="twitter:image" content="{{ $metaImage }}">
 
-    <!-- Self-Hosted Font Preload Hints (Zero Layout Shift) -->
+    <!-- Self-hosted font preloads for zero Cumulative Layout Shift (CLS) -->
     <link rel="preload" href="/fonts/cormorant-garamond-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/plus-jakarta-sans-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 
-    <!-- Preload Hero Image on Homepage -->
-    @if ($transparentHeader)
-        <link rel="preload" href="/images/brand/homepage.jpeg" as="image">
-    @endif
-
-    <!-- JSON-LD Structured Data: Organization & WebSite with SearchAction -->
+    <!-- Schema.org JSON-LD Structured Data -->
     <script type="application/ld+json">
     {!! json_encode($jsonLd, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
     </script>
@@ -103,44 +94,42 @@ $jsonLd = [
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
-<body class="min-h-full bg-canvas text-primary font-sans antialiased flex flex-col justify-between selection:bg-accent selection:text-inverse">
+<body class="min-h-full bg-canvas text-primary font-sans antialiased selection:bg-accent selection:text-inverse flex flex-col justify-between">
     <!-- Livewire SPA Loading Bar Indicator -->
     <div wire:loading.class="w-full opacity-100" class="fixed top-0 left-0 h-0.5 bg-accent z-[9999] transition-all duration-300 w-0 opacity-0 pointer-events-none"></div>
 
-    <!-- Storefront Header -->
-    <x-storefront.header
-        :transparent-over-hero="$transparentHeader"
-        :announcement-text="$announcementText"
-        :announcement-link="$announcementLink"
-        :nav-items="$navItems"
-        :featured-collections="$featuredCollections"
-    />
+    <!-- Global Toast Notifications Listener -->
+    <div
+        x-data="{
+            toasts: [],
+            add(e) {
+                let id = Date.now();
+                this.toasts.push({ id: id, message: e.detail.message || e.detail[0]?.message, tone: e.detail.tone || 'success' });
+                setTimeout(() => this.toasts = this.toasts.filter(t => t.id !== id), 4000);
+            }
+        }"
+        x-on:notify.window="add($event)"
+        class="fixed bottom-6 right-6 z-50 space-y-2 pointer-events-none"
+    >
+        <template x-for="t in toasts" :key="t.id">
+            <div class="pointer-events-auto flex items-center gap-3 rounded-full border border-hairline bg-surface-card px-5 py-3 shadow-card-hover animate-fadeIn">
+                <span x-show="t.tone === 'success'" class="flex h-5 w-5 items-center justify-center rounded-full bg-sage-surface text-sage-text">✓</span>
+                <span x-show="t.tone === 'error'" class="flex h-5 w-5 items-center justify-center rounded-full bg-error-surface text-error">✕</span>
+                <span class="font-sans text-ui font-medium text-primary" x-text="t.message"></span>
+            </div>
+        </template>
+    </div>
 
-    <!-- Main Page Content -->
-    <main id="main-content" class="flex-1 w-full">
+    <!-- Storefront Header -->
+    <livewire:storefront.header :transparent-hero="$transparentHero" />
+
+    <!-- Main Content Slot -->
+    <main class="flex-1 w-full">
         {{ $slot }}
     </main>
 
     <!-- Storefront Footer -->
     <x-storefront.footer />
-
-    <!-- Live Search Overlay Component -->
-    <livewire:storefront.search-overlay />
-
-    <!-- Cart Slide-Over Drawer Placeholder -->
-    <x-drawer name="cart-drawer" title="Your Ritual Basket" max-width="md">
-        <div class="space-y-6">
-            <x-empty-state
-                title="Your basket is empty"
-                description="Explore our single-origin flushes and rare botanicals to start your ritual."
-                icon="bag"
-            >
-                <x-link-button href="/shop" variant="primary" size="md" trailing-arrow x-on:click="$dispatch('close-drawer', 'cart-drawer')">
-                    Explore the Catalog
-                </x-link-button>
-            </x-empty-state>
-        </div>
-    </x-drawer>
 
     @livewireScripts
 </body>

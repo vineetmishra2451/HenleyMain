@@ -41,22 +41,22 @@ class HomepageSection extends Model
         ];
     }
 
+    protected static function booted(): void
+    {
+        static::saved(function (): void {
+            \Illuminate\Support\Facades\Cache::tags(['homepage'])->flush();
+        });
+
+        static::deleted(function (): void {
+            \Illuminate\Support\Facades\Cache::tags(['homepage'])->flush();
+        });
+    }
+
     /**
      * @param  Builder<HomepageSection>  $query
      */
     public function scopeActive(Builder $query): void
     {
         $query->where('is_active', true)->orderBy('sort_order');
-    }
-
-    protected static function booted(): void
-    {
-        static::saved(function (): void {
-            \App\Services\HomepageService::clearCache();
-        });
-
-        static::deleted(function (): void {
-            \App\Services\HomepageService::clearCache();
-        });
     }
 }

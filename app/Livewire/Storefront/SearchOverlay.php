@@ -4,43 +4,38 @@ declare(strict_types=1);
 
 namespace App\Livewire\Storefront;
 
+use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Cache;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class SearchOverlay extends Component
 {
-    public string $query = '';
-
     public bool $isOpen = false;
 
+    public string $query = '';
+
     /**
-     * @var list<string>
+     * @var array<string>
      */
     public array $popularSearches = [
         'First Flush Darjeeling',
-        'Kashmiri Saffron Mogra',
-        'Tellicherry Black Pepper',
-        'Imperial Silver Needle',
+        'Kashmir Mogra Saffron',
+        'Silver Needle White Tea',
         'Malabar Green Cardamom',
-        'Nilgiri Blue Mountain Tisane',
+        'Porcelain Cloche Gift Set',
     ];
 
-    /**
-     * @var array<string, mixed>
-     */
-    protected $listeners = [
-        'open-search' => 'open',
-        'close-search' => 'close',
-    ];
-
-    public function open(): void
+    #[On('open-search')]
+    public function openSearch(): void
     {
         $this->isOpen = true;
     }
 
-    public function close(): void
+    #[On('close-search')]
+    public function closeSearch(): void
     {
         $this->isOpen = false;
         $this->query = '';
@@ -51,22 +46,31 @@ class SearchOverlay extends Component
         $this->query = $term;
     }
 
-    public function render(): View
+    public function render(): \Illuminate\Contracts\View\View
     {
-        /** @var Collection<int, Product> $results */
         $results = new Collection;
+        $featuredCategories = new Collection;
 
         if (strlen(trim($this->query)) >= 2) {
-            $results = Product::query()
-                ->active()
-                ->search($this->query)
-                ->with(['vendor', 'categories'])
+            $results = Product::active()
+                ->where(function ($q): void {
+                    $q->where('name', 'ilike', '%'.$this->query.'%')
+                        ->orWhere('short_description', 'ilike', '%'.$this->query.'%')
+                        ->orWhere('description', 'ilike', '%'.$this->query.'%');
+                })
+                ->with(['categories', 'images'])
                 ->take(6)
                 ->get();
+        } else {
+            /** @var Collection<int, Category> $featuredCategories */
+            $featuredCategories = Cache::tags(['categories'])->remember('search_featured_categories', 3600, function (): Collection {
+                return Category::where('is_featured', true)->take(4)->get();
+            });
         }
 
         return view('livewire.storefront.search-overlay', [
             'results' => $results,
+            'featuredCategories' => $featuredCategories,
         ]);
     }
 }

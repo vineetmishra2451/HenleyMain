@@ -4,18 +4,39 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\HomeController;
 use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\OtpLogin;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\ResetPassword;
 use App\Livewire\Auth\VerifyEmail;
+use App\Livewire\Storefront\HomePage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-// Storefront Home Page
-Route::get('/', HomeController::class)->name('home');
+// Storefront Home
+Route::get('/', HomePage::class)->name('home');
+
+// Storefront Browse & Content Fallbacks (for Phase 05 link integrity)
+Route::get('/collections/{slug?}', function (?string $slug = null) {
+    return redirect()->route('home');
+})->name('collections.index');
+
+Route::get('/products/{slug}', function (string $slug) {
+    return redirect()->route('home');
+})->name('products.show');
+
+Route::get('/about', function () {
+    return redirect()->route('home');
+})->name('about');
+
+Route::get('/journal/{slug?}', function (?string $slug = null) {
+    return redirect()->route('home');
+})->name('journal.index');
+
+Route::get('/cart', function () {
+    return redirect()->route('home');
+})->name('cart');
 
 // Guest Storefront Authentication Routes
 Route::middleware('guest')->group(function (): void {

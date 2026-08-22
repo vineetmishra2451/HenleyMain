@@ -60,15 +60,4 @@ class JournalPost extends Model
             ->where('published_at', '<=', now())
             ->orderByDesc('published_at');
     }
-
-    protected static function booted(): void
-    {
-        static::saved(function (): void {
-            \App\Services\HomepageService::clearCache();
-        });
-
-        static::deleted(function (): void {
-            \App\Services\HomepageService::clearCache();
-        });
-    }
 }

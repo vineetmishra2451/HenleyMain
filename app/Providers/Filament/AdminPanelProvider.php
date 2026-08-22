@@ -30,7 +30,7 @@ class AdminPanelProvider extends PanelProvider
             ->login(\App\Filament\Pages\Auth\Login::class)
             ->brandName('Henley — Business Management')
             ->brandLogo(fn () => view('filament.admin.logo'))
-            ->favicon(asset('favicon.ico'))
+            ->favicon('/favicon.ico')
             ->colors([
                 'primary' => Color::hex('#5C2225'), // Henley Oxblood
                 'secondary' => Color::hex('#B08B4F'), // Antique Gold

@@ -7,6 +7,7 @@ namespace App\Models;
 use Database\Factories\SettingFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * @property int $id
@@ -27,30 +28,32 @@ class Setting extends Model
         'type',
     ];
 
-    public static function get(string $key, mixed $default = null): mixed
-    {
-        $setting = static::where('key', $key)->first();
-        if (! $setting) {
-            return $default;
-        }
-
-        return match ($setting->type) {
-            'integer', 'int' => (int) $setting->value,
-            'boolean', 'bool' => filter_var($setting->value, FILTER_VALIDATE_BOOLEAN),
-            'json', 'array' => json_decode((string) $setting->value, true),
-            'float' => (float) $setting->value,
-            default => $setting->value,
-        };
-    }
-
     protected static function booted(): void
     {
         static::saved(function (): void {
-            \App\Services\HomepageService::clearCache();
+            Cache::tags(['settings'])->flush();
         });
 
         static::deleted(function (): void {
-            \App\Services\HomepageService::clearCache();
+            Cache::tags(['settings'])->flush();
+        });
+    }
+
+    public static function get(string $key, mixed $default = null): mixed
+    {
+        return Cache::tags(['settings'])->remember("setting_{$key}", 86400, function () use ($key, $default) {
+            $setting = static::where('key', $key)->first();
+            if (! $setting) {
+                return $default;
+            }
+
+            return match ($setting->type) {
+                'integer', 'int' => (int) $setting->value,
+                'boolean', 'bool' => filter_var($setting->value, FILTER_VALIDATE_BOOLEAN),
+                'json', 'array' => json_decode((string) $setting->value, true),
+                'float' => (float) $setting->value,
+                default => $setting->value,
+            };
         });
     }
 }

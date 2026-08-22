@@ -1,122 +1,115 @@
-<footer class="bg-surface-raised border-t border-hairline pt-16 pb-12 text-primary" role="contentinfo">
+<footer class="w-full bg-surface-raised border-t border-hairline pt-16 pb-12 text-primary select-none">
     <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12 space-y-16">
-        <!-- Top Section: Brand Manifesto & Newsletter Chamber -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-5 space-y-4">
-                <x-brand.logo />
-                <p class="font-serif text-2xl text-primary font-normal leading-snug">
-                    Fifteen unhurried minutes stolen from the frantic churn of the world.
+
+        <!-- 1. Top Dispatch / Newsletter Band (with Gold Rule & Diamond Ornament) -->
+        <div class="space-y-8">
+            <x-divider variant="gold" ornament />
+
+            <div class="max-w-2xl mx-auto text-center space-y-3">
+                <x-eyebrow variant="gold">
+                    Private Allocation Dispatch
+                </x-eyebrow>
+                <h3 class="font-serif text-display-2 font-normal text-primary tracking-tight">
+                    Join the Henley Collector Circle
+                </h3>
+                <p class="text-body text-secondary leading-relaxed max-w-lg mx-auto">
+                    Receive first notification when limited single-estate spring flushes and wild saffron reserves are bottled.
                 </p>
-                <p class="text-body text-secondary max-w-md">
-                    Direct-to-consumer single-estate teas, restorative botanicals, and handpicked whole spices preserved in bone porcelain cloches.
-                </p>
+
+                <!-- Livewire Newsletter Signup Component -->
+                <div class="pt-3">
+                    <livewire:storefront.newsletter-signup />
+                </div>
             </div>
 
-            <div class="lg:col-span-7 bg-surface-card/60 p-6 sm:p-8 rounded-2xl border border-hairline space-y-4">
-                <div class="space-y-1">
-                    <x-eyebrow variant="gold">The Inner Circle</x-eyebrow>
-                    <h3 class="font-serif text-xl text-primary font-normal">Receive First Access to Rare Micro-Lots</h3>
-                </div>
-                <livewire:storefront.newsletter-signup />
-            </div>
+            <x-divider variant="hairline" />
         </div>
 
-        <!-- 1px Antique Gold Foil Rule -->
-        <x-divider variant="gold" ornament />
+        <!-- 2. Main Navigation Columns -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
 
-        <!-- Middle Section: Navigation Columns -->
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
-            <!-- Column 1: Shop Collections -->
-            <div class="space-y-4">
-                <h4 class="font-sans text-xs uppercase tracking-[0.18em] font-semibold text-primary">
-                    Shop Terroir
+            <!-- Column 1: Brand Statement (2 cols on large screen) -->
+            <div class="lg:col-span-2 space-y-4">
+                <a href="/" class="inline-block">
+                    <span class="font-serif text-3xl tracking-[0.22em] font-normal text-primary">
+                        HENLEY
+                    </span>
+                </a>
+                <p class="text-body text-secondary max-w-sm leading-relaxed">
+                    Pure leaf. Pure intent. Henley approaches single-origin tea, botanicals, and spices with the restraint, precision, and quiet luxury of a fine fragrance house.
+                </p>
+                <div class="pt-2 text-caption text-secondary space-y-1">
+                    <p>Concierge: <a href="mailto:concierge@henleytea.com" class="text-primary hover:text-accent underline decoration-hairline">concierge@henleytea.com</a></p>
+                    <p>Estate Office: Kurseong Division, Darjeeling, WB 734203</p>
+                </div>
+            </div>
+
+            <!-- Column 2: Shop -->
+            <div class="space-y-3">
+                <h4 class="font-sans text-xs uppercase tracking-[0.16em] font-semibold text-primary">
+                    The Cellar
                 </h4>
-                <ul class="space-y-2.5 text-caption text-secondary">
+                <ul class="space-y-2.5 text-ui text-secondary">
                     <li><a href="/collections/single-origin-reserve" class="hover:text-accent transition-colors">First Flush Darjeeling</a></li>
-                    <li><a href="/collections/single-origin-reserve" class="hover:text-accent transition-colors">Imperial Silver Needle</a></li>
-                    <li><a href="/collections/herbal-botanicals" class="hover:text-accent transition-colors">Nilgiri Herbal Tisanes</a></li>
-                    <li><a href="/collections/single-origin-reserve" class="hover:text-accent transition-colors">Malabar Green Cardamom</a></li>
-                    <li><a href="/collections/single-origin-reserve" class="hover:text-accent transition-colors">Wild Kashmiri Saffron</a></li>
-                    <li><a href="/collections/curated-gift-sets" class="hover:text-accent transition-colors">Curated Gift Cloches</a></li>
+                    <li><a href="/collections/imperial-white-tea" class="hover:text-accent transition-colors">Silver Needle White</a></li>
+                    <li><a href="/collections/herbal-botanicals" class="hover:text-accent transition-colors">Nilgiri Herbal Elixirs</a></li>
+                    <li><a href="/collections/kashmiri-saffron" class="hover:text-accent transition-colors">Wild Kashmiri Saffron</a></li>
+                    <li><a href="/collections/curated-gift-sets" class="hover:text-accent transition-colors">Porcelain Gift Cloches</a></li>
                 </ul>
             </div>
 
-            <!-- Column 2: House & Terroir -->
-            <div class="space-y-4">
-                <h4 class="font-sans text-xs uppercase tracking-[0.18em] font-semibold text-primary">
-                    The House
+            <!-- Column 3: Company -->
+            <div class="space-y-3">
+                <h4 class="font-sans text-xs uppercase tracking-[0.16em] font-semibold text-primary">
+                    Philosophy
                 </h4>
-                <ul class="space-y-2.5 text-caption text-secondary">
+                <ul class="space-y-2.5 text-ui text-secondary">
+                    <li><a href="/about" class="hover:text-accent transition-colors">Our Story & Heritage</a></li>
+                    <li><a href="/pages/estates-and-terroir" class="hover:text-accent transition-colors">Estates & Terroir</a></li>
                     <li><a href="/pages/the-cloche-ritual" class="hover:text-accent transition-colors">The Cloche Ritual</a></li>
-                    <li><a href="/pages/the-cloche-ritual" class="hover:text-accent transition-colors">Partner Estates</a></li>
-                    <li><a href="/pages/the-cloche-ritual" class="hover:text-accent transition-colors">Biodynamic Standards</a></li>
-                    <li><a href="/journal" class="hover:text-accent transition-colors">The Journal</a></li>
-                    <li><a href="/pages/the-cloche-ritual" class="hover:text-accent transition-colors">Sustainability Commitments</a></li>
+                    <li><a href="/journal" class="hover:text-accent transition-colors">The Botanical Journal</a></li>
+                    <li><a href="/vendor/login" class="hover:text-accent transition-colors">Estate & Grower Portal</a></li>
                 </ul>
             </div>
 
-            <!-- Column 3: Concierge & Support -->
-            <div class="space-y-4">
-                <h4 class="font-sans text-xs uppercase tracking-[0.18em] font-semibold text-primary">
+            <!-- Column 4: Support & Concierge -->
+            <div class="space-y-3">
+                <h4 class="font-sans text-xs uppercase tracking-[0.16em] font-semibold text-primary">
                     Concierge
                 </h4>
-                <ul class="space-y-2.5 text-caption text-secondary">
-                    <li><a href="/pages/shipping-returns" class="hover:text-accent transition-colors">Air Express Delivery</a></li>
-                    <li><a href="/pages/shipping-returns" class="hover:text-accent transition-colors">Shipping & Returns</a></li>
-                    <li><a href="/pages/faqs" class="hover:text-accent transition-colors">Steeping & Water Guide</a></li>
-                    <li><a href="/pages/faqs" class="hover:text-accent transition-colors">Apothecary Care & FAQs</a></li>
-                    <li><a href="mailto:concierge@henleytea.com" class="hover:text-accent transition-colors">Contact Concierge</a></li>
+                <ul class="space-y-2.5 text-ui text-secondary">
+                    <li><a href="/pages/faq" class="hover:text-accent transition-colors">Steeping & Care FAQ</a></li>
+                    <li><a href="/pages/shipping-policy" class="hover:text-accent transition-colors">Express Shipping Policy</a></li>
+                    <li><a href="/pages/returns-exchanges" class="hover:text-accent transition-colors">Returns & Guarantee</a></li>
+                    <li><a href="/pages/contact" class="hover:text-accent transition-colors">Concierge Desk</a></li>
+                    <li><a href="/pages/authenticity" class="hover:text-accent transition-colors">Certificate of Origin</a></li>
                 </ul>
-            </div>
-
-            <!-- Column 4: Portals -->
-            <div class="space-y-4">
-                <h4 class="font-sans text-xs uppercase tracking-[0.18em] font-semibold text-primary">
-                    Portals
-                </h4>
-                <ul class="space-y-2.5 text-caption text-secondary">
-                    <li><a href="/login" class="hover:text-accent transition-colors">Collector Login</a></li>
-                    <li><a href="/vendor" class="hover:text-accent transition-colors">Estate & Vendor Portal</a></li>
-                    <li><a href="/admin" class="hover:text-accent transition-colors">Business Management</a></li>
-                    @if (app()->environment(['local', 'staging', 'testing']))
-                        <li><a href="/design" class="hover:text-gold text-accent font-medium transition-colors">Design System (/design)</a></li>
-                    @endif
-                </ul>
-            </div>
-
-            <!-- Column 5: Single-Origin Quality Seal -->
-            <div class="col-span-2 md:col-span-4 lg:col-span-1 space-y-3">
-                <div class="p-4 rounded-xl border border-hairline bg-surface-card text-center space-y-2">
-                    <x-icons.shield-check class="w-6 h-6 text-gold mx-auto" />
-                    <span class="font-sans text-xs uppercase tracking-wider font-semibold text-primary block">
-                        Direct Sourcing Seal
-                    </span>
-                    <p class="text-[11px] text-secondary leading-snug">
-                        Every cloche is serial-numbered and sealed at estate origin in India.
-                    </p>
-                </div>
             </div>
         </div>
 
-        <!-- Bottom Bar: Payments & Copyright -->
-        <div class="pt-8 border-t border-hairline flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-secondary">
-            <div class="flex flex-wrap items-center gap-4 text-caption">
-                <span>© {{ date('Y') }} Henley Botanicals Private Limited. All rights reserved.</span>
-                <span class="text-hairline" aria-hidden="true">•</span>
-                <a href="/pages/privacy-policy" class="hover:text-accent transition-colors">Privacy Policy</a>
-                <span class="text-hairline" aria-hidden="true">•</span>
-                <a href="/pages/terms-of-service" class="hover:text-accent transition-colors">Terms of Ritual</a>
-                <span class="text-hairline" aria-hidden="true">•</span>
-                <span>GSTIN Registered (100% Traceable)</span>
+        <!-- 3. Bottom Bar: Payment Marks, Socials & Legal -->
+        <div class="pt-8 border-t border-hairline flex flex-col md:flex-row items-center justify-between gap-6 text-caption text-secondary">
+            <!-- Copyright -->
+            <div>
+                <p>© {{ date('Y') }} Henley Botanical Ltd. All rights reserved.</p>
             </div>
 
-            <!-- Payment Badges (Clean text badges representing supported gateways) -->
-            <div class="flex items-center gap-2 select-none" aria-label="Accepted Payment Methods">
-                <span class="px-2.5 py-1 rounded bg-surface-card border border-hairline text-[10px] font-bold text-primary tracking-wider uppercase">UPI</span>
-                <span class="px-2.5 py-1 rounded bg-surface-card border border-hairline text-[10px] font-bold text-primary tracking-wider uppercase">RuPay</span>
-                <span class="px-2.5 py-1 rounded bg-surface-card border border-hairline text-[10px] font-bold text-primary tracking-wider uppercase">Visa</span>
-                <span class="px-2.5 py-1 rounded bg-surface-card border border-hairline text-[10px] font-bold text-primary tracking-wider uppercase">Mastercard</span>
-                <span class="px-2.5 py-1 rounded bg-surface-card border border-hairline text-[10px] font-bold text-primary tracking-wider uppercase">Amex</span>
+            <!-- Payment Badges (Clean Vector Typography Marks) -->
+            <div class="flex items-center gap-3 text-[10px] tracking-wider uppercase font-semibold text-muted">
+                <span class="px-2.5 py-1 rounded bg-surface-card border border-hairline text-primary">UPI</span>
+                <span class="px-2.5 py-1 rounded bg-surface-card border border-hairline text-primary">Visa</span>
+                <span class="px-2.5 py-1 rounded bg-surface-card border border-hairline text-primary">Mastercard</span>
+                <span class="px-2.5 py-1 rounded bg-surface-card border border-hairline text-primary">RuPay</span>
+                <span class="px-2.5 py-1 rounded bg-surface-card border border-hairline text-primary">NetBanking</span>
+            </div>
+
+            <!-- Legal Policy Links -->
+            <div class="flex items-center gap-4 text-xs">
+                <a href="/pages/privacy-policy" class="hover:text-accent transition-colors">Privacy</a>
+                <span>•</span>
+                <a href="/pages/terms-of-service" class="hover:text-accent transition-colors">Terms</a>
+                <span>•</span>
+                <a href="/pages/shipping-policy" class="hover:text-accent transition-colors">Shipping</a>
             </div>
         </div>
     </div>
