@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Surfaces & Canvas */
+  --color-page-base: #FBF9F6;
+  --color-surface-raised: #F5F3EF;
+  --color-surface-card: #FFFFFF;
+  --color-surface-dark: #1D1714;
+
+  /* Hairlines & Borders */
+  --color-hairline-neutral: #E5DFD6;
+  --color-hairline-gold: #B08B4F;
+  --color-border-error: #E53E3E;
+
+  /* Content & Typography */
+  --color-text-primary: #231C18;
+  --color-text-secondary: #6E635B;
+  --color-text-muted: #8E8278;
+  --color-text-on-dark: #FBF9F6;
+
+  /* Accents */
+  --color-oxblood: #5C2225;
+  --color-oxblood-hover: #4A1B1D;
+  --color-oxblood-deep: #3E1517;
+
+  --color-saffron: #A6332F;
+  --color-saffron-surface: #FAECEB;
+  --color-saffron-text: #8E2824;
+
+  --color-antique-gold: #B08B4F;
+  --color-gold-surface: #F7F3E8;
+  --color-gold-text: #755A25;
+
+  --color-sage: #7F8A6E;
+  --color-sage-surface: #E8ECE3;
+  --color-sage-text: #3B4833;
+
+  --color-error-text: #9B2C2C;
+  --color-error-surface: #FFF5F5;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-page-base);
+    color: var(--color-text-primary);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}

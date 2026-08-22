@@ -1,85 +1,142 @@
-# Henley — Antigravity Build Prompt Pack
+# Henley — Storefront & Business Management Platform
 
-Nineteen sequenced prompts that build the Henley e-commerce platform described in `HenleyPRD.docx` and `Henley Sitemap.pdf`, on the specified stack: Laravel 12, Filament v4, PostgreSQL, Livewire, Tailwind CSS.
+> **"Pure leaf. Pure intent."**  
+> Direct-to-consumer tea, single-origin botanical infusions, and whole spices platform built on Laravel 12, Filament v4, Livewire v3, PostgreSQL 16, Redis 7, and Tailwind CSS.
 
-## How to use this
+---
 
-**Set up the workspace.** Create an empty git repository for the Henley project and open it in Antigravity. Copy `AGENTS.md` from this pack into the repository root and commit it — it holds the stack lock, the engineering rules, the design direction and the working conventions, and it is written to be read at the start of every agent session rather than pasted into prompts. If your Antigravity build reads project rules from a different location (a workspace rules panel, or a `.agent/` directory), put the same content there instead; the file is plain Markdown and location-agnostic.
+## 1. System Architecture & Entry Points
 
-Copy your brand assets into `docs/brand/` before running phase 00 — the packaging render, the homepage mockup, the collections mockup and the product page mockup. Phase 00 expects to find them there.
+Henley operates as a unified monolithic application with three guarded entry points:
 
-**Run one phase per agent session.** Paste the whole file as a single prompt. Each phase file is self-contained: context, objective, build spec, constraints, an explicit scope fence, and a definition of done. Don't merge two phases into one prompt — the scope fences are load-bearing, and an agent given phases 06 and 07 together will build a mediocre version of both.
-
-**Review at every gate.** Each phase ends with a definition of done and a short list of things to report back. Read the report, look at the screenshots, and don't move on while something is unresolved. Phase 00 in particular ends with an explicit stop — approve the design direction before any code is written, because phases 04 through 11 all inherit from it.
-
-**Let it verify in the browser.** Most storefront phases ask for visual confirmation at four widths. If your build has browser control, let the agent drive it; the alternative is you finding the misalignment three phases later.
-
-## Run order
-
-| # | Phase | Depends on | Notes |
+| Surface | Route Prefix | Primary Audience | Tech Stack |
 |---|---|---|---|
-| 00 | Brand absorption & design direction | — | Hard approval gate. No code. |
-| 01 | Foundation, environment & conventions | 00 | |
-| 02 | Data model, migrations & seeders | 01 | The phase that decides how much pain follows. |
-| 03 | Authentication, roles & access control | 02 | |
-| 04 | Design system & Blade components | 00, 01 | Can run alongside 02–03. |
-| 05 | Storefront shell & home page | 02, 04 | |
-| 06 | Catalogue, listing, filters & search | 05 | |
-| 07 | Product detail page | 06 | |
-| 08 | Cart, coupons & pricing engine | 07 | Owns all money maths. |
-| 09 | Checkout, Razorpay & order lifecycle | 08 | Highest-risk phase. Don't rush the gate. |
-| 10 | Customer account area | 09 | |
-| 11 | Content pages, CMS surfaces & journal | 05 | Can run alongside 09–10. |
-| 12 | Business management portal (Filament) | 02, 03, 09 | Largest phase; has a marked split point. |
-| 13 | Vendor portal | 12 | |
-| 14 | Versioned REST API | 09 | Can run alongside 12–13. |
-| 15 | SEO, analytics & performance | 05–11 | |
-| 16 | Security hardening | all features | |
-| 17 | Testing, accessibility & QA | all features | |
-| 18 | Infrastructure, deployment & launch | 17 | |
+| **Storefront** | `/` | Customers & Collectors | Blade + Livewire v3 + Tailwind CSS |
+| **Business Management Portal** | `/admin` | Super Admins & Curators | Filament v4 (Oxblood Theme) |
+| **Estate & Vendor Portal** | `/vendor` | Agricultural & Tea Partners | Filament v4 (Botanical Sage Theme) |
+| **Local Mailbox (Mailpit)** | `:8025` | Developers (Testing) | Mailpit Web Inspector |
 
-Three sets can run in parallel if you're using multiple agents: 04 alongside 02–03, 11 alongside 09–10, and 14 alongside 12–13. Everything else is a genuine dependency — parallelising 08 and 09 in particular will produce two pricing engines.
+---
 
-## Mapping to the PRD timeline
+## 2. Prerequisites
 
-The PRD budgets 38 working days. Roughly: phase 00 covers the UI/UX allocation, phases 01–14 the development allocation, phases 15–17 the testing allocation, and phase 18 deployment. Phases 09 and 12 are each worth two or three days on their own; if the schedule slips, it will slip there.
+- **Docker Desktop** (Mac, Linux, or Windows WSL2)
+- **Git**
+- *(Optional on host)* **Node.js 22+** and **PHP 8.3+** (all tools run inside Sail containers)
 
-## Decisions deferred to the agent
+---
 
-Several places ask the agent to choose and justify rather than follow. These are the ones worth watching for in the reports, because they shape the codebase: Sail versus plain Docker Compose (01), media library versus a hand-rolled images table (02), the taxonomy model for benefit and type facets (02), the address relationship shape (02), numbered pagination versus load-more (06), tax-inclusive versus tax-exclusive pricing (08), coupon stacking (08), single-page versus wizard checkout (09), vendor product approval workflow (13), how order-level discounts apportion across vendors (13), and whether vendors see customer contact details (13).
+## 3. First-Run Setup (One-Command Stack)
 
-If you have a view on any of these already, add it to `AGENTS.md` before you start and the question goes away.
+To clone the repository and launch the full Henley local environment:
 
-## What this pack deliberately doesn't cover
+```bash
+# 1. Clone repository
+git clone https://github.com/vineetmishra2451/HenleyMain.git henley
+cd henley
 
-Subscriptions and refill scheduling, loyalty and referral programmes, courier API integration beyond manual tracking numbers, multi-currency and internationalisation, vendor payout settlement, marketing automation and abandoned-cart campaigns, and a mobile app. Several of these have schema hooks in phase 02 so adding them later isn't a migration crisis, but none are built.
+# 2. Prepare environment configuration
+cp .env.example .env
 
-## One thing to resolve early
+# 3. Boot local container stack (PostgreSQL, Redis, Mailpit, Queue Worker, App)
+./vendor/bin/sail up -d
 
-Your packaging wordmark and your website wordmark are different letterforms — the pack uses a geometric rounded sans with a dot accent on the E, the site mockups use a letter-spaced serif. Phase 00 asks the agent to flag this and recommend which becomes canonical for digital. Have a view ready, because it affects the header on every page.
+# 4. Generate application encryption key
+./vendor/bin/sail artisan key:generate
 
-## Files
+# 5. Run database migrations & seed demo records
+./vendor/bin/sail artisan migrate:fresh --seed
+
+# 6. Build frontend assets
+./vendor/bin/sail npm run build
+```
+
+The storefront will be live at `http://localhost`.
+
+---
+
+## 4. Default Seeded Credentials
+
+| Role | Email | Password | Access Surface |
+|---|---|---|---|
+| **Super Administrator** | `admin@henleytea.com` | `password` | `/admin` & `/vendor` |
+| **Estate / Vendor Partner** | `estates@henleytea.com` | `password` | `/vendor` |
+| **Storefront Collector** | `collector@henleytea.com` | `password` | `/` |
+
+---
+
+## 5. Automated Quality Suite & Tests
+
+Henley enforces strict quality gates on every commit:
+
+```bash
+# Run Pint code style fixer
+./vendor/bin/sail composer lint
+
+# Run Larastan static analysis (Level 6)
+./vendor/bin/sail composer analyse
+
+# Run automated Pest test suite
+./vendor/bin/sail composer test
+
+# Run all quality checks in sequence
+./vendor/bin/sail composer check
+```
+
+---
+
+## 6. Directory Conventions
 
 ```
-AGENTS.md                              project rules — commit to repo root
-README.md                              this file
-00-brand-and-design-direction.md
-01-foundation-and-conventions.md
-02-data-model-and-migrations.md
-03-auth-and-access-control.md
-04-design-system-and-components.md
-05-storefront-shell-and-home.md
-06-catalogue-listing-and-search.md
-07-product-detail-page.md
-08-cart-coupons-and-pricing.md
-09-checkout-payments-and-orders.md
-10-customer-account-area.md
-11-content-pages-and-journal.md
-12-admin-portal-filament.md
-13-vendor-portal.md
-14-api-v1.md
-15-seo-analytics-and-performance.md
-16-security-hardening.md
-17-testing-and-qa.md
-18-infrastructure-and-deployment.md
+app/
+├── Actions/          # Single-purpose invokable classes for database writes (e.g. CreateOrderAction)
+├── Services/         # Multi-step business orchestration & API integrations (e.g. RazorpayService)
+├── Models/           # Thin Eloquent models with strict typing and relationships
+├── Http/Requests/    # Form request validation classes
+├── Livewire/         # Storefront interactive Livewire components
+├── Filament/
+│   ├── Admin/        # Business Management portal resources, pages, and widgets
+│   └── Vendor/       # Vendor portal resources, pages, and widgets
+├── Policies/         # Spatie / Laravel authorization policies
+├── Enums/            # PHP 8.3 backed string enums with label() and color()
+└── Support/          # Value objects (Money, Slug, Address) and helpers
 ```
+
+---
+
+## 7. Environment Variables Reference
+
+| Variable | Default Value | Description |
+|---|---|---|
+| `APP_NAME` | `Henley` | Application display name |
+| `APP_ENV` | `local` | Environment (`local`, `testing`, `production`) |
+| `APP_KEY` | *(generated)* | AES-256-CBC application encryption key |
+| `APP_TIMEZONE` | `Asia/Kolkata` | Application standard timezone |
+| `APP_URL` | `http://localhost` | Canonical storefront base URL |
+| `APP_CURRENCY` | `INR` | Standard transactional currency code |
+| `DB_CONNECTION` | `pgsql` | Primary database driver (PostgreSQL only) |
+| `DB_HOST` | `pgsql` | Database container host name |
+| `DB_PORT` | `5432` | Internal database port |
+| `DB_DATABASE` | `henley` | PostgreSQL database name |
+| `DB_USERNAME` | `sail` | Database user |
+| `DB_PASSWORD` | `password` | Database password |
+| `FORWARD_DB_PORT` | `54320` | Host port forwarded for PostgreSQL |
+| `REDIS_HOST` | `redis` | Redis service hostname |
+| `FORWARD_REDIS_PORT` | `63790` | Host port forwarded for Redis |
+| `SESSION_DRIVER` | `redis` | Session storage engine |
+| `CACHE_STORE` | `redis` | Application cache storage engine |
+| `QUEUE_CONNECTION` | `redis` | Background queue broker |
+| `FILESYSTEM_DISK` | `public` | Default storage driver (`public` for dev, `r2` for prod) |
+| `R2_ACCESS_KEY_ID` | `null` | Cloudflare R2 object storage access key ID |
+| `R2_SECRET_ACCESS_KEY` | `null` | Cloudflare R2 object storage secret key |
+| `R2_BUCKET` | `henley-media` | Cloudflare R2 storage bucket name |
+| `R2_PUBLIC_URL` | `https://media.henleytea.com` | CDN public delivery URL for media assets |
+| `MAIL_MAILER` | `smtp` | Mail transport driver |
+| `MAIL_HOST` | `mailpit` | Local SMTP capture host |
+| `MAIL_PORT` | `1025` | Local SMTP capture port |
+| `FORWARD_MAILPIT_DASHBOARD_PORT` | `8025` | Mailpit Web UI port (`http://localhost:8025`) |
+| `RAZORPAY_KEY_ID` | `rzp_test_placeholder` | Razorpay API Key ID |
+| `RAZORPAY_KEY_SECRET` | `rzp_secret_placeholder` | Razorpay API Key Secret |
+| `RAZORPAY_WEBHOOK_SECRET`| `rzp_webhook_placeholder`| Razorpay Webhook Signing Secret |
+| `HENLEY_FREE_SHIPPING_THRESHOLD_PAISE` | `100000` | Free shipping threshold in paise (₹1,000.00) |
+| `HENLEY_DEFAULT_GST_RATE` | `5.0` | Standard GST tax percentage on tea & botanicals |
