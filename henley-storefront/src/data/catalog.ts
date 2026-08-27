@@ -415,3 +415,40 @@ export const PRODUCTS: ProductItem[] = [
     description: "Cold-pressed from shade-grown heirloom Criollo cacao beans. Deep mahogany hue with velvety bittersweet nuance.",
   },
 ];
+
+export function getProductSlug(p: ProductItem | { id: string; name: string }): string {
+  return p.id;
+}
+
+export function findProductBySlug(slug: string): ProductItem | undefined {
+  if (!slug) return PRODUCTS[0];
+  const clean = slug.toLowerCase().trim();
+
+  // 1. Direct ID match (e.g. "tea-herb-spice", "spice-saffron")
+  const byId = PRODUCTS.find((p) => p.id.toLowerCase() === clean);
+  if (byId) return byId;
+
+  // 2. ID without prefix match (e.g. "herb-spice", "saffron")
+  const byIdStripped = PRODUCTS.find(
+    (p) => p.id.replace(/^(tea|spice|grain|ess|cocoa)-/, "").toLowerCase() === clean
+  );
+  if (byIdStripped) return byIdStripped;
+
+  // 3. Name slug match (e.g. "herb-spice-tea", "black-pepper", "saffron")
+  const byNameSlug = PRODUCTS.find(
+    (p) => p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") === clean
+  );
+  if (byNameSlug) return byNameSlug;
+
+  // 4. Case-insensitive substring match
+  const byNameFuzzy = PRODUCTS.find(
+    (p) => p.name.toLowerCase().includes(clean) || clean.includes(p.name.toLowerCase())
+  );
+  if (byNameFuzzy) return byNameFuzzy;
+
+  return PRODUCTS[0];
+}
+
+export function getAllProductSlugs(): string[] {
+  return PRODUCTS.map((p) => p.id);
+}

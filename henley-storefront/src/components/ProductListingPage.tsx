@@ -775,6 +775,7 @@ export default function ProductListingPage({
                 {paginatedProducts.map((product) => (
                   <ProductCard
                     key={product.id}
+                    id={product.id}
                     name={product.name}
                     subtitle={product.subtitle}
                     category={product.collection}
@@ -784,10 +785,9 @@ export default function ProductListingPage({
                     reviewCount={product.reviewCount}
                     badge={product.badge}
                     badgeLabel={product.badgeLabel}
-                    cardType="collection"
+                    cardType="product"
                     imageAspect="4:5"
                     onAddToCart={openCart}
-                    onView={openCart}
                   />
                 ))}
               </div>

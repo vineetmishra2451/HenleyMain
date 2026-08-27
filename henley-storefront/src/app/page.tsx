@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import heroBannerImg from "@/assets/herobanner.jpeg";
 import {
   ArchFrame,
@@ -37,19 +38,19 @@ const CATEGORIES = [
 ];
 
 const FEATURED_PRODUCTS = [
-  { name: "Saffron", category: "Herbs & Spices", price: "₹2,499", rating: 5, reviews: 310, badge: "bestseller" as const },
-  { name: "Herb & Spice Tea", category: "Tea", price: "₹1,299", compareAt: "₹1,499", rating: 5, reviews: 164, badge: "bestseller" as const },
-  { name: "Cardamom", category: "Herbs & Spices", price: "₹1,499", compareAt: "₹1,799", rating: 5, reviews: 198, badge: "organic" as const },
-  { name: "Cocoa", category: "Cocoa", price: "₹1,299", compareAt: "₹1,499", rating: 5, reviews: 188, badge: "sale" as const },
-  { name: "Pure & Natural Tea", category: "Tea", price: "₹1,699", rating: 5, reviews: 128, badge: "organic" as const },
-  { name: "Cinnamon", category: "Herbs & Spices", price: "₹999", rating: 5, reviews: 167, badge: "organic" as const },
+  { id: "spice-saffron", name: "Saffron", category: "Herbs & Spices", price: "₹2,499", rating: 5, reviews: 310, badge: "bestseller" as const },
+  { id: "tea-herb-spice", name: "Herb & Spice Tea", category: "Tea", price: "₹1,299", compareAt: "₹1,499", rating: 5, reviews: 164, badge: "bestseller" as const },
+  { id: "spice-cardamom", name: "Cardamom", category: "Herbs & Spices", price: "₹1,499", compareAt: "₹1,799", rating: 5, reviews: 198, badge: "organic" as const },
+  { id: "cocoa-pure", name: "Cocoa", category: "Cocoa", price: "₹1,299", compareAt: "₹1,499", rating: 5, reviews: 188, badge: "sale" as const },
+  { id: "tea-pure-natural", name: "Pure & Natural Tea", category: "Tea", price: "₹1,699", rating: 5, reviews: 128, badge: "organic" as const },
+  { id: "spice-cinnamon", name: "Cinnamon", category: "Herbs & Spices", price: "₹999", rating: 5, reviews: 167, badge: "organic" as const },
 ];
 
 const BESTSELLERS = [
-  { name: "Saffron", category: "Herbs & Spices", price: "₹2,499", rating: 5, reviews: 310 },
-  { name: "Herb & Spice Tea", category: "Tea", price: "₹1,299", rating: 5, reviews: 164 },
-  { name: "Black Pepper", category: "Herbs & Spices", price: "₹899", rating: 5, reviews: 142 },
-  { name: "Besan", category: "Flours & Grains", price: "₹599", rating: 5, reviews: 112 },
+  { id: "spice-saffron", name: "Saffron", category: "Herbs & Spices", price: "₹2,499", rating: 5, reviews: 310 },
+  { id: "tea-herb-spice", name: "Herb & Spice Tea", category: "Tea", price: "₹1,299", rating: 5, reviews: 164 },
+  { id: "spice-black-pepper", name: "Black Pepper", category: "Herbs & Spices", price: "₹899", rating: 5, reviews: 142 },
+  { id: "grain-besan", name: "Besan", category: "Flours & Grains", price: "₹599", rating: 5, reviews: 112 },
 ];
 
 export default function HomePage() {
@@ -103,8 +104,12 @@ export default function HomePage() {
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3">
-              <Button variant="primary">Shop Collection →</Button>
-              <Button variant="ghost">Discover Our Process →</Button>
+              <Link href="/shop">
+                <Button variant="primary">Shop Collection →</Button>
+              </Link>
+              <Link href="/story">
+                <Button variant="ghost">Discover Our Process →</Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -271,6 +276,7 @@ export default function HomePage() {
             {FEATURED_PRODUCTS.map((product) => (
               <div key={product.name} className="snap-start flex-shrink-0 w-[72vw] sm:w-[45vw] lg:w-auto">
                 <ProductCard
+                  id={product.id}
                   name={product.name}
                   category={product.category}
                   price={product.price}
@@ -316,6 +322,7 @@ export default function HomePage() {
             {BESTSELLERS.map((product) => (
               <ProductCard
                 key={product.name}
+                id={product.id}
                 name={product.name}
                 category={product.category}
                 price={product.price}
@@ -452,12 +459,14 @@ function OfferBanner() {
               )}
             </button>
 
-            <Button
-              variant="primary"
-              className="!bg-ivory !text-maroon hover:!bg-sand"
-            >
-              Shop Now →
-            </Button>
+            <Link href="/shop">
+              <Button
+                variant="primary"
+                className="!bg-ivory !text-maroon hover:!bg-sand"
+              >
+                Shop Now →
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

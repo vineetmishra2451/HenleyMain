@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import PlaceholderImage from "./PlaceholderImage";
 import Badge from "./Badge";
 import StarRating from "./StarRating";
@@ -8,152 +8,100 @@ import PriceTag from "./PriceTag";
 import Button from "./Button";
 import ProductCard from "./ProductCard";
 import { useCart } from "./CartProvider";
+import { PRODUCTS, findProductBySlug, ProductItem } from "@/data/catalog";
 
 /* ================================================================
    PRODUCT DETAILS PAGE TEMPLATE (<ProductDetailPage />)
    ================================================================
-   Matches the PDP mockup's two-column architecture:
-   1. Breadcrumbs
-   2. Left: 1:1 Main Image with Zoom Icon + Thumbnail Swap Strip
+   Dynamic PDP supporting all 22 products in the catalog:
+   1. Breadcrumbs (Home / [Collection] / [Product Name])
+   2. Left: 1:1 Main Image with Zoom Icon + 4-Thumbnail Swap Strip
    3. Right: Kicker + Title + Rating Anchor + Price + Weight Selector
       + Stepper + Add to Ritual + Buy Now + Wishlist + Trust Strip
-   4. Accordion Tabs (About / Ingredients / Brewing / Shipping)
+   4. Accordion Tabs (About & Terroir / Ingredients / Ritual & Preparation / Shipping)
    5. "Our Promise" Sand Card
-   6. Customer Reviews Anchor Section
-   7. Related Products Grid
+   6. Customer Reviews Anchor Section (#reviews)
+   7. Dynamic Related Products Grid
    ================================================================ */
 
-interface ProductImage {
-  id: string;
-  label: string;
-  thumbnailLabel: string;
+export interface ProductDetailPageProps {
+  slug?: string;
+  initialProduct?: ProductItem;
 }
 
-interface ProductVariant {
-  id: string;
-  name: string;
-  price: string;
-  compareAt?: string;
-  numericPrice: number;
-}
+export default function ProductDetailPage({
+  slug = "tea-herb-spice",
+  initialProduct,
+}: ProductDetailPageProps) {
+  const { open: openCart, updateQuantity } = useCart();
 
-const PRODUCT_IMAGES: ProductImage[] = [
-  {
-    id: "img-1",
-    label: "Luxury Wellness Tea — Porcelain Cloche Jar",
-    thumbnailLabel: "Cloche Jar",
-  },
-  {
-    id: "img-2",
-    label: "Loose Leaf Chamomile & Rose Botanicals",
-    thumbnailLabel: "Loose Leaf",
-  },
-  {
-    id: "img-3",
-    label: "Brewed Golden Infusion in Glass Teacup",
-    thumbnailLabel: "Brewed Cup",
-  },
-  {
-    id: "img-4",
-    label: "Apothecary Gift Packaging & Tasting Notes",
-    thumbnailLabel: "Gift Box",
-  },
-];
+  // Find product from catalog
+  const product: ProductItem = useMemo(() => {
+    if (initialProduct) return initialProduct;
+    return findProductBySlug(slug) || PRODUCTS[0];
+  }, [slug, initialProduct]);
 
-const PRODUCT_VARIANTS: ProductVariant[] = [
-  { id: "var-100g", name: "100g Jar", price: "₹1,299", numericPrice: 1299 },
-  { id: "var-250g", name: "250g Refill", price: "₹2,699", compareAt: "₹2,999", numericPrice: 2699 },
-  { id: "var-50g", name: "50g Discovery Tin", price: "₹749", numericPrice: 749 },
-];
+  // Dynamic Image Gallery tailored to product
+  const productImages = useMemo(() => {
+    return [
+      {
+        id: "img-1",
+        label: `${product.name} — Sealed Porcelain Cloche Jar`,
+        thumbnailLabel: "Cloche Jar",
+      },
+      {
+        id: "img-2",
+        label: `${product.name} — Whole Sun-Dried Botanical Specimen`,
+        thumbnailLabel: "Harvest",
+      },
+      {
+        id: "img-3",
+        label: `${product.name} — Ground Texture & Aromatic Aroma`,
+        thumbnailLabel: "Texture",
+      },
+      {
+        id: "img-4",
+        label: `${product.name} — Apothecary Gift Box & Wax Seal`,
+        thumbnailLabel: "Gift Box",
+      },
+    ];
+  }, [product]);
 
-const RELATED_PRODUCTS = [
-  {
-    id: "rel-1",
-    name: "Saffron",
-    subtitle: "Grade A1 Kashmiri Mogra Filaments",
-    category: "Herbs & Spices",
-    price: "₹2,499",
-    rating: 5,
-    reviewCount: 310,
-    badge: "bestseller" as const,
-  },
-  {
-    id: "rel-2",
-    name: "Cardamom",
-    subtitle: "High-Grade Idukki Green Pods",
-    category: "Herbs & Spices",
-    price: "₹1,499",
-    compareAt: "₹1,799",
-    rating: 5,
-    reviewCount: 198,
-    badge: "organic" as const,
-  },
-  {
-    id: "rel-3",
-    name: "Pure & Natural Tea",
-    subtitle: "First Flush Single Estate Darjeeling",
-    category: "Tea",
-    price: "₹1,699",
-    rating: 5,
-    reviewCount: 128,
-    badge: "organic" as const,
-  },
-  {
-    id: "rel-4",
-    name: "Cocoa",
-    subtitle: "Single-Estate Pure Dutch Cocoa Powder",
-    category: "Cocoa",
-    price: "₹1,299",
-    compareAt: "₹1,499",
-    rating: 5,
-    reviewCount: 188,
-    badge: "sale" as const,
-  },
-];
+  // Dynamic Variants derived from product weights
+  const variants = useMemo(() => {
+    const basePrice = product.numericPrice;
+    return product.weights.map((w, idx) => {
+      let multiplier = 1;
+      if (idx === 1) multiplier = 2.1; // Larger refill/bag
+      else if (idx === 2) multiplier = 0.55; // Small discovery
 
-const REVIEWS = [
-  {
-    id: "rev-1",
-    name: "Elena Rostova",
-    date: "August 14, 2026",
-    rating: 5,
-    verified: true,
-    title: "An exquisite evening ritual",
-    comment:
-      "The chamomile is fragrant and whole-blossom. Brewing a pot after a demanding workday has become my favorite mindful pause. The porcelain jar is stunning on my tea counter.",
-  },
-  {
-    id: "rev-2",
-    name: "Julian Vance",
-    date: "July 29, 2026",
-    rating: 5,
-    verified: true,
-    title: "Uncompromising botanical purity",
-    comment:
-      "You can taste the lack of artificial flavorings immediately. The subtle sweetness from holy basil balances the roasted dandelion root perfectly. Exceptional craft.",
-  },
-  {
-    id: "rev-3",
-    name: "Sophia Lin",
-    date: "July 11, 2026",
-    rating: 4.5,
-    verified: true,
-    title: "Deeply calming blend",
-    comment:
-      "Helped my sleep quality immensely. Arrived beautifully packaged in eco-friendly protective wrap. Highly recommend the 250g refill once you have the cloche jar.",
-  },
-];
+      const varPriceNum = Math.round(basePrice * multiplier);
+      const varPriceStr = "₹" + varPriceNum.toLocaleString("en-IN");
+      const varCompareAt =
+        idx === 1 ? "₹" + Math.round(varPriceNum * 1.15).toLocaleString("en-IN") : undefined;
 
-export default function ProductDetailPage() {
-  const { open: openCart } = useCart();
+      return {
+        id: `var-${idx}`,
+        name: w,
+        price: varPriceStr,
+        compareAt: varCompareAt,
+        numericPrice: varPriceNum,
+      };
+    });
+  }, [product]);
 
   // Active States
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [selectedVariant, setSelectedVariant] = useState<ProductVariant>(PRODUCT_VARIANTS[0]);
+  const [selectedVariant, setSelectedVariant] = useState(variants[0] || {
+    id: "var-0",
+    name: "Standard Pack",
+    price: product.price,
+    numericPrice: product.numericPrice,
+  });
   const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
 
-  // Accordion open states (First open by default)
+  // Accordion open states
   const [openAccordions, setOpenAccordions] = useState<Record<string, boolean>>({
     about: true,
     ingredients: false,
@@ -176,6 +124,17 @@ export default function ProductDetailPage() {
     openCart();
   };
 
+  // Related products from the same collection or fallback
+  const relatedProducts = useMemo(() => {
+    const fromSameCat = PRODUCTS.filter(
+      (p) => p.collection === product.collection && p.id !== product.id
+    );
+    if (fromSameCat.length >= 4) return fromSameCat.slice(0, 4);
+
+    const remaining = PRODUCTS.filter((p) => p.id !== product.id && !fromSameCat.includes(p));
+    return [...fromSameCat, ...remaining].slice(0, 4);
+  }, [product]);
+
   return (
     <div className="bg-ivory min-h-screen">
       {/* ── 1. BREADCRUMB ──────────────────────────────────── */}
@@ -188,11 +147,14 @@ export default function ProductDetailPage() {
             Home
           </a>
           <span className="text-charcoal/30">/</span>
-          <a href="/shop" className="hover:text-maroon transition-colors">
-            Herbal
+          <a
+            href={`/collections?cat=${product.collectionSlug}`}
+            className="hover:text-maroon transition-colors"
+          >
+            {product.collection}
           </a>
           <span className="text-charcoal/30">/</span>
-          <span className="text-charcoal font-medium">Luxury Wellness Tea</span>
+          <span className="text-charcoal font-medium">{product.name}</span>
         </nav>
       </div>
 
@@ -200,7 +162,7 @@ export default function ProductDetailPage() {
       <section className="henley-container py-8 lg:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           {/* ════════════════════════════════════════════════════
-              LEFT COLUMN: PRODUCT IMAGES (7 Cols on Desktop)
+              LEFT COLUMN: PRODUCT IMAGES (6 Cols on Desktop)
              ════════════════════════════════════════════════════ */}
           <div className="lg:col-span-6 space-y-4">
             {/* Primary Main Image Card */}
@@ -231,7 +193,7 @@ export default function ProductDetailPage() {
               <div className="w-full">
                 <PlaceholderImage
                   aspect="1:1"
-                  label={PRODUCT_IMAGES[activeImageIndex].label}
+                  label={productImages[activeImageIndex]?.label || product.name}
                   className="!rounded-lg"
                 />
               </div>
@@ -239,7 +201,7 @@ export default function ProductDetailPage() {
 
             {/* Thumbnail Strip */}
             <div className="flex items-center gap-3 overflow-x-auto pb-2">
-              {PRODUCT_IMAGES.map((img, idx) => {
+              {productImages.map((img, idx) => {
                 const isActive = activeImageIndex === idx;
                 return (
                   <button
@@ -250,16 +212,16 @@ export default function ProductDetailPage() {
                       border-2 transition-all cursor-pointer p-1 bg-white
                       ${
                         isActive
-                          ? "border-maroon ring-2 ring-maroon/20 shadow-xs"
-                          : "border-border/80 hover:border-maroon/40 opacity-70 hover:opacity-100"
+                          ? "border-maroon ring-2 ring-maroon/20 shadow-sm"
+                          : "border-border/70 hover:border-maroon/40 opacity-70 hover:opacity-100"
                       }
                     `}
-                    aria-label={`Select image ${idx + 1}: ${img.thumbnailLabel}`}
+                    aria-label={`View ${img.thumbnailLabel}`}
                   >
                     <PlaceholderImage
                       aspect="1:1"
                       label={img.thumbnailLabel}
-                      className="!rounded-xs h-full"
+                      className="!rounded"
                     />
                   </button>
                 );
@@ -268,69 +230,73 @@ export default function ProductDetailPage() {
           </div>
 
           {/* ════════════════════════════════════════════════════
-              RIGHT COLUMN: PRODUCT INFORMATION (6 Cols on Desktop)
+              RIGHT COLUMN: PRODUCT INFORMATION (6 Cols)
              ════════════════════════════════════════════════════ */}
           <div className="lg:col-span-6 space-y-6">
-            {/* Kicker row + 100% Organic Badge */}
-            <div className="flex items-center gap-3">
-              <span className="text-eyebrow text-charcoal/70 tracking-[0.15em]">
-                Herbal Infusions
+            {/* Kicker Row: Category + Organic Badge */}
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-eyebrow text-gold font-medium tracking-[0.14em]">
+                {product.collection}
               </span>
-              <span className="w-1 h-1 rounded-full bg-border" />
-              <Badge variant="organic">100% Organic</Badge>
+              <span className="text-charcoal/30">·</span>
+              <Badge variant={product.badge || "organic"}>
+                {product.badgeLabel || (product.badge === "bestseller" ? "Signature Reserve" : "100% Organic")}
+              </Badge>
             </div>
 
-            {/* Title */}
-            <h1 className="font-serif text-3xl sm:text-4xl text-charcoal leading-tight">
-              Luxury Wellness Tea
+            {/* Product Title */}
+            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-charcoal font-normal leading-tight">
+              {product.name}
             </h1>
 
-            {/* Description */}
-            <p className="text-sm sm:text-base text-charcoal/70 leading-relaxed max-w-lg">
-              A restorative botanical blend crafted to soothe the mind and rejuvenate
-              the body. Notes of wild chamomile, holy basil, and roasted dandelion root.
+            {/* Subtitle / Botanical Notes */}
+            <p className="text-xs sm:text-sm font-sans font-medium text-gold tracking-wide">
+              {product.subtitle}
             </p>
 
-            {/* Rating Anchor Link */}
-            <div className="flex items-center gap-2">
-              <StarRating rating={5} />
+            {/* Star Rating & Review Anchor */}
+            <div className="flex items-center gap-3 pt-1">
+              <StarRating rating={product.rating} />
               <a
                 href="#reviews"
-                className="text-xs font-sans text-charcoal/60 hover:text-maroon hover:underline transition-colors"
+                className="text-xs font-sans text-charcoal/60 hover:text-maroon underline transition-colors"
               >
-                (124 Reviews)
+                ({product.reviewCount} Verified Reviews)
               </a>
             </div>
 
-            {/* Price Tag */}
-            <div className="pt-1">
+            {/* Price Tag with Sale Indicator */}
+            <div className="py-2 border-y border-border/80 flex items-baseline justify-between">
               <PriceTag
-                price={selectedVariant.price}
-                compareAt={selectedVariant.compareAt}
+                price={selectedVariant?.price || product.price}
+                compareAt={selectedVariant?.compareAt || product.compareAt}
                 size="lg"
               />
+              <div className="flex items-center gap-1.5 text-xs font-sans text-success">
+                <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+                <span className="font-medium">In Stock — Dispatched in 24h</span>
+              </div>
             </div>
 
-            {/* Availability Indicator */}
-            <div className="flex items-center gap-2 text-xs font-sans text-success font-medium">
-              <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
-              <span>In Stock — Hand-blended & sealed in UV-blocking porcelain</span>
-            </div>
+            {/* Product Description */}
+            <p className="text-xs sm:text-sm text-charcoal/75 leading-relaxed">
+              {product.description} Sourced from certified single-origin mountain terroirs and slow-cured to preserve peak essential oils, volatile aromatics, and holistic potency.
+            </p>
 
-            {/* ── Variant / Weight Selector ── */}
-            <div className="space-y-2.5 pt-2">
-              <span className="text-eyebrow text-charcoal/80 block !text-[11px]">
-                Select Weight
-              </span>
-              <div className="flex flex-wrap gap-3">
-                {PRODUCT_VARIANTS.map((v) => {
-                  const isSelected = selectedVariant.id === v.id;
+            {/* Variant / Weight Selector */}
+            <div className="space-y-2.5">
+              <label className="block text-xs font-sans font-semibold uppercase tracking-[0.1em] text-charcoal/70">
+                Select Reserve Size:
+              </label>
+              <div className="flex flex-wrap gap-2.5">
+                {variants.map((v) => {
+                  const isSelected = selectedVariant?.id === v.id;
                   return (
                     <button
                       key={v.id}
                       onClick={() => setSelectedVariant(v)}
                       className={`
-                        px-6 py-3 rounded-full text-xs font-sans font-medium transition-all cursor-pointer border
+                        px-5 py-2.5 rounded-full text-xs font-sans font-medium transition-all cursor-pointer border
                         ${
                           isSelected
                             ? "border-maroon bg-white text-maroon shadow-xs ring-1 ring-maroon"
@@ -338,16 +304,16 @@ export default function ProductDetailPage() {
                         }
                       `}
                     >
-                      {v.name}
+                      <span>{v.name}</span>
+                      <span className="ml-2 opacity-60 font-mono text-[11px]">{v.price}</span>
                     </button>
                   );
                 })}
               </div>
             </div>
 
-            {/* ── Quantity Stepper & Add to Ritual Buttons ── */}
+            {/* Quantity Stepper & Add to Ritual Buttons */}
             <div className="space-y-3 pt-2">
-              {/* Stepper + Add To Ritual Row */}
               <div className="flex items-center gap-3">
                 {/* Quantity Stepper */}
                 <div className="flex items-center border border-border rounded-full bg-white overflow-hidden h-12 px-1">
@@ -361,7 +327,7 @@ export default function ProductDetailPage() {
                       <path d="M5 12h14" />
                     </svg>
                   </button>
-                  <span className="w-8 text-center text-sm font-sans font-medium text-charcoal tabular-nums">
+                  <span className="w-10 text-center text-sm font-sans font-medium text-charcoal tabular-nums">
                     {quantity}
                   </span>
                   <button
@@ -375,13 +341,13 @@ export default function ProductDetailPage() {
                   </button>
                 </div>
 
-                {/* Full-width Add to Ritual button */}
+                {/* Primary Add to Ritual Button */}
                 <Button
                   variant="primary"
                   className="flex-1 !h-12 !text-xs !tracking-wider flex items-center justify-center gap-2"
                   onClick={handleAddToCart}
                 >
-                  Add to Ritual →
+                  Add to Ritual ({selectedVariant?.price || product.price}) →
                 </Button>
               </div>
 
@@ -392,7 +358,7 @@ export default function ProductDetailPage() {
                   className="flex-1 !h-11 !text-xs"
                   onClick={handleBuyNow}
                 >
-                  Buy Now
+                  Instant Checkout
                 </Button>
 
                 {/* Wishlist Heart Icon Button */}
@@ -427,56 +393,19 @@ export default function ProductDetailPage() {
 
             {/* Delivery Note */}
             <p className="text-xs text-charcoal/55 text-center sm:text-left">
-              Complimentary standard shipping on orders over ₹1,999.
+              Complimentary standard shipping across India on orders over ₹1,999.
             </p>
 
             {/* Scaled-down 4-Icon Trust Row */}
             <div className="pt-4 border-t border-border/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
               {[
-                {
-                  label: "100% Organic",
-                  sub: "Ingredients",
-                  icon: (
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.67c.48-.05.95-.07 1.34-.1C16 19 19 8 19 8" />
-                      <path d="M5 19c2.8-3.5 6-6.1 12-8" />
-                    </svg>
-                  ),
-                },
-                {
-                  label: "Caffeine Free",
-                  sub: "& Natural",
-                  icon: (
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <path d="M18 8h1a4 4 0 010 8h-1" />
-                      <path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z" />
-                    </svg>
-                  ),
-                },
-                {
-                  label: "Sustainably",
-                  sub: "Sourced",
-                  icon: (
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M12 2a14.5 14.5 0 000 20 14.5 14.5 0 000-20" />
-                    </svg>
-                  ),
-                },
-                {
-                  label: "Hand Blended",
-                  sub: "Small Batches",
-                  icon: (
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <path d="M6 10h12l-1.5 9h-9L6 10z" />
-                      <path d="M12 3v7" />
-                    </svg>
-                  ),
-                },
+                { label: "100% Organic", sub: "Ingredients" },
+                { label: "Single Origin", sub: "Smallholder Estate" },
+                { label: "0g Plastic", sub: "Porcelain & Glass" },
+                { label: "Carbon Neutral", sub: "Eco Express Air" },
               ].map((item) => (
-                <div key={item.label} className="space-y-1">
-                  <div className="text-gold mx-auto flex justify-center">{item.icon}</div>
-                  <p className="text-[11px] font-sans font-medium text-charcoal leading-tight">
+                <div key={item.label} className="p-2.5 bg-sand/30 rounded-lg border border-border/50">
+                  <p className="font-sans font-semibold text-[11px] text-charcoal">
                     {item.label}
                   </p>
                   <p className="text-[10px] text-charcoal/45">{item.sub}</p>
@@ -487,273 +416,169 @@ export default function ProductDetailPage() {
         </div>
       </section>
 
-      {/* ── 3. DETAIL PANELS & "OUR PROMISE" SIDE CARD ────── */}
-      <section className="henley-container py-10 lg:py-16 border-t border-border/80">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          {/* Left Column: Collapsible Accordion Tabs (7 Cols) */}
-          <div className="lg:col-span-8 bg-white rounded-xl border border-border/70 overflow-hidden divide-y divide-border">
-            {/* Accordion 1: About the Tea */}
-            <div>
+      {/* ── 3. ACCORDION TABS & SIDE CARD ──────────────────── */}
+      <section className="henley-container py-12 border-t border-border/80">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          {/* Accordion Panels (8 Cols) */}
+          <div className="lg:col-span-8 space-y-4">
+            {/* About & Terroir Accordion */}
+            <div className="border border-border rounded-xl bg-white overflow-hidden shadow-subtle">
               <button
                 onClick={() => toggleAccordion("about")}
-                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-sand/20 transition-colors cursor-pointer"
-                aria-expanded={openAccordions.about}
+                className="w-full px-6 py-4 flex items-center justify-between text-left font-serif text-lg text-charcoal hover:bg-sand/30 transition-colors cursor-pointer"
               >
-                <div className="flex items-center gap-3">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-gold" strokeWidth="1.5">
-                    <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.67c.48-.05.95-.07 1.34-.1C16 19 19 8 19 8" />
-                    <path d="M5 19c2.8-3.5 6-6.1 12-8" />
-                  </svg>
-                  <span className="font-sans font-semibold text-xs tracking-[0.14em] uppercase text-charcoal">
-                    About the Tea
-                  </span>
-                </div>
-                <span className="text-charcoal/50 text-xs transition-transform duration-300">
-                  {openAccordions.about ? "▲" : "▼"}
-                </span>
+                <span>About {product.name} & Terroir</span>
+                <span className="text-sm font-sans">{openAccordions.about ? "−" : "+"}</span>
               </button>
               {openAccordions.about && (
-                <div className="px-6 pb-6 pt-1 text-sm text-charcoal/70 leading-relaxed space-y-3">
+                <div className="px-6 pb-6 pt-2 text-xs sm:text-sm text-charcoal/70 leading-relaxed border-t border-border/50 space-y-2">
+                  <p>{product.description}</p>
                   <p>
-                    A calming herbal infusion thoughtfully blended to restore balance
-                    and enhance well-being. Perfect for unwinding after a long day or
-                    starting your morning with serene intention.
-                  </p>
-                  <p>
-                    Harvested in small batches from organic Himalayan mountain terraces,
-                    the whole flowers and roots are dried gently below 40°C to lock in
-                    volatile aromatics and antioxidants.
+                    Every batch is harvested in accordance with seasonal astronomical calendars, ensuring volatile oils and aroma remain intensely concentrated.
                   </p>
                 </div>
               )}
             </div>
 
-            {/* Accordion 2: Ingredients */}
-            <div>
+            {/* Ingredients & Benefits Accordion */}
+            <div className="border border-border rounded-xl bg-white overflow-hidden shadow-subtle">
               <button
                 onClick={() => toggleAccordion("ingredients")}
-                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-sand/20 transition-colors cursor-pointer"
-                aria-expanded={openAccordions.ingredients}
+                className="w-full px-6 py-4 flex items-center justify-between text-left font-serif text-lg text-charcoal hover:bg-sand/30 transition-colors cursor-pointer"
               >
-                <div className="flex items-center gap-3">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-gold" strokeWidth="1.5">
-                    <path d="M12 2a10 10 0 0 0-7.07 17.07A10 10 0 1 0 12 2z" />
-                    <path d="M12 6v6l4 2" />
-                  </svg>
-                  <span className="font-sans font-semibold text-xs tracking-[0.14em] uppercase text-charcoal">
-                    Ingredients
-                  </span>
-                </div>
-                <span className="text-charcoal/50 text-xs">
-                  {openAccordions.ingredients ? "▲" : "▼"}
-                </span>
+                <span>Botanical Benefits & Profiling</span>
+                <span className="text-sm font-sans">{openAccordions.ingredients ? "−" : "+"}</span>
               </button>
               {openAccordions.ingredients && (
-                <div className="px-6 pb-6 pt-1 text-sm text-charcoal/70 leading-relaxed">
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 list-disc list-inside">
-                    <li>Egyptian Whole Chamomile Blossoms</li>
-                    <li>Biodynamic Holy Basil (Krishna Tulsi)</li>
-                    <li>Slow-Roasted Dandelion Root</li>
-                    <li>Organic Lemon Verbena Leaf</li>
-                    <li>Wild Himalayan Lavender Buds</li>
-                  </ul>
+                <div className="px-6 pb-6 pt-2 text-xs sm:text-sm text-charcoal/70 leading-relaxed border-t border-border/50 space-y-3">
+                  <div className="flex flex-wrap gap-2">
+                    {product.benefits.map((b) => (
+                      <span key={b} className="px-2.5 py-1 rounded-full bg-sand text-charcoal text-xs font-sans">
+                        ✓ {b}
+                      </span>
+                    ))}
+                  </div>
+                  <p>
+                    Zero synthetic flavorings, preservatives, binders, or artificial anti-caking agents.
+                  </p>
                 </div>
               )}
             </div>
 
-            {/* Accordion 3: Brewing Guide */}
-            <div>
+            {/* Ritual & Preparation */}
+            <div className="border border-border rounded-xl bg-white overflow-hidden shadow-subtle">
               <button
                 onClick={() => toggleAccordion("brewing")}
-                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-sand/20 transition-colors cursor-pointer"
-                aria-expanded={openAccordions.brewing}
+                className="w-full px-6 py-4 flex items-center justify-between text-left font-serif text-lg text-charcoal hover:bg-sand/30 transition-colors cursor-pointer"
               >
-                <div className="flex items-center gap-3">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-gold" strokeWidth="1.5">
-                    <path d="M18 8h1a4 4 0 010 8h-1" />
-                    <path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z" />
-                    <line x1="6" y1="1" x2="6" y2="4" />
-                    <line x1="10" y1="1" x2="10" y2="4" />
-                    <line x1="14" y1="1" x2="14" y2="4" />
-                  </svg>
-                  <span className="font-sans font-semibold text-xs tracking-[0.14em] uppercase text-charcoal">
-                    Brewing Guide
-                  </span>
-                </div>
-                <span className="text-charcoal/50 text-xs">
-                  {openAccordions.brewing ? "▲" : "▼"}
-                </span>
+                <span>Ritual & Preparation Guide</span>
+                <span className="text-sm font-sans">{openAccordions.brewing ? "−" : "+"}</span>
               </button>
               {openAccordions.brewing && (
-                <div className="px-6 pb-6 pt-1 text-sm text-charcoal/70 leading-relaxed grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div className="p-3 bg-sand/30 rounded-lg text-center">
-                    <span className="text-xs font-semibold text-maroon block mb-1">Temperature</span>
-                    <span className="font-serif text-lg text-charcoal">95°C / 203°F</span>
-                  </div>
-                  <div className="p-3 bg-sand/30 rounded-lg text-center">
-                    <span className="text-xs font-semibold text-maroon block mb-1">Steep Time</span>
-                    <span className="font-serif text-lg text-charcoal">5 – 7 Minutes</span>
-                  </div>
-                  <div className="p-3 bg-sand/30 rounded-lg text-center">
-                    <span className="text-xs font-semibold text-maroon block mb-1">Ratio</span>
-                    <span className="font-serif text-lg text-charcoal">1 Tsp / 250ml</span>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Accordion 4: Shipping & Returns */}
-            <div>
-              <button
-                onClick={() => toggleAccordion("shipping")}
-                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-sand/20 transition-colors cursor-pointer"
-                aria-expanded={openAccordions.shipping}
-              >
-                <div className="flex items-center gap-3">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-gold" strokeWidth="1.5">
-                    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
-                  </svg>
-                  <span className="font-sans font-semibold text-xs tracking-[0.14em] uppercase text-charcoal">
-                    Shipping & Returns
-                  </span>
-                </div>
-                <span className="text-charcoal/50 text-xs">
-                  {openAccordions.shipping ? "▲" : "▼"}
-                </span>
-              </button>
-              {openAccordions.shipping && (
-                <div className="px-6 pb-6 pt-1 text-sm text-charcoal/70 leading-relaxed space-y-2">
+                <div className="px-6 pb-6 pt-2 text-xs sm:text-sm text-charcoal/70 leading-relaxed border-t border-border/50 space-y-2">
                   <p>
-                    Orders placed before 2:00 PM are dispatched the same business day.
-                    Standard domestic delivery takes 2–4 business days.
+                    <strong>Storage:</strong> Keep in a cool, dry sanctuary away from direct sunlight in its UV-blocking container.
                   </p>
                   <p>
-                    Unopened botanical jars may be returned within 30 days of receipt
-                    for a full refund or exchange.
+                    <strong>Culinary / Infusion:</strong> Add to warm water or culinary dishes to release rich essential fragrances.
                   </p>
                 </div>
               )}
             </div>
           </div>
 
-          {/* Right Column: "Our Promise" Card (4 Cols on Desktop) */}
-          <div className="lg:col-span-4 bg-sand/60 rounded-xl border border-border p-8 text-center space-y-4 shadow-subtle">
-            <div className="w-14 h-14 mx-auto rounded-full bg-sand border border-gold/30 flex items-center justify-center text-gold">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M12 2L15 8.5L22 9.3L17 14L18.2 21L12 17.8L5.8 21L7 14L2 9.3L9 8.5L12 2Z" />
-              </svg>
-            </div>
-            <h3 className="text-eyebrow text-charcoal font-semibold tracking-[0.15em]">
-              Our Promise
-            </h3>
-            <p className="text-sm text-charcoal/70 leading-relaxed max-w-xs mx-auto">
-              At Henley, we believe in purity, transparency, and gifting wellness through
-              nature&apos;s finest botanical craftsmanship.
+          {/* Side Promise Card (4 Cols) */}
+          <div className="lg:col-span-4 bg-sand/60 rounded-2xl border border-border p-6 sm:p-8 space-y-4 shadow-subtle">
+            <h3 className="font-serif text-xl text-charcoal">The Henley Standard</h3>
+            <p className="text-xs text-charcoal/70 leading-relaxed">
+              We work exclusively with ancestral growers who adhere to regenerative, pesticide-free agriculture. If any reserve does not delight your ritual, contact concierge for an immediate replacement.
             </p>
             <div className="pt-2">
-              <a
-                href="/story"
-                className="inline-flex items-center gap-1.5 text-xs font-sans font-medium text-maroon hover:underline"
-              >
-                LEARN MORE →
+              <a href="/story" className="text-xs font-sans font-medium text-maroon hover:underline">
+                Read Our Botanical Story →
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── 4. REVIEWS SECTION (Anchor Target) ─────────────── */}
-      <section id="reviews" className="bg-sand/30 border-t border-border py-14 lg:py-20 scroll-mt-24">
-        <div className="henley-container">
-          <div className="max-w-4xl mx-auto space-y-10">
-            {/* Reviews Header */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 pb-6 border-b border-border">
-              <div>
-                <p className="text-eyebrow text-gold mb-1">Customer Impressions</p>
-                <h2 className="font-serif text-2xl lg:text-3xl text-charcoal">
-                  Reviews & Rituals
-                </h2>
-                <div className="flex items-center gap-2 mt-2">
-                  <StarRating rating={5} />
-                  <span className="text-xs font-sans text-charcoal/70">
-                    4.9 out of 5 based on 124 verified purchasers
-                  </span>
-                </div>
-              </div>
-
-              <Button variant="secondary" className="!text-xs">
-                Write a Review
-              </Button>
-            </div>
-
-            {/* Review Cards Grid */}
-            <div className="space-y-6">
-              {REVIEWS.map((rev) => (
-                <div
-                  key={rev.id}
-                  className="bg-white rounded-xl border border-border/70 p-6 shadow-subtle space-y-3"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-sand border border-border flex items-center justify-center font-serif text-sm text-charcoal font-semibold">
-                        {rev.name[0]}
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="font-sans font-medium text-sm text-charcoal">
-                            {rev.name}
-                          </span>
-                          {rev.verified && (
-                            <span className="text-[10px] uppercase font-semibold text-sage bg-sage/10 px-2 py-0.5 rounded-full">
-                              ✓ Verified Buyer
-                            </span>
-                          )}
-                        </div>
-                        <span className="text-[11px] text-charcoal/45">
-                          {rev.date}
-                        </span>
-                      </div>
-                    </div>
-                    <StarRating rating={rev.rating} />
-                  </div>
-
-                  <h4 className="font-serif text-base text-charcoal font-medium">
-                    &ldquo;{rev.title}&rdquo;
-                  </h4>
-                  <p className="text-sm text-charcoal/70 leading-relaxed">
-                    {rev.comment}
-                  </p>
-                </div>
-              ))}
-            </div>
+      {/* ── 4. REVIEWS SECTION ANCHOR (#reviews) ───────────── */}
+      <section id="reviews" className="henley-container py-12 border-t border-border/80 space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <p className="text-eyebrow text-gold mb-1">Customer Impressions</p>
+            <h2 className="font-serif text-2xl lg:text-3xl text-charcoal">
+              Verified Buyer Reviews
+            </h2>
           </div>
+          <div className="flex items-center gap-3">
+            <StarRating rating={product.rating} />
+            <span className="text-sm font-sans font-medium text-charcoal">
+              5.0 ({product.reviewCount} Reviews)
+            </span>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+          {[
+            {
+              name: "Lady Catherine Vance",
+              date: "August 18, 2026",
+              title: "Unmatched Aroma & Terroir",
+              text: `The purity of ${product.name} is unlike anything found in retail grocers. The porcelain vessel preserves the aroma flawlessly.`,
+            },
+            {
+              name: "Dr. Alistair Finch",
+              date: "August 10, 2026",
+              title: "Essential Daily Ritual",
+              text: `Exceptional micro-lot quality. You can taste the single-origin mountain terroir with every preparation.`,
+            },
+            {
+              name: "Priya Sharma",
+              date: "July 29, 2026",
+              title: "Authentic & Pure",
+              text: `Dispatched quickly in eco-friendly packaging. Truly authentic and full of vibrant natural vitality.`,
+            },
+          ].map((rev) => (
+            <div key={rev.name} className="bg-white rounded-xl border border-border p-6 shadow-subtle space-y-3">
+              <StarRating rating={5} />
+              <h4 className="font-serif text-base text-charcoal">{rev.title}</h4>
+              <p className="text-xs text-charcoal/70 leading-relaxed">{rev.text}</p>
+              <div className="pt-2 border-t border-border/50 flex items-center justify-between text-[11px] font-sans text-charcoal/50">
+                <span>{rev.name}</span>
+                <span>{rev.date}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* ── 5. RELATED PRODUCTS ────────────────────────────── */}
-      <section className="py-14 lg:py-20 border-t border-border">
-        <div className="henley-container">
-          <div className="text-center mb-10">
-            <p className="text-eyebrow text-gold mb-2">Complete Your Ritual</p>
+      {/* ── 5. RELATED PRODUCTS GRID ───────────────────────── */}
+      <section className="bg-sand/30 py-16 lg:py-24 border-t border-border">
+        <div className="henley-container space-y-8">
+          <div className="text-center max-w-xl mx-auto space-y-2">
+            <p className="text-eyebrow text-gold">Complementary Reserves</p>
             <h2 className="font-serif text-2xl lg:text-3xl text-charcoal">
-              You May Also Enjoy
+              You May Also Appreciate
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {RELATED_PRODUCTS.map((prod) => (
+            {relatedProducts.map((rel) => (
               <ProductCard
-                key={prod.id}
-                name={prod.name}
-                subtitle={prod.subtitle}
-                category={prod.category}
-                price={prod.price}
-                compareAt={prod.compareAt}
-                rating={prod.rating}
-                reviewCount={prod.reviewCount}
-                badge={prod.badge}
+                key={rel.id}
+                id={rel.id}
+                name={rel.name}
+                subtitle={rel.subtitle}
+                category={rel.collection}
+                price={rel.price}
+                compareAt={rel.compareAt}
+                rating={rel.rating}
+                reviewCount={rel.reviewCount}
+                badge={rel.badge}
+                badgeLabel={rel.badgeLabel}
                 cardType="product"
-                imageAspect="1:1"
+                imageAspect="4:5"
                 onAddToCart={openCart}
               />
             ))}
