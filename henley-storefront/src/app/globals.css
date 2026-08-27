@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+/* ============================================================
+   HENLEY DESIGN TOKENS — CSS Custom Properties
+   ============================================================
+   Sampled/approximated from brand reference images.
+   Replace hex values below once exact brand colors are supplied.
+   ============================================================ */
+
+:root {
+  /* ── Color Primitives ────────────────────────────────────── */
+
+  /* Backgrounds */
+  --color-ivory: #F7F2E7;
+  --color-sand: #EFE6D3;
+
+  /* Brand */
+  --color-maroon: #4B1421;
+  --color-maroon-dark: #34090F;
+  --color-charcoal: #221A17;
+
+  /* Accents */
+  --color-sage: #8C9B7E;
+  --color-gold: #AD8A54;
+  --color-terracotta: #A85D3F;
+
+  /* Utility */
+  --color-success: #4F7A5B;
+  --color-error: #B23B3B;
+  --color-border: #E4DAC7;
+
+  /* ── Layout ──────────────────────────────────────────────── */
+  --container-max: 1440px;
+  --gutter-mobile: 24px;
+  --gutter-desktop: 96px;
+}
+
+/* ============================================================
+   TAILWIND v4 THEME — Expose tokens as utility classes
+   ============================================================ */
+
+@theme inline {
+  /* ── Colors ──────────────────────────────────────────────── */
+
+  /* Backgrounds */
+  --color-ivory: var(--color-ivory);
+  --color-sand: var(--color-sand);
+
+  /* Brand */
+  --color-maroon: var(--color-maroon);
+  --color-maroon-dark: var(--color-maroon-dark);
+  --color-charcoal: var(--color-charcoal);
+
+  /* Accents */
+  --color-sage: var(--color-sage);
+  --color-gold: var(--color-gold);
+  --color-terracotta: var(--color-terracotta);
+
+  /* Utility */
+  --color-success: var(--color-success);
+  --color-error: var(--color-error);
+  --color-border: var(--color-border);
+
+  /* Derived / Semantic aliases */
+  --color-ivory-dark: #EDE7D6;
+  --color-sand-light: #F5EEE0;
+  --color-maroon-light: #6B2A3A;
+  --color-gold-light: #C9A97A;
+  --color-sage-light: #A8B59E;
+  --color-terracotta-light: #C4825E;
+  --color-white: #FFFFFF;
+
+  /* ── Typography ──────────────────────────────────────────── */
+
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Modular type scale */
+  --text-xs: 0.75rem;       /* 12px */
+  --text-sm: 0.875rem;      /* 14px */
+  --text-base: 1rem;        /* 16px */
+  --text-lg: 1.125rem;      /* 18px */
+  --text-xl: 1.5rem;        /* 24px */
+  --text-2xl: 2rem;         /* 32px */
+  --text-3xl: 3rem;         /* 48px */
+  --text-4xl: 4rem;         /* 64px */
+
+  /* Line heights for type scale */
+  --leading-xs: 1rem;       /* 16px */
+  --leading-sm: 1.25rem;    /* 20px */
+  --leading-base: 1.5rem;   /* 24px */
+  --leading-lg: 1.75rem;    /* 28px */
+  --leading-xl: 2rem;       /* 32px */
+  --leading-2xl: 2.5rem;    /* 40px */
+  --leading-3xl: 3.5rem;    /* 56px */
+  --leading-4xl: 4.5rem;    /* 72px */
+
+  /* ── Spacing (8px base scale) ────────────────────────────── */
+  --spacing-0: 0px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+  --spacing-24: 96px;
+  --spacing-32: 128px;
+
+  /* ── Border Radius ───────────────────────────────────────── */
+  --radius-none: 0px;
+  --radius-xs: 4px;       /* Image frames */
+  --radius-sm: 8px;
+  --radius-md: 12px;      /* Cards lower bound */
+  --radius-lg: 16px;      /* Cards upper bound */
+  --radius-xl: 24px;
+  --radius-full: 999px;   /* Buttons/pills */
+
+  /* ── Shadows ─────────────────────────────────────────────── */
+  --shadow-subtle: 0 2px 16px -2px rgba(34, 26, 23, 0.06);
+  --shadow-card: 0 4px 24px -4px rgba(34, 26, 23, 0.08);
+  --shadow-card-hover: 0 8px 32px -4px rgba(34, 26, 23, 0.12);
+
+  /* ── Transitions ─────────────────────────────────────────── */
+  --ease-henley: cubic-bezier(0.25, 1, 0.5, 1);
+
+  /* ── Container ───────────────────────────────────────────── */
+  --container-3xl: 1440px;
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-ivory);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+/* ── Semantic Typography Classes ──────────────────────────── */
+
+.font-display {
+  font-family: var(--font-serif);
+}
+
+.font-body {
+  font-family: var(--font-sans);
+}
+
+/* Eyebrow / kicker label style */
+.text-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+/* Price display (serif) */
+.text-price {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Layout Utilities ─────────────────────────────────────── */
+
+.henley-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter-mobile);
+  padding-right: var(--gutter-mobile);
+}
+
+@media (min-width: 1024px) {
+  .henley-container {
+    padding-left: var(--gutter-desktop);
+    padding-right: var(--gutter-desktop);
+  }
+}
+
+/* 12-column CSS grid */
+.henley-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 767px) {
+  .henley-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .henley-grid {
+    grid-template-columns: repeat(8, 1fr);
+    gap: 20px;
+  }
+}
+
+/* ── Animations ───────────────────────────────────────────── */
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes slide-in-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in-up {
+  animation: slide-in-up 0.3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
