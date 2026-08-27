@@ -131,29 +131,75 @@ export default function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          SECTION 2: FEATURED CATEGORIES
+          SECTION 2: FEATURED CATEGORIES (HORIZONTALLY SCROLLABLE)
          ════════════════════════════════════════════════════════ */}
-      <section className="py-16 lg:py-24">
+      <section className="py-16 lg:py-24 overflow-hidden">
         <div className="henley-container">
-          {/* Section heading */}
-          <div className="text-center mb-10 lg:mb-14">
-            <p className="text-eyebrow text-gold mb-2">Explore Our Range</p>
-            <h2 className="font-serif text-2xl lg:text-3xl text-charcoal">
-              Curated Collections
-            </h2>
-            <p className="text-sm text-charcoal/50 mt-2 max-w-md mx-auto">
-              Discover our meticulously crafted blends, designed to restore balance
-              and elevate your daily rituals.
-            </p>
+          {/* Section heading + navigation controls */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 lg:mb-12 gap-4">
+            <div>
+              <p className="text-eyebrow text-gold mb-2">Explore Our Range</p>
+              <h2 className="font-serif text-2xl lg:text-3xl text-charcoal">
+                Curated Collections
+              </h2>
+              <p className="text-xs sm:text-sm text-charcoal/60 mt-1 max-w-md">
+                Discover our meticulously crafted blends, single-origin spices, and stoneground flours.
+              </p>
+            </div>
+
+            {/* Scroll Navigation Arrows & Mobile Indicator */}
+            <div className="flex items-center gap-3 self-end sm:self-auto">
+              <span className="text-[11px] font-sans text-charcoal/40 hidden sm:inline">
+                Scroll to explore
+              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    const el = document.getElementById("collections-scroll-container");
+                    if (el) el.scrollBy({ left: -280, behavior: "smooth" });
+                  }}
+                  className="w-8 h-8 rounded-full border border-border bg-white text-charcoal/60 hover:text-maroon hover:border-maroon flex items-center justify-center transition-colors shadow-xs cursor-pointer"
+                  aria-label="Scroll collections left"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                    <path d="M15 18l-6-6 6-6" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => {
+                    const el = document.getElementById("collections-scroll-container");
+                    if (el) el.scrollBy({ left: 280, behavior: "smooth" });
+                  }}
+                  className="w-8 h-8 rounded-full border border-border bg-white text-charcoal/60 hover:text-maroon hover:border-maroon flex items-center justify-center transition-colors shadow-xs cursor-pointer"
+                  aria-label="Scroll collections right"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
 
-          {/* Category cards (5 Collections) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 lg:gap-6">
+          {/* Horizontally scrollable Category cards (5 Collections) */}
+          <div
+            id="collections-scroll-container"
+            className="
+              flex overflow-x-auto gap-4 sm:gap-5 lg:gap-6 pb-4 pt-1
+              snap-x snap-mandatory scroll-smooth
+              px-4 -mx-4 sm:px-0 sm:mx-0
+              scrollbar-none
+            "
+          >
             {CATEGORIES.map((cat) => (
               <a
                 key={cat.name}
                 href={`/collections?cat=${cat.slug}`}
-                className="group relative bg-white rounded-lg border border-border/50 overflow-hidden shadow-subtle hover:shadow-card transition-all duration-300 flex flex-col justify-between"
+                className="
+                  flex-shrink-0 w-[240px] sm:w-[270px] lg:w-[280px] xl:w-[calc(20%-19.2px)] snap-start
+                  group relative bg-white rounded-xl border border-border/70 overflow-hidden
+                  shadow-subtle hover:shadow-card transition-all duration-300 flex flex-col justify-between
+                "
               >
                 {/* Image */}
                 <div className="relative">
@@ -173,7 +219,7 @@ export default function HomePage() {
                 <div className="p-4 lg:p-5 text-center flex-1 flex flex-col justify-between">
                   <div>
                     <h3 className="font-serif text-lg text-charcoal mb-1">{cat.name}</h3>
-                    <p className="text-xs text-charcoal/45 mb-3">{cat.count} Products</p>
+                    <p className="text-xs text-charcoal/50 mb-3">{cat.count} Products</p>
                   </div>
                   <span className="text-xs font-sans font-medium text-maroon group-hover:underline">
                     View Collection →
@@ -182,6 +228,13 @@ export default function HomePage() {
               </a>
             ))}
           </div>
+
+          {/* Mobile Swipe Hint */}
+          <p className="text-center text-[11px] font-sans text-charcoal/40 pt-2 sm:hidden flex items-center justify-center gap-1.5">
+            <span>←</span>
+            <span>Swipe to explore collections</span>
+            <span>→</span>
+          </p>
         </div>
       </section>
 

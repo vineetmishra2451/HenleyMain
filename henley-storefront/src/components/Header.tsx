@@ -64,7 +64,7 @@ export default function Header() {
 
         {/* ── Symmetrical Split Nav Row ──────────────────────── */}
         <nav className="border-b border-border bg-ivory" aria-label="Main navigation">
-          <div className="henley-container flex items-center justify-between h-16 lg:h-[72px]">
+          <div className="henley-container relative flex items-center justify-between h-16 lg:h-[72px]">
 
             {/* Left Nav (Desktop) / Hamburger (Mobile) */}
             <div className="flex items-center gap-1 lg:flex-1">
@@ -100,8 +100,8 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Center: Henley Logo */}
-            <div className="flex items-center justify-center px-4 flex-shrink-0">
+            {/* Center: Henley Logo - strictly centered on mobile and symmetrical on desktop */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:static lg:left-auto lg:top-auto lg:translate-x-0 lg:translate-y-0 flex items-center justify-center px-2 flex-shrink-0 z-10 pointer-events-auto">
               <a href="/" aria-label="Henley Home" className="flex items-center justify-center">
                 <Logo size="md" />
               </a>
