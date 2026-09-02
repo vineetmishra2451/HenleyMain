@@ -324,9 +324,20 @@ export default function ProductListingPage({
           1. PAGE HEADER BAND
          ════════════════════════════════════════════════════════ */}
       <header className="relative bg-sand/30 border-b border-border/80 overflow-hidden">
+        {/* Background botanical image */}
+        <div className="absolute inset-0">
+          <img
+            src="/brand/shop-banner.jpg"
+            alt="Henley Botanical Sanctuary & Botanical Harvest"
+            className="w-full h-full object-cover object-[center_35%] select-none"
+          />
+          {/* Editorial warm wash for high contrast & elegance */}
+          <div className="absolute inset-0 bg-gradient-to-b sm:bg-gradient-to-r from-ivory/95 via-ivory/85 to-ivory/70 sm:from-ivory/92 sm:via-ivory/82 sm:to-ivory/65" />
+        </div>
+
         {/* ArchFrame backdrop for Category view */}
         {activeVariant === "category" && (
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-15">
             <ArchFrame variant="wide" className="!max-w-[720px] scale-125" />
           </div>
         )}
