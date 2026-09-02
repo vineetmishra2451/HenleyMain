@@ -5,6 +5,7 @@ import ArchFrame from "../ArchFrame";
 import PlaceholderImage from "../PlaceholderImage";
 import Button from "../Button";
 import Badge from "../Badge";
+import { findProductBySlug } from "@/data/catalog";
 
 /* ================================================================
    MOCK TRACK ORDER PAGE (<TrackOrderPage />)
@@ -344,6 +345,8 @@ export default function TrackOrderPage() {
                           <PlaceholderImage
                             aspect="4:5"
                             label={item.name}
+                            src={findProductBySlug(item.name)?.image}
+                            alt={item.name}
                             className="!rounded-md"
                           />
                         </div>

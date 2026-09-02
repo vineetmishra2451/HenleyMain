@@ -5,6 +5,7 @@ import { useCart } from "./CartProvider";
 import PlaceholderImage from "./PlaceholderImage";
 import ArchFrame from "./ArchFrame";
 import Button from "./Button";
+import { findProductBySlug } from "@/data/catalog";
 
 /* ================================================================
    CART DRAWER
@@ -91,7 +92,12 @@ export default function CartDrawer() {
                 <div key={item.id} className="flex gap-4 px-6 py-5">
                   {/* Thumbnail */}
                   <div className="w-20 flex-shrink-0">
-                    <PlaceholderImage aspect="4:5" label="Tea" />
+                    <PlaceholderImage
+                      aspect="4:5"
+                      label={item.name}
+                      src={findProductBySlug(item.name || item.id)?.image}
+                      alt={item.name}
+                    />
                   </div>
 
                   {/* Details */}

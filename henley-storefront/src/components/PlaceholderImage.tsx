@@ -1,22 +1,21 @@
-import React from "react";
+"use client";
 
-/**
- * <PlaceholderImage />
- *
- * A neutral sand-colored block with a centered dashed border and label text.
- * Used as a placeholder for product photos, banners, and thumbnails until
- * real assets exist.
- *
- * @prop aspect - "1:1" | "4:5" | "16:9" — controls the aspect ratio
- * @prop label - Text displayed in the center (e.g. "Product Photo")
- * @prop className - Additional classes
- */
+import React, { useState } from "react";
+
+/* ================================================================
+   PLACEHOLDER & PRODUCT IMAGE (<PlaceholderImage />)
+   ================================================================
+   Renders real product photography from /pimages or falls back to
+   a luxury sand dashed placeholder with label and icon.
+   ================================================================ */
 
 type AspectRatio = "1:1" | "4:5" | "16:9";
 
-interface PlaceholderImageProps {
+export interface PlaceholderImageProps {
   aspect?: AspectRatio;
   label?: string;
+  src?: string;
+  alt?: string;
   className?: string;
 }
 
@@ -29,13 +28,39 @@ const aspectClasses: Record<AspectRatio, string> = {
 export default function PlaceholderImage({
   aspect = "1:1",
   label = "Image",
+  src,
+  alt,
   className = "",
 }: PlaceholderImageProps) {
+  const [imgError, setImgError] = useState(false);
+
+  // If real image source is provided and hasn't errored, render real photo
+  if (src && !imgError) {
+    return (
+      <div
+        className={`
+          relative w-full ${aspectClasses[aspect]}
+          bg-sand/40 overflow-hidden select-none
+          ${className}
+        `}
+      >
+        <img
+          src={src}
+          alt={alt || label}
+          onError={() => setImgError(true)}
+          loading="lazy"
+          className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+        />
+      </div>
+    );
+  }
+
+  // Fallback luxury sand placeholder
   return (
     <div
       className={`
         relative w-full ${aspectClasses[aspect]}
-        bg-sand rounded-xs overflow-hidden
+        bg-sand rounded-xs overflow-hidden select-none
         ${className}
       `}
     >
@@ -43,11 +68,11 @@ export default function PlaceholderImage({
       <div className="absolute inset-3 border-2 border-dashed border-border rounded-xs" />
 
       {/* Centered label */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-3 text-center">
         {/* Placeholder icon */}
         <svg
-          width="32"
-          height="32"
+          width="28"
+          height="28"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -61,7 +86,7 @@ export default function PlaceholderImage({
           <circle cx="8.5" cy="8.5" r="1.5" />
           <path d="M21 15l-5-5L5 21" />
         </svg>
-        <span className="text-xs font-sans font-medium tracking-wider uppercase text-charcoal/40">
+        <span className="text-[11px] font-sans font-medium tracking-wider uppercase text-charcoal/40 line-clamp-2">
           {label}
         </span>
       </div>

@@ -48,21 +48,25 @@ export default function ProductDetailPage({
         id: "img-1",
         label: `${product.name} — Sealed Porcelain Cloche Jar`,
         thumbnailLabel: "Cloche Jar",
+        src: product.image,
       },
       {
         id: "img-2",
         label: `${product.name} — Whole Sun-Dried Botanical Specimen`,
         thumbnailLabel: "Harvest",
+        src: "/pimages/2.jpg",
       },
       {
         id: "img-3",
         label: `${product.name} — Ground Texture & Aromatic Aroma`,
         thumbnailLabel: "Texture",
+        src: "/pimages/18.jpg",
       },
       {
         id: "img-4",
         label: `${product.name} — Apothecary Gift Box & Wax Seal`,
         thumbnailLabel: "Gift Box",
+        src: "/pimages/6.jpg",
       },
     ];
   }, [product]);
@@ -194,6 +198,8 @@ export default function ProductDetailPage({
                 <PlaceholderImage
                   aspect="1:1"
                   label={productImages[activeImageIndex]?.label || product.name}
+                  src={productImages[activeImageIndex]?.src || product.image}
+                  alt={product.name}
                   className="!rounded-lg"
                 />
               </div>
@@ -221,6 +227,8 @@ export default function ProductDetailPage({
                     <PlaceholderImage
                       aspect="1:1"
                       label={img.thumbnailLabel}
+                      src={img.src}
+                      alt={img.thumbnailLabel}
                       className="!rounded"
                     />
                   </button>
@@ -563,7 +571,7 @@ export default function ProductDetailPage({
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {relatedProducts.map((rel) => (
               <ProductCard
                 key={rel.id}

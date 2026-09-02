@@ -705,49 +705,59 @@ export default function ProductListingPage({
 
             {/* ── Mode A: Collections Card Grid (Matches Mockup) ── */}
             {viewMode === "collections" && selectedCollection === "all" ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
                 {COLLECTIONS.map((c) => (
                   <div
                     key={c.id}
-                    className="bg-white rounded-lg border border-border/60 overflow-hidden shadow-subtle hover:shadow-card transition-all duration-300 flex flex-col justify-between"
+                    className="bg-white rounded-lg sm:rounded-xl border border-border/60 overflow-hidden shadow-subtle hover:shadow-card transition-all duration-300 flex flex-col justify-between"
                   >
                     <div className="relative overflow-hidden bg-sand/30">
                       <ArchFrame variant="tall" className="!max-w-none !aspect-[4/5]">
-                        <div className="w-full h-full bg-sand flex flex-col items-center justify-center p-6 text-center">
-                          <span className="font-serif text-2xl text-charcoal font-medium mb-1">
-                            {c.name}
-                          </span>
-                          <span className="text-xs font-sans text-gold font-medium uppercase tracking-wider">
-                            {c.productCount} Products
-                          </span>
+                        <div className="w-full h-full relative flex flex-col items-center justify-end p-3 sm:p-6 text-center overflow-hidden">
+                          {c.image && (
+                            <img
+                              src={c.image}
+                              alt={c.name}
+                              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                            />
+                          )}
+                          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-transparent" />
+                          <div className="relative z-10 text-white">
+                            <span className="font-serif text-base sm:text-2xl text-ivory font-medium block mb-0.5 sm:mb-1">
+                              {c.name}
+                            </span>
+                            <span className="text-[10px] sm:text-xs font-sans text-gold-light font-medium uppercase tracking-wider">
+                              {c.productCount} Products
+                            </span>
+                          </div>
                         </div>
                       </ArchFrame>
                       {c.badge && (
-                        <div className="absolute top-3 left-3 z-10">
-                          <span className="px-3 py-1 rounded-full text-xs font-sans font-medium uppercase tracking-wider bg-gold-light text-[#6B5A2F] border border-gold/20">
+                        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-10 scale-90 sm:scale-100 origin-top-left">
+                          <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-sans font-medium uppercase tracking-wider bg-gold-light text-[#6B5A2F] border border-gold/20">
                             {c.badgeLabel}
                           </span>
                         </div>
                       )}
                     </div>
 
-                    <div className="p-5 text-center space-y-3 flex-1 flex flex-col justify-between">
-                      <div className="space-y-1.5">
-                        <h3 className="font-serif text-xl text-charcoal">{c.name}</h3>
-                        <p className="text-xs text-charcoal/60 leading-relaxed line-clamp-2">
+                    <div className="p-3 sm:p-5 text-center space-y-2 sm:space-y-3 flex-1 flex flex-col justify-between">
+                      <div className="space-y-1">
+                        <h3 className="font-serif text-sm sm:text-xl text-charcoal">{c.name}</h3>
+                        <p className="text-[11px] sm:text-xs text-charcoal/60 leading-relaxed line-clamp-2 hidden sm:block">
                           {c.description}
                         </p>
                       </div>
 
                       <Button
                         variant="secondary"
-                        className="w-full !text-xs !py-2.5"
+                        className="w-full !text-[10px] sm:!text-xs !py-1.5 sm:!py-2.5"
                         onClick={() => {
                           setSelectedCollection(c.slug);
                           setViewMode("products");
                         }}
                       >
-                        Explore {c.name} ({c.productCount}) →
+                        Explore →
                       </Button>
                     </div>
                   </div>
@@ -771,7 +781,7 @@ export default function ProductListingPage({
               </div>
             ) : (
               /* ── Mode B: Product Cards Grid ── */
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
                 {paginatedProducts.map((product) => (
                   <ProductCard
                     key={product.id}

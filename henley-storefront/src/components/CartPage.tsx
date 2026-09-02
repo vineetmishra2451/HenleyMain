@@ -5,6 +5,7 @@ import PlaceholderImage from "./PlaceholderImage";
 import ArchFrame from "./ArchFrame";
 import Button from "./Button";
 import { useCart } from "./CartProvider";
+import { findProductBySlug } from "@/data/catalog";
 
 /* ================================================================
    CART PAGE TEMPLATE (<CartPage />)
@@ -174,6 +175,8 @@ export default function CartPage() {
                           <PlaceholderImage
                             aspect="4:5"
                             label={item.name}
+                            src={findProductBySlug(item.name || item.id)?.image}
+                            alt={item.name}
                             className="!rounded-md"
                           />
                         </div>

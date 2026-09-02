@@ -58,6 +58,8 @@ export default function AboutPage() {
               <PlaceholderImage
                 aspect="16:9"
                 label="Himalayan Tea Sanctuary & Morning Harvest Mist"
+                src="/pimages/6.jpg"
+                alt="Himalayan Tea Sanctuary"
                 className="w-full h-full"
               />
             </ArchFrame>
@@ -78,6 +80,8 @@ export default function AboutPage() {
                 <PlaceholderImage
                   aspect="4:5"
                   label="Ancestral Botanical Drying Room & Copper Vats"
+                  src="/pimages/tea.jpg"
+                  alt="Ancestral Botanical Sanctuary"
                   className="w-full h-full"
                 />
               </ArchFrame>
@@ -128,6 +132,8 @@ export default function AboutPage() {
                 <PlaceholderImage
                   aspect="4:5"
                   label="Grade A1 Saffron Hand-Culled in Pampore Valley"
+                  src="/pimages/saffron.jpg"
+                  alt="Kashmiri Saffron Terroir"
                   className="w-full h-full"
                 />
               </ArchFrame>
@@ -141,6 +147,8 @@ export default function AboutPage() {
                 <PlaceholderImage
                   aspect="16:9"
                   label="Slow Stoneground Milling & Whole Grain Emery Stones"
+                  src="/pimages/wheat.jpg"
+                  alt="Stoneground Milling"
                   className="w-full h-full"
                 />
               </ArchFrame>
@@ -187,6 +195,8 @@ export default function AboutPage() {
                 <PlaceholderImage
                   aspect="4:5"
                   label="Handcrafted Porcelain Jars & Die-Cut Arch Cloches"
+                  src="/pimages/18.jpg"
+                  alt="Henley Porcelain Vessels"
                   className="w-full h-full"
                 />
               </ArchFrame>

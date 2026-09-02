@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import heroBannerImg from "@/assets/herobanner.jpeg";
+import heroBannerImg from "@/assets/herobanner.png";
 import {
   ArchFrame,
   Button,
@@ -30,11 +30,11 @@ const TRUST_ICONS = [
 ];
 
 const CATEGORIES = [
-  { name: "Tea", slug: "tea", count: 2, badge: "bestseller" as const },
-  { name: "Herbs & Spices", slug: "herbs-spices", count: 12, badge: "organic" as const },
-  { name: "Flours & Grains", slug: "flours-grains", count: 4, badge: undefined },
-  { name: "Cooking Essentials", slug: "cooking-essentials", count: 3, badge: undefined },
-  { name: "Cocoa", slug: "cocoa", count: 1, badge: "sale" as const },
+  { name: "Tea", slug: "tea", count: 2, image: "/pimages/tea.jpg", badge: "bestseller" as const },
+  { name: "Herbs & Spices", slug: "herbs-spices", count: 12, image: "/pimages/cardamom.jpg", badge: "organic" as const },
+  { name: "Flours & Grains", slug: "flours-grains", count: 4, image: "/pimages/besan.jpg", badge: undefined },
+  { name: "Cooking Essentials", slug: "cooking-essentials", count: 3, image: "/pimages/sugarjpg.jpg", badge: undefined },
+  { name: "Cocoa", slug: "cocoa", count: 1, image: "/pimages/cocoa.jpg", badge: "sale" as const },
 ];
 
 const FEATURED_PRODUCTS = [
@@ -55,6 +55,16 @@ const BESTSELLERS = [
 
 export default function HomePage() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [mobileHeroIndex, setMobileHeroIndex] = React.useState(0);
+  const mobileHeroImages = ["/brand/heromobile1.jpg", "/brand/heromobile2.jpg"];
+
+  // Auto-rotate mobile hero images smoothly
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setMobileHeroIndex((prev) => (prev + 1) % mobileHeroImages.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [mobileHeroImages.length]);
 
   return (
     <div className="bg-ivory">
@@ -62,7 +72,61 @@ export default function HomePage() {
       {/* ════════════════════════════════════════════════════════
           SECTION 1: HERO / PROMOTIONAL BANNER
          ════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden min-h-[500px] lg:min-h-[580px] flex flex-col justify-between">
+
+      {/* ── MOBILE VARIANT (< lg): Half-screen rounded banner with single Shop Now CTA & zero text ── */}
+      <section className="lg:hidden px-4 pt-3 pb-2">
+        <div className="relative w-full h-[46vh] min-h-[310px] max-h-[420px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-subtle border border-border/70 bg-sand/40">
+          {/* Mobile Background Images with smooth crossfade */}
+          {mobileHeroImages.map((src, idx) => (
+            <div
+              key={src}
+              className={`
+                absolute inset-0 transition-opacity duration-1000 ease-in-out
+                ${mobileHeroIndex === idx ? "opacity-100 scale-100" : "opacity-0 scale-105 pointer-events-none"}
+              `}
+            >
+              <img
+                src={src}
+                alt="Henley Botanical Sanctuary"
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
+          ))}
+
+          {/* Subtle bottom-edge shadow for contrast */}
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-charcoal/50 via-charcoal/15 to-transparent pointer-events-none" />
+
+          {/* Single Shop Now Button in Bottom Left */}
+          <div className="absolute bottom-4 left-4 z-10">
+            <Link href="/shop">
+              <Button
+                variant="primary"
+                className="!px-6 !py-2.5 !text-xs !font-medium !shadow-card !bg-maroon text-ivory hover:!bg-maroon-dark uppercase tracking-wider"
+              >
+                Shop Now →
+              </Button>
+            </Link>
+          </div>
+
+          {/* Discrete Dot Indicator in Bottom Right */}
+          <div className="absolute bottom-4 right-4 z-10 flex items-center gap-1.5 bg-charcoal/30 backdrop-blur-xs px-2.5 py-1 rounded-full border border-white/20">
+            {mobileHeroImages.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setMobileHeroIndex(idx)}
+                className={`
+                  w-2 h-2 rounded-full transition-all cursor-pointer
+                  ${mobileHeroIndex === idx ? "bg-white w-4" : "bg-white/50 hover:bg-white/80"}
+                `}
+                aria-label={`Show mobile banner slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── DESKTOP VARIANT (lg+): Full-bleed editorial landscape with typography & trust strip ── */}
+      <section className="hidden lg:flex relative overflow-hidden min-h-[580px] flex-col justify-between">
         {/* Background image */}
         <Image
           src={heroBannerImg}
@@ -70,34 +134,31 @@ export default function HomePage() {
           fill
           priority
           placeholder="blur"
-          className="object-cover object-[82%_center] sm:object-[70%_center] lg:object-center select-none"
+          className="object-cover object-center select-none"
           sizes="100vw"
         />
 
-        {/* Minimal soft wash only on mobile screens to preserve text contrast without hiding the background */}
-        <div className="absolute inset-0 bg-gradient-to-r from-ivory/80 via-ivory/40 to-transparent md:hidden pointer-events-none" />
-
         {/* Content */}
-        <div className="henley-container relative z-10 py-16 lg:py-24 flex items-center min-h-[480px] lg:min-h-[600px]">
+        <div className="henley-container relative z-10 py-24 flex items-center min-h-[560px]">
           <div className="max-w-xl">
             {/* Kicker */}
             <div className="flex items-center gap-3 mb-4">
               <p className="text-eyebrow text-gold">Pure Leaf. Pure Intent.</p>
-              <span className="hidden lg:block w-12 h-px bg-gold/40" />
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-gold hidden lg:block" strokeWidth="1.5">
+              <span className="w-12 h-px bg-gold/40" />
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-gold" strokeWidth="1.5">
                 <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.67c.48-.05.95-.07 1.34-.1C16 19 19 8 19 8" />
                 <path d="M5 19c2.8-3.5 6-6.1 12-8" />
               </svg>
             </div>
 
             {/* Headline */}
-            <h1 className="font-serif text-3xl sm:text-4xl lg:text-4xl text-charcoal leading-[1.1] mb-5">
+            <h1 className="font-serif text-4xl text-charcoal leading-[1.1] mb-5">
               Tea, The Way<br />
               Nature Intended.
             </h1>
 
             {/* Body */}
-            <p className="text-charcoal/70 text-base lg:text-lg leading-relaxed mb-8 max-w-md">
+            <p className="text-charcoal/70 text-lg leading-relaxed mb-8 max-w-md">
               Organically extracted from handpicked pure leaves, crafted to preserve
               natural aroma, antioxidants, and authentic taste in every cup.
             </p>
@@ -114,12 +175,12 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* ── Trust Icons Strip ─────────────────────────────── */}
+        {/* ── Desktop Trust Icons Strip ── */}
         <div className="border-t border-b border-border bg-sand/30">
-          <div className="henley-container py-6 lg:py-8">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          <div className="henley-container py-8">
+            <div className="grid grid-cols-4 gap-8">
               {TRUST_ICONS.map((item) => (
-                <div key={item.label} className="flex items-center gap-3 justify-center lg:justify-start">
+                <div key={item.label} className="flex items-center gap-3 justify-start">
                   {/* Icon circle */}
                   <div className="w-10 h-10 rounded-full bg-ivory border border-border flex items-center justify-center flex-shrink-0">
                     <TrustIcon type={item.icon} />
@@ -138,7 +199,7 @@ export default function HomePage() {
       {/* ════════════════════════════════════════════════════════
           SECTION 2: FEATURED CATEGORIES (HORIZONTALLY SCROLLABLE)
          ════════════════════════════════════════════════════════ */}
-      <section className="py-16 lg:py-24 overflow-hidden">
+      <section className="py-8 sm:py-12 lg:py-24 overflow-hidden">
         <div className="henley-container">
           {/* Section heading + navigation controls */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 lg:mb-12 gap-4">
@@ -208,7 +269,12 @@ export default function HomePage() {
               >
                 {/* Image */}
                 <div className="relative">
-                  <PlaceholderImage aspect="4:5" label={cat.name} />
+                  <PlaceholderImage
+                    aspect="4:5"
+                    label={cat.name}
+                    src={cat.image}
+                    alt={cat.name}
+                  />
                   {cat.badge && (
                     <div className="absolute top-3 left-3 z-10">
                       <Badge variant={cat.badge}>
@@ -317,8 +383,8 @@ export default function HomePage() {
             </a>
           </div>
 
-          {/* Product grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+          {/* Product grid: 2 per row on mobile */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 lg:gap-6">
             {BESTSELLERS.map((product) => (
               <ProductCard
                 key={product.name}
@@ -358,7 +424,13 @@ export default function HomePage() {
             {/* ArchFrame image */}
             <div className="flex-1 flex justify-center">
               <ArchFrame variant="tall" className="!max-w-[320px]">
-                <PlaceholderImage aspect="4:5" label="Henley — Our Process" className="!aspect-auto h-full" />
+                <PlaceholderImage
+                  aspect="4:5"
+                  label="Henley — Our Process"
+                  src="/pimages/2.jpg"
+                  alt="Henley — Our Process"
+                  className="!aspect-auto h-full"
+                />
               </ArchFrame>
             </div>
 

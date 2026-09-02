@@ -8,6 +8,7 @@ const fraunces = Fraunces({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   display: "swap",
+  fallback: ["Georgia", "serif"],
 });
 
 const inter = Inter({
@@ -15,6 +16,7 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   display: "swap",
+  fallback: ["system-ui", "sans-serif"],
 });
 
 export const metadata: Metadata = {
