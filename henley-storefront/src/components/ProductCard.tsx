@@ -62,7 +62,7 @@ export default function ProductCard({
   onView,
 }: ProductCardProps) {
   const [hovered, setHovered] = useState(false);
-  const { open: openCart } = useCart();
+  const { addItem, open: openCart } = useCart();
 
   // Derive product slug
   const productSlug =
@@ -83,7 +83,13 @@ export default function ProductCard({
     if (onAddToCart) {
       onAddToCart();
     } else {
-      openCart();
+      addItem({
+        id: productSlug,
+        name: name,
+        variant: "Standard Pack",
+        price: price,
+        quantity: 1,
+      });
     }
   };
 

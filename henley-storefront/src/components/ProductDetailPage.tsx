@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import PlaceholderImage from "./PlaceholderImage";
 import Badge from "./Badge";
 import StarRating from "./StarRating";
@@ -33,7 +33,7 @@ export default function ProductDetailPage({
   slug = "tea-herb-spice",
   initialProduct,
 }: ProductDetailPageProps) {
-  const { open: openCart, updateQuantity } = useCart();
+  const { addItem, open: openCart } = useCart();
 
   // Find product from catalog
   const product: ProductItem = useMemo(() => {
@@ -96,14 +96,23 @@ export default function ProductDetailPage({
 
   // Active States
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [selectedVariant, setSelectedVariant] = useState(variants[0] || {
+  const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [isWishlisted, setIsWishlisted] = useState(false);
+
+  // Reset variant and quantity when navigating between products
+  useEffect(() => {
+    setActiveImageIndex(0);
+    setSelectedVariantIndex(0);
+    setQuantity(1);
+  }, [product.id]);
+
+  const selectedVariant = variants[selectedVariantIndex] || variants[0] || {
     id: "var-0",
     name: "Standard Pack",
     price: product.price,
     numericPrice: product.numericPrice,
-  });
-  const [quantity, setQuantity] = useState(1);
-  const [isWishlisted, setIsWishlisted] = useState(false);
+  };
 
   // Accordion open states
   const [openAccordions, setOpenAccordions] = useState<Record<string, boolean>>({
@@ -121,11 +130,23 @@ export default function ProductDetailPage({
   };
 
   const handleAddToCart = () => {
-    openCart();
+    addItem({
+      id: `${product.id}-${selectedVariant.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`,
+      name: product.name,
+      variant: selectedVariant.name,
+      price: selectedVariant.price,
+      quantity: quantity,
+    });
   };
 
   const handleBuyNow = () => {
-    openCart();
+    addItem({
+      id: `${product.id}-${selectedVariant.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`,
+      name: product.name,
+      variant: selectedVariant.name,
+      price: selectedVariant.price,
+      quantity: quantity,
+    });
   };
 
   // Related products from the same collection or fallback
@@ -297,12 +318,12 @@ export default function ProductDetailPage({
                 Select Reserve Size:
               </label>
               <div className="flex flex-wrap gap-2.5">
-                {variants.map((v) => {
-                  const isSelected = selectedVariant?.id === v.id;
+                {variants.map((v, idx) => {
+                  const isSelected = selectedVariantIndex === idx;
                   return (
                     <button
                       key={v.id}
-                      onClick={() => setSelectedVariant(v)}
+                      onClick={() => setSelectedVariantIndex(idx)}
                       className={`
                         px-5 py-2.5 rounded-full text-xs font-sans font-medium transition-all cursor-pointer border
                         ${

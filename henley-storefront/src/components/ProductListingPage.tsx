@@ -808,7 +808,6 @@ export default function ProductListingPage({
                     badgeLabel={product.badgeLabel}
                     cardType="product"
                     imageAspect="4:5"
-                    onAddToCart={openCart}
                   />
                 ))}
               </div>
