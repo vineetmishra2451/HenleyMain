@@ -35,7 +35,11 @@ const RIGHT_NAV_LINKS: NavLink[] = [
 
 const ALL_NAV_LINKS: NavLink[] = [...LEFT_NAV_LINKS, ...RIGHT_NAV_LINKS];
 
-export default function Header() {
+interface HeaderProps {
+  activePath?: string;
+}
+
+export default function Header({ activePath }: HeaderProps = {}) {
   const [announcementVisible, setAnnouncementVisible] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
