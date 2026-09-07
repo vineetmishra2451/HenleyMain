@@ -26,9 +26,11 @@ class HomepageSection extends Model
     protected $fillable = [
         'key',
         'title',
+        'label',
         'type',
         'sort_order',
         'is_active',
+        'active',
         'payload',
     ];
 
@@ -37,6 +39,7 @@ class HomepageSection extends Model
         return [
             'sort_order' => 'integer',
             'is_active' => 'boolean',
+            'active' => 'boolean',
             'payload' => 'array',
         ];
     }

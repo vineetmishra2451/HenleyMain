@@ -34,28 +34,24 @@ class Header extends Component
     public function render(): \Illuminate\Contracts\View\View
     {
         $announcementEnabled = (bool) Setting::get('announcement.banner_enabled', true);
-        $announcementText = (string) Setting::get('announcement.banner_text', 'Complimentary Express Air Delivery on all Himalayan reserve orders over ₹1,500');
-        $announcementLink = (string) Setting::get('announcement.banner_link', '/collections');
+        $announcementText = (string) Setting::get('announcement.banner_text', 'Complimentary shipping on orders over ₹1,999');
+        $announcementLink = (string) Setting::get('announcement.banner_link', '/shop');
 
-        /** @var array<array{label: string, url: string, has_mega?: bool}> $menuItems */
-        $menuItems = Cache::tags(['navigation'])->remember('storefront_main_menu', 3600, function (): array {
-            $raw = Setting::get('navigation.main_menu');
-            if ($raw) {
-                $decoded = is_string($raw) ? json_decode($raw, true) : $raw;
-                if (is_array($decoded)) {
-                    return $decoded;
-                }
-            }
+        $leftNavLinks = [
+            ['label' => 'SHOP', 'url' => '/shop', 'active' => false],
+            ['label' => 'COLLECTIONS', 'url' => '/collections', 'active' => true],
+            ['label' => 'TEA', 'url' => '/collections?cat=tea', 'active' => false],
+            ['label' => 'HERBS & SPICES', 'url' => '/collections?cat=herbs-spices', 'active' => false],
+        ];
 
-            return [
-                ['label' => 'Shop', 'url' => '/collections', 'has_mega' => false],
-                ['label' => 'Collections', 'url' => '/collections', 'has_mega' => true],
-                ['label' => 'Herbal', 'url' => '/collections', 'has_mega' => false],
-                ['label' => 'Gifts', 'url' => '/collections', 'has_mega' => false],
-                ['label' => 'Our Story', 'url' => '/about', 'has_mega' => false],
-                ['label' => 'Journal', 'url' => '/journal', 'has_mega' => false],
-            ];
-        });
+        $rightNavLinks = [
+            ['label' => 'GRAINS', 'url' => '/collections?cat=flours-grains', 'active' => false],
+            ['label' => 'ESSENTIALS', 'url' => '/collections?cat=cooking-essentials', 'active' => false],
+            ['label' => 'COCOA', 'url' => '/collections?cat=cocoa', 'active' => false],
+            ['label' => 'STORY', 'url' => '/story', 'active' => false],
+        ];
+
+        $allNavLinks = array_merge($leftNavLinks, $rightNavLinks);
 
         /** @var Collection<int, Category> $megaCollections */
         $megaCollections = Cache::tags(['categories'])->remember('storefront_mega_collections', 3600, function (): Collection {
@@ -63,7 +59,7 @@ class Header extends Component
                 ->orderBy('sort_order')
                 ->orderBy('id')
                 ->withCount('products')
-                ->take(4)
+                ->take(5)
                 ->get();
         });
 
@@ -71,7 +67,9 @@ class Header extends Component
             'announcementEnabled' => $announcementEnabled,
             'announcementText' => $announcementText,
             'announcementLink' => $announcementLink,
-            'menuItems' => $menuItems,
+            'leftNavLinks' => $leftNavLinks,
+            'rightNavLinks' => $rightNavLinks,
+            'allNavLinks' => $allNavLinks,
             'megaCollections' => $megaCollections,
         ]);
     }

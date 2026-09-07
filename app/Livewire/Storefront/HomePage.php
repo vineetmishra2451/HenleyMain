@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Livewire\Storefront;
 
+use App\Enums\ReviewStatus;
 use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\HomepageSection;
 use App\Models\JournalPost;
 use App\Models\Product;
+use App\Models\Review;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
@@ -29,7 +31,7 @@ class HomePage extends Component
                 ->orderBy('id')
                 ->withCount('products')
                 ->with('parent')
-                ->take(4)
+                ->take(8)
                 ->get();
         });
 
@@ -43,7 +45,7 @@ class HomePage extends Component
             return Product::active()
                 ->featured()
                 ->with(['images', 'categories'])
-                ->take(4)
+                ->take(6)
                 ->get();
         });
 
@@ -52,7 +54,7 @@ class HomePage extends Component
             return Product::active()
                 ->bestseller()
                 ->with(['images', 'categories'])
-                ->take(6)
+                ->take(4)
                 ->get();
         });
 
@@ -69,6 +71,16 @@ class HomePage extends Component
             return Coupon::active()->first();
         });
 
+        /** @var Collection<int, Review> $reviews */
+        $reviews = Cache::tags(['reviews', 'homepage'])->remember('homepage_featured_reviews', 3600, function (): Collection {
+            return Review::where('status', ReviewStatus::APPROVED)
+                ->where('rating', '>=', 4)
+                ->with('product')
+                ->latest('published_at')
+                ->take(6)
+                ->get();
+        });
+
         return view('livewire.storefront.home-page', [
             'sections' => $sections,
             'featuredCollections' => $featuredCollections,
@@ -77,6 +89,7 @@ class HomePage extends Component
             'bestsellers' => $bestsellers,
             'recentPosts' => $recentPosts,
             'activeCoupon' => $activeCoupon,
+            'reviews' => $reviews,
         ])->layout('components.layouts.storefront', [
             'title' => 'Pure leaf. Pure intent.',
             'transparentHero' => true,

@@ -191,9 +191,15 @@ class Product extends Model
      */
     public function getPrimaryImageAttribute(): ?string
     {
-        $firstImage = $this->images->first();
+        if ($this->relationLoaded('primaryImage') && $this->getRelation('primaryImage')) {
+            return $this->getRelation('primaryImage')?->url;
+        }
 
-        return $this->primaryImage->url ?? ($firstImage ? $firstImage->url : null);
+        if ($this->relationLoaded('images')) {
+            return $this->images->first()?->url;
+        }
+
+        return $this->primaryImage()->first()?->url ?? $this->images()->first()?->url;
     }
 
     /**

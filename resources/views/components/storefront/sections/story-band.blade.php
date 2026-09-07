@@ -3,69 +3,51 @@
 ])
 
 @php
-$eyebrow = $payload['eyebrow'] ?? 'The Henley Philosophy';
-$title = $payload['title'] ?? 'Handpicked, small batch, organically extracted.';
-$body = $payload['body'] ?? "We believe tea should be approached the way a master perfumer approaches scent. We partner exclusively with high-altitude growers who reject industrial homogenization. Every leaf is plucked at dawn before mountain dew evaporates, preserving delicate volatile aromatic compounds that mass-market processing burns away.";
-$author = $payload['author'] ?? 'Dr. Alistair Henley';
-$authorTitle = $payload['author_title'] ?? 'Master Botanical Curator';
-$ctaLabel = $payload['cta_label'] ?? 'Read Our Full Story';
-$ctaUrl = $payload['cta_url'] ?? '/about';
-$imageUrl = $payload['image_url'] ?? '/images/brand/product.jpeg';
-$imageAlt = $payload['image_alt'] ?? 'Henley porcelain cloche packaging and botanical ritual';
+$eyebrow = $payload['eyebrow'] ?? 'Our Promise';
+$title = $payload['title'] ?? "From Leaf to Cup,\nWith Intention.";
+$imageUrl = $payload['image_url'] ?? '/pimages/2.jpg';
+$imageAlt = $payload['image_alt'] ?? 'Henley — Our Process';
+$ctaLabel = $payload['cta_label'] ?? 'Learn More';
+$ctaUrl = $payload['cta_url'] ?? '/story';
 @endphp
 
-<section class="w-full bg-canvas py-16 sm:py-28 overflow-hidden">
-    <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-
-            <!-- Left: Large Lifestyle Image in Arched Apothecary Mask Frame -->
-            <div class="lg:col-span-5 relative order-2 lg:order-1">
-                <x-arch-frame variant="default" aspect="aspect-[4/5]">
-                    <img
-                        src="{{ $imageUrl }}"
-                        alt="{{ $imageAlt }}"
-                        loading="lazy"
-                        width="800"
-                        height="1000"
-                        class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-                    >
-                </x-arch-frame>
+<section class="py-16 lg:py-24 bg-sand/30">
+    <div class="henley-container">
+        <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+            <!-- ArchFrame image -->
+            <div class="flex-1 flex justify-center">
+                <div class="w-full max-w-[280px] sm:max-w-[320px]">
+                    <x-arch-frame variant="tall" class="shadow-card">
+                        <img
+                            src="{{ $imageUrl }}"
+                            alt="{{ $imageAlt }}"
+                            loading="lazy"
+                            class="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
+                        >
+                    </x-arch-frame>
+                </div>
             </div>
 
-            <!-- Right: Brand Narrative & Proof -->
-            <div class="lg:col-span-7 space-y-6 sm:space-y-8 order-1 lg:order-2">
-                <div>
-                    <x-eyebrow variant="accent">
-                        {{ $eyebrow }}
-                    </x-eyebrow>
-                </div>
-
-                <h2 class="font-serif text-display-2 font-normal text-primary tracking-tight leading-tight">
-                    {{ $title }}
+            <!-- Copy -->
+            <div class="flex-1 max-w-lg text-center lg:text-left">
+                <p class="text-eyebrow text-gold mb-3">{{ $eyebrow }}</p>
+                <h2 class="font-serif text-2xl lg:text-3xl text-charcoal leading-snug mb-4">
+                    {!! nl2br(e($title)) !!}
                 </h2>
-
-                <div class="space-y-4 text-body text-secondary leading-relaxed">
-                    <p>{{ $body }}</p>
-                </div>
-
-                <div class="pt-4 border-t border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
-                        <span class="font-sans text-xs uppercase tracking-[0.16em] font-semibold text-primary block">
-                            {{ $author }}
-                        </span>
-                        <span class="text-caption text-secondary">
-                            {{ $authorTitle }}
-                        </span>
-                    </div>
-
-                    <div>
-                        <x-link-button href="{{ $ctaUrl }}" variant="secondary" size="md" trailing-arrow>
-                            {{ $ctaLabel }}
-                        </x-link-button>
-                    </div>
-                </div>
+                <p class="text-charcoal/60 text-base leading-relaxed mb-3">
+                    At Henley, we believe in purity, transparency, and gifting wellness through nature&apos;s finest. Every blend is hand-selected from organic farms, slow-dried to preserve essential oils, and packed in small batches to ensure peak freshness.
+                </p>
+                <p class="text-charcoal/60 text-base leading-relaxed mb-8">
+                    Our apothecary-inspired tins are designed to be beautiful enough to keep and refill — because sustainability should never sacrifice style.
+                </p>
+                <a
+                    href="{{ $ctaUrl }}"
+                    class="inline-flex items-center gap-2 text-sm font-sans font-medium text-maroon hover:text-maroon-dark transition-colors group"
+                >
+                    <span>{{ $ctaLabel }}</span>
+                    <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
             </div>
-
         </div>
     </div>
 </section>

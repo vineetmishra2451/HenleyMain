@@ -4,10 +4,9 @@
 ])
 
 @php
-$eyebrow = $payload['eyebrow'] ?? 'Current Season Micro-Lots';
-$title = $payload['title'] ?? 'Featured Seasonal Allocations';
-$description = $payload['description'] ?? 'Direct from the morning plucking of premier estates, each lot sealed at source in numbered cloche jars.';
-$limit = (int) ($payload['limit'] ?? 4);
+$eyebrow = $payload['eyebrow'] ?? 'Handpicked for You';
+$title = $payload['title'] ?? 'Featured Products';
+$limit = (int) ($payload['limit'] ?? 6);
 
 $items = $products ?? \App\Models\Product::active()
     ->featured()
@@ -17,48 +16,66 @@ $items = $products ?? \App\Models\Product::active()
 @endphp
 
 @if ($items->isNotEmpty())
-    <section class="w-full bg-canvas py-16 sm:py-24">
-        <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12 space-y-12">
-            <x-section-heading
-                :eyebrow="$eyebrow"
-                :title="$title"
-                :description="$description"
-                align="center"
-            />
+    <section class="bg-sand/30 py-16 lg:py-24">
+        <div class="henley-container">
+            <!-- Section heading -->
+            <div class="flex items-end justify-between mb-10 lg:mb-14">
+                <div>
+                    <p class="text-eyebrow text-gold mb-2">{{ $eyebrow }}</p>
+                    <h2 class="font-serif text-2xl lg:text-3xl text-charcoal">
+                        {{ $title }}
+                    </h2>
+                </div>
+                <a href="/shop" class="hidden lg:inline-flex items-center gap-1 text-sm font-sans font-medium text-maroon hover:text-maroon-dark transition-colors">
+                    View All →
+                </a>
+            </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Horizontal scrollable on mobile, grid on desktop -->
+            <div
+                class="
+                    flex lg:grid lg:grid-cols-3 xl:grid-cols-4 gap-5
+                    overflow-x-auto snap-x snap-mandatory
+                    pb-4 -mb-4
+                    scrollbar-none
+                    lg:overflow-visible lg:pb-0 lg:mb-0
+                "
+            >
                 @foreach ($items as $product)
-                    <x-commerce.product-card
-                        :title="$product->name"
-                        :subtitle="$product->short_description ?? ($product->primary_category?->name ?? 'Single Estate')"
-                        :price="$product->getPriceMoney()->formatted()"
-                        :compare-at-price="$product->compare_at_price_money?->formatted()"
-                        :image="$product->primary_image ?? ($product->images->first()?->url ?? \App\Services\PlaceholderService::url('product_square', $product->id))"
-                        :rating="(float) ($product->rating_average > 0 ? $product->rating_average : 5.0)"
-                        :rating-count="(int) ($product->rating_count > 0 ? $product->rating_count : 28)"
-                        :badge="$product->metadata['harvest'] ?? 'Spring 2026'"
-                        badge-variant="gold"
-                        :href="'/products/' . $product->slug"
-                    >
-                        <x-slot:action>
-                            <x-button
-                                variant="primary"
-                                size="sm"
-                                trailing-arrow
-                                x-data
-                                x-on:click.prevent="$dispatch('notify', { message: '{{ addslashes($product->name) }} added to ritual basket.', tone: 'success' }); $dispatch('cart-updated', { count: 1 })"
-                            >
-                                Quick Add
-                            </x-button>
-                        </x-slot:action>
-                    </x-commerce.product-card>
+                    <div class="snap-start flex-shrink-0 w-[72vw] sm:w-[45vw] lg:w-auto">
+                        <x-commerce.product-card
+                            :title="$product->name"
+                            :subtitle="$product->short_description ?? ($product->primary_category?->name ?? 'Single Estate')"
+                            :category="$product->primary_category?->name ?? ($product->categories->first()?->name ?? 'Specialty')"
+                            :price="$product->getPriceMoney()->formatted()"
+                            :compare-at-price="$product->compare_at_price_money?->formatted()"
+                            :image="$product->primary_image ?? ($product->images->first()?->url ?? '/pimages/saffron.jpg')"
+                            :rating="(float) ($product->rating_average > 0 ? $product->rating_average : 5.0)"
+                            :rating-count="(int) ($product->rating_count > 0 ? $product->rating_count : 164)"
+                            :badge="$product->is_bestseller ? 'bestseller' : ($product->is_featured ? 'organic' : null)"
+                            :href="'/product/' . $product->slug"
+                            image-aspect="aspect-square"
+                        >
+                            <x-slot:action>
+                                <button
+                                    type="button"
+                                    x-data
+                                    x-on:click.prevent="$dispatch('notify', { message: '{{ addslashes($product->name) }} added to bag.', tone: 'success' }); $dispatch('cart-updated', { count: 1 })"
+                                    class="w-full inline-flex items-center justify-center rounded-md font-sans text-ivory bg-maroon hover:bg-maroon-dark transition-colors cursor-pointer shadow-subtle !text-[10px] sm:!text-[11px] !py-1.5 sm:!py-2 !px-1 font-medium tracking-normal text-center"
+                                >
+                                    + Bag
+                                </button>
+                            </x-slot:action>
+                        </x-commerce.product-card>
+                    </div>
                 @endforeach
             </div>
 
-            <div class="text-center pt-4">
-                <x-link-button href="/collections" variant="secondary" size="md" trailing-arrow>
-                    Explore Complete Spring Catalogue
-                </x-link-button>
+            <!-- Mobile "View All" link -->
+            <div class="lg:hidden text-center mt-8">
+                <a href="/shop" class="text-sm font-sans font-medium text-maroon hover:text-maroon-dark transition-colors">
+                    View All Products →
+                </a>
             </div>
         </div>
     </section>

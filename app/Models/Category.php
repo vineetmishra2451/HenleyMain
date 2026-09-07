@@ -32,6 +32,7 @@ class Category extends Model
         'description',
         'sort_order',
         'is_featured',
+        'is_active',
         'image_path',
         'seo_title',
         'seo_description',
@@ -41,6 +42,7 @@ class Category extends Model
     {
         return [
             'is_featured' => 'boolean',
+            'is_active' => 'boolean',
             'sort_order' => 'integer',
         ];
     }

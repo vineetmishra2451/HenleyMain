@@ -11,7 +11,7 @@ $items = $payload['items'] ?? [
 ];
 @endphp
 
-<section class="w-full bg-canvas py-4">
+<section class="hidden md:block w-full bg-canvas py-4">
     <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12">
         <x-commerce.trust-badge-strip :items="$items" class="my-6 shadow-none" />
     </div>

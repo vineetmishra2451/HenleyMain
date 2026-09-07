@@ -29,6 +29,7 @@ class Brand extends Model
         'description',
         'website_url',
         'is_featured',
+        'is_active',
         'seo_title',
         'seo_description',
     ];
@@ -37,6 +38,7 @@ class Brand extends Model
     {
         return [
             'is_featured' => 'boolean',
+            'is_active' => 'boolean',
         ];
     }
 

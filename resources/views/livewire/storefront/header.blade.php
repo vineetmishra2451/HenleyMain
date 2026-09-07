@@ -1,352 +1,243 @@
 <div
     x-data="{
+        announcementVisible: true,
+        mobileMenuOpen: false,
         scrolled: false,
-        mobileOpen: false,
-        megaOpen: false,
-        megaTimeout: null,
-        bannerDismissed: false,
-        isTransparentHero: {{ $isTransparentHero ? 'true' : 'false' }},
-        openMega() {
-            clearTimeout(this.megaTimeout);
-            this.megaOpen = true;
-        },
-        closeMegaWithDelay() {
-            this.megaTimeout = setTimeout(() => {
-                this.megaOpen = false;
-            }, 200);
-        }
     }"
     x-init="
-        scrolled = window.pageYOffset > 30;
+        scrolled = window.pageYOffset > 20;
         window.addEventListener('scroll', () => {
-            scrolled = window.pageYOffset > 30;
+            scrolled = window.pageYOffset > 20;
         });
     "
-    class="relative z-40 w-full"
+    class="sticky top-0 z-50 w-full"
 >
-    <!-- 1. Top Announcement Bar (Dismissible, Setting-Driven) -->
+    <!-- ── Announcement Bar ──────────────────────────────── -->
     @if ($announcementEnabled)
         <div
-            x-show="!bannerDismissed"
+            x-show="announcementVisible"
             x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100 max-h-12"
             x-transition:leave-end="opacity-0 max-h-0"
-            class="bg-surface-raised border-b border-hairline py-2 px-4 text-center text-caption text-secondary relative transition-all duration-200"
+            class="relative bg-maroon text-center py-2.5 px-12"
         >
-            <div class="max-w-content mx-auto flex items-center justify-center gap-2 pr-6">
-                <span class="inline-block w-1.5 h-1.5 rounded-full bg-gold" aria-hidden="true"></span>
+            <p class="text-gold text-xs font-sans font-medium tracking-[0.08em]">
                 @if ($announcementLink)
-                    <a href="{{ $announcementLink }}" class="hover:text-accent font-medium transition-colors">
+                    <a href="{{ $announcementLink }}" class="hover:underline transition-all">
                         {{ $announcementText }}
-                        <span class="ml-1 inline-block" aria-hidden="true">→</span>
                     </a>
                 @else
-                    <span>{{ $announcementText }}</span>
+                    {{ $announcementText }}
                 @endif
-            </div>
-
+            </p>
             <button
                 type="button"
-                x-on:click="bannerDismissed = true"
-                aria-label="Dismiss announcement banner"
-                class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-muted hover:text-primary transition-colors"
+                x-on:click="announcementVisible = false"
+                class="absolute right-4 top-1/2 -translate-y-1/2 text-ivory/60 hover:text-ivory transition-colors cursor-pointer"
+                aria-label="Dismiss announcement"
             >
-                <x-icons.close class="w-3.5 h-3.5" />
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
             </button>
         </div>
     @endif
 
-    <!-- 2. Sticky Main Header Bar -->
-    <header
-        :class="{
-            'bg-canvas/95 backdrop-blur-md border-b border-hairline shadow-subtle': scrolled || !isTransparentHero,
-            'bg-transparent border-b border-transparent': !scrolled && isTransparentHero
-        }"
-        class="sticky top-0 w-full transition-all duration-300 ease-henley"
-    >
-        <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12 flex items-center justify-between h-20">
+    <!-- ── Symmetrical Split Nav Row ──────────────────────── -->
+    <nav class="border-b border-border bg-ivory transition-shadow duration-300" :class="{ 'shadow-subtle': scrolled }" aria-label="Main navigation">
+        <div class="henley-container relative flex items-center justify-between h-16 lg:h-[72px]">
 
-            <!-- Mobile Hamburger Trigger (Left) -->
-            <div class="flex items-center lg:hidden">
+            <!-- Left Nav (Desktop) / Hamburger (Mobile) -->
+            <div class="flex items-center gap-1 lg:flex-1">
+                <!-- Hamburger — mobile only -->
                 <button
                     type="button"
-                    x-on:click="mobileOpen = true"
-                    aria-label="Open mobile navigation menu"
-                    class="p-2 -ml-2 text-primary hover:text-accent transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent rounded-lg"
+                    class="lg:hidden p-2 -ml-2 text-charcoal hover:text-maroon transition-colors cursor-pointer"
+                    x-on:click="mobileMenuOpen = true"
+                    aria-label="Open menu"
                 >
-                    <x-icons.menu class="w-6 h-6 stroke-[1.5]" />
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+                        <path d="M3 7h18M3 12h18M3 17h18" />
+                    </svg>
                 </button>
+
+                <!-- Desktop Left Nav Links -->
+                <div class="hidden lg:flex items-center gap-1 xl:gap-2">
+                    @foreach ($leftNavLinks as $link)
+                        <a
+                            href="{{ $link['url'] }}"
+                            class="px-2 xl:px-3 py-2 text-[11px] xl:text-xs font-sans font-medium tracking-[0.08em] uppercase transition-colors whitespace-nowrap {{ request()->is(trim($link['url'], '/')) || ($link['url'] === '/collections' && request()->is('collections*')) ? 'text-maroon border-b-2 border-maroon' : 'text-charcoal hover:text-maroon' }}"
+                        >
+                            {{ $link['label'] }}
+                        </a>
+                    @endforeach
+                </div>
             </div>
 
-            <!-- Brand Logo (Canonical Henley Vector Mark) -->
-            <div class="flex items-center">
-                <a href="/" class="flex flex-col items-center group select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent rounded">
-                    <span class="font-serif text-2xl sm:text-3xl tracking-[0.22em] font-normal text-primary group-hover:text-accent transition-colors duration-250">
-                        HENLEY
-                    </span>
-                    <span class="text-[9px] uppercase tracking-[0.32em] text-gold font-medium -mt-1 hidden sm:block">
-                        Botanical Reserve
-                    </span>
+            <!-- Center: Henley Logo - strictly centered on mobile and symmetrical on desktop -->
+            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:static lg:left-auto lg:top-auto lg:translate-x-0 lg:translate-y-0 flex items-center justify-center px-2 flex-shrink-0 z-10 pointer-events-auto">
+                <a href="/" aria-label="Henley Home" class="flex items-center justify-center">
+                    <img
+                        src="/images/brand/logo.png"
+                        alt="Henley"
+                        width="144"
+                        height="36"
+                        class="w-28 sm:w-36 h-auto object-contain select-none transition-opacity hover:opacity-90"
+                    />
                 </a>
             </div>
 
-            <!-- Desktop Primary Navigation -->
-            <nav class="hidden lg:flex items-center space-x-8" aria-label="Primary navigation">
-                @foreach ($menuItems as $item)
-                    @if (! empty($item['has_mega']))
-                        <div
-                            class="relative"
-                            x-on:mouseenter="openMega()"
-                            x-on:mouseleave="closeMegaWithDelay()"
-                        >
-                            <a
-                                href="{{ $item['url'] }}"
-                                x-on:click.prevent="megaOpen = !megaOpen"
-                                x-on:keydown.escape="megaOpen = false"
-                                :aria-expanded="megaOpen"
-                                class="inline-flex items-center gap-1 font-sans text-xs uppercase tracking-[0.16em] font-medium text-primary hover:text-accent py-2 transition-colors duration-250 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent rounded"
-                            >
-                                <span>{{ $item['label'] }}</span>
-                                <x-icons.chevron-down class="w-3.5 h-3.5 text-secondary transition-transform duration-250" x-bind:class="{ 'rotate-180 text-accent': megaOpen }" />
-                            </a>
-                        </div>
-                    @else
+            <!-- Right Nav Links + Action Icons -->
+            <div class="flex items-center justify-end gap-1 xl:gap-2 lg:flex-1">
+                <!-- Desktop Right Nav Links -->
+                <div class="hidden lg:flex items-center gap-1 xl:gap-2 mr-2">
+                    @foreach ($rightNavLinks as $link)
                         <a
-                            href="{{ $item['url'] }}"
-                            class="font-sans text-xs uppercase tracking-[0.16em] font-medium text-primary hover:text-accent py-2 transition-colors duration-250 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent rounded"
+                            href="{{ $link['url'] }}"
+                            class="px-2 xl:px-3 py-2 text-[11px] xl:text-xs font-sans font-medium tracking-[0.08em] uppercase text-charcoal hover:text-maroon transition-colors whitespace-nowrap {{ request()->is(trim($link['url'], '/')) ? 'text-maroon border-b-2 border-maroon' : '' }}"
                         >
-                            {{ $item['label'] }}
+                            {{ $link['label'] }}
                         </a>
-                    @endif
-                @endforeach
-            </nav>
+                    @endforeach
+                </div>
 
-            <!-- Right Utilities Cluster (Search, Account, Cart) -->
-            <div class="flex items-center space-x-3 sm:space-x-4">
-                <!-- Search Button Overlay Trigger -->
+                <!-- Search Button -->
                 <button
                     type="button"
                     x-data
                     x-on:click="$dispatch('open-search')"
-                    aria-label="Search botanical catalogue"
-                    class="p-2 text-primary hover:text-accent hover:bg-surface-raised rounded-full transition duration-250 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+                    class="p-2 text-charcoal hover:text-maroon transition-colors cursor-pointer rounded-full"
+                    aria-label="Search catalog"
                 >
-                    <x-icons.search class="w-5 h-5 stroke-[1.5]" />
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
                 </button>
 
                 <!-- Account Icon -->
                 @auth
                     <a
                         href="/account"
-                        aria-label="Collector account"
-                        class="p-2 text-primary hover:text-accent hover:bg-surface-raised rounded-full transition duration-250 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+                        class="p-2 text-charcoal hover:text-maroon transition-colors rounded-full"
+                        aria-label="Your account"
                     >
-                        <x-icons.user class="w-5 h-5 stroke-[1.5]" />
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
                     </a>
                 @else
                     <a
                         href="{{ route('login') }}"
-                        aria-label="Sign in to collector account"
-                        class="p-2 text-primary hover:text-accent hover:bg-surface-raised rounded-full transition duration-250 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+                        class="p-2 text-charcoal hover:text-maroon transition-colors rounded-full"
+                        aria-label="Sign in"
                     >
-                        <x-icons.user class="w-5 h-5 stroke-[1.5]" />
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
                     </a>
                 @endauth
 
-                <!-- Cart Button with Live Badge -->
-                <a
-                    href="/cart"
-                    aria-label="View shopping bag"
-                    class="relative p-2 text-primary hover:text-accent hover:bg-surface-raised rounded-full transition duration-250 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+                <!-- Cart Button with live counter -->
+                <button
+                    type="button"
+                    x-data
+                    x-on:click="$dispatch('open-cart-drawer')"
+                    class="relative p-2 text-charcoal hover:text-maroon transition-colors cursor-pointer rounded-full"
+                    aria-label="Open cart ({{ $cartCount }} items)"
                 >
-                    <x-icons.bag class="w-5 h-5 stroke-[1.5]" />
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <path d="M16 10a4 4 0 01-8 0" />
+                    </svg>
                     @if ($cartCount > 0)
-                        <span class="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-accent text-[9px] font-bold text-inverse font-sans select-none">
-                            {{ $cartCount }}
+                        <span
+                            class="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-maroon text-ivory text-[10px] font-sans font-semibold flex items-center justify-center animate-scaleIn"
+                        >
+                            {{ $cartCount > 9 ? '9+' : $cartCount }}
                         </span>
                     @endif
-                </a>
+                </button>
             </div>
         </div>
+    </nav>
 
-        <!-- 3. Desktop Collections Mega Panel (Accessible, Keyboard-traversable) -->
-        <div
-            x-show="megaOpen"
-            x-on:mouseenter="openMega()"
-            x-on:mouseleave="closeMegaWithDelay()"
-            x-on:keydown.escape.window="megaOpen = false"
-            x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 -translate-y-2"
-            x-transition:enter-end="opacity-100 translate-y-0"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100 translate-y-0"
-            x-transition:leave-end="opacity-0 -translate-y-2"
-            class="hidden lg:block absolute left-0 top-full w-full bg-surface-card border-b border-hairline shadow-2xl z-30"
-            style="display: none;"
-        >
-            <div class="max-w-content mx-auto px-12 py-10">
-                <div class="grid grid-cols-4 gap-8">
-                    <!-- Collection Tiles -->
-                    <div class="col-span-3 grid grid-cols-3 gap-6">
-                        @foreach ($megaCollections as $category)
-                            <a
-                                href="/collections/{{ $category->slug }}"
-                                class="group flex flex-col p-4 rounded-xl border border-hairline bg-surface-raised/40 hover:border-accent hover:bg-surface-raised transition duration-250"
-                            >
-                                <div class="aspect-[4/3] w-full rounded-lg overflow-hidden bg-surface-raised mb-3 border border-hairline/60">
-                                    @if ($category->image_path)
-                                        <img
-                                            src="{{ $category->image_path }}"
-                                            alt="{{ $category->name }}"
-                                            loading="lazy"
-                                            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                        >
-                                    @else
-                                        <div class="flex h-full w-full items-center justify-center text-muted">
-                                            <x-icons.package class="h-8 w-8" />
-                                        </div>
-                                    @endif
-                                </div>
-
-                                <div class="space-y-1">
-                                    <h4 class="font-serif text-lg font-normal text-primary group-hover:text-accent transition-colors">
-                                        {{ $category->name }}
-                                    </h4>
-                                    <p class="text-caption text-secondary line-clamp-1">
-                                        {{ $category->description ?? 'Single-origin estate terroir.' }}
-                                    </p>
-                                    <span class="text-[11px] font-sans font-semibold text-accent block pt-1">
-                                        {{ $category->products_count }} Rare Lots →
-                                    </span>
-                                </div>
-                            </a>
-                        @endforeach
-                    </div>
-
-                    <!-- Mega Menu Sidebar Benefits & Complete Index Link -->
-                    <div class="border-l border-hairline pl-8 space-y-6 flex flex-col justify-between">
-                        <div class="space-y-4">
-                            <x-eyebrow variant="gold">
-                                The Henley Cellar
-                            </x-eyebrow>
-                            <h4 class="font-serif text-xl font-normal text-primary leading-tight">
-                                High-Elevation Botanical Harvests
-                            </h4>
-                            <ul class="space-y-2.5 text-caption text-secondary">
-                                <li class="flex items-center gap-2">
-                                    <x-icons.leaf class="w-4 h-4 text-sage flex-shrink-0" />
-                                    <span>100% Single-Estate Traceability</span>
-                                </li>
-                                <li class="flex items-center gap-2">
-                                    <x-icons.package class="w-4 h-4 text-gold flex-shrink-0" />
-                                    <span>Sealed in UV-Proof Porcelain Cloches</span>
-                                </li>
-                                <li class="flex items-center gap-2">
-                                    <x-icons.shield-check class="w-4 h-4 text-gold flex-shrink-0" />
-                                    <span>Flushed with Nitrogen at Origin</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="pt-4 border-t border-hairline">
-                            <x-link-button href="/collections" variant="primary" size="sm" trailing-arrow class="w-full">
-                                Browse All Collections
-                            </x-link-button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- 4. Mobile Navigation Slide-Over Drawer -->
+    <!-- ── Mobile Menu Slide-in Drawer ───────────────────── -->
     <div
-        x-show="mobileOpen"
-        x-on:keydown.escape.window="mobileOpen = false"
-        class="lg:hidden relative z-50"
-        role="dialog"
-        aria-modal="true"
+        x-show="mobileMenuOpen"
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 z-50 lg:hidden"
         style="display: none;"
     >
         <!-- Backdrop -->
         <div
-            x-show="mobileOpen"
-            x-transition:enter="ease-out duration-300"
-            x-transition:enter-start="opacity-0"
-            x-transition:enter-end="opacity-100"
-            x-transition:leave="ease-in duration-200"
-            x-transition:leave-start="opacity-100"
-            x-transition:leave-end="opacity-0"
-            x-on:click="mobileOpen = false"
-            class="fixed inset-0 bg-primary/50 backdrop-blur-sm"
+            class="fixed inset-0 bg-charcoal/40 backdrop-blur-xs"
+            x-on:click="mobileMenuOpen = false"
         ></div>
 
-        <!-- Drawer Content from Left -->
-        <div class="fixed inset-y-0 left-0 max-w-xs w-full bg-surface-card shadow-2xl border-r border-hairline flex flex-col justify-between p-6">
-            <div class="space-y-6">
-                <!-- Header -->
-                <div class="flex items-center justify-between pb-6 border-b border-hairline">
-                    <span class="font-serif text-2xl font-normal text-primary tracking-widest">HENLEY</span>
+        <!-- Drawer Panel -->
+        <div
+            x-show="mobileMenuOpen"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="-translate-x-full"
+            x-transition:enter-end="translate-x-0"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="translate-x-0"
+            x-transition:leave-end="-translate-x-full"
+            class="relative w-full max-w-xs bg-ivory h-full shadow-2xl flex flex-col justify-between overflow-y-auto"
+        >
+            <div>
+                <!-- Drawer Header -->
+                <div class="flex items-center justify-between p-5 border-b border-border">
+                    <a href="/" x-on:click="mobileMenuOpen = false">
+                        <img src="/images/brand/logo.png" alt="Henley" class="w-28 h-auto" />
+                    </a>
                     <button
                         type="button"
-                        x-on:click="mobileOpen = false"
-                        aria-label="Close mobile navigation"
-                        class="p-2 text-secondary hover:text-primary rounded-full hover:bg-surface-raised"
+                        x-on:click="mobileMenuOpen = false"
+                        class="p-2 text-charcoal/60 hover:text-charcoal transition-colors cursor-pointer"
+                        aria-label="Close menu"
                     >
-                        <x-icons.close class="w-5 h-5" />
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                            <path d="M18 6L6 18M6 6l12 12" />
+                        </svg>
                     </button>
                 </div>
 
-                <!-- Navigation List -->
-                <nav class="space-y-2" aria-label="Mobile navigation">
-                    @foreach ($menuItems as $item)
-                        @if (! empty($item['has_mega']))
-                            <div x-data="{ openSub: false }" class="py-1">
-                                <button
-                                    type="button"
-                                    x-on:click="openSub = !openSub"
-                                    class="w-full flex items-center justify-between py-2.5 font-sans text-xs uppercase tracking-[0.16em] font-semibold text-primary"
-                                >
-                                    <span>{{ $item['label'] }}</span>
-                                    <x-icons.chevron-down class="w-4 h-4 text-secondary transition-transform duration-200" x-bind:class="{ 'rotate-180 text-accent': openSub }" />
-                                </button>
-                                <div x-show="openSub" class="pl-4 pt-2 space-y-2 border-l border-hairline ml-2">
-                                    @foreach ($megaCollections as $category)
-                                        <a href="/collections/{{ $category->slug }}" class="block text-ui text-secondary hover:text-accent py-1">
-                                            {{ $category->name }}
-                                        </a>
-                                    @endforeach
-                                    <a href="/collections" class="block text-caption font-semibold text-accent pt-1">
-                                        All Collections →
-                                    </a>
-                                </div>
-                            </div>
-                        @else
-                            <a href="{{ $item['url'] }}" class="block py-2.5 font-sans text-xs uppercase tracking-[0.16em] font-semibold text-primary hover:text-accent transition-colors">
-                                {{ $item['label'] }}
-                            </a>
-                        @endif
+                <!-- Drawer Links -->
+                <div class="py-4 px-5 space-y-1">
+                    @foreach ($allNavLinks as $link)
+                        <a
+                            href="{{ $link['url'] }}"
+                            x-on:click="mobileMenuOpen = false"
+                            class="block py-2.5 text-xs font-sans font-medium uppercase tracking-[0.12em] text-charcoal hover:text-maroon transition-colors border-b border-border/40"
+                        >
+                            {{ $link['label'] }}
+                        </a>
                     @endforeach
-                </nav>
+                </div>
             </div>
 
-            <!-- Footer Utilities -->
-            <div class="pt-6 border-t border-hairline space-y-3">
+            <!-- Drawer Footer -->
+            <div class="p-5 border-t border-border bg-sand/30 space-y-3">
+                <p class="text-[11px] font-sans text-charcoal/60">Concierge: +91 800 436 539</p>
                 @auth
-                    <a href="/account" class="flex items-center gap-2 text-ui text-primary hover:text-accent py-2 font-medium">
-                        <x-icons.user class="w-4 h-4" />
-                        <span>My Collector Profile</span>
+                    <a href="/account" class="block text-xs font-sans font-medium uppercase tracking-wider text-maroon">
+                        Your Account →
                     </a>
                 @else
-                    <a href="{{ route('login') }}" class="flex items-center gap-2 text-ui text-primary hover:text-accent py-2 font-medium">
-                        <x-icons.user class="w-4 h-4" />
-                        <span>Collector Sign In</span>
+                    <a href="{{ route('login') }}" class="block text-xs font-sans font-medium uppercase tracking-wider text-maroon">
+                        Sign In / Register →
                     </a>
                 @endauth
-
-                <div class="text-caption text-secondary pt-2">
-                    <p>{{ config('henley.brand.tagline') }}</p>
-                </div>
             </div>
         </div>
     </div>

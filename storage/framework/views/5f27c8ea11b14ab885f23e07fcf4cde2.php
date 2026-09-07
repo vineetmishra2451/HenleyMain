@@ -70,9 +70,14 @@ $items = $posts ?? \App\Models\JournalPost::where('is_published', true)
 <?php unset($__componentOriginal755230460fd16c04121658d92fbf99f7); ?>
 <?php endif; ?>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="flex items-center justify-between md:hidden -mt-6 mb-1">
+                <span class="text-caption text-secondary/70">Swipe field notes →</span>
+            </div>
+
+            <!-- Mobile Horizontal Swipe Scroller & Desktop Grid -->
+            <div class="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-5 pb-4 -mx-5 px-5 sm:mx-0 sm:px-0 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0">
                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <article class="group flex flex-col justify-between rounded-2xl border border-hairline bg-surface-raised/40 overflow-hidden hover:border-muted hover:shadow-hover transition-all duration-350">
+                    <article class="group flex flex-col justify-between rounded-2xl border border-hairline bg-surface-raised/40 overflow-hidden hover:border-muted hover:shadow-hover transition-all duration-350 w-[285px] sm:w-[320px] md:w-auto flex-shrink-0 snap-start">
                         <div>
                             <!-- Cover Image -->
                             <div class="aspect-[16/10] w-full overflow-hidden bg-surface-raised">

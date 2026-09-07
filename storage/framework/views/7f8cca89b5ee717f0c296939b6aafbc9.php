@@ -26,6 +26,27 @@
 <?php $component = $__componentOriginala4c856ce3e5ab381889060ee8ccbf19f; ?>
 <?php unset($__componentOriginala4c856ce3e5ab381889060ee8ccbf19f); ?>
 <?php endif; ?>
+        <?php elseif($type === 'why_henley' || $type === 'why_us' || $type === 'our_promise'): ?>
+            <?php if (isset($component)) { $__componentOriginal3403dd21e96fd2fc699d2b336b2165ca = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal3403dd21e96fd2fc699d2b336b2165ca = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.storefront.sections.why-henley','data' => ['payload' => $payload]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('storefront.sections.why-henley'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['payload' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($payload)]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal3403dd21e96fd2fc699d2b336b2165ca)): ?>
+<?php $attributes = $__attributesOriginal3403dd21e96fd2fc699d2b336b2165ca; ?>
+<?php unset($__attributesOriginal3403dd21e96fd2fc699d2b336b2165ca); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal3403dd21e96fd2fc699d2b336b2165ca)): ?>
+<?php $component = $__componentOriginal3403dd21e96fd2fc699d2b336b2165ca; ?>
+<?php unset($__componentOriginal3403dd21e96fd2fc699d2b336b2165ca); ?>
+<?php endif; ?>
         <?php elseif($type === 'trust_strip' || $type === 'pillars'): ?>
             <?php if (isset($component)) { $__componentOriginal6526faa22541223df006a51b3fd04e56 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal6526faa22541223df006a51b3fd04e56 = $attributes; } ?>
@@ -172,6 +193,48 @@
 <?php if (isset($__componentOriginal87a1e69e47e36cbd23c5d85423d339e7)): ?>
 <?php $component = $__componentOriginal87a1e69e47e36cbd23c5d85423d339e7; ?>
 <?php unset($__componentOriginal87a1e69e47e36cbd23c5d85423d339e7); ?>
+<?php endif; ?>
+        <?php elseif($type === 'brewing_ritual' || $type === 'ritual' || $type === 'brewing_experience'): ?>
+            <?php if (isset($component)) { $__componentOriginalc40c95d44d20dcb03460ef7a3a64a2f8 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalc40c95d44d20dcb03460ef7a3a64a2f8 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.storefront.sections.brewing-ritual','data' => ['payload' => $payload]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('storefront.sections.brewing-ritual'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['payload' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($payload)]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalc40c95d44d20dcb03460ef7a3a64a2f8)): ?>
+<?php $attributes = $__attributesOriginalc40c95d44d20dcb03460ef7a3a64a2f8; ?>
+<?php unset($__attributesOriginalc40c95d44d20dcb03460ef7a3a64a2f8); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc40c95d44d20dcb03460ef7a3a64a2f8)): ?>
+<?php $component = $__componentOriginalc40c95d44d20dcb03460ef7a3a64a2f8; ?>
+<?php unset($__componentOriginalc40c95d44d20dcb03460ef7a3a64a2f8); ?>
+<?php endif; ?>
+        <?php elseif($type === 'reviews' || $type === 'customer_reviews' || $type === 'testimonials'): ?>
+            <?php if (isset($component)) { $__componentOriginal2ba35339868a4244137fef4f93dcf2fe = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal2ba35339868a4244137fef4f93dcf2fe = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.storefront.sections.reviews','data' => ['payload' => $payload,'reviews' => $reviews]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('storefront.sections.reviews'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['payload' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($payload),'reviews' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($reviews)]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal2ba35339868a4244137fef4f93dcf2fe)): ?>
+<?php $attributes = $__attributesOriginal2ba35339868a4244137fef4f93dcf2fe; ?>
+<?php unset($__attributesOriginal2ba35339868a4244137fef4f93dcf2fe); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal2ba35339868a4244137fef4f93dcf2fe)): ?>
+<?php $component = $__componentOriginal2ba35339868a4244137fef4f93dcf2fe; ?>
+<?php unset($__componentOriginal2ba35339868a4244137fef4f93dcf2fe); ?>
 <?php endif; ?>
         <?php elseif($type === 'newsletter_band'): ?>
             <?php if (isset($component)) { $__componentOriginaldb6056b4ab3b6e77a46ac253eb8471af = $component; } ?>

@@ -76,7 +76,7 @@ class Register extends Component
             'is_active' => true,
         ]);
 
-        $user->assignRole('customer');
+        $user->assignRole(['Customer', 'customer']);
 
         // Create Customer profile
         Customer::create([

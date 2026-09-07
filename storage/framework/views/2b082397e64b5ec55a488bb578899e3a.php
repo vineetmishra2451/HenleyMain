@@ -41,7 +41,7 @@ $items = $payload['items'] ?? [
 ];
 ?>
 
-<section class="w-full bg-canvas py-4">
+<section class="hidden md:block w-full bg-canvas py-4">
     <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12">
         <?php if (isset($component)) { $__componentOriginalc8fe47964b6860ca74311e76ddf4ded8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc8fe47964b6860ca74311e76ddf4ded8 = $attributes; } ?>

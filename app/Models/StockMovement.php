@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\StockMovementReason;
+use App\Models\Scopes\VendorScope;
 use Database\Factories\StockMovementFactory;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -19,6 +21,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $quantity_delta
  * @property int $balance_after
  */
+#[ScopedBy([VendorScope::class])]
 class StockMovement extends Model
 {
     /** @use HasFactory<StockMovementFactory> */

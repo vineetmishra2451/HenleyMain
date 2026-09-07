@@ -25,29 +25,27 @@ class VendorPanelProvider extends PanelProvider
     {
         return $panel
             ->id('vendor')
-            ->path('vendor')
-            ->login(\App\Filament\Pages\Auth\Login::class)
-            ->brandName('Henley — Estate & Vendor Portal')
+            ->path('/')
+            ->domain(config('domains.vendor', 'vendor.henley.com') ?: 'vendor.henley.com')
+            ->brandName('Henley — Vendor')
             ->brandLogo(fn () => view('filament.vendor.logo'))
             ->favicon('/favicon.ico')
             ->colors([
-                'primary' => Color::hex('#7F8A6E'), // Botanical Sage
-                'secondary' => Color::hex('#5C2225'), // Oxblood
-                'warning' => Color::Amber,
-                'success' => Color::Emerald,
-                'danger' => Color::Rose,
-                'info' => Color::Sky,
-                'gray' => Color::hex('#6E635B'),
+                'primary' => Color::hex('#4B1421'),
             ])
+            ->login(\App\Filament\Pages\Auth\Login::class)
+            ->passwordReset()
+            ->authGuard('web')
             ->discoverResources(in: app_path('Filament/Vendor/Resources'), for: 'App\\Filament\\Vendor\\Resources')
             ->discoverPages(in: app_path('Filament/Vendor/Pages'), for: 'App\\Filament\\Vendor\\Pages')
-            ->pages([
-                Pages\Dashboard::class,
-            ])
             ->discoverWidgets(in: app_path('Filament/Vendor/Widgets'), for: 'App\\Filament\\Vendor\\Widgets')
-            ->widgets([
-                Widgets\AccountWidget::class,
+            ->pages([
+                \App\Filament\Vendor\Pages\Dashboard::class,
             ])
+            ->navigationGroups([
+                'Sales',
+            ])
+            ->widgets([])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

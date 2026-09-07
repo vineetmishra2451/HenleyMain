@@ -28,6 +28,7 @@ class Address extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'customer_id',
         'recipient_name',
         'phone',
@@ -54,6 +55,14 @@ class Address extends Model
             'latitude' => 'decimal:7',
             'longitude' => 'decimal:7',
         ];
+    }
+
+    /**
+     * @return BelongsTo<User, $this>
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
     /**

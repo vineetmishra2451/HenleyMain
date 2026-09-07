@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Scopes\VendorScope;
 use Database\Factories\InventoryFactory;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $low_stock_threshold
  * @property string|null $warehouse_location
  */
+#[ScopedBy([VendorScope::class])]
 class Inventory extends Model
 {
     /** @use HasFactory<InventoryFactory> */

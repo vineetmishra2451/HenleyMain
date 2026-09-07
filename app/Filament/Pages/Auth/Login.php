@@ -109,6 +109,9 @@ class Login extends BaseLogin
                 $user->save();
             }
 
+            $user->last_login_at = now();
+            $user->saveQuietly();
+
             activity('auth')
                 ->causedBy($user)
                 ->withProperties([

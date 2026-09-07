@@ -8,6 +8,8 @@ use App\Enums\OrderStatus;
 use App\Enums\PaymentStatus;
 use App\Support\Money;
 use Database\Factories\OrderFactory;
+use App\Models\Scopes\VendorScope;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -30,6 +32,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property array<string, mixed> $shipping_address
  * @property array<string, mixed> $billing_address
  */
+#[ScopedBy([VendorScope::class])]
 class Order extends Model
 {
     /** @use HasFactory<OrderFactory> */

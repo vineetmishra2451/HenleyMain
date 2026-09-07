@@ -12,6 +12,14 @@ export default {
         // Base canvas & surfaces
         canvas: '#FBF9F6',
         page: '#FBF9F6',
+        ivory: '#F7F2E7',
+        sand: '#EFE6D3',
+        charcoal: '#221A17',
+        terracotta: '#A85D3F',
+        maroon: {
+          DEFAULT: '#4B1421',
+          dark: '#34090F',
+        },
         surface: {
           DEFAULT: '#FBF9F6',
           raised: '#F5F3EF',
@@ -19,7 +27,7 @@ export default {
           dark: '#1D1714',
         },
         // Typography colors
-        primary: '#231C18',
+        primary: '#221A17',
         secondary: '#6E635B',
         muted: '#8E8278',
         inverse: '#FBF9F6',

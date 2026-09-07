@@ -54,6 +54,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail, Two
         'role',
         'vendor_id',
         'is_active',
+        'last_login_at',
         'two_factor_secret',
         'two_factor_recovery_codes',
         'two_factor_confirmed_at',
@@ -76,6 +77,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail, Two
     {
         return [
             'email_verified_at' => 'datetime',
+            'last_login_at' => 'datetime',
             'password' => 'hashed',
             'role' => UserRole::class,
             'is_active' => 'boolean',
@@ -143,6 +145,16 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail, Two
     }
 
     /**
+     * Customer Saved Addresses.
+     *
+     * @return HasMany<Address, $this>
+     */
+    public function addresses(): HasMany
+    {
+        return $this->hasMany(Address::class);
+    }
+
+    /**
      * Determine if user can access a Filament panel.
      */
     public function canAccessPanel(Panel $panel): bool
@@ -152,13 +164,15 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail, Two
         }
 
         if ($panel->getId() === 'admin') {
-            return $this->hasRole(['super_admin', 'admin'])
-                || ($this->role === UserRole::SUPER_ADMIN || $this->role === UserRole::ADMIN);
+            return ($this->hasRole(['super_admin', 'admin', 'Super Admin', 'Admin'])
+                || $this->role === UserRole::SUPER_ADMIN || $this->role === UserRole::ADMIN)
+                && ! ($this->hasRole(['vendor', 'Vendor']) && ! $this->hasRole(['super_admin', 'admin', 'Super Admin', 'Admin']));
         }
 
         if ($panel->getId() === 'vendor') {
-            return $this->hasRole(['vendor', 'super_admin'])
-                || ($this->role === UserRole::VENDOR || $this->role === UserRole::SUPER_ADMIN);
+            return ($this->hasRole(['vendor', 'Vendor']) || $this->role === UserRole::VENDOR)
+                && ! empty($this->vendor_id)
+                && ! $this->hasRole(['super_admin', 'admin', 'Super Admin', 'Admin']);
         }
 
         return false;

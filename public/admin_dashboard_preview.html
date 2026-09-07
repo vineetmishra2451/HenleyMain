@@ -1,0 +1,2623 @@
+<!DOCTYPE html>
+<html
+    lang="en"
+    dir="ltr"
+    class="fi"
+>
+    <head>
+        
+
+        <meta charset="utf-8" />
+        <meta name="csrf-token" content="UsoXYFhwMke6DyYN4V4o0sQXTFro8Nl8NRu7sIfk" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+                    <link rel="icon" href="/favicon.ico" />
+        
+        
+        <title>
+            Executive Dashboard
+             - 
+            Henley — Admin
+        </title>
+
+        
+
+        <style>
+            [x-cloak=''],
+            [x-cloak='x-cloak'],
+            [x-cloak='1'] {
+                display: none !important;
+            }
+
+            [x-cloak='inline-flex'] {
+                display: inline-flex !important;
+            }
+
+            @media (max-width: 1023px) {
+                [x-cloak='-lg'] {
+                    display: none !important;
+                }
+            }
+
+            @media (min-width: 1024px) {
+                [x-cloak='lg'] {
+                    display: none !important;
+                }
+            }
+        </style>
+
+        <link
+            href="/fonts/filament/filament/inter/index.css?v=4.12.6.0"
+            rel="stylesheet"
+            data-navigate-track
+        />
+    
+<style>
+    :root {
+         --danger-50:oklch(0.971 0.013 17.38);  --danger-100:oklch(0.936 0.032 17.717);  --danger-200:oklch(0.885 0.062 18.334);  --danger-300:oklch(0.808 0.114 19.571);  --danger-400:oklch(0.704 0.191 22.216);  --danger-500:oklch(0.637 0.237 25.331);  --danger-600:oklch(0.577 0.245 27.325);  --danger-700:oklch(0.505 0.213 27.518);  --danger-800:oklch(0.444 0.177 26.899);  --danger-900:oklch(0.396 0.141 25.723);  --danger-950:oklch(0.258 0.092 26.042);  --gray-50:oklch(0.985 0 0);  --gray-100:oklch(0.967 0.001 286.375);  --gray-200:oklch(0.92 0.004 286.32);  --gray-300:oklch(0.871 0.006 286.286);  --gray-400:oklch(0.705 0.015 286.067);  --gray-500:oklch(0.552 0.016 285.938);  --gray-600:oklch(0.442 0.017 285.786);  --gray-700:oklch(0.37 0.013 285.805);  --gray-800:oklch(0.274 0.006 286.033);  --gray-900:oklch(0.21 0.006 285.885);  --gray-950:oklch(0.141 0.005 285.823);  --info-50:oklch(0.97 0.014 254.604);  --info-100:oklch(0.932 0.032 255.585);  --info-200:oklch(0.882 0.059 254.128);  --info-300:oklch(0.809 0.105 251.813);  --info-400:oklch(0.707 0.165 254.624);  --info-500:oklch(0.623 0.214 259.815);  --info-600:oklch(0.546 0.245 262.881);  --info-700:oklch(0.488 0.243 264.376);  --info-800:oklch(0.424 0.199 265.638);  --info-900:oklch(0.379 0.146 265.522);  --info-950:oklch(0.282 0.091 267.935);  --primary-50:oklch(0.97717647058824 0.01395454545455 9.902);  --primary-100:oklch(0.95035294117647 0.03272727272727 9.902);  --primary-200:oklch(0.90547058823529 0.06318181818182 9.902);  --primary-300:oklch(0.84047058823529 0.10604545454546 9.902);  --primary-400:oklch(0.75352941176471 0.15027272727273 9.902);  --primary-500:oklch(0.68270588235294 0.17009090909091 9.902);  --primary-600:oklch(0.59782352941176 0.16913636363636 9.902);  --primary-700:oklch(0.51494117647059 0.14940909090909 9.902);  --primary-800:oklch(0.44611764705882 0.12331818181818 9.902);  --primary-900:oklch(0.39458823529412 0.09963636363636 9.902);  --primary-950:oklch(0.27788235294118 0.07136363636364 9.902);  --success-50:oklch(0.982 0.018 155.826);  --success-100:oklch(0.962 0.044 156.743);  --success-200:oklch(0.925 0.084 155.995);  --success-300:oklch(0.871 0.15 154.449);  --success-400:oklch(0.792 0.209 151.711);  --success-500:oklch(0.723 0.219 149.579);  --success-600:oklch(0.627 0.194 149.214);  --success-700:oklch(0.527 0.154 150.069);  --success-800:oklch(0.448 0.119 151.328);  --success-900:oklch(0.393 0.095 152.535);  --success-950:oklch(0.266 0.065 152.934);  --warning-50:oklch(0.987 0.022 95.277);  --warning-100:oklch(0.962 0.059 95.617);  --warning-200:oklch(0.924 0.12 95.746);  --warning-300:oklch(0.879 0.169 91.605);  --warning-400:oklch(0.828 0.189 84.429);  --warning-500:oklch(0.769 0.188 70.08);  --warning-600:oklch(0.666 0.179 58.318);  --warning-700:oklch(0.555 0.163 48.998);  --warning-800:oklch(0.473 0.137 46.201);  --warning-900:oklch(0.414 0.112 45.904);  --warning-950:oklch(0.279 0.077 45.635);     }
+
+    </style>
+
+        <link
+            href="/css/filament/filament/app.css?v=4.12.6.0"
+            rel="stylesheet"
+            data-navigate-track
+        />
+        <link rel="preload" href="/fonts/filament/filament/inter/inter-latin-wght-normal-NRMW37G5.woff2" as="font" type="font/woff2" crossorigin />
+
+        
+        
+        
+        
+        
+
+        <style>
+            :root {
+                --font-family: 'Inter Variable';
+                --mono-font-family: 'ui-monospace';
+                --serif-font-family: 'ui-serif';
+                --sidebar-width: 20rem;
+                --collapsed-sidebar-width: 4.5rem;
+                --default-theme-mode: system;
+            }
+
+            html.fi {
+                --livewire-progress-bar-color: var(--primary-500);
+            }
+        </style>
+
+        
+        
+
+                    <script>
+                const loadDarkMode = () => {
+                    window.theme = localStorage.getItem('theme') ?? 'system'
+                    if (
+                        window.theme === 'dark' ||
+                        (window.theme === 'system' &&
+                            window.matchMedia('(prefers-color-scheme: dark)')
+                                .matches)
+                    ) {
+                        document.documentElement.classList.add('dark')
+                    }
+                }
+
+                loadDarkMode()
+
+                document.addEventListener('livewire:navigated', loadDarkMode)
+            </script>
+        
+        
+    <!-- Livewire Styles --><style >[wire\:loading][wire\:loading], [wire\:loading\.delay][wire\:loading\.delay], [wire\:loading\.inline-block][wire\:loading\.inline-block], [wire\:loading\.inline][wire\:loading\.inline], [wire\:loading\.block][wire\:loading\.block], [wire\:loading\.flex][wire\:loading\.flex], [wire\:loading\.table][wire\:loading\.table], [wire\:loading\.grid][wire\:loading\.grid], [wire\:loading\.inline-flex][wire\:loading\.inline-flex] {display: none;}[wire\:loading\.delay\.none][wire\:loading\.delay\.none], [wire\:loading\.delay\.shortest][wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter][wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short][wire\:loading\.delay\.short], [wire\:loading\.delay\.default][wire\:loading\.delay\.default], [wire\:loading\.delay\.long][wire\:loading\.delay\.long], [wire\:loading\.delay\.longer][wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest][wire\:loading\.delay\.longest] {display: none;}[wire\:offline][wire\:offline] {display: none;}[wire\:dirty]:not(textarea):not(input):not(select) {display: none;}:root {--livewire-progress-bar-color: #2299dd;}[x-cloak] {display: none !important;}[wire\:cloak] {display: none !important;}dialog#livewire-error::backdrop {background-color: rgba(0, 0, 0, .6);}</style>
+</head>
+
+    <body
+        class="fi-body fi-panel-admin fi-body-has-navigation fi-body-has-topbar"
+    >
+        
+
+        <a href="#fi-main-content" class="fi-skip-link fi-sr-only">
+        Skip to content
+    </a>
+
+            
+
+        <div wire:snapshot="{&quot;data&quot;:{&quot;mountedActions&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;defaultAction&quot;:null,&quot;defaultActionArguments&quot;:null,&quot;defaultActionContext&quot;:null,&quot;defaultTableAction&quot;:null,&quot;defaultTableActionRecord&quot;:null,&quot;defaultTableActionArguments&quot;:null,&quot;componentFileAttachments&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;areSchemaStateUpdateHooksDisabledForTesting&quot;:false,&quot;discoveredSchemaNames&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;2DvwyC9RGYctxkrpGe7d&quot;,&quot;name&quot;:&quot;filament.livewire.topbar&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;release&quot;:&quot;a-a-a&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;0aabc44211b9222f34eba5ae38573ef23efd34494813de002de0cbd94d1c3156&quot;}" wire:effects="{&quot;partials&quot;:[],&quot;url&quot;:{&quot;defaultAction&quot;:{&quot;as&quot;:&quot;action&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultActionArguments&quot;:{&quot;as&quot;:&quot;actionArguments&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultActionContext&quot;:{&quot;as&quot;:&quot;actionContext&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableAction&quot;:{&quot;as&quot;:&quot;tableAction&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableActionRecord&quot;:{&quot;as&quot;:&quot;tableActionRecord&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableActionArguments&quot;:{&quot;as&quot;:&quot;tableActionArguments&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null}},&quot;listeners&quot;:[&quot;refresh-topbar&quot;]}" wire:id="2DvwyC9RGYctxkrpGe7d" class="fi-topbar-ctn">
+    
+    <nav
+        aria-label="Topbar"
+        class="fi-topbar"
+    >
+        
+
+        <!--[if BLOCK]><![endif]-->            <button
+                class="fi-icon-btn fi-size-md fi-topbar-open-sidebar-btn" title="Expand sidebar" aria-label="Expand sidebar" type="button" wire:loading.attr="disabled" x-cloak="x-cloak" x-data="{}" aria-controls="fi-main-sidebar" x-bind:aria-expanded="$store.sidebar.isOpen" x-on:click="$store.sidebar.open()" x-show="! $store.sidebar.isOpen"
+>
+    <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+</svg>
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></button>
+
+            <button
+                class="fi-icon-btn fi-size-md fi-topbar-close-sidebar-btn" title="Collapse sidebar" aria-label="Collapse sidebar" type="button" wire:loading.attr="disabled" x-cloak="x-cloak" x-data="{}" aria-controls="fi-main-sidebar" x-bind:aria-expanded="$store.sidebar.isOpen" x-on:click="$store.sidebar.close()" x-show="$store.sidebar.isOpen"
+>
+    <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+</svg>
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></button>
+        <!--[if ENDBLOCK]><![endif]-->
+        <div class="fi-topbar-start">
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            
+
+            <!--[if BLOCK]><![endif]-->                <a href="http://admin.henley.com">
+                    <!--[if BLOCK]><![endif]-->        <div
+            style="height: 1.5rem;" class="fi-logo"
+        >
+            <div class="flex items-center gap-2.5">
+    <span class="font-bold text-xl tracking-[0.2em] font-serif text-[#4B1421] dark:text-rose-200 select-none">HENLEY</span>
+    <span class="text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700">Admin</span>
+</div>
+
+        </div>
+    <!--[if ENDBLOCK]><![endif]-->
+            
+
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                </a>
+            <!--[if ENDBLOCK]><![endif]-->
+            
+        </div>
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+        <div
+                            x-persist="topbar.end.panel-admin"
+                        class="fi-topbar-end"
+        >
+            
+
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            
+
+            <!--[if BLOCK]><![endif]-->                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                <!--[if BLOCK]><![endif]-->                    <div
+    x-data="filamentDropdown"
+    class="fi-dropdown fi-user-menu"
+>
+    <div
+        x-on:keyup.enter="toggle($event)"
+        x-on:keyup.space="toggle($event)"
+        x-on:mousedown="if ($event.button === 0) toggle($event)"
+        class="fi-dropdown-trigger"
+    >
+        <!--[if BLOCK]><![endif]-->            <button
+                aria-label="User menu"
+                type="button"
+                class="fi-user-menu-trigger"
+            >
+                <img
+    alt="Avatar of Henley Super Admin"
+    class="fi-avatar fi-circular fi-size-md fi-user-avatar" src="https://ui-avatars.com/api/?name=H+S+A&amp;format=svg&amp;color=FFFFFF&amp;background=%2309090b" loading="lazy"
+/>
+            </button>
+        <!--[if ENDBLOCK]><![endif]-->
+    </div>
+
+    <!--[if BLOCK]><![endif]-->        <div
+            x-cloak
+            x-float.placement.bottom-end.flip.teleport.offset="{ offset: 8,  }"
+            x-ref="panel"
+            x-transition:enter-start="fi-opacity-0"
+            x-transition:leave-end="fi-opacity-0"
+                        class="fi-dropdown-panel "
+            style=""
+        >
+            <!--[if BLOCK]><![endif]-->        
+        
+
+        <div
+    class="fi-dropdown-header"
+>
+    <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-5.5-2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM10 12a5.99 5.99 0 0 0-4.793 2.39A6.483 6.483 0 0 0 10 16.5a6.483 6.483 0 0 0 4.793-2.11A5.99 5.99 0 0 0 10 12Z" clip-rule="evenodd"/>
+</svg>
+
+    <span>
+        Henley Super Admin
+    </span>
+</div>
+
+        
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <div class="fi-dropdown-list">
+    <div
+    x-data="{ theme: null }"
+    x-init="
+        $watch('theme', () => {
+            $dispatch('theme-changed', theme)
+        })
+
+        theme = localStorage.getItem('theme') || 'system'    "
+    role="group"
+    aria-label="Theme"
+    class="fi-theme-switcher"
+>
+    <button
+    aria-label="Enable light theme"
+    type="button"
+    x-on:click="(theme = 'light') && close()"
+    x-tooltip="{
+        content: 'Enable light theme',
+        theme: $store.theme,
+    }"
+    x-bind:aria-pressed="theme === 'light' ? 'true' : 'false'"
+    x-bind:class="{ 'fi-active': theme === 'light' }"
+    class="fi-theme-switcher-btn"
+>
+    <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path d="M10 2a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 2ZM10 15a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 10 15ZM10 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM15.657 5.404a.75.75 0 1 0-1.06-1.06l-1.061 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM6.464 14.596a.75.75 0 1 0-1.06-1.06l-1.06 1.06a.75.75 0 0 0 1.06 1.06l1.06-1.06ZM18 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 18 10ZM5 10a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5A.75.75 0 0 1 5 10ZM14.596 15.657a.75.75 0 0 0 1.06-1.06l-1.06-1.061a.75.75 0 1 0-1.06 1.06l1.06 1.06ZM5.404 6.464a.75.75 0 0 0 1.06-1.06l-1.06-1.06a.75.75 0 1 0-1.061 1.06l1.06 1.06Z"/>
+</svg>
+</button>
+
+    <button
+    aria-label="Enable dark theme"
+    type="button"
+    x-on:click="(theme = 'dark') && close()"
+    x-tooltip="{
+        content: 'Enable dark theme',
+        theme: $store.theme,
+    }"
+    x-bind:aria-pressed="theme === 'dark' ? 'true' : 'false'"
+    x-bind:class="{ 'fi-active': theme === 'dark' }"
+    class="fi-theme-switcher-btn"
+>
+    <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M7.455 2.004a.75.75 0 0 1 .26.77 7 7 0 0 0 9.958 7.967.75.75 0 0 1 1.067.853A8.5 8.5 0 1 1 6.647 1.921a.75.75 0 0 1 .808.083Z" clip-rule="evenodd"/>
+</svg>
+</button>
+
+    <button
+    aria-label="Enable system theme"
+    type="button"
+    x-on:click="(theme = 'system') && close()"
+    x-tooltip="{
+        content: 'Enable system theme',
+        theme: $store.theme,
+    }"
+    x-bind:aria-pressed="theme === 'system' ? 'true' : 'false'"
+    x-bind:class="{ 'fi-active': theme === 'system' }"
+    class="fi-theme-switcher-btn"
+>
+    <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M2 4.25A2.25 2.25 0 0 1 4.25 2h11.5A2.25 2.25 0 0 1 18 4.25v8.5A2.25 2.25 0 0 1 15.75 15h-3.105a3.501 3.501 0 0 0 1.1 1.677A.75.75 0 0 1 13.26 18H6.74a.75.75 0 0 1-.484-1.323A3.501 3.501 0 0 0 7.355 15H4.25A2.25 2.25 0 0 1 2 12.75v-8.5Zm1.5 0a.75.75 0 0 1 .75-.75h11.5a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-.75.75H4.25a.75.75 0 0 1-.75-.75v-7.5Z" clip-rule="evenodd"/>
+</svg>
+</button>
+</div>
+</div>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <div class="fi-dropdown-list">
+    <!--[if BLOCK]><![endif]-->                <!--[if BLOCK]><![endif]-->                    
+        <form action="/logout" method="post"><input type="hidden" name="_token" value="UsoXYFhwMke6DyYN4V4o0sQXTFro8Nl8NRu7sIfk" autocomplete="off">
+        <button                                                type="submit" class="fi-dropdown-list-item"        >
+            <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M3 4.25A2.25 2.25 0 0 1 5.25 2h5.5A2.25 2.25 0 0 1 13 4.25v2a.75.75 0 0 1-1.5 0v-2a.75.75 0 0 0-.75-.75h-5.5a.75.75 0 0 0-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 0 0 .75-.75v-2a.75.75 0 0 1 1.5 0v2A2.25 2.25 0 0 1 10.75 18h-5.5A2.25 2.25 0 0 1 3 15.75V4.25Z" clip-rule="evenodd"/>
+  <path fill-rule="evenodd" d="M19 10a.75.75 0 0 0-.75-.75H8.704l1.048-.943a.75.75 0 1 0-1.004-1.114l-2.5 2.25a.75.75 0 0 0 0 1.114l2.5 2.25a.75.75 0 1 0 1.004-1.114l-1.048-.943h9.546A.75.75 0 0 0 19 10Z" clip-rule="evenodd"/>
+</svg>            
+            <span class="fi-dropdown-list-item-label">
+                Sign out            </span>
+
+                    </button>
+
+        </form>
+        
+                <!--[if ENDBLOCK]><![endif]-->            <!--[if ENDBLOCK]><![endif]-->
+</div>
+    <!--[if ENDBLOCK]><![endif]-->
+        </div>
+    <!--[if ENDBLOCK]><![endif]--></div>
+
+
+                <!--[if ENDBLOCK]><![endif]-->            <!--[if ENDBLOCK]><![endif]-->        </div>
+
+        
+    </nav>
+
+    <!--[if BLOCK]><![endif]-->    <div
+        wire:partial="action-modals"
+        x-data="filamentActionModals({
+                    livewireId: '2DvwyC9RGYctxkrpGe7d',
+                })"
+        style="height: 0"
+    >
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if ENDBLOCK]><![endif]--></div>
+
+        
+    
+    <div class="fi-layout">
+        
+
+                    <div
+                x-cloak
+                x-data="{}"
+                x-on:click="$store.sidebar.close()"
+                x-show="$store.sidebar.isOpen"
+                x-transition.opacity.300ms
+                class="fi-sidebar-close-overlay"
+            ></div>
+
+            <div wire:snapshot="{&quot;data&quot;:{&quot;mountedActions&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;defaultAction&quot;:null,&quot;defaultActionArguments&quot;:null,&quot;defaultActionContext&quot;:null,&quot;defaultTableAction&quot;:null,&quot;defaultTableActionRecord&quot;:null,&quot;defaultTableActionArguments&quot;:null,&quot;componentFileAttachments&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;areSchemaStateUpdateHooksDisabledForTesting&quot;:false,&quot;discoveredSchemaNames&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;ho2eG4Dgde9CsOMJNrL1&quot;,&quot;name&quot;:&quot;filament.livewire.sidebar&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;release&quot;:&quot;a-a-a&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;06e5049d61775a44dc1c24db96ae9cfa867e1bc6fce71cab18f45bd87cda6007&quot;}" wire:effects="{&quot;partials&quot;:[],&quot;url&quot;:{&quot;defaultAction&quot;:{&quot;as&quot;:&quot;action&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultActionArguments&quot;:{&quot;as&quot;:&quot;actionArguments&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultActionContext&quot;:{&quot;as&quot;:&quot;actionContext&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableAction&quot;:{&quot;as&quot;:&quot;tableAction&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableActionRecord&quot;:{&quot;as&quot;:&quot;tableActionRecord&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableActionArguments&quot;:{&quot;as&quot;:&quot;tableActionArguments&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null}},&quot;listeners&quot;:[&quot;refresh-sidebar&quot;]}" wire:id="ho2eG4Dgde9CsOMJNrL1">
+    
+    
+    <div
+        x-data="{}"
+                    x-cloak="-lg"
+                x-bind:class="{ 'fi-sidebar-open': $store.sidebar.isOpen }"
+        id="fi-main-sidebar"
+        class="fi-sidebar fi-main-sidebar"
+    >
+        
+
+        <div class="fi-sidebar-header-ctn">
+            <header
+                class="fi-sidebar-header"
+            >
+                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                
+
+                <div
+                                        class="fi-sidebar-header-logo-ctn"
+                >
+                    <!--[if BLOCK]><![endif]-->                        <a href="http://admin.henley.com">
+                            <!--[if BLOCK]><![endif]-->        <div
+            style="height: 1.5rem;" class="fi-logo"
+        >
+            <div class="flex items-center gap-2.5">
+    <span class="font-bold text-xl tracking-[0.2em] font-serif text-[#4B1421] dark:text-rose-200 select-none">HENLEY</span>
+    <span class="text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700">Admin</span>
+</div>
+
+        </div>
+    <!--[if ENDBLOCK]><![endif]-->
+            
+
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                        </a>
+                    <!--[if ENDBLOCK]><![endif]-->                </div>
+
+                
+            </header>
+        </div>
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+        <nav
+            aria-label="Sidebar navigation"
+            class="fi-sidebar-nav"
+        >
+            
+
+            <ul class="fi-sidebar-nav-groups">
+                <!--[if BLOCK]><![endif]-->                    
+                    <li
+    x-data="{ label: null }"
+    data-group-label=""
+    x-bind:class="{ 'fi-collapsed': $store.sidebar.groupIsCollapsed(label) }"
+    class="fi-sidebar-group fi-active fi-collapsible"
+>
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <ul
+                        class="fi-sidebar-group-items"
+    >
+        <!--[if BLOCK]><![endif]-->            
+            <li
+    class="fi-sidebar-item fi-active fi-sidebar-item-has-url"
+>
+    <a
+        href="http://admin.henley.com"
+                    aria-current="page"
+                x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()"
+                class="fi-sidebar-item-btn"
+    >
+        <!--[if BLOCK]><![endif]-->            <svg class="fi-sidebar-item-icon fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
+</svg>
+        <!--[if ENDBLOCK]><![endif]-->
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+        <span
+                        class="fi-sidebar-item-label"
+        >
+            Executive Dashboard
+
+                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+        </span>
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </a>
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></li>
+        <!--[if ENDBLOCK]><![endif]-->    </ul>
+</li>
+                <!--[if ENDBLOCK]><![endif]-->            </ul>
+
+            <script>
+                var collapsedGroups = JSON.parse(
+                    localStorage.getItem('collapsedGroups'),
+                )
+
+                if (collapsedGroups === null || collapsedGroups === 'null') {
+                    localStorage.setItem(
+                        'collapsedGroups',
+                        JSON.stringify([]),
+                    )
+                }
+
+                collapsedGroups = JSON.parse(
+                    localStorage.getItem('collapsedGroups'),
+                )
+
+                document
+                    .querySelectorAll('.fi-sidebar-group')
+                    .forEach((group) => {
+                        if (
+                            !collapsedGroups.includes(group.dataset.groupLabel)
+                        ) {
+                            return
+                        }
+
+                        // Alpine.js loads too slow, so attempt to hide a
+                        // collapsed sidebar group earlier.
+                        group.querySelector(
+                            '.fi-sidebar-group-items',
+                        ).style.display = 'none'
+                        group.classList.add('fi-collapsed')
+                    })
+            </script>
+
+            
+        </nav>
+
+        
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+        
+    </div>
+    
+
+    <!--[if BLOCK]><![endif]-->    <div
+        wire:partial="action-modals"
+        x-data="filamentActionModals({
+                    livewireId: 'ho2eG4Dgde9CsOMJNrL1',
+                })"
+        style="height: 0"
+    >
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if ENDBLOCK]><![endif]--></div>
+        
+        <div
+                            x-data="{}"
+                x-bind:style="'display: flex; opacity:1;'" 
+                        class="fi-main-ctn"
+        >
+            
+
+            <main
+                id="fi-main-content"
+                tabindex="-1"
+                class="fi-main fi-width-7xl"
+            >
+                
+
+                <div wire:snapshot="{&quot;data&quot;:{&quot;mountedActions&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;defaultAction&quot;:null,&quot;defaultActionArguments&quot;:null,&quot;defaultActionContext&quot;:null,&quot;defaultTableAction&quot;:null,&quot;defaultTableActionRecord&quot;:null,&quot;defaultTableActionArguments&quot;:null,&quot;componentFileAttachments&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;areSchemaStateUpdateHooksDisabledForTesting&quot;:false,&quot;discoveredSchemaNames&quot;:[[&quot;content&quot;,&quot;headerWidgets&quot;,&quot;footerWidgets&quot;],{&quot;s&quot;:&quot;arr&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;8aK2MSEC8Iwm5eSu9hR4&quot;,&quot;name&quot;:&quot;app.filament.admin.pages.dashboard&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;release&quot;:&quot;a-a-a&quot;,&quot;children&quot;:{&quot;8aK2MSEC8Iwm5eSu9hR4.content.App\\Filament\\Admin\\Widgets\\SalesOverviewChartWidget-0&quot;:[&quot;div&quot;,&quot;3W4PyGMAlCnhxadYZifM&quot;],&quot;8aK2MSEC8Iwm5eSu9hR4.content.App\\Filament\\Admin\\Widgets\\ExecutiveStatsOverviewWidget-1&quot;:[&quot;div&quot;,&quot;XtmHRwtNV1ltRCJaXQ69&quot;],&quot;8aK2MSEC8Iwm5eSu9hR4.content.App\\Filament\\Admin\\Widgets\\OrdersOverviewWidget-2&quot;:[&quot;div&quot;,&quot;gVX8nUL5RnMjPBMyaLV2&quot;],&quot;8aK2MSEC8Iwm5eSu9hR4.content.App\\Filament\\Admin\\Widgets\\InventoryAlertsWidget-3&quot;:[&quot;div&quot;,&quot;n7DUtsZ8UqIz8xj9Bicz&quot;],&quot;8aK2MSEC8Iwm5eSu9hR4.content.App\\Filament\\Admin\\Widgets\\VendorPerformanceWidget-4&quot;:[&quot;div&quot;,&quot;qceuV6eu3POCrOg3BjXd&quot;],&quot;8aK2MSEC8Iwm5eSu9hR4.content.App\\Filament\\Admin\\Widgets\\ReportsOverviewWidget-5&quot;:[&quot;div&quot;,&quot;vhXZYF8r3kiar9DJxA1B&quot;]},&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;b817da4db86cae72c0bd0494e93adf54f9b175af141fbcc6e6f96cce909201c3&quot;}" wire:effects="{&quot;partials&quot;:[],&quot;url&quot;:{&quot;defaultAction&quot;:{&quot;as&quot;:&quot;action&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultActionArguments&quot;:{&quot;as&quot;:&quot;actionArguments&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultActionContext&quot;:{&quot;as&quot;:&quot;actionContext&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableAction&quot;:{&quot;as&quot;:&quot;tableAction&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableActionRecord&quot;:{&quot;as&quot;:&quot;tableActionRecord&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableActionArguments&quot;:{&quot;as&quot;:&quot;tableActionArguments&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null}},&quot;listeners&quot;:[&quot;refresh-page&quot;]}" wire:id="8aK2MSEC8Iwm5eSu9hR4"
+    class="fi-page"
+>
+    
+
+    <div class="fi-page-header-main-ctn">
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+        <!--[if BLOCK]><![endif]-->            
+            <!--[if BLOCK]><![endif]-->                <header
+    class="fi-header"
+>
+    <div>
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+        
+
+        <!--[if BLOCK]><![endif]-->            <h1 class="fi-header-heading">
+                Executive Dashboard
+            </h1>
+        <!--[if ENDBLOCK]><![endif]-->
+        
+
+        <!--[if BLOCK]><![endif]-->            <p class="fi-header-subheading">
+                Overview of sales performance, orders, inventory alerts, and vendor activity across the Henley platform.
+            </p>
+        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></header>
+            <!--[if ENDBLOCK]><![endif]-->        <!--[if ENDBLOCK]><![endif]-->
+        <div class="fi-page-main">
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <div class="fi-page-content">
+                
+
+                
+
+                
+
+                <div x-data="filamentSchema({ livewireId: '8aK2MSEC8Iwm5eSu9hR4', schemaKey: 'content' })" x-on:form-validation-error.window="handleFormValidationError" x-on:reset-schema-component-state.window="handleClientSideStateReset" class="fi-grid  fi-sc  fi-sc-has-gap" style="--cols-default: repeat(1, minmax(0, 1fr));">
+                                                
+        <div
+                                        x-data="filamentSchemaComponent({
+                    path: '',
+                    containerPath: '',
+                    $wire,
+                })"
+                                                        class="fi-grid-col" style="--col-span-default: span 1 / span 1;"        >
+                            <div
+                    class="fi-sc-component"
+                >
+                    
+        <div >
+            
+        <div class="fi-grid  sm:fi-grid-cols md:fi-grid-cols lg:fi-grid-cols xl:fi-grid-cols fi-sc  fi-sc-has-gap" style="--cols-default: repeat(1, minmax(0, 1fr)); --cols-sm: repeat(1, minmax(0, 1fr)); --cols-md: repeat(2, minmax(0, 1fr)); --cols-lg: repeat(2, minmax(0, 1fr)); --cols-xl: repeat(2, minmax(0, 1fr));">
+                                                <div wire:snapshot="{&quot;data&quot;:{&quot;filter&quot;:&quot;30d&quot;,&quot;dataChecksum&quot;:&quot;14201866aa2e85ac00bea35ffb87292e&quot;,&quot;componentFileAttachments&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;areSchemaStateUpdateHooksDisabledForTesting&quot;:false,&quot;discoveredSchemaNames&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;3W4PyGMAlCnhxadYZifM&quot;,&quot;name&quot;:&quot;app.filament.admin.widgets.sales-overview-chart-widget&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;release&quot;:&quot;a-a-a&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;b9718692c4322452b804ff854c54b9150cc432aa8434630e115ad3771a9229d8&quot;}" wire:effects="{&quot;partials&quot;:[]}" wire:id="3W4PyGMAlCnhxadYZifM"
+    class="fi-wi-widget fi-grid-col lg:fi-grid-col-span fi-wi-chart" style="--col-span-lg: 1 / -1;"
+>
+    <section
+    
+    x-data="{
+        isCollapsed:  false ,
+    }"
+        class="fi-section fi-section-has-header"
+>
+    <!--[if BLOCK]><![endif]-->        <header
+                        class="fi-section-header"
+        >
+            
+
+            <!--[if BLOCK]><![endif]-->                <div class="fi-section-header-text-ctn">
+                    <!--[if BLOCK]><![endif]-->                        <h2 class="fi-section-header-heading">
+                            Sales Overview
+                        </h2>
+                    <!--[if ENDBLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]-->                        <p class="fi-section-header-description">
+                            Daily gross sales revenue trends across the Henley platform (₹ INR).
+                        </p>
+                    <!--[if ENDBLOCK]><![endif]-->                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]-->                <div class="fi-section-header-after-ctn">
+                    <!--[if BLOCK]><![endif]-->                    <div
+        class="fi-input-wrp fi-wi-chart-filter"
+>
+    <!--[if BLOCK]><![endif]-->        <div
+                            wire:loading.delay.default.flex
+                wire:target="filter"
+                wire:key="jmEGRjDVe9hIvNmE" 
+                                    class="fi-input-wrp-prefix fi-inline"
+        >
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            
+
+            <!--[if BLOCK]><![endif]-->                    <svg
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true" class="fi-icon fi-loading-indicator fi-size-md"
+    >
+        <path
+            clip-rule="evenodd"
+            d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+            fill-rule="evenodd"
+            fill="currentColor"
+            opacity="0.2"
+        ></path>
+        <path
+            d="M2 12C2 6.47715 6.47715 2 12 2V5C8.13401 5 5 8.13401 5 12H2Z"
+            fill="currentColor"
+        ></path>
+    </svg>
+            <!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        </div>
+    <!--[if ENDBLOCK]><![endif]-->
+    <div
+                                    wire:loading.delay.default.class.remove="ps-3"
+            
+            wire:target="filter"
+                class="fi-input-wrp-content-ctn fi-input-wrp-content-ctn-ps"
+    >
+        <select
+    class="fi-select-input fi-select-input-has-inline-prefix" aria-label="Filter chart data" wire:model.live="filter"
+>
+    <!--[if BLOCK]><![endif]-->                                <option value="7d">
+                                    Last 7 Days
+                                </option>
+                                                            <option value="30d">
+                                    Last 30 Days
+                                </option>
+                                                            <option value="90d">
+                                    Last Quarter
+                                </option>
+                                                            <option value="1y">
+                                    Past Year
+                                </option>
+                            <!--[if ENDBLOCK]><![endif]-->
+</select>
+    </div>
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></div>
+                <!--[if ENDBLOCK]><![endif]-->
+                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        </header>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <div
+                        class="fi-section-content-ctn"
+        >
+            <!--[if BLOCK]><![endif]-->                <div class="fi-section-content">
+                    <!--[if BLOCK]><![endif]-->                     <!--[if ENDBLOCK]><![endif]-->
+        <div
+                            wire:poll.5s="updateChartData"
+                                >
+            <div
+                x-load
+                x-load-src="/js/filament/widgets/components/chart.js?v=4.12.6.0"
+                wire:ignore
+                data-chart-type="line"
+                x-data="chart({
+                            cachedData: JSON.parse('{\u0022datasets\u0022:[{\u0022label\u0022:\u0022Gross Sales (\\u20b9)\u0022,\u0022data\u0022:[68000,72826,54220,57798,60263,61445,61312,82977,80687,54793,51713,48885,46718,45552,68613,69993,49640,53362,57847,62702,67490,94784,98210,77490,78472,78148,76651,74245,94296,91226],\u0022fill\u0022:true,\u0022borderColor\u0022:\u0022#4B1421\u0022,\u0022backgroundColor\u0022:\u0022rgba(75, 20, 33, 0.08)\u0022,\u0022tension\u0022:0.35,\u0022pointBackgroundColor\u0022:\u0022#4B1421\u0022,\u0022pointBorderColor\u0022:\u0022#FFFFFF\u0022,\u0022pointHoverRadius\u0022:6}],\u0022labels\u0022:[\u0022Aug 08\u0022,\u0022Aug 09\u0022,\u0022Aug 10\u0022,\u0022Aug 11\u0022,\u0022Aug 12\u0022,\u0022Aug 13\u0022,\u0022Aug 14\u0022,\u0022Aug 15\u0022,\u0022Aug 16\u0022,\u0022Aug 17\u0022,\u0022Aug 18\u0022,\u0022Aug 19\u0022,\u0022Aug 20\u0022,\u0022Aug 21\u0022,\u0022Aug 22\u0022,\u0022Aug 23\u0022,\u0022Aug 24\u0022,\u0022Aug 25\u0022,\u0022Aug 26\u0022,\u0022Aug 27\u0022,\u0022Aug 28\u0022,\u0022Aug 29\u0022,\u0022Aug 30\u0022,\u0022Aug 31\u0022,\u0022Sep 01\u0022,\u0022Sep 02\u0022,\u0022Sep 03\u0022,\u0022Sep 04\u0022,\u0022Sep 05\u0022,\u0022Sep 06\u0022]}'),
+                            options: JSON.parse('{\u0022plugins\u0022:{\u0022legend\u0022:{\u0022display\u0022:true,\u0022position\u0022:\u0022top\u0022}},\u0022scales\u0022:{\u0022y\u0022:{\u0022beginAtZero\u0022:false,\u0022ticks\u0022:{\u0022callback\u0022:\u0022function(value) { return \\u0022\\u20b9\\u0022 + (value \\\/ 1000).toLocaleString() + \\u0022k\\u0022; }\u0022}}}}'),
+                            type: 'line',
+                        })"
+                class="fi-color fi-color-primary fi-wi-chart-frame fi-wi-chart-canvas-ctn fi-wi-chart-frame-no-aspect-ratio"
+            >
+                <canvas
+                    x-ref="canvas"
+                                            role="img"
+                        aria-label="Sales Overview. Daily gross sales revenue trends across the Henley platform (₹ INR)."
+                                        style="width: 100%; max-height: 300px;"
+                ></canvas>
+
+                <span
+                    x-ref="backgroundColorElement"
+                    class="fi-wi-chart-bg-color"
+                ></span>
+
+                <span
+                    x-ref="borderColorElement"
+                    class="fi-wi-chart-border-color"
+                ></span>
+
+                <span
+                    x-ref="gridColorElement"
+                    class="fi-wi-chart-grid-color"
+                ></span>
+
+                <span
+                    x-ref="textColorElement"
+                    class="fi-wi-chart-text-color"
+                ></span>
+            </div>
+        </div>
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        </div>
+    <!--[if ENDBLOCK]><![endif]--></section>
+</div>
+                                                                <div wire:snapshot="{&quot;data&quot;:{&quot;chartDataChecksums&quot;:[{&quot;stats-overview-stat-0&quot;:&quot;fcb9bcf61d2a411d813ba093df981682&quot;,&quot;stats-overview-stat-1&quot;:&quot;0d9d04ea4644d8fef0262ffe5109bbaf&quot;,&quot;stats-overview-stat-2&quot;:&quot;b6f2147f92755d4a33721a45f8775716&quot;,&quot;stats-overview-stat-3&quot;:&quot;909f5b9eb6ca88a4b4bea87f4547929a&quot;},{&quot;s&quot;:&quot;arr&quot;}],&quot;componentFileAttachments&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;areSchemaStateUpdateHooksDisabledForTesting&quot;:false,&quot;discoveredSchemaNames&quot;:[[&quot;content&quot;],{&quot;s&quot;:&quot;arr&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;XtmHRwtNV1ltRCJaXQ69&quot;,&quot;name&quot;:&quot;app.filament.admin.widgets.executive-stats-overview-widget&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;release&quot;:&quot;a-a-a&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;ddfc1ffabbe0b156dfa4011265560247e9699d25e03439177eb8ce19d440f367&quot;}" wire:effects="{&quot;partials&quot;:[]}" wire:id="XtmHRwtNV1ltRCJaXQ69"
+    class="fi-wi-widget fi-grid-col lg:fi-grid-col-span fi-wi-stats-overview" style="--col-span-lg: 1 / -1;" wire:poll.5s=""
+>
+    <div x-data="filamentSchema({ livewireId: 'XtmHRwtNV1ltRCJaXQ69', schemaKey: 'content' })" x-on:form-validation-error.window="handleFormValidationError" x-on:reset-schema-component-state.window="handleClientSideStateReset" class="fi-grid  fi-sc  fi-sc-has-gap" style="--cols-default: repeat(1, minmax(0, 1fr));">
+                                                
+        <div
+                                        x-data="filamentSchemaComponent({
+                    path: '',
+                    containerPath: '',
+                    $wire,
+                })"
+                                                        class="fi-grid-col" style="--col-span-default: span 1 / span 1;"        >
+                            <div
+                    class="fi-sc-component fi-grid-ctn"
+                >
+                    
+        <div class="fi-sc-section">
+            
+            
+            <section
+                x-data="{
+                    isCollapsed: false,
+                }"
+                                                                class="fi-section fi-section-not-contained"            >
+                
+                                    <div
+                                                                        class="fi-section-content-ctn"
+                    >
+                        
+        <div class="fi-section-content fi-grid  sm:fi-grid-cols md:fi-grid-cols fi-sc  fi-sc-has-gap" style="--cols-default: repeat(1, minmax(0, 1fr)); --cols-sm: repeat(2, minmax(0, 1fr)); --cols-md: repeat(4, minmax(0, 1fr));">
+                                                
+        <div
+                            wire:partial="schema-component::content.stats-overview-stat-0"
+                                        x-data="filamentSchemaComponent({
+                    path: '',
+                    containerPath: '',
+                    $wire,
+                })"
+                                                        wire:key="XtmHRwtNV1ltRCJaXQ69.content.stats-overview-stat-0" class="fi-grid-col" style="--col-span-default: span 1 / span 1;"        >
+                            <div
+                    class="fi-sc-component"
+                >
+                    <div
+        class="fi-wi-stats-overview-stat"
+>
+    <div class="fi-wi-stats-overview-stat-content">
+        <div class="fi-wi-stats-overview-stat-label-ctn">
+            
+
+            <span class="fi-wi-stats-overview-stat-label">
+                Revenue
+            </span>
+        </div>
+
+        <div class="fi-wi-stats-overview-stat-value">
+            ₹1,842,500
+        </div>
+
+        <!--[if BLOCK]><![endif]-->            <div
+                class="fi-color fi-color-success fi-text-color-700 dark:fi-text-color-400 fi-wi-stats-overview-stat-description"
+            >
+                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                <span>
+                    +14.8% from last month
+                </span>
+
+                <!--[if BLOCK]><![endif]-->                    <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M12.577 4.878a.75.75 0 0 1 .919-.53l4.78 1.281a.75.75 0 0 1 .531.919l-1.281 4.78a.75.75 0 0 1-1.449-.387l.81-3.022a19.407 19.407 0 0 0-5.594 5.203.75.75 0 0 1-1.139.093L7 10.06l-4.72 4.72a.75.75 0 0 1-1.06-1.061l5.25-5.25a.75.75 0 0 1 1.06 0l3.074 3.073a20.923 20.923 0 0 1 5.545-4.931l-3.042-.815a.75.75 0 0 1-.53-.919Z" clip-rule="evenodd"/>
+</svg>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->        
+        <div x-data="{ statsOverviewStatChart() {} }">
+            <div
+                x-load
+                x-load-src="/js/filament/widgets/components/stats-overview/stat/chart.js?v=4.12.6.0"
+                wire:ignore
+                x-data="statsOverviewStatChart({
+                            key: 'stats-overview-stat-0',
+                            labels: JSON.parse('[0,1,2,3,4,5,6]'),
+                            values: JSON.parse('[32,38,35,46,52,58,64]'),
+                        })"
+                class="fi-color fi-color-success fi-wi-stats-overview-stat-chart"
+            >
+                
+                <canvas x-ref="canvas" aria-hidden="true"></canvas>
+
+                <span
+                    x-ref="backgroundColorElement"
+                    class="fi-wi-stats-overview-stat-chart-bg-color"
+                ></span>
+
+                <span
+                    x-ref="borderColorElement"
+                    class="fi-wi-stats-overview-stat-chart-border-color"
+                ></span>
+            </div>
+        </div>
+    <!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+                    </div>
+
+                                                                        
+        <div
+                            wire:partial="schema-component::content.stats-overview-stat-1"
+                                        x-data="filamentSchemaComponent({
+                    path: '',
+                    containerPath: '',
+                    $wire,
+                })"
+                                                        wire:key="XtmHRwtNV1ltRCJaXQ69.content.stats-overview-stat-1" class="fi-grid-col" style="--col-span-default: span 1 / span 1;"        >
+                            <div
+                    class="fi-sc-component"
+                >
+                    <div
+        class="fi-wi-stats-overview-stat"
+>
+    <div class="fi-wi-stats-overview-stat-content">
+        <div class="fi-wi-stats-overview-stat-label-ctn">
+            
+
+            <span class="fi-wi-stats-overview-stat-label">
+                Customers
+            </span>
+        </div>
+
+        <div class="fi-wi-stats-overview-stat-value">
+            2,840
+        </div>
+
+        <!--[if BLOCK]><![endif]-->            <div
+                class="fi-color fi-color-info fi-text-color-600 dark:fi-text-color-400 fi-wi-stats-overview-stat-description"
+            >
+                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                <span>
+                    +142 new this period
+                </span>
+
+                <!--[if BLOCK]><![endif]-->                    <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path d="M10 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM6 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM1.49 15.326a.78.78 0 0 1-.358-.442 3 3 0 0 1 4.308-3.516 6.484 6.484 0 0 0-1.905 3.959c-.023.222-.014.442.025.654a4.97 4.97 0 0 1-2.07-.655ZM16.44 15.98a4.97 4.97 0 0 0 2.07-.654.78.78 0 0 0 .357-.442 3 3 0 0 0-4.308-3.517 6.484 6.484 0 0 1 1.907 3.96 2.32 2.32 0 0 1-.026.654ZM18 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM5.304 16.19a.844.844 0 0 1-.277-.71 5 5 0 0 1 9.947 0 .843.843 0 0 1-.277.71A6.975 6.975 0 0 1 10 18a6.974 6.974 0 0 1-4.696-1.81Z"/>
+</svg>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->        
+        <div x-data="{ statsOverviewStatChart() {} }">
+            <div
+                x-load
+                x-load-src="/js/filament/widgets/components/stats-overview/stat/chart.js?v=4.12.6.0"
+                wire:ignore
+                x-data="statsOverviewStatChart({
+                            key: 'stats-overview-stat-1',
+                            labels: JSON.parse('[0,1,2,3,4,5,6]'),
+                            values: JSON.parse('[14,18,22,25,29,34,40]'),
+                        })"
+                class="fi-color fi-color-info fi-wi-stats-overview-stat-chart"
+            >
+                
+                <canvas x-ref="canvas" aria-hidden="true"></canvas>
+
+                <span
+                    x-ref="backgroundColorElement"
+                    class="fi-wi-stats-overview-stat-chart-bg-color"
+                ></span>
+
+                <span
+                    x-ref="borderColorElement"
+                    class="fi-wi-stats-overview-stat-chart-border-color"
+                ></span>
+            </div>
+        </div>
+    <!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+                    </div>
+
+                                                                        
+        <div
+                            wire:partial="schema-component::content.stats-overview-stat-2"
+                                        x-data="filamentSchemaComponent({
+                    path: '',
+                    containerPath: '',
+                    $wire,
+                })"
+                                                        wire:key="XtmHRwtNV1ltRCJaXQ69.content.stats-overview-stat-2" class="fi-grid-col" style="--col-span-default: span 1 / span 1;"        >
+                            <div
+                    class="fi-sc-component"
+                >
+                    <div
+        class="fi-wi-stats-overview-stat"
+>
+    <div class="fi-wi-stats-overview-stat-content">
+        <div class="fi-wi-stats-overview-stat-label-ctn">
+            
+
+            <span class="fi-wi-stats-overview-stat-label">
+                Average Order Value
+            </span>
+        </div>
+
+        <div class="fi-wi-stats-overview-stat-value">
+            ₹4,790
+        </div>
+
+        <!--[if BLOCK]><![endif]-->            <div
+                class="fi-color fi-color-primary fi-text-color-700 dark:fi-text-color-400 fi-wi-stats-overview-stat-description"
+            >
+                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                <span>
+                    +5.2% vs target ₹4,550
+                </span>
+
+                <!--[if BLOCK]><![endif]-->                    <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M1 4a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4Zm12 4a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM4 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm13-1a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM1.75 14.5a.75.75 0 0 0 0 1.5c4.417 0 8.693.603 12.749 1.73 1.111.309 2.251-.512 2.251-1.696v-.784a.75.75 0 0 0-1.5 0v.784a.272.272 0 0 1-.35.25A49.043 49.043 0 0 0 1.75 14.5Z" clip-rule="evenodd"/>
+</svg>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->        
+        <div x-data="{ statsOverviewStatChart() {} }">
+            <div
+                x-load
+                x-load-src="/js/filament/widgets/components/stats-overview/stat/chart.js?v=4.12.6.0"
+                wire:ignore
+                x-data="statsOverviewStatChart({
+                            key: 'stats-overview-stat-2',
+                            labels: JSON.parse('[0,1,2,3,4,5,6]'),
+                            values: JSON.parse('[41,42,44,43,46,47,48]'),
+                        })"
+                class="fi-color fi-color-primary fi-wi-stats-overview-stat-chart"
+            >
+                
+                <canvas x-ref="canvas" aria-hidden="true"></canvas>
+
+                <span
+                    x-ref="backgroundColorElement"
+                    class="fi-wi-stats-overview-stat-chart-bg-color"
+                ></span>
+
+                <span
+                    x-ref="borderColorElement"
+                    class="fi-wi-stats-overview-stat-chart-border-color"
+                ></span>
+            </div>
+        </div>
+    <!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+                    </div>
+
+                                                                        
+        <div
+                            wire:partial="schema-component::content.stats-overview-stat-3"
+                                        x-data="filamentSchemaComponent({
+                    path: '',
+                    containerPath: '',
+                    $wire,
+                })"
+                                                        wire:key="XtmHRwtNV1ltRCJaXQ69.content.stats-overview-stat-3" class="fi-grid-col" style="--col-span-default: span 1 / span 1;"        >
+                            <div
+                    class="fi-sc-component"
+                >
+                    <div
+        class="fi-wi-stats-overview-stat"
+>
+    <div class="fi-wi-stats-overview-stat-content">
+        <div class="fi-wi-stats-overview-stat-label-ctn">
+            
+
+            <span class="fi-wi-stats-overview-stat-label">
+                Repeat Purchase Rate
+            </span>
+        </div>
+
+        <div class="fi-wi-stats-overview-stat-value">
+            34.8%
+        </div>
+
+        <!--[if BLOCK]><![endif]-->            <div
+                class="fi-color fi-color-warning fi-text-color-700 dark:fi-text-color-400 fi-wi-stats-overview-stat-description"
+            >
+                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                <span>
+                    +3.1% customer retention
+                </span>
+
+                <!--[if BLOCK]><![endif]-->                    <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138.75.75 0 0 0-1.449-.39Zm1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219Z" clip-rule="evenodd"/>
+</svg>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->        
+        <div x-data="{ statsOverviewStatChart() {} }">
+            <div
+                x-load
+                x-load-src="/js/filament/widgets/components/stats-overview/stat/chart.js?v=4.12.6.0"
+                wire:ignore
+                x-data="statsOverviewStatChart({
+                            key: 'stats-overview-stat-3',
+                            labels: JSON.parse('[0,1,2,3,4,5,6]'),
+                            values: JSON.parse('[28,29,31,30,32,33,35]'),
+                        })"
+                class="fi-color fi-color-warning fi-wi-stats-overview-stat-chart"
+            >
+                
+                <canvas x-ref="canvas" aria-hidden="true"></canvas>
+
+                <span
+                    x-ref="backgroundColorElement"
+                    class="fi-wi-stats-overview-stat-chart-bg-color"
+                ></span>
+
+                <span
+                    x-ref="borderColorElement"
+                    class="fi-wi-stats-overview-stat-chart-border-color"
+                ></span>
+            </div>
+        </div>
+    <!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+                    </div>
+
+                                            </div>
+
+        
+                                            </div>
+                            </section>
+
+                    </div>
+
+                        </div>
+                    </div>
+
+                                            </div>
+</div>
+                                                                <div wire:snapshot="{&quot;data&quot;:{&quot;chartDataChecksums&quot;:[{&quot;stats-overview-stat-0&quot;:&quot;7669eda286d5c8d4216ed252960602df&quot;},{&quot;s&quot;:&quot;arr&quot;}],&quot;componentFileAttachments&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;areSchemaStateUpdateHooksDisabledForTesting&quot;:false,&quot;discoveredSchemaNames&quot;:[[&quot;content&quot;],{&quot;s&quot;:&quot;arr&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;gVX8nUL5RnMjPBMyaLV2&quot;,&quot;name&quot;:&quot;app.filament.admin.widgets.orders-overview-widget&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;release&quot;:&quot;a-a-a&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;c360f01493f6d8f5ed3322471bd785636903156690d942a911aeb450d06fb5cb&quot;}" wire:effects="{&quot;partials&quot;:[]}" wire:id="gVX8nUL5RnMjPBMyaLV2"
+    class="fi-wi-widget fi-grid-col lg:fi-grid-col-span fi-wi-stats-overview" style="--col-span-lg: 1 / -1;" wire:poll.5s=""
+>
+    <div x-data="filamentSchema({ livewireId: 'gVX8nUL5RnMjPBMyaLV2', schemaKey: 'content' })" x-on:form-validation-error.window="handleFormValidationError" x-on:reset-schema-component-state.window="handleClientSideStateReset" class="fi-grid  fi-sc  fi-sc-has-gap" style="--cols-default: repeat(1, minmax(0, 1fr));">
+                                                
+        <div
+                                        x-data="filamentSchemaComponent({
+                    path: '',
+                    containerPath: '',
+                    $wire,
+                })"
+                                                        class="fi-grid-col" style="--col-span-default: span 1 / span 1;"        >
+                            <div
+                    class="fi-sc-component fi-grid-ctn"
+                >
+                    
+        <div class="fi-sc-section">
+            
+            
+            <section
+                x-data="{
+                    isCollapsed: false,
+                }"
+                                                                class="fi-section fi-section-not-contained"            >
+                
+                                    <div
+                                                                        class="fi-section-content-ctn"
+                    >
+                        
+        <div class="fi-section-content fi-grid  sm:fi-grid-cols md:fi-grid-cols fi-sc  fi-sc-has-gap" style="--cols-default: repeat(1, minmax(0, 1fr)); --cols-sm: repeat(2, minmax(0, 1fr)); --cols-md: repeat(4, minmax(0, 1fr));">
+                                                
+        <div
+                            wire:partial="schema-component::content.stats-overview-stat-0"
+                                        x-data="filamentSchemaComponent({
+                    path: '',
+                    containerPath: '',
+                    $wire,
+                })"
+                                                        wire:key="gVX8nUL5RnMjPBMyaLV2.content.stats-overview-stat-0" class="fi-grid-col" style="--col-span-default: span 1 / span 1;"        >
+                            <div
+                    class="fi-sc-component"
+                >
+                    <div
+        class="fi-wi-stats-overview-stat"
+>
+    <div class="fi-wi-stats-overview-stat-content">
+        <div class="fi-wi-stats-overview-stat-label-ctn">
+            
+
+            <span class="fi-wi-stats-overview-stat-label">
+                Total Orders
+            </span>
+        </div>
+
+        <div class="fi-wi-stats-overview-stat-value">
+            1,248
+        </div>
+
+        <!--[if BLOCK]><![endif]-->            <div
+                class="fi-color fi-color-primary fi-text-color-700 dark:fi-text-color-400 fi-wi-stats-overview-stat-description"
+            >
+                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                <span>
+                    +8.2% from last month
+                </span>
+
+                <!--[if BLOCK]><![endif]-->                    <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M6 5v1H4.667a1.75 1.75 0 0 0-1.743 1.598l-.826 9.5A1.75 1.75 0 0 0 3.84 19H16.16a1.75 1.75 0 0 0 1.743-1.902l-.826-9.5A1.75 1.75 0 0 0 15.333 6H14V5a4 4 0 0 0-8 0Zm4-2.5A2.5 2.5 0 0 0 7.5 5v1h5V5A2.5 2.5 0 0 0 10 2.5ZM7.5 10a2.5 2.5 0 0 0 5 0V8.75a.75.75 0 0 1 1.5 0V10a4 4 0 0 1-8 0V8.75a.75.75 0 0 1 1.5 0V10Z" clip-rule="evenodd"/>
+</svg>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->        
+        <div x-data="{ statsOverviewStatChart() {} }">
+            <div
+                x-load
+                x-load-src="/js/filament/widgets/components/stats-overview/stat/chart.js?v=4.12.6.0"
+                wire:ignore
+                x-data="statsOverviewStatChart({
+                            key: 'stats-overview-stat-0',
+                            labels: JSON.parse('[0,1,2,3,4,5,6]'),
+                            values: JSON.parse('[22,28,25,34,38,44,49]'),
+                        })"
+                class="fi-color fi-color-primary fi-wi-stats-overview-stat-chart"
+            >
+                
+                <canvas x-ref="canvas" aria-hidden="true"></canvas>
+
+                <span
+                    x-ref="backgroundColorElement"
+                    class="fi-wi-stats-overview-stat-chart-bg-color"
+                ></span>
+
+                <span
+                    x-ref="borderColorElement"
+                    class="fi-wi-stats-overview-stat-chart-border-color"
+                ></span>
+            </div>
+        </div>
+    <!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+                    </div>
+
+                                                                        
+        <div
+                                        x-data="filamentSchemaComponent({
+                    path: '',
+                    containerPath: '',
+                    $wire,
+                })"
+                                                        class="fi-grid-col" style="--col-span-default: span 1 / span 1;"        >
+                            <div
+                    class="fi-sc-component"
+                >
+                    <div
+        class="fi-wi-stats-overview-stat"
+>
+    <div class="fi-wi-stats-overview-stat-content">
+        <div class="fi-wi-stats-overview-stat-label-ctn">
+            
+
+            <span class="fi-wi-stats-overview-stat-label">
+                Pending
+            </span>
+        </div>
+
+        <div class="fi-wi-stats-overview-stat-value">
+            32
+        </div>
+
+        <!--[if BLOCK]><![endif]-->            <div
+                class="fi-color fi-color-warning fi-text-color-700 dark:fi-text-color-400 fi-wi-stats-overview-stat-description"
+            >
+                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                <span>
+                    Requires review &amp; curation
+                </span>
+
+                <!--[if BLOCK]><![endif]-->                    <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-13a.75.75 0 0 0-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 0 0 0-1.5h-3.25V5Z" clip-rule="evenodd"/>
+</svg>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+                    </div>
+
+                                                                        
+        <div
+                                        x-data="filamentSchemaComponent({
+                    path: '',
+                    containerPath: '',
+                    $wire,
+                })"
+                                                        class="fi-grid-col" style="--col-span-default: span 1 / span 1;"        >
+                            <div
+                    class="fi-sc-component"
+                >
+                    <div
+        class="fi-wi-stats-overview-stat"
+>
+    <div class="fi-wi-stats-overview-stat-content">
+        <div class="fi-wi-stats-overview-stat-label-ctn">
+            
+
+            <span class="fi-wi-stats-overview-stat-label">
+                Processing
+            </span>
+        </div>
+
+        <div class="fi-wi-stats-overview-stat-value">
+            58
+        </div>
+
+        <!--[if BLOCK]><![endif]-->            <div
+                class="fi-color fi-color-info fi-text-color-600 dark:fi-text-color-400 fi-wi-stats-overview-stat-description"
+            >
+                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                <span>
+                    In packaging &amp; fulfillment
+                </span>
+
+                <!--[if BLOCK]><![endif]-->                    <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138.75.75 0 0 0-1.449-.39Zm1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219Z" clip-rule="evenodd"/>
+</svg>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+                    </div>
+
+                                                                        
+        <div
+                                        x-data="filamentSchemaComponent({
+                    path: '',
+                    containerPath: '',
+                    $wire,
+                })"
+                                                        class="fi-grid-col" style="--col-span-default: span 1 / span 1;"        >
+                            <div
+                    class="fi-sc-component"
+                >
+                    <div
+        class="fi-wi-stats-overview-stat"
+>
+    <div class="fi-wi-stats-overview-stat-content">
+        <div class="fi-wi-stats-overview-stat-label-ctn">
+            
+
+            <span class="fi-wi-stats-overview-stat-label">
+                Delivered
+            </span>
+        </div>
+
+        <div class="fi-wi-stats-overview-stat-value">
+            1,158
+        </div>
+
+        <!--[if BLOCK]><![endif]-->            <div
+                class="fi-color fi-color-success fi-text-color-700 dark:fi-text-color-400 fi-wi-stats-overview-stat-description"
+            >
+                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                <span>
+                    92.8% fulfillment completion
+                </span>
+
+                <!--[if BLOCK]><![endif]-->                    <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M16.403 12.652a3 3 0 0 0 0-5.304 3 3 0 0 0-3.75-3.751 3 3 0 0 0-5.305 0 3 3 0 0 0-3.751 3.75 3 3 0 0 0 0 5.305 3 3 0 0 0 3.75 3.751 3 3 0 0 0 5.305 0 3 3 0 0 0 3.751-3.75Zm-2.546-4.46a.75.75 0 0 0-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd"/>
+</svg>
+                <!--[if ENDBLOCK]><![endif]-->            </div>
+        <!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></div>
+                </div>
+                    </div>
+
+                                            </div>
+
+        
+                                            </div>
+                            </section>
+
+                    </div>
+
+                        </div>
+                    </div>
+
+                                            </div>
+</div>
+                                                                <div wire:snapshot="{&quot;data&quot;:{&quot;mountedActions&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;defaultAction&quot;:null,&quot;defaultActionArguments&quot;:null,&quot;defaultActionContext&quot;:null,&quot;defaultTableAction&quot;:null,&quot;defaultTableActionRecord&quot;:null,&quot;defaultTableActionArguments&quot;:null,&quot;componentFileAttachments&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;areSchemaStateUpdateHooksDisabledForTesting&quot;:false,&quot;discoveredSchemaNames&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;isTableLoaded&quot;:false,&quot;tableGrouping&quot;:null,&quot;tableRecordsPerPage&quot;:null,&quot;isTableReordering&quot;:false,&quot;tableColumnSearches&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;tableSearch&quot;:&quot;&quot;,&quot;tableSort&quot;:null,&quot;selectedTableRecords&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;deselectedTableRecords&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;isTrackingDeselectedTableRecords&quot;:false,&quot;tableColumns&quot;:[[[{&quot;type&quot;:&quot;column&quot;,&quot;name&quot;:&quot;variant.product.name&quot;,&quot;label&quot;:&quot;Product&quot;,&quot;isHidden&quot;:false,&quot;isToggled&quot;:true,&quot;isToggleable&quot;:false,&quot;isToggledHiddenByDefault&quot;:null},{&quot;s&quot;:&quot;arr&quot;}],[{&quot;type&quot;:&quot;column&quot;,&quot;name&quot;:&quot;quantity_on_hand&quot;,&quot;label&quot;:&quot;Current Stock&quot;,&quot;isHidden&quot;:false,&quot;isToggled&quot;:true,&quot;isToggleable&quot;:false,&quot;isToggledHiddenByDefault&quot;:null},{&quot;s&quot;:&quot;arr&quot;}],[{&quot;type&quot;:&quot;column&quot;,&quot;name&quot;:&quot;low_stock_threshold&quot;,&quot;label&quot;:&quot;Threshold&quot;,&quot;isHidden&quot;:false,&quot;isToggled&quot;:true,&quot;isToggleable&quot;:false,&quot;isToggledHiddenByDefault&quot;:null},{&quot;s&quot;:&quot;arr&quot;}]],{&quot;s&quot;:&quot;arr&quot;}],&quot;tableFilters&quot;:null,&quot;tableDeferredFilters&quot;:null,&quot;paginators&quot;:[{&quot;page&quot;:1},{&quot;s&quot;:&quot;arr&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;n7DUtsZ8UqIz8xj9Bicz&quot;,&quot;name&quot;:&quot;app.filament.admin.widgets.inventory-alerts-widget&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;release&quot;:&quot;a-a-a&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;07ad8353d76b4ba5898c075bef3bfd3067f590f402ac069253b3d8a6f1ec83d4&quot;}" wire:effects="{&quot;partials&quot;:[],&quot;url&quot;:{&quot;defaultAction&quot;:{&quot;as&quot;:&quot;action&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultActionArguments&quot;:{&quot;as&quot;:&quot;actionArguments&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultActionContext&quot;:{&quot;as&quot;:&quot;actionContext&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableAction&quot;:{&quot;as&quot;:&quot;tableAction&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableActionRecord&quot;:{&quot;as&quot;:&quot;tableActionRecord&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableActionArguments&quot;:{&quot;as&quot;:&quot;tableActionArguments&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;paginators.page&quot;:{&quot;as&quot;:&quot;page&quot;,&quot;use&quot;:&quot;push&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null}}}" wire:id="n7DUtsZ8UqIz8xj9Bicz"
+    class="fi-wi-widget fi-grid-col lg:fi-grid-col-span fi-wi-table" style="--col-span-lg: span 1 / span 1;"
+>
+    <div
+        x-data="filamentTable({
+                areGroupsCollapsedByDefault: false,
+                canTrackDeselectedRecords: true,
+                currentSelectionLivewireProperty: null,
+                maxSelectableRecords: null,
+                selectsCurrentPageOnly: false,
+                $wire,
+            })"
+    class="fi-ta"
+>
+    <input
+        type="hidden"
+        value=""
+        x-ref="allSelectableRecordsCount"
+    />
+
+    <div
+        class="fi-ta-ctn fi-ta-ctn-with-header"
+    >
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+        <div class="fi-ta-main">
+            <div
+                                x-show="true || false || (getSelectedRecordsCount() && 0)"
+                wire:key="n7DUtsZ8UqIz8xj9Bicz.table.header.visible"
+                class="fi-ta-header-ctn"
+            >
+                
+
+                <!--[if BLOCK]><![endif]-->                    <div
+                        class="fi-ta-header"
+                    >
+                        <!--[if BLOCK]><![endif]-->                            <div>
+                                <!--[if BLOCK]><![endif]-->                                    <h2
+                                        class="fi-ta-header-heading"
+                                    >
+                                        Inventory Alerts
+                                    </h2>
+                                <!--[if ENDBLOCK]><![endif]-->
+                                <!--[if BLOCK]><![endif]-->                                    <p class="fi-ta-header-description">
+                                        Low-stock and depleted products requiring warehouse restock.
+                                    </p>
+                                <!--[if ENDBLOCK]><![endif]-->                            </div>
+                        <!--[if ENDBLOCK]><![endif]-->
+                        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                    </div>
+                <!--[if ENDBLOCK]><![endif]-->
+                
+
+                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                
+
+                <div
+                     x-cloak                     x-show="false || false || (getSelectedRecordsCount() && 0)"
+                    wire:key="n7DUtsZ8UqIz8xj9Bicz.table.header-toolbar.hidden"
+                    class="fi-ta-header-toolbar"
+                >
+                    
+
+                    <div class="fi-ta-actions fi-align-start fi-wrapped">
+                        
+
+                        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                        
+
+                        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                        
+
+                        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                        
+                    </div>
+
+                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                    
+                </div>
+
+                
+            </div>
+
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]-->                <div
+                                        class="fi-ta-content-ctn fi-fixed-positioning-context"
+                >
+                    <!--[if BLOCK]><![endif]-->                        
+                        <div
+                            role="status"
+                            aria-live="polite"
+                            aria-atomic="true"
+                            class="fi-sr-only"
+                        >
+                            5 results
+                        </div>
+                    <!--[if ENDBLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]-->                        
+                        <table
+                            aria-label="Inventory Alerts"
+                            class="fi-ta-table"
+                        >
+                            <thead>
+                                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                <tr>
+                                    <!--[if BLOCK]><![endif]-->                                        <!--[if BLOCK]><![endif]-->                                            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                                        <!--[if ENDBLOCK]><![endif]-->                                    <!--[if ENDBLOCK]><![endif]-->
+                                    
+                                    <!--[if BLOCK]><![endif]-->                                        <!--[if BLOCK]><![endif]-->                                            
+                                            <th
+                                                                                                scope="col"
+                                                class="fi-ta-header-cell fi-ta-header-cell-variant.product.name"
+                                            >
+                                                <!--[if BLOCK]><![endif]-->                                                    <!--[if BLOCK]><![endif]-->                                                        Product
+                                                    <!--[if ENDBLOCK]><![endif]-->                                                <!--[if ENDBLOCK]><![endif]-->                                            </th>
+                                        <!--[if ENDBLOCK]><![endif]-->                                                                            <!--[if BLOCK]><![endif]-->                                            
+                                            <th
+                                                                                                scope="col"
+                                                class="fi-ta-header-cell fi-ta-header-cell-quantity-on-hand"
+                                            >
+                                                <!--[if BLOCK]><![endif]-->                                                    <!--[if BLOCK]><![endif]-->                                                        Current Stock
+                                                    <!--[if ENDBLOCK]><![endif]-->                                                <!--[if ENDBLOCK]><![endif]-->                                            </th>
+                                        <!--[if ENDBLOCK]><![endif]-->                                                                            <!--[if BLOCK]><![endif]-->                                            
+                                            <th
+                                                                                                scope="col"
+                                                class="fi-ta-header-cell fi-ta-header-cell-low-stock-threshold fi-align-end"
+                                            >
+                                                <!--[if BLOCK]><![endif]-->                                                    <!--[if BLOCK]><![endif]-->                                                        Threshold
+                                                    <!--[if ENDBLOCK]><![endif]-->                                                <!--[if ENDBLOCK]><![endif]-->                                            </th>
+                                        <!--[if ENDBLOCK]><![endif]-->                                    <!--[if ENDBLOCK]><![endif]-->
+                                    <!--[if BLOCK]><![endif]-->                                        <!--[if BLOCK]><![endif]-->                                            <!--[if BLOCK]><![endif]-->                                                <th
+                                                    aria-label="Action"
+                                                    scope="col"
+                                                    class="fi-ta-actions-header-cell fi-ta-empty-header-cell"
+                                                ></th>
+                                            <!--[if ENDBLOCK]><![endif]-->                                        <!--[if ENDBLOCK]><![endif]-->
+                                        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                                    <!--[if ENDBLOCK]><![endif]-->                                </tr>
+                            </thead>
+
+                            <!--[if BLOCK]><![endif]-->                                <tbody
+                                                                    >
+                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                    <!--[if BLOCK]><![endif]-->                                        
+                                        <!--[if BLOCK]><![endif]-->                                            
+                                            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                            <!--[if BLOCK]><![endif]-->                                                <tr
+                                                    wire:key="n7DUtsZ8UqIz8xj9Bicz.table.records.15"
+                                                    
+                                                    
+                                                    x-bind:class="{
+                                                        
+                                                        'fi-selected': false && isRecordSelected('15'),
+                                                    }"
+                                                    class="fi-ta-row"
+                                                >
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]-->                                                        
+                                                        <td
+                                                            wire:key="n7DUtsZ8UqIz8xj9Bicz.table.record.15.column.variant.product.name"
+                                                            class="fi-ta-cell fi-ta-cell-variant.product.name"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                
+            <div class="fi-ta-text fi-wrapped fi-ta-text-has-descriptions">
+                
+                                    
+                    <p class="fi-ta-text-item  fi-size-sm fi-font-medium">
+                        
+                                                Himalayan Silver Needle Reserve White Tea                        
+                                            </p>
+                
+                
+                                    <p class="fi-ta-text-description">
+                        250g Botanical Refill Pouch                    </p>
+                            </div>
+
+            
+                                                            </div>
+                                                            
+                                                        </td>
+                                                                                                            
+                                                        <td
+                                                            wire:key="n7DUtsZ8UqIz8xj9Bicz.table.record.15.column.quantity_on_hand"
+                                                            class="fi-ta-cell fi-ta-cell-quantity-on-hand"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                <div class="fi-ta-text fi-ta-text-item fi-ta-text-has-badges"><span class="fi-badge fi-size-sm fi-color fi-color-danger fi-text-color-700 dark:fi-text-color-200">Out of Stock (0)</span></div>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                                                                            
+                                                        <td
+                                                            wire:key="n7DUtsZ8UqIz8xj9Bicz.table.record.15.column.low_stock_threshold"
+                                                            class="fi-ta-cell fi-ta-cell-low-stock-threshold fi-align-end"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                <div class="fi-ta-text fi-ta-text-item fi-size-sm fi-align-end">5 units</div>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                    <!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]-->                                                        <td class="fi-ta-cell">
+                                                            <div
+                                                                class="fi-ta-actions "
+                                                            >
+                                                                <!--[if BLOCK]><![endif]-->                                                                    <a href="/products/6" wire:key="n7DUtsZ8UqIz8xj9Bicz.actions.view.44d4395add2d93b1c94ba3176b4593ca" class="fi-ac-link-action fi-link fi-size-sm "><svg class="fi-icon fi-size-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path d="M10 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+  <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 0 1 0-1.186A10.004 10.004 0 0 1 10 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0 1 10 17c-4.257 0-7.893-2.66-9.336-6.41ZM14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" clip-rule="evenodd"/>
+</svg><span class="fi-link-label">View</span></a>
+                                                                <!--[if ENDBLOCK]><![endif]-->                                                            </div>
+                                                        </td>
+                                                    <!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                                                </tr>
+                                            <!--[if ENDBLOCK]><![endif]-->
+                                                                                                                                
+                                            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                            <!--[if BLOCK]><![endif]-->                                                <tr
+                                                    wire:key="n7DUtsZ8UqIz8xj9Bicz.table.records.5"
+                                                    
+                                                    
+                                                    x-bind:class="{
+                                                        
+                                                        'fi-selected': false && isRecordSelected('5'),
+                                                    }"
+                                                    class="fi-ta-row"
+                                                >
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]-->                                                        
+                                                        <td
+                                                            wire:key="n7DUtsZ8UqIz8xj9Bicz.table.record.5.column.variant.product.name"
+                                                            class="fi-ta-cell fi-ta-cell-variant.product.name"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                
+            <div class="fi-ta-text fi-wrapped fi-ta-text-has-descriptions">
+                
+                                    
+                    <p class="fi-ta-text-item  fi-size-sm fi-font-medium">
+                        
+                                                Morning Clarity Lemongrass Green Tea                        
+                                            </p>
+                
+                
+                                    <p class="fi-ta-text-description">
+                        250g Botanical Refill Pouch                    </p>
+                            </div>
+
+            
+                                                            </div>
+                                                            
+                                                        </td>
+                                                                                                            
+                                                        <td
+                                                            wire:key="n7DUtsZ8UqIz8xj9Bicz.table.record.5.column.quantity_on_hand"
+                                                            class="fi-ta-cell fi-ta-cell-quantity-on-hand"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                <div class="fi-ta-text fi-ta-text-item fi-ta-text-has-badges"><span class="fi-badge fi-size-sm fi-color fi-color-danger fi-text-color-700 dark:fi-text-color-200">1 units</span></div>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                                                                            
+                                                        <td
+                                                            wire:key="n7DUtsZ8UqIz8xj9Bicz.table.record.5.column.low_stock_threshold"
+                                                            class="fi-ta-cell fi-ta-cell-low-stock-threshold fi-align-end"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                <div class="fi-ta-text fi-ta-text-item fi-size-sm fi-align-end">5 units</div>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                    <!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]-->                                                        <td class="fi-ta-cell">
+                                                            <div
+                                                                class="fi-ta-actions "
+                                                            >
+                                                                <!--[if BLOCK]><![endif]-->                                                                    <a href="/products/2" wire:key="n7DUtsZ8UqIz8xj9Bicz.actions.view.9a1ed8a04900b6a06811b873eb1cff4f" class="fi-ac-link-action fi-link fi-size-sm "><svg class="fi-icon fi-size-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path d="M10 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+  <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 0 1 0-1.186A10.004 10.004 0 0 1 10 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0 1 10 17c-4.257 0-7.893-2.66-9.336-6.41ZM14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" clip-rule="evenodd"/>
+</svg><span class="fi-link-label">View</span></a>
+                                                                <!--[if ENDBLOCK]><![endif]-->                                                            </div>
+                                                        </td>
+                                                    <!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                                                </tr>
+                                            <!--[if ENDBLOCK]><![endif]-->
+                                                                                                                                
+                                            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                            <!--[if BLOCK]><![endif]-->                                                <tr
+                                                    wire:key="n7DUtsZ8UqIz8xj9Bicz.table.records.6"
+                                                    
+                                                    
+                                                    x-bind:class="{
+                                                        
+                                                        'fi-selected': false && isRecordSelected('6'),
+                                                    }"
+                                                    class="fi-ta-row"
+                                                >
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]-->                                                        
+                                                        <td
+                                                            wire:key="n7DUtsZ8UqIz8xj9Bicz.table.record.6.column.variant.product.name"
+                                                            class="fi-ta-cell fi-ta-cell-variant.product.name"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                
+            <div class="fi-ta-text fi-wrapped fi-ta-text-has-descriptions">
+                
+                                    
+                    <p class="fi-ta-text-item  fi-size-sm fi-font-medium">
+                        
+                                                First Flush Darjeeling Castleton Estate                        
+                                            </p>
+                
+                
+                                    <p class="fi-ta-text-description">
+                        100g Signature Porcelain Cloche Jar                    </p>
+                            </div>
+
+            
+                                                            </div>
+                                                            
+                                                        </td>
+                                                                                                            
+                                                        <td
+                                                            wire:key="n7DUtsZ8UqIz8xj9Bicz.table.record.6.column.quantity_on_hand"
+                                                            class="fi-ta-cell fi-ta-cell-quantity-on-hand"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                <div class="fi-ta-text fi-ta-text-item fi-ta-text-has-badges"><span class="fi-badge fi-size-sm fi-color fi-color-danger fi-text-color-700 dark:fi-text-color-200">2 units</span></div>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                                                                            
+                                                        <td
+                                                            wire:key="n7DUtsZ8UqIz8xj9Bicz.table.record.6.column.low_stock_threshold"
+                                                            class="fi-ta-cell fi-ta-cell-low-stock-threshold fi-align-end"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                <div class="fi-ta-text fi-ta-text-item fi-size-sm fi-align-end">5 units</div>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                    <!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]-->                                                        <td class="fi-ta-cell">
+                                                            <div
+                                                                class="fi-ta-actions "
+                                                            >
+                                                                <!--[if BLOCK]><![endif]-->                                                                    <a href="/products/3" wire:key="n7DUtsZ8UqIz8xj9Bicz.actions.view.c8f2066f574f6b8917c9ea579c734a3b" class="fi-ac-link-action fi-link fi-size-sm "><svg class="fi-icon fi-size-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path d="M10 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+  <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 0 1 0-1.186A10.004 10.004 0 0 1 10 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0 1 10 17c-4.257 0-7.893-2.66-9.336-6.41ZM14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" clip-rule="evenodd"/>
+</svg><span class="fi-link-label">View</span></a>
+                                                                <!--[if ENDBLOCK]><![endif]-->                                                            </div>
+                                                        </td>
+                                                    <!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                                                </tr>
+                                            <!--[if ENDBLOCK]><![endif]-->
+                                                                                                                                
+                                            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                            <!--[if BLOCK]><![endif]-->                                                <tr
+                                                    wire:key="n7DUtsZ8UqIz8xj9Bicz.table.records.3"
+                                                    
+                                                    
+                                                    x-bind:class="{
+                                                        
+                                                        'fi-selected': false && isRecordSelected('3'),
+                                                    }"
+                                                    class="fi-ta-row"
+                                                >
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]-->                                                        
+                                                        <td
+                                                            wire:key="n7DUtsZ8UqIz8xj9Bicz.table.record.3.column.variant.product.name"
+                                                            class="fi-ta-cell fi-ta-cell-variant.product.name"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                
+            <div class="fi-ta-text fi-wrapped fi-ta-text-has-descriptions">
+                
+                                    
+                    <p class="fi-ta-text-item  fi-size-sm fi-font-medium">
+                        
+                                                Restorative Sleep Nighttime Infusion                        
+                                            </p>
+                
+                
+                                    <p class="fi-ta-text-description">
+                        50g Petite Tasting Tin                    </p>
+                            </div>
+
+            
+                                                            </div>
+                                                            
+                                                        </td>
+                                                                                                            
+                                                        <td
+                                                            wire:key="n7DUtsZ8UqIz8xj9Bicz.table.record.3.column.quantity_on_hand"
+                                                            class="fi-ta-cell fi-ta-cell-quantity-on-hand"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                <div class="fi-ta-text fi-ta-text-item fi-ta-text-has-badges"><span class="fi-badge fi-size-sm fi-color fi-color-warning fi-text-color-700 dark:fi-text-color-400">3 units</span></div>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                                                                            
+                                                        <td
+                                                            wire:key="n7DUtsZ8UqIz8xj9Bicz.table.record.3.column.low_stock_threshold"
+                                                            class="fi-ta-cell fi-ta-cell-low-stock-threshold fi-align-end"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                <div class="fi-ta-text fi-ta-text-item fi-size-sm fi-align-end">5 units</div>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                    <!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]-->                                                        <td class="fi-ta-cell">
+                                                            <div
+                                                                class="fi-ta-actions "
+                                                            >
+                                                                <!--[if BLOCK]><![endif]-->                                                                    <a href="/products/1" wire:key="n7DUtsZ8UqIz8xj9Bicz.actions.view.fa39667122f05e02a142c95ead07993f" class="fi-ac-link-action fi-link fi-size-sm "><svg class="fi-icon fi-size-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path d="M10 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+  <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 0 1 0-1.186A10.004 10.004 0 0 1 10 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0 1 10 17c-4.257 0-7.893-2.66-9.336-6.41ZM14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" clip-rule="evenodd"/>
+</svg><span class="fi-link-label">View</span></a>
+                                                                <!--[if ENDBLOCK]><![endif]-->                                                            </div>
+                                                        </td>
+                                                    <!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                                                </tr>
+                                            <!--[if ENDBLOCK]><![endif]-->
+                                                                                                                                
+                                            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                            <!--[if BLOCK]><![endif]-->                                                <tr
+                                                    wire:key="n7DUtsZ8UqIz8xj9Bicz.table.records.4"
+                                                    
+                                                    
+                                                    x-bind:class="{
+                                                        
+                                                        'fi-selected': false && isRecordSelected('4'),
+                                                    }"
+                                                    class="fi-ta-row"
+                                                >
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]-->                                                        
+                                                        <td
+                                                            wire:key="n7DUtsZ8UqIz8xj9Bicz.table.record.4.column.variant.product.name"
+                                                            class="fi-ta-cell fi-ta-cell-variant.product.name"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                
+            <div class="fi-ta-text fi-wrapped fi-ta-text-has-descriptions">
+                
+                                    
+                    <p class="fi-ta-text-item  fi-size-sm fi-font-medium">
+                        
+                                                Morning Clarity Lemongrass Green Tea                        
+                                            </p>
+                
+                
+                                    <p class="fi-ta-text-description">
+                        100g Signature Porcelain Cloche Jar                    </p>
+                            </div>
+
+            
+                                                            </div>
+                                                            
+                                                        </td>
+                                                                                                            
+                                                        <td
+                                                            wire:key="n7DUtsZ8UqIz8xj9Bicz.table.record.4.column.quantity_on_hand"
+                                                            class="fi-ta-cell fi-ta-cell-quantity-on-hand"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                <div class="fi-ta-text fi-ta-text-item fi-ta-text-has-badges"><span class="fi-badge fi-size-sm fi-color fi-color-warning fi-text-color-700 dark:fi-text-color-400">4 units</span></div>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                                                                            
+                                                        <td
+                                                            wire:key="n7DUtsZ8UqIz8xj9Bicz.table.record.4.column.low_stock_threshold"
+                                                            class="fi-ta-cell fi-ta-cell-low-stock-threshold fi-align-end"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                <div class="fi-ta-text fi-ta-text-item fi-size-sm fi-align-end">5 units</div>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                    <!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]-->                                                        <td class="fi-ta-cell">
+                                                            <div
+                                                                class="fi-ta-actions "
+                                                            >
+                                                                <!--[if BLOCK]><![endif]-->                                                                    <a href="/products/2" wire:key="n7DUtsZ8UqIz8xj9Bicz.actions.view.dd0e47b65a979708a668ae10ea9e546b" class="fi-ac-link-action fi-link fi-size-sm "><svg class="fi-icon fi-size-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path d="M10 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+  <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 0 1 0-1.186A10.004 10.004 0 0 1 10 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0 1 10 17c-4.257 0-7.893-2.66-9.336-6.41ZM14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" clip-rule="evenodd"/>
+</svg><span class="fi-link-label">View</span></a>
+                                                                <!--[if ENDBLOCK]><![endif]-->                                                            </div>
+                                                        </td>
+                                                    <!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                                                </tr>
+                                            <!--[if ENDBLOCK]><![endif]-->
+                                                                                    <!--[if ENDBLOCK]><![endif]-->
+                                        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                                    <!--[if ENDBLOCK]><![endif]-->                                </tbody>
+                            <!--[if ENDBLOCK]><![endif]-->
+                            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                        </table>
+                    <!--[if ENDBLOCK]><![endif]-->                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        </div>
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->    <div
+        wire:partial="action-modals"
+        x-data="filamentActionModals({
+                    livewireId: 'n7DUtsZ8UqIz8xj9Bicz',
+                })"
+        style="height: 0"
+    >
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if ENDBLOCK]><![endif]--></div>
+</div>
+                                                                <div wire:snapshot="{&quot;data&quot;:{&quot;mountedActions&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;defaultAction&quot;:null,&quot;defaultActionArguments&quot;:null,&quot;defaultActionContext&quot;:null,&quot;defaultTableAction&quot;:null,&quot;defaultTableActionRecord&quot;:null,&quot;defaultTableActionArguments&quot;:null,&quot;componentFileAttachments&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;areSchemaStateUpdateHooksDisabledForTesting&quot;:false,&quot;discoveredSchemaNames&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;isTableLoaded&quot;:false,&quot;tableGrouping&quot;:null,&quot;tableRecordsPerPage&quot;:null,&quot;isTableReordering&quot;:false,&quot;tableColumnSearches&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;tableSearch&quot;:&quot;&quot;,&quot;tableSort&quot;:null,&quot;selectedTableRecords&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;deselectedTableRecords&quot;:[[],{&quot;s&quot;:&quot;arr&quot;}],&quot;isTrackingDeselectedTableRecords&quot;:false,&quot;tableColumns&quot;:[[[{&quot;type&quot;:&quot;column&quot;,&quot;name&quot;:&quot;business_name&quot;,&quot;label&quot;:&quot;Partner Estate&quot;,&quot;isHidden&quot;:false,&quot;isToggled&quot;:true,&quot;isToggleable&quot;:false,&quot;isToggledHiddenByDefault&quot;:null},{&quot;s&quot;:&quot;arr&quot;}],[{&quot;type&quot;:&quot;column&quot;,&quot;name&quot;:&quot;order_volume&quot;,&quot;label&quot;:&quot;Orders&quot;,&quot;isHidden&quot;:false,&quot;isToggled&quot;:true,&quot;isToggleable&quot;:false,&quot;isToggledHiddenByDefault&quot;:null},{&quot;s&quot;:&quot;arr&quot;}],[{&quot;type&quot;:&quot;column&quot;,&quot;name&quot;:&quot;gross_sales&quot;,&quot;label&quot;:&quot;Gross Sales&quot;,&quot;isHidden&quot;:false,&quot;isToggled&quot;:true,&quot;isToggleable&quot;:false,&quot;isToggledHiddenByDefault&quot;:null},{&quot;s&quot;:&quot;arr&quot;}]],{&quot;s&quot;:&quot;arr&quot;}],&quot;tableFilters&quot;:null,&quot;tableDeferredFilters&quot;:null,&quot;paginators&quot;:[{&quot;page&quot;:1},{&quot;s&quot;:&quot;arr&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;qceuV6eu3POCrOg3BjXd&quot;,&quot;name&quot;:&quot;app.filament.admin.widgets.vendor-performance-widget&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;release&quot;:&quot;a-a-a&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;5d796cdf24738b5b0491b3111177e32572a86c79a143c92e8de42e2573c83807&quot;}" wire:effects="{&quot;partials&quot;:[],&quot;url&quot;:{&quot;defaultAction&quot;:{&quot;as&quot;:&quot;action&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultActionArguments&quot;:{&quot;as&quot;:&quot;actionArguments&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultActionContext&quot;:{&quot;as&quot;:&quot;actionContext&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableAction&quot;:{&quot;as&quot;:&quot;tableAction&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableActionRecord&quot;:{&quot;as&quot;:&quot;tableActionRecord&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;defaultTableActionArguments&quot;:{&quot;as&quot;:&quot;tableActionArguments&quot;,&quot;use&quot;:&quot;replace&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null},&quot;paginators.page&quot;:{&quot;as&quot;:&quot;page&quot;,&quot;use&quot;:&quot;push&quot;,&quot;alwaysShow&quot;:false,&quot;except&quot;:null}}}" wire:id="qceuV6eu3POCrOg3BjXd"
+    class="fi-wi-widget fi-grid-col lg:fi-grid-col-span fi-wi-table" style="--col-span-lg: span 1 / span 1;"
+>
+    <div
+        x-data="filamentTable({
+                areGroupsCollapsedByDefault: false,
+                canTrackDeselectedRecords: true,
+                currentSelectionLivewireProperty: null,
+                maxSelectableRecords: null,
+                selectsCurrentPageOnly: false,
+                $wire,
+            })"
+    class="fi-ta"
+>
+    <input
+        type="hidden"
+        value=""
+        x-ref="allSelectableRecordsCount"
+    />
+
+    <div
+        class="fi-ta-ctn fi-ta-ctn-with-header"
+    >
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+        <div class="fi-ta-main">
+            <div
+                                x-show="true || false || (getSelectedRecordsCount() && 0)"
+                wire:key="qceuV6eu3POCrOg3BjXd.table.header.visible"
+                class="fi-ta-header-ctn"
+            >
+                
+
+                <!--[if BLOCK]><![endif]-->                    <div
+                        class="fi-ta-header fi-ta-header-adaptive-actions-position"
+                    >
+                        <!--[if BLOCK]><![endif]-->                            <div>
+                                <!--[if BLOCK]><![endif]-->                                    <h2
+                                        class="fi-ta-header-heading"
+                                    >
+                                        Vendor Performance
+                                    </h2>
+                                <!--[if ENDBLOCK]><![endif]-->
+                                <!--[if BLOCK]><![endif]-->                                    <p class="fi-ta-header-description">
+                                        Partner estates ranked by fulfillment volume &amp; gross revenue.
+                                    </p>
+                                <!--[if ENDBLOCK]><![endif]-->                            </div>
+                        <!--[if ENDBLOCK]><![endif]-->
+                        <!--[if BLOCK]><![endif]-->                            <div
+                                class="fi-ta-actions fi-align-start fi-wrapped"
+                            >
+                                <!--[if BLOCK]><![endif]-->                                    
+        
+        
+        <a                            href="/vendors"                                                            class="fi-ac-btn-action fi-btn fi-size-md  fi-color fi-color-primary fi-bg-color-400 hover:fi-bg-color-300 dark:fi-bg-color-600 dark:hover:fi-bg-color-700 fi-text-color-950 hover:fi-text-color-800 dark:fi-text-color-0 dark:hover:fi-text-color-0"        >
+                            <svg class="fi-icon fi-size-md" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Z" clip-rule="evenodd"/>
+  <path fill-rule="evenodd" d="M6.194 12.753a.75.75 0 0 0 1.06.053L16.5 4.44v2.81a.75.75 0 0 0 1.5 0v-4.5a.75.75 0 0 0-.75-.75h-4.5a.75.75 0 0 0 0 1.5h2.553l-9.056 8.194a.75.75 0 0 0-.053 1.06Z" clip-rule="evenodd"/>
+</svg>                                            
+                                                View All                            
+            
+            
+                    </a>
+
+        
+        
+                                <!--[if ENDBLOCK]><![endif]-->                            </div>
+                        <!--[if ENDBLOCK]><![endif]-->                    </div>
+                <!--[if ENDBLOCK]><![endif]-->
+                
+
+                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                
+
+                <div
+                     x-cloak                     x-show="false || false || (getSelectedRecordsCount() && 0)"
+                    wire:key="qceuV6eu3POCrOg3BjXd.table.header-toolbar.hidden"
+                    class="fi-ta-header-toolbar"
+                >
+                    
+
+                    <div class="fi-ta-actions fi-align-start fi-wrapped">
+                        
+
+                        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                        
+
+                        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                        
+
+                        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                        
+                    </div>
+
+                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                    
+                </div>
+
+                
+            </div>
+
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]-->                <div
+                                        class="fi-ta-content-ctn fi-fixed-positioning-context"
+                >
+                    <!--[if BLOCK]><![endif]-->                        
+                        <div
+                            role="status"
+                            aria-live="polite"
+                            aria-atomic="true"
+                            class="fi-sr-only"
+                        >
+                            3 results
+                        </div>
+                    <!--[if ENDBLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]-->                        
+                        <table
+                            aria-label="Vendor Performance"
+                            class="fi-ta-table"
+                        >
+                            <thead>
+                                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                <tr>
+                                    <!--[if BLOCK]><![endif]-->                                        <!--[if BLOCK]><![endif]-->                                            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                                        <!--[if ENDBLOCK]><![endif]-->                                    <!--[if ENDBLOCK]><![endif]-->
+                                    
+                                    <!--[if BLOCK]><![endif]-->                                        <!--[if BLOCK]><![endif]-->                                            
+                                            <th
+                                                                                                scope="col"
+                                                class="fi-ta-header-cell fi-ta-header-cell-business-name"
+                                            >
+                                                <!--[if BLOCK]><![endif]-->                                                    <!--[if BLOCK]><![endif]-->                                                        Partner Estate
+                                                    <!--[if ENDBLOCK]><![endif]-->                                                <!--[if ENDBLOCK]><![endif]-->                                            </th>
+                                        <!--[if ENDBLOCK]><![endif]-->                                                                            <!--[if BLOCK]><![endif]-->                                            
+                                            <th
+                                                                                                scope="col"
+                                                class="fi-ta-header-cell fi-ta-header-cell-order-volume"
+                                            >
+                                                <!--[if BLOCK]><![endif]-->                                                    <!--[if BLOCK]><![endif]-->                                                        Orders
+                                                    <!--[if ENDBLOCK]><![endif]-->                                                <!--[if ENDBLOCK]><![endif]-->                                            </th>
+                                        <!--[if ENDBLOCK]><![endif]-->                                                                            <!--[if BLOCK]><![endif]-->                                            
+                                            <th
+                                                                                                scope="col"
+                                                class="fi-ta-header-cell fi-ta-header-cell-gross-sales fi-align-end"
+                                            >
+                                                <!--[if BLOCK]><![endif]-->                                                    <!--[if BLOCK]><![endif]-->                                                        Gross Sales
+                                                    <!--[if ENDBLOCK]><![endif]-->                                                <!--[if ENDBLOCK]><![endif]-->                                            </th>
+                                        <!--[if ENDBLOCK]><![endif]-->                                    <!--[if ENDBLOCK]><![endif]-->
+                                    <!--[if BLOCK]><![endif]-->                                        <!--[if BLOCK]><![endif]-->                                            <!--[if BLOCK]><![endif]-->                                                <th
+                                                    aria-label="Action"
+                                                    scope="col"
+                                                    class="fi-ta-actions-header-cell fi-ta-empty-header-cell"
+                                                ></th>
+                                            <!--[if ENDBLOCK]><![endif]-->                                        <!--[if ENDBLOCK]><![endif]-->
+                                        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                                    <!--[if ENDBLOCK]><![endif]-->                                </tr>
+                            </thead>
+
+                            <!--[if BLOCK]><![endif]-->                                <tbody
+                                                                    >
+                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                    <!--[if BLOCK]><![endif]-->                                        
+                                        <!--[if BLOCK]><![endif]-->                                            
+                                            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                            <!--[if BLOCK]><![endif]-->                                                <tr
+                                                    wire:key="qceuV6eu3POCrOg3BjXd.table.records.1"
+                                                    
+                                                    
+                                                    x-bind:class="{
+                                                        
+                                                        'fi-selected': false && isRecordSelected('1'),
+                                                    }"
+                                                    class="fi-ta-row"
+                                                >
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]-->                                                        
+                                                        <td
+                                                            wire:key="qceuV6eu3POCrOg3BjXd.table.record.1.column.business_name"
+                                                            class="fi-ta-cell fi-ta-cell-business-name"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                
+            <div class="fi-ta-text fi-wrapped fi-ta-text-has-descriptions">
+                
+                                    
+                    <p class="fi-ta-text-item  fi-size-sm fi-font-medium">
+                        
+                                                Darjeeling Himalayan Tea Estate                        
+                                            </p>
+                
+                
+                                    <p class="fi-ta-text-description">
+                        Darjeeling Valley, West Bengal                    </p>
+                            </div>
+
+            
+                                                            </div>
+                                                            
+                                                        </td>
+                                                                                                            
+                                                        <td
+                                                            wire:key="qceuV6eu3POCrOg3BjXd.table.record.1.column.order_volume"
+                                                            class="fi-ta-cell fi-ta-cell-order-volume"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                <div class="fi-ta-text fi-ta-text-item fi-ta-text-has-badges"><span class="fi-badge fi-size-sm ">142 orders</span></div>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                                                                            
+                                                        <td
+                                                            wire:key="qceuV6eu3POCrOg3BjXd.table.record.1.column.gross_sales"
+                                                            class="fi-ta-cell fi-ta-cell-gross-sales fi-align-end"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                
+            <div class="fi-ta-text-item  fi-size-sm fi-font-bold fi-color fi-color-success fi-text-color-700 dark:fi-text-color-600 fi-ta-text fi-align-end">
+                
+                                ₹642,800                
+                            </div>
+
+            
+                                                            </div>
+                                                            
+                                                        </td>
+                                                    <!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]-->                                                        <td class="fi-ta-cell">
+                                                            <div
+                                                                class="fi-ta-actions "
+                                                            >
+                                                                <!--[if BLOCK]><![endif]-->                                                                    <a href="/vendors/1" wire:key="qceuV6eu3POCrOg3BjXd.actions.view.a7db5409f70831a7162b0f4fefed44e8" class="fi-ac-link-action fi-link fi-size-sm "><svg class="fi-icon fi-size-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path d="M10 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+  <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 0 1 0-1.186A10.004 10.004 0 0 1 10 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0 1 10 17c-4.257 0-7.893-2.66-9.336-6.41ZM14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" clip-rule="evenodd"/>
+</svg><span class="fi-link-label">Details</span></a>
+                                                                <!--[if ENDBLOCK]><![endif]-->                                                            </div>
+                                                        </td>
+                                                    <!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                                                </tr>
+                                            <!--[if ENDBLOCK]><![endif]-->
+                                                                                                                                
+                                            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                            <!--[if BLOCK]><![endif]-->                                                <tr
+                                                    wire:key="qceuV6eu3POCrOg3BjXd.table.records.2"
+                                                    
+                                                    
+                                                    x-bind:class="{
+                                                        
+                                                        'fi-selected': false && isRecordSelected('2'),
+                                                    }"
+                                                    class="fi-ta-row"
+                                                >
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]-->                                                        
+                                                        <td
+                                                            wire:key="qceuV6eu3POCrOg3BjXd.table.record.2.column.business_name"
+                                                            class="fi-ta-cell fi-ta-cell-business-name"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                
+            <div class="fi-ta-text fi-wrapped fi-ta-text-has-descriptions">
+                
+                                    
+                    <p class="fi-ta-text-item  fi-size-sm fi-font-medium">
+                        
+                                                Kerala Spicery &amp; High-Grown Botanicals                        
+                                            </p>
+                
+                
+                                    <p class="fi-ta-text-description">
+                        Idukki Highlands, Kerala                    </p>
+                            </div>
+
+            
+                                                            </div>
+                                                            
+                                                        </td>
+                                                                                                            
+                                                        <td
+                                                            wire:key="qceuV6eu3POCrOg3BjXd.table.record.2.column.order_volume"
+                                                            class="fi-ta-cell fi-ta-cell-order-volume"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                <div class="fi-ta-text fi-ta-text-item fi-ta-text-has-badges"><span class="fi-badge fi-size-sm ">88 orders</span></div>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                                                                            
+                                                        <td
+                                                            wire:key="qceuV6eu3POCrOg3BjXd.table.record.2.column.gross_sales"
+                                                            class="fi-ta-cell fi-ta-cell-gross-sales fi-align-end"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                
+            <div class="fi-ta-text-item  fi-size-sm fi-font-bold fi-color fi-color-success fi-text-color-700 dark:fi-text-color-600 fi-ta-text fi-align-end">
+                
+                                ₹420,500                
+                            </div>
+
+            
+                                                            </div>
+                                                            
+                                                        </td>
+                                                    <!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]-->                                                        <td class="fi-ta-cell">
+                                                            <div
+                                                                class="fi-ta-actions "
+                                                            >
+                                                                <!--[if BLOCK]><![endif]-->                                                                    <a href="/vendors/2" wire:key="qceuV6eu3POCrOg3BjXd.actions.view.db68328c0202533bee914de9222afb77" class="fi-ac-link-action fi-link fi-size-sm "><svg class="fi-icon fi-size-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path d="M10 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+  <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 0 1 0-1.186A10.004 10.004 0 0 1 10 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0 1 10 17c-4.257 0-7.893-2.66-9.336-6.41ZM14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" clip-rule="evenodd"/>
+</svg><span class="fi-link-label">Details</span></a>
+                                                                <!--[if ENDBLOCK]><![endif]-->                                                            </div>
+                                                        </td>
+                                                    <!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                                                </tr>
+                                            <!--[if ENDBLOCK]><![endif]-->
+                                                                                                                                
+                                            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                            <!--[if BLOCK]><![endif]-->                                                <tr
+                                                    wire:key="qceuV6eu3POCrOg3BjXd.table.records.3"
+                                                    
+                                                    
+                                                    x-bind:class="{
+                                                        
+                                                        'fi-selected': false && isRecordSelected('3'),
+                                                    }"
+                                                    class="fi-ta-row"
+                                                >
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]-->                                                        
+                                                        <td
+                                                            wire:key="qceuV6eu3POCrOg3BjXd.table.record.3.column.business_name"
+                                                            class="fi-ta-cell fi-ta-cell-business-name"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                
+            <div class="fi-ta-text fi-wrapped fi-ta-text-has-descriptions">
+                
+                                    
+                    <p class="fi-ta-text-item  fi-size-sm fi-font-medium">
+                        
+                                                Nilgiri Blue Mountain Herb Reserve                        
+                                            </p>
+                
+                
+                                    <p class="fi-ta-text-description">
+                        Nilgiri Hills, Tamil Nadu                    </p>
+                            </div>
+
+            
+                                                            </div>
+                                                            
+                                                        </td>
+                                                                                                            
+                                                        <td
+                                                            wire:key="qceuV6eu3POCrOg3BjXd.table.record.3.column.order_volume"
+                                                            class="fi-ta-cell fi-ta-cell-order-volume"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                <div class="fi-ta-text fi-ta-text-item fi-ta-text-has-badges"><span class="fi-badge fi-size-sm ">54 orders</span></div>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                                                                            
+                                                        <td
+                                                            wire:key="qceuV6eu3POCrOg3BjXd.table.record.3.column.gross_sales"
+                                                            class="fi-ta-cell fi-ta-cell-gross-sales fi-align-end"
+                                                        >
+                                                            
+                                                            <div
+                                                                                                                                class="fi-ta-col"
+                                                            >
+                                                                
+            <div class="fi-ta-text-item  fi-size-sm fi-font-bold fi-color fi-color-success fi-text-color-700 dark:fi-text-color-600 fi-ta-text fi-align-end">
+                
+                                ₹285,100                
+                            </div>
+
+            
+                                                            </div>
+                                                            
+                                                        </td>
+                                                    <!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]-->                                                        <td class="fi-ta-cell">
+                                                            <div
+                                                                class="fi-ta-actions "
+                                                            >
+                                                                <!--[if BLOCK]><![endif]-->                                                                    <a href="/vendors/3" wire:key="qceuV6eu3POCrOg3BjXd.actions.view.fa39667122f05e02a142c95ead07993f" class="fi-ac-link-action fi-link fi-size-sm "><svg class="fi-icon fi-size-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path d="M10 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+  <path fill-rule="evenodd" d="M.664 10.59a1.651 1.651 0 0 1 0-1.186A10.004 10.004 0 0 1 10 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0 1 10 17c-4.257 0-7.893-2.66-9.336-6.41ZM14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" clip-rule="evenodd"/>
+</svg><span class="fi-link-label">Details</span></a>
+                                                                <!--[if ENDBLOCK]><![endif]-->                                                            </div>
+                                                        </td>
+                                                    <!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                                    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                                                </tr>
+                                            <!--[if ENDBLOCK]><![endif]-->
+                                                                                    <!--[if ENDBLOCK]><![endif]-->
+                                        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+                                        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                                    <!--[if ENDBLOCK]><![endif]-->                                </tbody>
+                            <!--[if ENDBLOCK]><![endif]-->
+                            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->                        </table>
+                    <!--[if ENDBLOCK]><![endif]-->                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        </div>
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->    <div
+        wire:partial="action-modals"
+        x-data="filamentActionModals({
+                    livewireId: 'qceuV6eu3POCrOg3BjXd',
+                })"
+        style="height: 0"
+    >
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if ENDBLOCK]><![endif]--></div>
+</div>
+                                                                <div wire:snapshot="{&quot;data&quot;:[],&quot;memo&quot;:{&quot;id&quot;:&quot;vhXZYF8r3kiar9DJxA1B&quot;,&quot;name&quot;:&quot;app.filament.admin.widgets.reports-overview-widget&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;release&quot;:&quot;a-a-a&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;8b425945b9629704e9d3b7d64a8d21a9731e32c06ea22c49f56113e7afac98d2&quot;}" wire:effects="{&quot;partials&quot;:[]}" wire:id="vhXZYF8r3kiar9DJxA1B"
+    class="fi-wi-widget fi-grid-col lg:fi-grid-col-span" style="--col-span-lg: 1 / -1;"
+>
+    <section
+    
+    x-data="{
+        isCollapsed:  false ,
+    }"
+        class="fi-section fi-section-has-header"
+>
+    <!--[if BLOCK]><![endif]-->        <header
+                        class="fi-section-header"
+        >
+            <svg class="fi-icon fi-size-lg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z"/>
+</svg>
+
+            <!--[if BLOCK]><![endif]-->                <div class="fi-section-header-text-ctn">
+                    <!--[if BLOCK]><![endif]-->                        <h2 class="fi-section-header-heading">
+                            <div class="flex items-center gap-x-2">
+                <span class="text-base font-semibold text-gray-950 dark:text-white">Executive & Financial Reports</span>
+                <span
+                class="fi-color fi-color-primary fi-text-color-700 dark:fi-text-color-300 fi-badge fi-size-sm"
+>
+    <!--[if BLOCK]><![endif]-->        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    <!--[if ENDBLOCK]><![endif]-->
+    <span class="fi-badge-label-ctn">
+        <span class="fi-badge-label">
+            Reports Hub
+        </span>
+    </span>
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></span>
+            </div>
+                        </h2>
+                    <!--[if ENDBLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]-->                        <p class="fi-section-header-description">
+                            Direct access to consolidated multi-vendor accounting, inventory depletion velocity, and tax audit reporting.
+                        </p>
+                    <!--[if ENDBLOCK]><![endif]-->                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        </header>
+    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]-->        <div
+                        class="fi-section-content-ctn"
+        >
+            <!--[if BLOCK]><![endif]-->                <div class="fi-section-content">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem;">
+            <!-- Card 1: Sales Analytics -->
+            <a href="/reports/sales" class="group transition duration-150 hover:shadow-md" style="display: flex; flex-direction: column; justify-content: space-between; border-radius: 0.5rem; padding: 1rem; border: 1px solid rgba(156, 163, 175, 0.2); background: rgba(249, 250, 251, 0.05); text-decoration: none;">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <div style="border-radius: 0.5rem; padding: 0.5rem; background: rgba(16, 185, 129, 0.1); color: #10b981;">
+                        <svg style="width: 20px; height: 20px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605"/>
+</svg>                    </div>
+                    <span style="font-size: 0.75rem; font-weight: 600; color: #9ca3af;">View →</span>
+                </div>
+                <div style="margin-top: 0.75rem;">
+                    <h4 style="font-size: 0.875rem; font-weight: 600; color: currentColor;">Sales & Revenue</h4>
+                    <p style="margin-top: 0.25rem; font-size: 0.75rem; color: #9ca3af;">Gross/net margin analysis, order velocity, and promo coupon performance.</p>
+                </div>
+            </a>
+
+            <!-- Card 2: Inventory Valuation -->
+            <a href="/reports/inventory" class="group transition duration-150 hover:shadow-md" style="display: flex; flex-direction: column; justify-content: space-between; border-radius: 0.5rem; padding: 1rem; border: 1px solid rgba(156, 163, 175, 0.2); background: rgba(249, 250, 251, 0.05); text-decoration: none;">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <div style="border-radius: 0.5rem; padding: 0.5rem; background: rgba(245, 158, 11, 0.1); color: #f59e0b;">
+                        <svg style="width: 20px; height: 20px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"/>
+</svg>                    </div>
+                    <span style="font-size: 0.75rem; font-weight: 600; color: #9ca3af;">View →</span>
+                </div>
+                <div style="margin-top: 0.75rem;">
+                    <h4 style="font-size: 0.875rem; font-weight: 600; color: currentColor;">Inventory Valuation</h4>
+                    <p style="margin-top: 0.25rem; font-size: 0.75rem; color: #9ca3af;">Warehouse stock valuation, SKU turnover, and batch reorder forecasting.</p>
+                </div>
+            </a>
+
+            <!-- Card 3: Vendor Settlement -->
+            <a href="/reports/vendors" class="group transition duration-150 hover:shadow-md" style="display: flex; flex-direction: column; justify-content: space-between; border-radius: 0.5rem; padding: 1rem; border: 1px solid rgba(156, 163, 175, 0.2); background: rgba(249, 250, 251, 0.05); text-decoration: none;">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <div style="border-radius: 0.5rem; padding: 0.5rem; background: rgba(14, 165, 233, 0.1); color: #0ea5e9;">
+                        <svg style="width: 20px; height: 20px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z"/>
+</svg>                    </div>
+                    <span style="font-size: 0.75rem; font-weight: 600; color: #9ca3af;">View →</span>
+                </div>
+                <div style="margin-top: 0.75rem;">
+                    <h4 style="font-size: 0.875rem; font-weight: 600; color: currentColor;">Vendor Settlement</h4>
+                    <p style="margin-top: 0.25rem; font-size: 0.75rem; color: #9ca3af;">Partner estate commission splits, payout reconciliations, and ledgers.</p>
+                </div>
+            </a>
+
+            <!-- Card 4: Tax & Compliance -->
+            <a href="/reports/tax" class="group transition duration-150 hover:shadow-md" style="display: flex; flex-direction: column; justify-content: space-between; border-radius: 0.5rem; padding: 1rem; border: 1px solid rgba(156, 163, 175, 0.2); background: rgba(249, 250, 251, 0.05); text-decoration: none;">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <div style="border-radius: 0.5rem; padding: 0.5rem; background: rgba(168, 85, 247, 0.1); color: #a855f7;">
+                        <svg style="width: 20px; height: 20px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/>
+</svg>                    </div>
+                    <span style="font-size: 0.75rem; font-weight: 600; color: #9ca3af;">View →</span>
+                </div>
+                <div style="margin-top: 0.75rem;">
+                    <h4 style="font-size: 0.875rem; font-weight: 600; color: currentColor;">Tax & GST Ledger</h4>
+                    <p style="margin-top: 0.25rem; font-size: 0.75rem; color: #9ca3af;">State-wise GST filings, HSN code breakdowns, and export invoices.</p>
+                </div>
+            </a>
+        </div>
+                </div>
+            <!--[if ENDBLOCK]><![endif]-->
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        </div>
+    <!--[if ENDBLOCK]><![endif]--></section>
+</div>
+                                    </div>
+
+                </div>
+
+                        </div>
+                    </div>
+
+                                            </div>
+
+                
+
+                
+
+                
+            </div>
+
+            <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->        </div>
+
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->        <!--[if BLOCK]><![endif]-->    <div
+        wire:partial="action-modals"
+        x-data="filamentActionModals({
+                    livewireId: '8aK2MSEC8Iwm5eSu9hR4',
+                })"
+        style="height: 0"
+    >
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if ENDBLOCK]><![endif]-->    <!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    
+
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></div>
+
+                
+            </main>
+
+            
+
+            
+        </div>
+
+        
+    </div>
+
+        <div wire:snapshot="{&quot;data&quot;:{&quot;isFilamentNotificationsComponent&quot;:true,&quot;notifications&quot;:[[],{&quot;class&quot;:&quot;Filament\\Notifications\\Collection&quot;,&quot;s&quot;:&quot;wrbl&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;okDodpxnmsAtwjtzcT7N&quot;,&quot;name&quot;:&quot;filament.livewire.notifications&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;release&quot;:&quot;a-a-a&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[&quot;642100889-1&quot;],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;7f8b022a246561964b909ca59719d494fdcd5ac3483628212bfd15ffde195b46&quot;}" wire:effects="{&quot;partials&quot;:[],&quot;scripts&quot;:{&quot;642100889-1&quot;:&quot;            &lt;script&gt;\n                window.addEventListener(&#039;EchoLoaded&#039;, () =&gt; {\n                    window.Echo.private(&#039;App.Models.User.2&#039;).notification(\n                        (notification) =&gt; {\n                            setTimeout(\n                                () =&gt;\n                                    $wire.handleBroadcastNotification(\n                                        notification,\n                                    ),\n                                500,\n                            )\n                        },\n                    )\n                })\n\n                if (window.Echo) {\n                    window.dispatchEvent(new CustomEvent(&#039;EchoLoaded&#039;))\n                }\n            &lt;\/script&gt;\n            &quot;},&quot;listeners&quot;:[&quot;notificationsSent&quot;,&quot;notificationSent&quot;,&quot;notificationClosed&quot;]}" wire:id="okDodpxnmsAtwjtzcT7N">
+    <div
+        class="fi-no fi-align-right fi-vertical-align-start"
+        role="status"
+        aria-atomic="false"
+    >
+        <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->    </div>
+
+    <!--[if BLOCK]><![endif]-->                <!--[if ENDBLOCK]><![endif]--></div>
+
+        
+
+        <script>
+        window.filamentData = []    </script>
+
+            
+            <script
+                src="/js/filament/actions/actions.js?v=4.12.6.0"
+                
+                
+                
+                
+                
+                
+            ></script>
+        
+                
+            <script
+                src="/js/filament/notifications/notifications.js?v=4.12.6.0"
+                
+                
+                
+                
+                
+                
+            ></script>
+        
+                
+            <script
+                src="/js/filament/schemas/schemas.js?v=4.12.6.0"
+                
+                
+                
+                
+                
+                
+            ></script>
+        
+                
+            <script
+                src="/js/filament/support/support.js?v=4.12.6.0"
+                
+                
+                
+                
+                
+                
+            ></script>
+        
+                
+            <script
+                src="/js/filament/tables/tables.js?v=4.12.6.0"
+                
+                
+                
+                
+                
+                
+            ></script>
+        
+                
+            <script
+                src="/js/filament/filament/echo.js?v=4.12.6.0"
+                
+                
+                
+                
+                
+                
+            ></script>
+        
+                
+            <script
+                src="/js/filament/filament/app.js?v=4.12.6.0"
+                
+                
+                
+                
+                
+                
+            ></script>
+        
+    
+<style>
+    :root {
+            }
+
+    </style>
+
+        
+                    <script>
+                loadDarkMode()
+            </script>
+        
+        
+        
+
+        
+    <!-- Livewire Scripts -->
+<script src="/livewire/livewire.js?id=df86bb7e"   data-csrf="UsoXYFhwMke6DyYN4V4o0sQXTFro8Nl8NRu7sIfk" data-update-uri="/livewire/update" data-navigate-once="true"></script>
+</body>
+</html>

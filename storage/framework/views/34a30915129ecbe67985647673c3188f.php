@@ -35,10 +35,9 @@ foreach ($attributes->all() as $__key => $__value) {
 unset($__defined_vars, $__key, $__value); ?>
 
 <?php
-$eyebrow = $payload['eyebrow'] ?? 'Collector Staples';
-$title = $payload['title'] ?? 'The Henley Hallmarks';
-$description = $payload['description'] ?? 'Our most celebrated harvests, re-ordered continuously by tea collectors worldwide.';
-$limit = (int) ($payload['limit'] ?? 6);
+$eyebrow = $payload['eyebrow'] ?? 'Most Loved';
+$title = $payload['title'] ?? 'Best Sellers';
+$limit = (int) ($payload['limit'] ?? 4);
 
 $items = $products ?? \App\Models\Product::active()
     ->bestseller()
@@ -48,67 +47,46 @@ $items = $products ?? \App\Models\Product::active()
 ?>
 
 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($items->isNotEmpty()): ?>
-    <section class="w-full bg-surface-raised/40 py-16 sm:py-24 border-y border-hairline overflow-hidden">
-        <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12 space-y-12">
-            <?php if (isset($component)) { $__componentOriginal755230460fd16c04121658d92fbf99f7 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal755230460fd16c04121658d92fbf99f7 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.section-heading','data' => ['eyebrow' => $eyebrow,'title' => $title,'description' => $description,'align' => 'center']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('section-heading'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['eyebrow' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($eyebrow),'title' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($title),'description' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($description),'align' => 'center']); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal755230460fd16c04121658d92fbf99f7)): ?>
-<?php $attributes = $__attributesOriginal755230460fd16c04121658d92fbf99f7; ?>
-<?php unset($__attributesOriginal755230460fd16c04121658d92fbf99f7); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal755230460fd16c04121658d92fbf99f7)): ?>
-<?php $component = $__componentOriginal755230460fd16c04121658d92fbf99f7; ?>
-<?php unset($__componentOriginal755230460fd16c04121658d92fbf99f7); ?>
-<?php endif; ?>
+    <section class="py-16 lg:py-24">
+        <div class="henley-container">
+            <!-- Section heading -->
+            <div class="flex items-end justify-between mb-10 lg:mb-14">
+                <div>
+                    <p class="text-eyebrow text-gold mb-2"><?php echo e($eyebrow); ?></p>
+                    <h2 class="font-serif text-2xl lg:text-3xl text-charcoal">
+                        <?php echo e($title); ?>
 
-            <!-- Mobile Native Scroll-Snap Scroller & Desktop Grid -->
-            <div class="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto sm:overflow-x-visible pb-4 sm:pb-0 snap-x snap-mandatory no-scrollbar -mx-5 px-5 sm:mx-0 sm:px-0">
+                    </h2>
+                </div>
+                <a href="/shop?sort=bestselling" class="hidden lg:inline-flex items-center gap-1 text-sm font-sans font-medium text-maroon hover:text-maroon-dark transition-colors">
+                    View All →
+                </a>
+            </div>
+
+            <!-- Product grid: 2 per row on mobile, 4 per row on desktop -->
+            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 lg:gap-6">
                 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="w-[280px] sm:w-auto flex-shrink-0 snap-center">
-                        <?php if (isset($component)) { $__componentOriginal97cd36444825b8000ec8a09fb9ff392f = $component; } ?>
+                    <?php if (isset($component)) { $__componentOriginal97cd36444825b8000ec8a09fb9ff392f = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal97cd36444825b8000ec8a09fb9ff392f = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.commerce.product-card','data' => ['title' => $product->name,'subtitle' => $product->short_description ?? ($product->primary_category?->name ?? 'Single Estate'),'price' => $product->getPriceMoney()->formatted(),'compareAtPrice' => $product->compare_at_price_money?->formatted(),'image' => $product->primary_image ?? ($product->images->first()?->url ?? \App\Services\PlaceholderService::url('product_square', $product->id)),'rating' => (float) ($product->rating_average > 0 ? $product->rating_average : 4.9),'ratingCount' => (int) ($product->rating_count > 0 ? $product->rating_count : 42 + ($index * 15)),'badge' => '#' . ($index + 1) . ' Bestseller','badgeVariant' => 'gold','href' => '/products/' . $product->slug]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.commerce.product-card','data' => ['title' => $product->name,'subtitle' => $product->short_description ?? ($product->primary_category?->name ?? 'Single Estate'),'category' => $product->primary_category?->name ?? ($product->categories->first()?->name ?? 'Specialty'),'price' => $product->getPriceMoney()->formatted(),'compareAtPrice' => $product->compare_at_price_money?->formatted(),'image' => $product->primary_image ?? ($product->images->first()?->url ?? '/pimages/saffron.jpg'),'rating' => (float) ($product->rating_average > 0 ? $product->rating_average : 5.0),'ratingCount' => (int) ($product->rating_count > 0 ? $product->rating_count : 142 + ($index * 30)),'badge' => 'bestseller','badgeVariant' => 'gold','href' => '/product/' . $product->slug,'imageAspect' => 'aspect-square']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('commerce.product-card'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['title' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($product->name),'subtitle' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($product->short_description ?? ($product->primary_category?->name ?? 'Single Estate')),'price' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($product->getPriceMoney()->formatted()),'compare-at-price' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($product->compare_at_price_money?->formatted()),'image' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($product->primary_image ?? ($product->images->first()?->url ?? \App\Services\PlaceholderService::url('product_square', $product->id))),'rating' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute((float) ($product->rating_average > 0 ? $product->rating_average : 4.9)),'rating-count' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute((int) ($product->rating_count > 0 ? $product->rating_count : 42 + ($index * 15))),'badge' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute('#' . ($index + 1) . ' Bestseller'),'badge-variant' => 'gold','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute('/products/' . $product->slug)]); ?>
-                             <?php $__env->slot('action', null, []); ?> 
-                                <?php if (isset($component)) { $__componentOriginald0f1fd2689e4bb7060122a5b91fe8561 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginald0f1fd2689e4bb7060122a5b91fe8561 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.button','data' => ['variant' => 'secondary','size' => 'sm','xData' => true,'xOn:click.prevent' => '$dispatch(\'notify\', { message: \''.e(addslashes($product->name)).' added to ritual.\', tone: \'success\' }); $dispatch(\'cart-updated\', { count: 1 })']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('button'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['variant' => 'secondary','size' => 'sm','x-data' => true,'x-on:click.prevent' => '$dispatch(\'notify\', { message: \''.e(addslashes($product->name)).' added to ritual.\', tone: \'success\' }); $dispatch(\'cart-updated\', { count: 1 })']); ?>
-                                    Add
-                                 <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginald0f1fd2689e4bb7060122a5b91fe8561)): ?>
-<?php $attributes = $__attributesOriginald0f1fd2689e4bb7060122a5b91fe8561; ?>
-<?php unset($__attributesOriginald0f1fd2689e4bb7060122a5b91fe8561); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginald0f1fd2689e4bb7060122a5b91fe8561)): ?>
-<?php $component = $__componentOriginald0f1fd2689e4bb7060122a5b91fe8561; ?>
-<?php unset($__componentOriginald0f1fd2689e4bb7060122a5b91fe8561); ?>
-<?php endif; ?>
-                             <?php $__env->endSlot(); ?>
-                         <?php echo $__env->renderComponent(); ?>
+<?php $component->withAttributes(['title' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($product->name),'subtitle' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($product->short_description ?? ($product->primary_category?->name ?? 'Single Estate')),'category' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($product->primary_category?->name ?? ($product->categories->first()?->name ?? 'Specialty')),'price' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($product->getPriceMoney()->formatted()),'compare-at-price' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($product->compare_at_price_money?->formatted()),'image' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($product->primary_image ?? ($product->images->first()?->url ?? '/pimages/saffron.jpg')),'rating' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute((float) ($product->rating_average > 0 ? $product->rating_average : 5.0)),'rating-count' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute((int) ($product->rating_count > 0 ? $product->rating_count : 142 + ($index * 30))),'badge' => 'bestseller','badge-variant' => 'gold','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute('/product/' . $product->slug),'image-aspect' => 'aspect-square']); ?>
+                         <?php $__env->slot('action', null, []); ?> 
+                            <button
+                                type="button"
+                                x-data
+                                x-on:click.prevent="$dispatch('notify', { message: '<?php echo e(addslashes($product->name)); ?> added to bag.', tone: 'success' }); $dispatch('cart-updated', { count: 1 })"
+                                class="w-full inline-flex items-center justify-center rounded-md font-sans text-ivory bg-maroon hover:bg-maroon-dark transition-colors cursor-pointer shadow-subtle !text-[10px] sm:!text-[11px] !py-1.5 sm:!py-2 !px-1 font-medium tracking-normal text-center"
+                            >
+                                + Bag
+                            </button>
+                         <?php $__env->endSlot(); ?>
+                     <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal97cd36444825b8000ec8a09fb9ff392f)): ?>
 <?php $attributes = $__attributesOriginal97cd36444825b8000ec8a09fb9ff392f; ?>
@@ -118,8 +96,14 @@ $items = $products ?? \App\Models\Product::active()
 <?php $component = $__componentOriginal97cd36444825b8000ec8a09fb9ff392f; ?>
 <?php unset($__componentOriginal97cd36444825b8000ec8a09fb9ff392f); ?>
 <?php endif; ?>
-                    </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            </div>
+
+            <!-- Mobile "View All" link -->
+            <div class="lg:hidden text-center mt-8">
+                <a href="/shop?sort=bestselling" class="text-sm font-sans font-medium text-maroon hover:text-maroon-dark transition-colors">
+                    View All Best Sellers →
+                </a>
             </div>
         </div>
     </section>

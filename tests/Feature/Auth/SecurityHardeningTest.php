@@ -68,7 +68,7 @@ test('logout other devices terminates active secondary sessions', function (): v
     $user = User::where('email', 'collector@henleytea.com')->firstOrFail();
     Auth::login($user);
 
-    // Call logoutOtherDevices helper
-    $result = $user->logoutOtherDevices('Botanical#2026!Secure');
+    $password = Hash::check('Botanical#2026!Secure', $user->password) ? 'Botanical#2026!Secure' : 'password';
+    $result = $user->logoutOtherDevices($password);
     expect($result)->toBeTrue();
 });

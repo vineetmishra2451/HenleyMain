@@ -142,3 +142,39 @@
         scroll-behavior: auto !important;
     }
 }
+
+/* -------------------------------------------------------------------------- */
+/* Layout & Container Classes from Next.js Design System                       */
+/* -------------------------------------------------------------------------- */
+
+.henley-container {
+    width: 100%;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+@media (min-width: 1024px) {
+    .henley-container {
+        padding-left: 48px;
+        padding-right: 48px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .henley-container {
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+}
+
+.scrollbar-none::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+

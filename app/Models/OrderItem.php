@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property float $unit_price
  * @property int $quantity
  * @property float $line_total
+ * @property string $fulfillment_status
  */
 #[ScopedBy([VendorScope::class])]
 class OrderItem extends Model
@@ -42,6 +43,7 @@ class OrderItem extends Model
         'line_tax',
         'line_discount',
         'line_total',
+        'fulfillment_status',
     ];
 
     protected function casts(): array

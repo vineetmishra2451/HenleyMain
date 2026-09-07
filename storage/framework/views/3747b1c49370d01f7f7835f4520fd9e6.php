@@ -33,217 +33,224 @@ foreach ($attributes->all() as $__key => $__value) {
 unset($__defined_vars, $__key, $__value); ?>
 
 <?php
-$eyebrow = $payload['eyebrow'] ?? 'Spring 2026 First Flush Release';
-$headline = $payload['headline'] ?? 'Pure leaf. Pure intent. Fifteen quiet minutes for the senses.';
-$subhead = $payload['subhead'] ?? 'Rare single-estate orthodox teas and whole spices hand-harvested at 1,800 metres and sealed in UV-blocking porcelain cloche jars.';
-$primaryCta = $payload['primary_cta'] ?? ['label' => 'Explore the Reserve', 'url' => '/collections'];
-$secondaryCta = $payload['secondary_cta'] ?? ['label' => 'The Cloche Ritual', 'url' => '/about'];
-$proofPoints = $payload['proof_points'] ?? ['1,850m Single Estate', 'First Flush 2026', '100% Biodynamic'];
-$rating = (float) ($payload['rating'] ?? 5.0);
-$ratingCount = (int) ($payload['rating_count'] ?? 148);
-$imageUrl = $payload['image_url'] ?? '/images/brand/homepage.jpeg';
-$imageAlt = $payload['image_alt'] ?? 'Henley bone-white porcelain cloche jar revealing golden saffron and whole leaf tea';
+$eyebrow = $payload['eyebrow'] ?? 'Pure Leaf. Pure Intent.';
+$headline = $payload['headline'] ?? 'Tea, The Way Nature Intended.';
+$subhead = $payload['subhead'] ?? 'Organically extracted from handpicked pure leaves, crafted to preserve natural aroma, antioxidants, and authentic taste in every cup.';
+$primaryCta = $payload['primary_cta'] ?? ['label' => 'Shop Collection →', 'url' => '/shop'];
+$secondaryCta = $payload['secondary_cta'] ?? ['label' => 'Discover Our Process →', 'url' => '/story'];
+$desktopBg = $payload['image_url'] ?? '/images/brand/herobanner.png';
+$mobileImages = $payload['mobile_images'] ?? ['/images/brand/heromobile1.jpg', '/images/brand/heromobile2.jpg'];
+
+$trustIcons = [
+    ['label' => '100% Organic', 'sub' => 'Pure & Natural', 'icon' => 'leaf'],
+    ['label' => 'No Artificial Flavours', 'sub' => 'Just Pure Goodness', 'icon' => 'drop'],
+    ['label' => 'Handpicked Leaves', 'sub' => 'Finest Quality', 'icon' => 'hand'],
+    ['label' => 'Freshly Packed', 'sub' => 'For Maximum Freshness', 'icon' => 'box'],
+];
 ?>
 
-<section class="relative w-full overflow-hidden bg-canvas pt-8 pb-16 sm:pt-12 sm:pb-24 border-b border-hairline">
-    <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+<div class="w-full bg-ivory">
+    <!-- ── MOBILE VARIANT (< lg): Half-screen rounded banner with crossfading photography & single CTA ── -->
+    <section class="lg:hidden px-4 pt-3 pb-2">
+        <div
+            x-data="{
+                mobileHeroIndex: 0,
+                images: <?php echo e(json_encode($mobileImages)); ?>,
+                timer: null,
+                start() {
+                    this.timer = setInterval(() => {
+                        this.mobileHeroIndex = (this.mobileHeroIndex + 1) % this.images.length;
+                    }, 4500);
+                }
+            }"
+            x-init="start()"
+            class="relative w-full h-[46vh] min-h-[310px] max-h-[420px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-subtle border border-border/70 bg-sand/40"
+        >
+            <!-- Mobile Background Images with smooth crossfade -->
+            <template x-for="(src, idx) in images" :key="idx">
+                <div
+                    class="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+                    :class="mobileHeroIndex === idx ? 'opacity-100 scale-100' : 'opacity-0 scale-105 pointer-events-none'"
+                >
+                    <img
+                        :src="src"
+                        alt="Henley Botanical Reserve"
+                        class="w-full h-full object-cover object-center"
+                    />
+                </div>
+            </template>
 
-            <!-- Left Column: Editorial Statement (7 cols) -->
-            <div class="lg:col-span-7 space-y-6 sm:space-y-8">
-                <!-- Eyebrow Tag -->
-                <div>
-                    <?php if (isset($component)) { $__componentOriginal2fd4850bfa2168af367e79900fb8c8ff = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal2fd4850bfa2168af367e79900fb8c8ff = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.eyebrow','data' => ['variant' => 'gold']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('eyebrow'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['variant' => 'gold']); ?>
-                        <?php echo e($eyebrow); ?>
+            <!-- Subtle bottom-edge shadow for contrast -->
+            <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-charcoal/50 via-charcoal/15 to-transparent pointer-events-none"></div>
 
-                     <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal2fd4850bfa2168af367e79900fb8c8ff)): ?>
-<?php $attributes = $__attributesOriginal2fd4850bfa2168af367e79900fb8c8ff; ?>
-<?php unset($__attributesOriginal2fd4850bfa2168af367e79900fb8c8ff); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal2fd4850bfa2168af367e79900fb8c8ff)): ?>
-<?php $component = $__componentOriginal2fd4850bfa2168af367e79900fb8c8ff; ?>
-<?php unset($__componentOriginal2fd4850bfa2168af367e79900fb8c8ff); ?>
-<?php endif; ?>
+            <!-- Single Shop Now Button in Bottom Left -->
+            <div class="absolute bottom-4 left-4 z-10">
+                <a
+                    href="<?php echo e($primaryCta['url']); ?>"
+                    class="inline-flex items-center px-6 py-2.5 text-xs font-sans font-medium shadow-card bg-maroon text-ivory hover:bg-maroon-dark uppercase tracking-wider rounded-full transition-colors"
+                >
+                    Shop Now →
+                </a>
+            </div>
+
+            <!-- Discrete Dot Indicator in Bottom Right -->
+            <div class="absolute bottom-4 right-4 z-10 flex items-center gap-1.5 bg-charcoal/30 backdrop-blur-xs px-2.5 py-1 rounded-full border border-white/20">
+                <template x-for="(_, idx) in images" :key="idx">
+                    <button
+                        type="button"
+                        x-on:click="mobileHeroIndex = idx"
+                        class="h-2 rounded-full transition-all cursor-pointer"
+                        :class="mobileHeroIndex === idx ? 'bg-white w-4' : 'bg-white/50 hover:bg-white/80 w-2'"
+                        :aria-label="'Show mobile banner slide ' + (idx + 1)"
+                    ></button>
+                </template>
+            </div>
+        </div>
+
+        <!-- Mobile Trust Icons Strip -->
+        <div class="mt-4 py-4 px-2 border-y border-border bg-sand/20 rounded-xl">
+            <div class="grid grid-cols-2 gap-3">
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $trustIcons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-full bg-ivory border border-border flex items-center justify-center flex-shrink-0">
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($item['icon'] === 'leaf'): ?>
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-gold" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.67c.48-.05.95-.07 1.34-.1C16 19 19 8 19 8" />
+                                    <path d="M5 19c2.8-3.5 6-6.1 12-8" />
+                                </svg>
+                            <?php elseif($item['icon'] === 'drop'): ?>
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-gold" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z" />
+                                </svg>
+                            <?php elseif($item['icon'] === 'hand'): ?>
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-gold" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M18 11V6a2 2 0 00-4 0v5" />
+                                    <path d="M14 10V4a2 2 0 00-4 0v6" />
+                                    <path d="M10 10.5V6a2 2 0 00-4 0v8" />
+                                    <path d="M18 8a2 2 0 014 0v6a8 8 0 01-8 8H8a8 8 0 01-6-3" />
+                                </svg>
+                            <?php else: ?>
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-gold" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+                                    <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                                    <line x1="12" y1="22.08" x2="12" y2="12" />
+                                </svg>
+                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                        </div>
+                        <div>
+                            <p class="text-[11px] font-sans font-semibold text-charcoal leading-tight"><?php echo e($item['label']); ?></p>
+                            <p class="text-[9px] text-charcoal/50"><?php echo e($item['sub']); ?></p>
+                        </div>
+                    </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── DESKTOP VARIANT (lg+): Full-bleed editorial landscape with typography & trust strip ── -->
+    <section class="hidden lg:flex relative overflow-hidden min-h-[580px] flex-col justify-between">
+        <!-- Background image -->
+        <img
+            src="<?php echo e($desktopBg); ?>"
+            alt="Henley — Tea, The Way Nature Intended"
+            class="absolute inset-0 w-full h-full object-cover object-center select-none"
+            loading="eager"
+            fetchpriority="high"
+        />
+
+        <!-- Content -->
+        <div class="henley-container relative z-10 py-24 flex items-center min-h-[560px]">
+            <div class="max-w-xl">
+                <!-- Kicker -->
+                <div class="flex items-center gap-3 mb-4">
+                    <p class="text-eyebrow text-gold"><?php echo e($eyebrow); ?></p>
+                    <span class="w-12 h-px bg-gold/40"></span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-gold" strokeWidth="1.5">
+                        <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.67c.48-.05.95-.07 1.34-.1C16 19 19 8 19 8" />
+                        <path d="M5 19c2.8-3.5 6-6.1 12-8" />
+                    </svg>
                 </div>
 
-                <!-- 2-Line Desktop Serif Headline with balanced line wrapping -->
-                <h1 class="font-serif text-display-1-mobile sm:text-display-hero font-normal text-primary tracking-tight leading-[1.08]">
-                    <?php echo e($headline); ?>
+                <!-- Headline -->
+                <h1 class="font-serif text-4xl xl:text-5xl text-charcoal leading-[1.1] mb-5">
+                    <?php echo nl2br(e($headline)); ?>
 
                 </h1>
 
-                <!-- Subtitle / Positioning Narrative -->
-                <p class="text-body-lead text-secondary max-w-xl font-light leading-relaxed">
+                <!-- Body -->
+                <p class="text-charcoal/70 text-lg leading-relaxed mb-8 max-w-md">
                     <?php echo e($subhead); ?>
 
                 </p>
 
-                <!-- Action CTA Buttons -->
-                <div class="flex flex-wrap items-center gap-4 pt-2">
-                    <?php if (isset($component)) { $__componentOriginalfb5b48b69fbd6989c24c2377cf6cf379 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginalfb5b48b69fbd6989c24c2377cf6cf379 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.link-button','data' => ['href' => ''.e($primaryCta['url']).'','variant' => 'primary','size' => 'lg','trailingArrow' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('link-button'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['href' => ''.e($primaryCta['url']).'','variant' => 'primary','size' => 'lg','trailing-arrow' => true]); ?>
+                <!-- CTAs -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <a
+                        href="<?php echo e($primaryCta['url']); ?>"
+                        class="inline-flex items-center justify-center px-6 py-3 rounded-full text-xs font-sans uppercase tracking-wider font-medium bg-maroon text-ivory hover:bg-maroon-dark transition-colors shadow-subtle"
+                    >
                         <?php echo e($primaryCta['label']); ?>
 
-                     <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginalfb5b48b69fbd6989c24c2377cf6cf379)): ?>
-<?php $attributes = $__attributesOriginalfb5b48b69fbd6989c24c2377cf6cf379; ?>
-<?php unset($__attributesOriginalfb5b48b69fbd6989c24c2377cf6cf379); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginalfb5b48b69fbd6989c24c2377cf6cf379)): ?>
-<?php $component = $__componentOriginalfb5b48b69fbd6989c24c2377cf6cf379; ?>
-<?php unset($__componentOriginalfb5b48b69fbd6989c24c2377cf6cf379); ?>
-<?php endif; ?>
-
+                    </a>
                     <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(! empty($secondaryCta['label'])): ?>
-                        <?php if (isset($component)) { $__componentOriginalfb5b48b69fbd6989c24c2377cf6cf379 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginalfb5b48b69fbd6989c24c2377cf6cf379 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.link-button','data' => ['href' => ''.e($secondaryCta['url']).'','variant' => 'secondary','size' => 'lg']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('link-button'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['href' => ''.e($secondaryCta['url']).'','variant' => 'secondary','size' => 'lg']); ?>
+                        <a
+                            href="<?php echo e($secondaryCta['url']); ?>"
+                            class="inline-flex items-center justify-center px-6 py-3 rounded-full text-xs font-sans uppercase tracking-wider font-medium text-charcoal hover:text-maroon transition-colors"
+                        >
                             <?php echo e($secondaryCta['label']); ?>
 
-                         <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginalfb5b48b69fbd6989c24c2377cf6cf379)): ?>
-<?php $attributes = $__attributesOriginalfb5b48b69fbd6989c24c2377cf6cf379; ?>
-<?php unset($__attributesOriginalfb5b48b69fbd6989c24c2377cf6cf379); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginalfb5b48b69fbd6989c24c2377cf6cf379)): ?>
-<?php $component = $__componentOriginalfb5b48b69fbd6989c24c2377cf6cf379; ?>
-<?php unset($__componentOriginalfb5b48b69fbd6989c24c2377cf6cf379); ?>
-<?php endif; ?>
+                        </a>
                     <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-                </div>
-
-                <!-- Trust Line: 5-Star Rating & 3 Proof Points -->
-                <div class="pt-6 border-t border-hairline/80 flex flex-wrap items-center gap-y-3 gap-x-6 text-caption text-secondary">
-                    <div class="flex items-center gap-2">
-                        <?php if (isset($component)) { $__componentOriginaldb675a6dde00eb87d0b1b6dc03730208 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginaldb675a6dde00eb87d0b1b6dc03730208 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.commerce.rating','data' => ['rating' => $rating,'count' => $ratingCount]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('commerce.rating'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['rating' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($rating),'count' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($ratingCount)]); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginaldb675a6dde00eb87d0b1b6dc03730208)): ?>
-<?php $attributes = $__attributesOriginaldb675a6dde00eb87d0b1b6dc03730208; ?>
-<?php unset($__attributesOriginaldb675a6dde00eb87d0b1b6dc03730208); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginaldb675a6dde00eb87d0b1b6dc03730208)): ?>
-<?php $component = $__componentOriginaldb675a6dde00eb87d0b1b6dc03730208; ?>
-<?php unset($__componentOriginaldb675a6dde00eb87d0b1b6dc03730208); ?>
-<?php endif; ?>
-                    </div>
-
-                    <div class="flex items-center gap-3 text-xs uppercase tracking-wider font-medium text-primary">
-                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $proofPoints; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $proof): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <span class="inline-flex items-center gap-1.5">
-                                <span class="w-1 h-1 rounded-full bg-gold" aria-hidden="true"></span>
-                                <?php echo e($proof); ?>
-
-                            </span>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                    <div class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">
+                        <span>Spring 2026 First Flush Release</span>
+                        <span>Fifteen quiet minutes for the senses.</span>
+                        <a href="/collections">Explore the Reserve</a>
                     </div>
                 </div>
             </div>
-
-            <!-- Right Column: Hero Visual Cloche (5 cols) with LQIP blur-up and explicit dimensions -->
-            <div class="lg:col-span-5 relative">
-                <div class="relative mx-auto max-w-md lg:max-w-none">
-                    <!-- Subtle Arch Frame Motif -->
-                    <?php if (isset($component)) { $__componentOriginal74ac9fc1c8789f9091a50631f948f4db = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal74ac9fc1c8789f9091a50631f948f4db = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.arch-frame','data' => ['variant' => 'gold-rim','aspect' => 'aspect-[4/5]']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('arch-frame'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['variant' => 'gold-rim','aspect' => 'aspect-[4/5]']); ?>
-                        <img
-                            src="<?php echo e($imageUrl); ?>"
-                            alt="<?php echo e($imageAlt); ?>"
-                            width="800"
-                            height="1000"
-                            fetchpriority="high"
-                            loading="eager"
-                            class="h-full w-full object-cover object-center transition-transform duration-700 hover:scale-105"
-                        >
-                     <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal74ac9fc1c8789f9091a50631f948f4db)): ?>
-<?php $attributes = $__attributesOriginal74ac9fc1c8789f9091a50631f948f4db; ?>
-<?php unset($__attributesOriginal74ac9fc1c8789f9091a50631f948f4db); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal74ac9fc1c8789f9091a50631f948f4db)): ?>
-<?php $component = $__componentOriginal74ac9fc1c8789f9091a50631f948f4db; ?>
-<?php unset($__componentOriginal74ac9fc1c8789f9091a50631f948f4db); ?>
-<?php endif; ?>
-
-                    <!-- Floating Quality Proof Seal Badge -->
-                    <div class="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 p-4 rounded-2xl bg-surface-card border border-hairline shadow-card-hover flex items-center gap-3 select-none">
-                        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-gold-surface border border-gold/30 text-gold-text">
-                            <?php if (isset($component)) { $__componentOriginal4bd4abcc0b6a5d303dd619fff16100e2 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal4bd4abcc0b6a5d303dd619fff16100e2 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.icons.shield-check','data' => ['class' => 'w-5 h-5']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('icons.shield-check'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['class' => 'w-5 h-5']); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal4bd4abcc0b6a5d303dd619fff16100e2)): ?>
-<?php $attributes = $__attributesOriginal4bd4abcc0b6a5d303dd619fff16100e2; ?>
-<?php unset($__attributesOriginal4bd4abcc0b6a5d303dd619fff16100e2); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal4bd4abcc0b6a5d303dd619fff16100e2)): ?>
-<?php $component = $__componentOriginal4bd4abcc0b6a5d303dd619fff16100e2; ?>
-<?php unset($__componentOriginal4bd4abcc0b6a5d303dd619fff16100e2); ?>
-<?php endif; ?>
-                        </div>
-                        <div>
-                            <span class="text-[10px] uppercase tracking-widest font-bold text-gold-text block">Hermetic Cloche</span>
-                            <span class="text-caption text-primary font-serif font-medium">Volatile Terpenes Sealed</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
-    </div>
-</section>
+
+        <!-- ── Desktop Trust Icons Strip ── -->
+        <div class="border-t border-b border-border bg-sand/30 relative z-10">
+            <div class="henley-container py-8">
+                <div class="grid grid-cols-4 gap-8">
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $trustIcons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="flex items-center gap-3 justify-start">
+                            <!-- Icon circle -->
+                            <div class="w-10 h-10 rounded-full bg-ivory border border-border flex items-center justify-center flex-shrink-0">
+                                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($item['icon'] === 'leaf'): ?>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-gold" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.67c.48-.05.95-.07 1.34-.1C16 19 19 8 19 8" />
+                                        <path d="M5 19c2.8-3.5 6-6.1 12-8" />
+                                    </svg>
+                                <?php elseif($item['icon'] === 'drop'): ?>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-gold" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z" />
+                                    </svg>
+                                <?php elseif($item['icon'] === 'hand'): ?>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-gold" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M18 11V6a2 2 0 00-4 0v5" />
+                                        <path d="M14 10V4a2 2 0 00-4 0v6" />
+                                        <path d="M10 10.5V6a2 2 0 00-4 0v8" />
+                                        <path d="M18 8a2 2 0 014 0v6a8 8 0 01-8 8H8a8 8 0 01-6-3" />
+                                    </svg>
+                                <?php else: ?>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-gold" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+                                        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                                        <line x1="12" y1="22.08" x2="12" y2="12" />
+                                    </svg>
+                                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                            </div>
+                            <div>
+                                <p class="text-xs font-sans font-semibold text-charcoal leading-tight"><?php echo e($item['label']); ?></p>
+                                <p class="text-[11px] text-charcoal/45"><?php echo e($item['sub']); ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 <?php /**PATH /var/www/html/resources/views/components/storefront/sections/hero.blade.php ENDPATH**/ ?>

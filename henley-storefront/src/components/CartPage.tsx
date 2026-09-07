@@ -441,7 +441,9 @@ export default function CartPage() {
                 <Button
                   variant="primary"
                   className="w-full !h-12 !text-xs !tracking-wider flex items-center justify-center gap-2"
-                  onClick={() => alert("Proceeding to secure checkout gateway (UPI / Cards / NetBanking)...")}
+                  onClick={() => {
+                    window.location.href = "/checkout";
+                  }}
                 >
                   Proceed to Checkout →
                 </Button>

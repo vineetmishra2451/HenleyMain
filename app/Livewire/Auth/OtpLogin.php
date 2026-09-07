@@ -141,7 +141,7 @@ class OtpLogin extends Component
                 'is_active' => true,
             ]);
 
-            $user->assignRole('customer');
+            $user->assignRole(['Customer', 'customer']);
 
             Customer::create([
                 'user_id' => $user->id,

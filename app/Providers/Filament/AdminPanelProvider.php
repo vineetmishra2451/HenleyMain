@@ -26,29 +26,31 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('admin')
-            ->login(\App\Filament\Pages\Auth\Login::class)
-            ->brandName('Henley — Business Management')
+            ->path('/')
+            ->domain(config('domains.admin', 'admin.henley.com') ?: 'admin.henley.com')
+            ->brandName('Henley — Admin')
             ->brandLogo(fn () => view('filament.admin.logo'))
             ->favicon('/favicon.ico')
             ->colors([
-                'primary' => Color::hex('#5C2225'), // Henley Oxblood
-                'secondary' => Color::hex('#B08B4F'), // Antique Gold
-                'warning' => Color::Amber,
-                'success' => Color::hex('#4D583F'), // Sage
-                'danger' => Color::Rose,
-                'info' => Color::hex('#A6332F'), // Saffron
-                'gray' => Color::hex('#6E635B'), // Warm taupe
+                'primary' => Color::hex('#4B1421'),
+            ])
+            ->login(\App\Filament\Pages\Auth\Login::class)
+            ->passwordReset()
+            ->authGuard('web')
+            ->navigationGroups([
+                'Catalog',
+                'Commerce',
+                'Reports',
+                'CMS',
+                'Administration',
             ])
             ->discoverResources(in: app_path('Filament/Admin/Resources'), for: 'App\\Filament\\Admin\\Resources')
             ->discoverPages(in: app_path('Filament/Admin/Pages'), for: 'App\\Filament\\Admin\\Pages')
             ->pages([
-                Pages\Dashboard::class,
+                \App\Filament\Admin\Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Admin/Widgets'), for: 'App\\Filament\\Admin\\Widgets')
-            ->widgets([
-                Widgets\AccountWidget::class,
-            ])
+            ->widgets([])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

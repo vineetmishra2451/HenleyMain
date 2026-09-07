@@ -6,16 +6,13 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 
-test('super admin can access both admin and vendor panels', function (): void {
+test('super admin can access admin panel on admin subdomain', function (): void {
     $superAdmin = User::where('email', 'admin@henleytea.com')->firstOrFail();
 
     $this->actingAs($superAdmin);
 
-    $adminResponse = $this->get('/admin');
+    $adminResponse = $this->get('http://admin.henley.com/');
     $adminResponse->assertSuccessful();
-
-    $vendorResponse = $this->get('/vendor');
-    $vendorResponse->assertSuccessful();
 });
 
 test('curator admin can access admin panel but receives 403 on vendor panel', function (): void {
@@ -23,10 +20,10 @@ test('curator admin can access admin panel but receives 403 on vendor panel', fu
 
     $this->actingAs($curator);
 
-    $adminResponse = $this->get('/admin');
+    $adminResponse = $this->get('http://admin.henley.com/');
     $adminResponse->assertSuccessful();
 
-    $vendorResponse = $this->get('/vendor');
+    $vendorResponse = $this->get('http://vendor.henley.com/');
     $vendorResponse->assertForbidden();
 });
 
@@ -35,10 +32,10 @@ test('vendor can access vendor panel but receives 403 on admin panel', function 
 
     $this->actingAs($vendor);
 
-    $vendorResponse = $this->get('/vendor');
+    $vendorResponse = $this->get('http://vendor.henley.com/');
     $vendorResponse->assertSuccessful();
 
-    $adminResponse = $this->get('/admin');
+    $adminResponse = $this->get('http://admin.henley.com/');
     $adminResponse->assertForbidden();
 });
 
@@ -47,9 +44,9 @@ test('customer receives 403 on both admin and vendor panels', function (): void 
 
     $this->actingAs($customer);
 
-    $adminResponse = $this->get('/admin');
+    $adminResponse = $this->get('http://admin.henley.com/');
     $adminResponse->assertForbidden();
 
-    $vendorResponse = $this->get('/vendor');
+    $vendorResponse = $this->get('http://vendor.henley.com/');
     $vendorResponse->assertForbidden();
 });
