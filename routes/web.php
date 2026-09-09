@@ -38,6 +38,15 @@ Route::get('/cart', function () {
     return redirect()->route('home');
 })->name('cart');
 
+// Admin & Vendor Panel Subdomain Shortcuts
+Route::get('/admin', function () {
+    return redirect('http://' . config('domains.admin', 'admin.henley.com'));
+})->name('admin.redirect');
+
+Route::get('/vendor', function () {
+    return redirect('http://' . config('domains.vendor', 'vendor.henley.com'));
+})->name('vendor.redirect');
+
 // Guest Storefront Authentication Routes
 Route::middleware('guest')->group(function (): void {
     Route::get('/login', Login::class)->name('login');

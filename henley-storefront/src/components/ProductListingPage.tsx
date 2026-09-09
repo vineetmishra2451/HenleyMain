@@ -92,9 +92,7 @@ export default function ProductListingPage({
   );
 
   // Filter States
-  const [selectedCollectionsFilter, setSelectedCollectionsFilter] = useState<string[]>(
-    activeCollectionSlug ? [activeCollectionSlug] : []
-  );
+  const [selectedCollectionsFilter, setSelectedCollectionsFilter] = useState<string[]>([]);
   const [selectedBenefits, setSelectedBenefits] = useState<string[]>([]);
   const [selectedPrices, setSelectedPrices] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState("featured");
@@ -108,9 +106,15 @@ export default function ProductListingPage({
 
   // Toggle helpers
   const toggleCollectionFilter = (slug: string) => {
-    setSelectedCollectionsFilter((prev) =>
-      prev.includes(slug) ? prev.filter((item) => item !== slug) : [...prev, slug]
-    );
+    setSelectedCollectionsFilter((prev) => {
+      const base =
+        prev.length > 0
+          ? prev
+          : selectedCollection !== "all"
+          ? [selectedCollection]
+          : [];
+      return base.includes(slug) ? base.filter((item) => item !== slug) : [...base, slug];
+    });
     setViewMode("products");
     setCurrentPage(1);
   };
@@ -140,16 +144,22 @@ export default function ProductListingPage({
   };
 
   const totalActiveFilters =
-    selectedCollectionsFilter.length +
+    (selectedCollectionsFilter.length > 0
+      ? selectedCollectionsFilter.length
+      : selectedCollection !== "all"
+      ? 1
+      : 0) +
     selectedBenefits.length +
     selectedPrices.length;
 
   // Filter products logic
   const filteredProducts = useMemo(() => {
     return PRODUCTS.filter((product) => {
-      // Top Tab filtering (if not 'all')
-      if (selectedCollection !== "all" && product.collectionSlug !== selectedCollection) {
-        return false;
+      // Collection filter: sidebar multi-checkbox takes precedence, otherwise use top tab
+      if (selectedCollectionsFilter.length > 0) {
+        if (!selectedCollectionsFilter.includes(product.collectionSlug)) return false;
+      } else if (selectedCollection !== "all") {
+        if (product.collectionSlug !== selectedCollection) return false;
       }
 
       // Search Query filter
@@ -159,11 +169,6 @@ export default function ProductListingPage({
         const matchesSub = product.subtitle.toLowerCase().includes(q);
         const matchesCat = product.collection.toLowerCase().includes(q);
         if (!matchesName && !matchesSub && !matchesCat) return false;
-      }
-
-      // Sidebar Collection filter
-      if (selectedCollectionsFilter.length > 0) {
-        if (!selectedCollectionsFilter.includes(product.collectionSlug)) return false;
       }
 
       // Benefit filter
@@ -419,6 +424,7 @@ export default function ProductListingPage({
             <button
               onClick={() => {
                 setSelectedCollection("all");
+                setSelectedCollectionsFilter([]);
                 setCurrentPage(1);
               }}
               className={`
@@ -440,6 +446,7 @@ export default function ProductListingPage({
                   key={c.id}
                   onClick={() => {
                     setSelectedCollection(c.slug);
+                    setSelectedCollectionsFilter([]);
                     setViewMode("products");
                     setCurrentPage(1);
                   }}

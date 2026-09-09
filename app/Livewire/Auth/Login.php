@@ -92,13 +92,13 @@ class Login extends Component
 
         // Redirect based on role and intended URL
         if ($user->role === UserRole::VENDOR) {
-            $this->redirect('/vendor');
+            $this->redirect('http://' . config('domains.vendor', 'vendor.henley.com'));
 
             return;
         }
 
         if ($user->role === UserRole::SUPER_ADMIN || $user->role === UserRole::ADMIN) {
-            $this->redirectIntended('/admin');
+            $this->redirect('http://' . config('domains.admin', 'admin.henley.com'));
 
             return;
         }

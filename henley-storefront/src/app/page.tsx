@@ -415,7 +415,7 @@ export default function HomePage() {
             "
           >
             {CATEGORIES.map((cat) => (
-              <a
+              <Link
                 key={cat.name}
                 href={`/collections?cat=${cat.slug}`}
                 className="
@@ -434,7 +434,7 @@ export default function HomePage() {
                   {cat.badge && (
                     <div className="absolute top-3 left-3 z-10">
                       <Badge variant={cat.badge}>
-                        {cat.badge === "organic" ? "Organic" : cat.badge === "bestseller" ? "Signature" : "Reserve"}
+                        {cat.badge === "bestseller" ? "Signature" : "Organic"}
                       </Badge>
                     </div>
                   )}
@@ -450,7 +450,7 @@ export default function HomePage() {
                     View Collection →
                   </span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
 
