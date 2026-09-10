@@ -10,6 +10,7 @@ use App\Livewire\Auth\OtpLogin;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\ResetPassword;
 use App\Livewire\Auth\VerifyEmail;
+use App\Livewire\Storefront\CollectionsPage;
 use App\Livewire\Storefront\HomePage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,18 +18,21 @@ use Illuminate\Support\Facades\Route;
 // Storefront Home
 Route::get('/', HomePage::class)->name('home');
 
-// Storefront Browse & Content Fallbacks (for Phase 05 link integrity)
-Route::get('/collections/{slug?}', function (?string $slug = null) {
-    return redirect()->route('home');
-})->name('collections.index');
+// Storefront Browse & Collections Catalogue
+Route::get('/collections/{slug?}', CollectionsPage::class)->name('collections.index');
+Route::get('/shop', CollectionsPage::class)->name('shop');
 
 Route::get('/products/{slug}', function (string $slug) {
-    return redirect()->route('home');
+    return redirect()->route('collections.index');
 })->name('products.show');
 
 Route::get('/about', function () {
-    return redirect()->route('home');
+    return redirect('/#story-band');
 })->name('about');
+
+Route::get('/story', function () {
+    return redirect('/#story-band');
+})->name('story');
 
 Route::get('/journal/{slug?}', function (?string $slug = null) {
     return redirect()->route('home');
@@ -37,6 +41,10 @@ Route::get('/journal/{slug?}', function (?string $slug = null) {
 Route::get('/cart', function () {
     return redirect()->route('home');
 })->name('cart');
+
+Route::get('/account', function () {
+    return auth()->check() ? redirect()->route('home') : redirect()->route('login');
+})->name('account');
 
 // Admin & Vendor Panel Subdomain Shortcuts
 Route::get('/admin', function () {

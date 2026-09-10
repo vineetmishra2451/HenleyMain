@@ -359,7 +359,7 @@ export default function HomePage() {
       {/* ════════════════════════════════════════════════════════
           SECTION 3: CURATED COLLECTIONS
          ════════════════════════════════════════════════════════ */}
-      <section className="py-8 sm:py-12 lg:py-24 overflow-hidden">
+      <section id="curated-collections" className="py-8 sm:py-12 lg:py-24 overflow-hidden scroll-mt-16">
         <div className="henley-container">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 lg:mb-12 gap-4">
             <div>

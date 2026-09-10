@@ -236,14 +236,16 @@ export default function Header({ activePath }: HeaderProps = {}) {
         <div className="fixed inset-0 z-50 lg:hidden">
           {/* Backdrop */}
           <div
-            className="absolute inset-0 bg-charcoal/50 backdrop-blur-xs transition-opacity"
+            className="absolute inset-0 z-0 bg-charcoal/50 backdrop-blur-xs transition-opacity"
             onClick={() => setMobileMenuOpen(false)}
           />
 
           {/* Drawer panel */}
-          <div className="
-            relative w-[88vw] max-w-sm sm:max-w-md h-full bg-ivory shadow-2xl
-            flex flex-col justify-between overflow-y-auto
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="
+            relative z-10 w-[88vw] max-w-sm sm:max-w-md h-full bg-ivory shadow-2xl
+            flex flex-col justify-between overflow-y-auto pointer-events-auto
             animate-slide-in-left
           ">
             <div>
@@ -265,17 +267,48 @@ export default function Header({ activePath }: HeaderProps = {}) {
 
               {/* Quick Search Bar */}
               <div className="px-5 pt-3 pb-2">
-                <a
-                  href="/collections"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-full bg-sand/60 border border-border/80 text-charcoal/60 text-xs font-sans hover:border-maroon hover:text-charcoal transition-colors text-left"
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setSearchOpen(true);
+                  }}
+                  className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-full bg-sand/60 border border-border/80 text-charcoal/60 text-xs font-sans hover:border-maroon hover:text-charcoal transition-colors text-left cursor-pointer"
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-charcoal/50 flex-shrink-0">
                     <circle cx="11" cy="11" r="8" />
                     <line x1="21" y1="21" x2="16.65" y2="16.65" />
                   </svg>
                   <span className="truncate">Search rare teas, single-origin spices...</span>
-                </a>
+                </button>
+              </div>
+
+              {/* ── Primary Storefront Navigation Links ── */}
+              <div className="px-5 pt-1 pb-2">
+                <div className="grid grid-cols-2 gap-2">
+                  <a
+                    href="/shop"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white border border-border/80 text-xs font-sans font-semibold text-charcoal hover:border-maroon hover:text-maroon transition-all shadow-2xs group"
+                  >
+                    <span className="flex items-center gap-2">
+                      <span className="text-maroon">✦</span>
+                      <span>Shop All</span>
+                    </span>
+                    <span className="text-[11px] text-charcoal/40 group-hover:text-maroon group-hover:translate-x-0.5 transition-all">→</span>
+                  </a>
+                  <a
+                    href="/collections"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white border border-border/80 text-xs font-sans font-semibold text-charcoal hover:border-maroon hover:text-maroon transition-all shadow-2xs group"
+                  >
+                    <span className="flex items-center gap-2">
+                      <span className="text-gold">❖</span>
+                      <span>Collections</span>
+                    </span>
+                    <span className="text-[11px] text-charcoal/40 group-hover:text-maroon group-hover:translate-x-0.5 transition-all">→</span>
+                  </a>
+                </div>
               </div>
 
               {/* ── Sub-Sections: Curated Collections & Products ── */}
@@ -305,29 +338,38 @@ export default function Header({ activePath }: HeaderProps = {}) {
                           isExpanded ? "border-maroon/40 bg-white shadow-xs" : "border-border/70"
                         }`}
                       >
-                        {/* Category Accordion Toggle */}
-                        <button
-                          type="button"
-                          onClick={() => setActiveCategorySlug(isExpanded ? null : cat.slug)}
-                          className="w-full flex items-center justify-between p-2.5 text-left cursor-pointer hover:bg-sand/30 transition-colors"
-                        >
-                          <div className="flex items-center gap-3 min-w-0">
+                        {/* Category Row: Direct Link + Expand Toggle */}
+                        <div className="flex items-center justify-between p-2.5 hover:bg-sand/30 transition-colors">
+                          <a
+                            href={`/collections?cat=${cat.slug}`}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="flex items-center gap-3 min-w-0 flex-1 cursor-pointer group"
+                          >
                             <img
                               src={cat.image || "/pimages/cardamom.jpg"}
                               alt={cat.name}
-                              className="w-10 h-10 rounded-lg object-cover border border-border/50 flex-shrink-0"
+                              className="w-10 h-10 rounded-lg object-cover border border-border/50 flex-shrink-0 group-hover:scale-105 transition-transform"
                               loading="lazy"
                             />
                             <div className="truncate">
-                              <span className="block text-xs font-serif font-semibold text-charcoal tracking-wide truncate">
+                              <span className="block text-xs font-serif font-semibold text-charcoal group-hover:text-maroon tracking-wide truncate">
                                 {cat.name}
                               </span>
-                              <span className="block text-[10px] font-sans text-charcoal/50">
-                                {cat.productCount} {cat.productCount === 1 ? "Harvest" : "Harvests"}
+                              <span className="block text-[10px] font-sans text-charcoal/50 group-hover:text-maroon/70">
+                                {cat.productCount} {cat.productCount === 1 ? "Harvest" : "Harvests"} • View →
                               </span>
                             </div>
-                          </div>
-                          <div className="flex items-center gap-1.5 text-charcoal/50 pl-2">
+                          </a>
+
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setActiveCategorySlug(isExpanded ? null : cat.slug);
+                            }}
+                            className="p-2 text-charcoal/50 hover:text-maroon transition-colors cursor-pointer rounded-lg hover:bg-sand/50 ml-1"
+                            aria-label={`Toggle preview for ${cat.name}`}
+                          >
                             <svg
                               width="15"
                               height="15"
@@ -341,8 +383,8 @@ export default function Header({ activePath }: HeaderProps = {}) {
                             >
                               <path d="M6 9l6 6 6-6" />
                             </svg>
-                          </div>
-                        </button>
+                          </button>
+                        </div>
 
                         {/* Nested Sub-Section: Top Products */}
                         {isExpanded && (

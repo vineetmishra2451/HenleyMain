@@ -183,7 +183,7 @@
     >
         <!-- Backdrop -->
         <div
-            class="fixed inset-0 bg-charcoal/50 backdrop-blur-xs"
+            class="fixed inset-0 z-0 bg-charcoal/50 backdrop-blur-xs"
             x-on:click="mobileMenuOpen = false"
         ></div>
 
@@ -196,7 +196,8 @@
             x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="translate-x-0"
             x-transition:leave-end="-translate-x-full"
-            class="relative w-[88vw] max-w-sm sm:max-w-md bg-ivory h-full shadow-2xl flex flex-col justify-between overflow-y-auto"
+            class="relative z-10 w-[88vw] max-w-sm sm:max-w-md bg-ivory h-full shadow-2xl flex flex-col justify-between overflow-y-auto pointer-events-auto"
+            x-on:click.stop
         >
             <div>
                 <!-- Drawer Header -->
@@ -231,6 +232,34 @@
                     </button>
                 </div>
 
+                <!-- ── Primary Storefront Navigation Links ── -->
+                <div class="px-5 pt-1 pb-2">
+                    <div class="grid grid-cols-2 gap-2">
+                        <a
+                            href="/shop"
+                            x-on:click="mobileMenuOpen = false"
+                            class="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white border border-border/80 text-xs font-sans font-semibold text-charcoal hover:border-maroon hover:text-maroon transition-all shadow-2xs group"
+                        >
+                            <span class="flex items-center gap-2">
+                                <span class="text-maroon">✦</span>
+                                <span>Shop All</span>
+                            </span>
+                            <span class="text-[11px] text-charcoal/40 group-hover:text-maroon group-hover:translate-x-0.5 transition-all">→</span>
+                        </a>
+                        <a
+                            href="/collections"
+                            x-on:click="mobileMenuOpen = false"
+                            class="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-white border border-border/80 text-xs font-sans font-semibold text-charcoal hover:border-maroon hover:text-maroon transition-all shadow-2xs group"
+                        >
+                            <span class="flex items-center gap-2">
+                                <span class="text-gold">❖</span>
+                                <span>Collections</span>
+                            </span>
+                            <span class="text-[11px] text-charcoal/40 group-hover:text-maroon group-hover:translate-x-0.5 transition-all">→</span>
+                        </a>
+                    </div>
+                </div>
+
                 <!-- ── Sub-Sections: Curated Collections & Products ── -->
                 <div class="px-5 py-3">
                     <div class="flex items-center justify-between mb-2.5">
@@ -255,29 +284,35 @@
                                 }
                             @endphp
                             <div class="border border-border/70 rounded-xl overflow-hidden bg-white/70 transition-all duration-200" :class="{ 'border-maroon/40 bg-white shadow-xs': activeCategorySlug === '{{ $cat->slug }}' }">
-                                <!-- Category Accordion Toggle -->
-                                <button
-                                    type="button"
-                                    x-on:click="activeCategorySlug = activeCategorySlug === '{{ $cat->slug }}' ? null : '{{ $cat->slug }}'"
-                                    class="w-full flex items-center justify-between p-2.5 text-left cursor-pointer hover:bg-sand/30 transition-colors"
-                                >
-                                    <div class="flex items-center gap-3 min-w-0">
+                                <!-- Category Row: Direct Link + Expand Toggle -->
+                                <div class="flex items-center justify-between p-2.5 hover:bg-sand/30 transition-colors">
+                                    <a
+                                        href="/collections?cat={{ $cat->slug }}"
+                                        x-on:click="mobileMenuOpen = false"
+                                        class="flex items-center gap-3 min-w-0 flex-1 cursor-pointer group"
+                                    >
                                         <img
                                             src="{{ $catImg }}"
                                             alt="{{ $cat->name }}"
-                                            class="w-10 h-10 rounded-lg object-cover border border-border/50 flex-shrink-0"
+                                            class="w-10 h-10 rounded-lg object-cover border border-border/50 flex-shrink-0 group-hover:scale-105 transition-transform"
                                             loading="lazy"
                                         />
                                         <div class="truncate">
-                                            <span class="block text-xs font-serif font-semibold text-charcoal tracking-wide truncate">
+                                            <span class="block text-xs font-serif font-semibold text-charcoal group-hover:text-maroon tracking-wide truncate">
                                                 {{ $cat->name }}
                                             </span>
-                                            <span class="block text-[10px] font-sans text-charcoal/50">
-                                                {{ $cat->products_count }} {{ Str::plural('Harvest', $cat->products_count) }}
+                                            <span class="block text-[10px] font-sans text-charcoal/50 group-hover:text-maroon/70">
+                                                {{ $cat->products_count }} {{ Str::plural('Harvest', $cat->products_count) }} • View →
                                             </span>
                                         </div>
-                                    </div>
-                                    <div class="flex items-center gap-1.5 text-charcoal/50 pl-2">
+                                    </a>
+
+                                    <button
+                                        type="button"
+                                        x-on:click.stop="activeCategorySlug = activeCategorySlug === '{{ $cat->slug }}' ? null : '{{ $cat->slug }}'"
+                                        class="p-2 text-charcoal/50 hover:text-maroon transition-colors cursor-pointer rounded-lg hover:bg-sand/50 ml-1"
+                                        aria-label="Toggle preview for {{ $cat->name }}"
+                                    >
                                         <svg
                                             width="15"
                                             height="15"
@@ -292,8 +327,8 @@
                                         >
                                             <path d="M6 9l6 6 6-6" />
                                         </svg>
-                                    </div>
-                                </button>
+                                    </button>
+                                </div>
 
                                 <!-- Nested Sub-Section: Top Products in this Category -->
                                 <div
@@ -326,7 +361,7 @@
                                                             {{ $catProd->name }}
                                                         </span>
                                                         <span class="block text-[10px] font-sans text-charcoal/50">
-                                                            ₹{{ number_format((float)$catProd->base_price) }}
+                                                             ₹{{ number_format((float)$catProd->base_price) }}
                                                         </span>
                                                     </div>
                                                 </div>

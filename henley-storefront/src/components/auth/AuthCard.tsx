@@ -69,7 +69,33 @@ export default function AuthCard({
       )}
 
       {/* ── Main Centered Card Container ── */}
-      <div className="w-full max-w-[420px] mx-auto my-auto space-y-6">
+      <div className="w-full max-w-[420px] mx-auto my-auto space-y-5">
+        {/* Top Header with Back to Store Option */}
+        <div className="flex items-center justify-between px-1">
+          <button
+            type="button"
+            onClick={() => {
+              if (typeof window !== "undefined" && window.history.length > 1) {
+                window.history.back();
+              } else {
+                window.location.href = "/";
+              }
+            }}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sand/80 border border-border text-xs font-sans font-medium text-charcoal hover:text-maroon hover:border-maroon transition-colors cursor-pointer shadow-2xs group"
+            aria-label="Back to Store"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:-translate-x-0.5 transition-transform">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Back to Store</span>
+          </button>
+
+          <a href="/" className="text-xs font-sans text-charcoal/60 hover:text-maroon transition-colors">
+            Home ✕
+          </a>
+        </div>
+
         {/* Logo centered above card */}
         <div className="flex flex-col items-center justify-center text-center space-y-2">
           <a href="/" aria-label="Henley Home" className="inline-block transition-transform hover:scale-105">
@@ -100,12 +126,24 @@ export default function AuthCard({
           <div className="space-y-4">{children}</div>
         </div>
 
-        {/* Footer Link / Note */}
-        {footer && <div className="text-center text-xs font-sans">{footer}</div>}
+        {/* Return to Storefront Link */}
+        <div className="text-center space-y-2">
+          <a
+            href="/"
+            className="inline-flex items-center gap-1.5 text-xs font-sans font-medium text-maroon hover:underline"
+          >
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Return to Henley Storefront</span>
+          </a>
+          {footer && <div className="text-center text-xs font-sans text-charcoal/60">{footer}</div>}
+        </div>
       </div>
 
       {/* Bottom Privacy & Terms */}
-      <div className="text-center pt-8 text-[11px] text-charcoal/40 font-sans">
+      <div className="text-center pt-6 text-[11px] text-charcoal/40 font-sans">
         <span>© {new Date().getFullYear()} Henley Botanical Reserve. All rights reserved.</span>
       </div>
     </div>

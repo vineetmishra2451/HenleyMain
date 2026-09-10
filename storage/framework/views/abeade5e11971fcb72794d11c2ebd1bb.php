@@ -46,7 +46,7 @@ $items = $collections ?? \App\Models\Category::where('is_featured', true)->withC
 ?>
 
 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($items->isNotEmpty()): ?>
-    <section class="py-8 sm:py-12 lg:py-24 overflow-hidden bg-ivory">
+    <section id="curated-collections" class="py-8 sm:py-12 lg:py-24 overflow-hidden bg-ivory scroll-mt-16">
         <div class="henley-container">
             <!-- Section heading + navigation controls -->
             <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 lg:mb-12 gap-4">
