@@ -34,46 +34,47 @@ $trustIcons = [
                 }
             }"
             x-init="start()"
-            class="relative w-full h-[46vh] min-h-[310px] max-h-[420px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-subtle border border-border/70 bg-sand/40"
+            class="relative w-full aspect-[5/4] rounded-2xl sm:rounded-3xl overflow-hidden shadow-subtle border border-border/70 bg-sand/40"
+            style="aspect-ratio: 5 / 4;"
         >
-            <!-- Mobile Background Images with smooth crossfade -->
-            <template x-for="(src, idx) in images" :key="idx">
+            <!-- Mobile Background Images with smooth crossfade (zero crop, exact 5:4 ratio) -->
+            @foreach ($mobileImages as $idx => $src)
                 <div
-                    class="absolute inset-0 transition-opacity duration-1000 ease-in-out"
-                    :class="mobileHeroIndex === idx ? 'opacity-100 scale-100' : 'opacity-0 scale-105 pointer-events-none'"
+                    class="absolute inset-0 transition-opacity duration-1000 ease-in-out {{ $idx === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none' }}"
+                    :class="mobileHeroIndex === {{ $idx }} ? 'opacity-100' : 'opacity-0 pointer-events-none'"
                 >
                     <img
-                        :src="src"
+                        src="{{ $src }}"
                         alt="Henley Botanical Reserve"
                         class="w-full h-full object-cover object-center"
                     />
                 </div>
-            </template>
+            @endforeach
 
             <!-- Subtle bottom-edge shadow for contrast -->
-            <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-charcoal/50 via-charcoal/15 to-transparent pointer-events-none"></div>
+            <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-charcoal/50 via-charcoal/15 to-transparent pointer-events-none"></div>
 
             <!-- Single Shop Now Button in Bottom Left -->
-            <div class="absolute bottom-4 left-4 z-10">
+            <div class="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-10">
                 <a
                     href="{{ $primaryCta['url'] }}"
-                    class="inline-flex items-center px-6 py-2.5 text-xs font-sans font-medium shadow-card bg-maroon text-ivory hover:bg-maroon-dark uppercase tracking-wider rounded-full transition-colors"
+                    class="inline-flex items-center px-5 py-2 text-xs font-sans font-medium shadow-card bg-maroon text-ivory hover:bg-maroon-dark uppercase tracking-wider rounded-full transition-colors"
                 >
                     Shop Now →
                 </a>
             </div>
 
             <!-- Discrete Dot Indicator in Bottom Right -->
-            <div class="absolute bottom-4 right-4 z-10 flex items-center gap-1.5 bg-charcoal/30 backdrop-blur-xs px-2.5 py-1 rounded-full border border-white/20">
-                <template x-for="(_, idx) in images" :key="idx">
+            <div class="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-10 flex items-center gap-1.5 bg-charcoal/30 backdrop-blur-xs px-2.5 py-1 rounded-full border border-white/20">
+                @foreach ($mobileImages as $idx => $src)
                     <button
                         type="button"
-                        x-on:click="mobileHeroIndex = idx"
-                        class="h-2 rounded-full transition-all cursor-pointer"
-                        :class="mobileHeroIndex === idx ? 'bg-white w-4' : 'bg-white/50 hover:bg-white/80 w-2'"
-                        :aria-label="'Show mobile banner slide ' + (idx + 1)"
+                        x-on:click="mobileHeroIndex = {{ $idx }}"
+                        class="h-1.5 sm:h-2 rounded-full transition-all cursor-pointer {{ $idx === 0 ? 'bg-white w-3 sm:w-4' : 'bg-white/50 w-1.5 sm:w-2' }}"
+                        :class="mobileHeroIndex === {{ $idx }} ? 'bg-white w-3 sm:w-4' : 'bg-white/50 hover:bg-white/80 w-1.5 sm:w-2'"
+                        aria-label="Show mobile banner slide {{ $idx + 1 }}"
                     ></button>
-                </template>
+                @endforeach
             </div>
         </div>
 

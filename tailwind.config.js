@@ -119,7 +119,10 @@ export default {
       maxWidth: {
         'content': '1280px',
         'prose': '65ch',
-      }
+      },
+      aspectRatio: {
+        '5/4': '5 / 4',
+      },
     },
   },
   plugins: [],

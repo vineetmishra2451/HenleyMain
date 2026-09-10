@@ -219,14 +219,14 @@ export default function HomePage() {
 
       {/* ── MOBILE VARIANT (< lg): Half-screen rounded banner with single Shop Now CTA & zero text ── */}
       <section className="lg:hidden px-4 pt-3 pb-2">
-        <div className="relative w-full h-[46vh] min-h-[310px] max-h-[420px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-subtle border border-border/70 bg-sand/40">
-          {/* Mobile Background Images with smooth crossfade */}
+        <div className="relative w-full aspect-[5/4] rounded-2xl sm:rounded-3xl overflow-hidden shadow-subtle border border-border/70 bg-sand/40">
+          {/* Mobile Background Images with smooth crossfade (zero crop, exact 5:4 ratio) */}
           {mobileHeroImages.map((src, idx) => (
             <div
               key={src}
               className={`
                 absolute inset-0 transition-opacity duration-1000 ease-in-out
-                ${mobileHeroIndex === idx ? "opacity-100 scale-100" : "opacity-0 scale-105 pointer-events-none"}
+                ${mobileHeroIndex === idx ? "opacity-100" : "opacity-0 pointer-events-none"}
               `}
             >
               <img
@@ -238,14 +238,14 @@ export default function HomePage() {
           ))}
 
           {/* Subtle bottom-edge shadow for contrast */}
-          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-charcoal/50 via-charcoal/15 to-transparent pointer-events-none" />
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-charcoal/50 via-charcoal/15 to-transparent pointer-events-none" />
 
           {/* Single Shop Now Button in Bottom Left */}
-          <div className="absolute bottom-4 left-4 z-10">
+          <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-10">
             <Link href="/shop">
               <Button
                 variant="primary"
-                className="!px-6 !py-2.5 !text-xs !font-medium !shadow-card !bg-maroon text-ivory hover:!bg-maroon-dark uppercase tracking-wider"
+                className="!px-5 !py-2 !text-xs !font-medium !shadow-card !bg-maroon text-ivory hover:!bg-maroon-dark uppercase tracking-wider"
               >
                 Shop Now →
               </Button>
@@ -253,14 +253,14 @@ export default function HomePage() {
           </div>
 
           {/* Discrete Dot Indicator in Bottom Right */}
-          <div className="absolute bottom-4 right-4 z-10 flex items-center gap-1.5 bg-charcoal/30 backdrop-blur-xs px-2.5 py-1 rounded-full border border-white/20">
+          <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-10 flex items-center gap-1.5 bg-charcoal/30 backdrop-blur-xs px-2.5 py-1 rounded-full border border-white/20">
             {mobileHeroImages.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setMobileHeroIndex(idx)}
                 className={`
-                  w-2 h-2 rounded-full transition-all cursor-pointer
-                  ${mobileHeroIndex === idx ? "bg-white w-4" : "bg-white/50 hover:bg-white/80"}
+                  w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all cursor-pointer
+                  ${mobileHeroIndex === idx ? "bg-white w-3 sm:w-4" : "bg-white/50 hover:bg-white/80"}
                 `}
                 aria-label={`Show mobile banner slide ${idx + 1}`}
               />
