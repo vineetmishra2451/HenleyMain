@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire\Storefront;
 
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\Setting;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
@@ -63,6 +64,35 @@ class Header extends Component
                 ->get();
         });
 
+        /** @var Collection<int, Category> $menuCategories */
+        $menuCategories = Cache::tags(['categories', 'products'])->remember('storefront_menu_categories_with_products', 3600, function (): Collection {
+            return Category::where('is_featured', true)
+                ->orderBy('sort_order')
+                ->orderBy('id')
+                ->withCount('products')
+                ->with(['products' => function ($q): void {
+                    $q->withoutGlobalScopes()
+                        ->published()
+                        ->with('primaryImage')
+                        ->orderByDesc('is_bestseller')
+                        ->orderByDesc('is_featured')
+                        ->take(3);
+                }])
+                ->get();
+        });
+
+        /** @var Collection<int, Product> $topMenuProducts */
+        $topMenuProducts = Cache::tags(['products'])->remember('storefront_top_menu_products', 3600, function (): Collection {
+            return Product::withoutGlobalScopes()
+                ->published()
+                ->where(function ($q): void {
+                    $q->where('is_bestseller', true)->orWhere('is_featured', true);
+                })
+                ->with(['primaryImage', 'categories'])
+                ->take(4)
+                ->get();
+        });
+
         return view('livewire.storefront.header', [
             'announcementEnabled' => $announcementEnabled,
             'announcementText' => $announcementText,
@@ -71,6 +101,8 @@ class Header extends Component
             'rightNavLinks' => $rightNavLinks,
             'allNavLinks' => $allNavLinks,
             'megaCollections' => $megaCollections,
+            'menuCategories' => $menuCategories,
+            'topMenuProducts' => $topMenuProducts,
         ]);
     }
 }

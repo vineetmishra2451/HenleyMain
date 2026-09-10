@@ -47,7 +47,7 @@ $items = $posts ?? \App\Models\JournalPost::where('is_published', true)
 ?>
 
 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($items->isNotEmpty()): ?>
-    <section class="w-full bg-canvas py-16 sm:py-24">
+    <section class="w-full bg-canvas py-16 sm:py-24 overflow-hidden">
         <div class="max-w-content mx-auto px-5 sm:px-8 lg:px-12 space-y-12">
             <?php if (isset($component)) { $__componentOriginal755230460fd16c04121658d92fbf99f7 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal755230460fd16c04121658d92fbf99f7 = $attributes; } ?>

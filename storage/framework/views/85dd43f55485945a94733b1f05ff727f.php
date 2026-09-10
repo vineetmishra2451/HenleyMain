@@ -47,7 +47,7 @@ $items = $products ?? \App\Models\Product::active()
 ?>
 
 <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($items->isNotEmpty()): ?>
-    <section class="bg-sand/30 py-16 lg:py-24">
+    <section class="bg-sand/30 py-16 lg:py-24 overflow-hidden">
         <div class="henley-container">
             <!-- Section heading -->
             <div class="flex items-end justify-between mb-10 lg:mb-14">

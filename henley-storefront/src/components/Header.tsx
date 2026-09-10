@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Logo from "./Logo";
 import { useCart } from "./CartProvider";
+import { COLLECTIONS, PRODUCTS } from "@/data/catalog";
 
 /* ================================================================
    HEADER / NAV
@@ -42,6 +43,7 @@ interface HeaderProps {
 export default function Header({ activePath }: HeaderProps = {}) {
   const [announcementVisible, setAnnouncementVisible] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeCategorySlug, setActiveCategorySlug] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const { open: openCart, itemCount } = useCart();
 
@@ -229,28 +231,30 @@ export default function Header({ activePath }: HeaderProps = {}) {
         </nav>
       </header>
 
-      {/* ── Mobile Drawer (Slide-in from Left) ─────────────── */}
+      {/* ── Mobile Drawer (Interactive & Detailed) ─────────── */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           {/* Backdrop */}
           <div
-            className="absolute inset-0 bg-charcoal/40"
+            className="absolute inset-0 bg-charcoal/50 backdrop-blur-xs transition-opacity"
             onClick={() => setMobileMenuOpen(false)}
           />
 
           {/* Drawer panel */}
           <div className="
-            relative w-[85vw] max-w-xs h-full bg-ivory shadow-card-hover
-            flex flex-col justify-between p-6
+            relative w-[88vw] max-w-sm sm:max-w-md h-full bg-ivory shadow-2xl
+            flex flex-col justify-between overflow-y-auto
             animate-slide-in-left
           ">
-            {/* Drawer Header */}
             <div>
-              <div className="flex items-center justify-between pb-6 border-b border-border">
-                <Logo size="sm" />
+              {/* Drawer Header */}
+              <div className="flex items-center justify-between p-5 border-b border-border bg-sand/20">
+                <a href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center">
+                  <Logo size="sm" />
+                </a>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-1.5 text-charcoal/60 hover:text-charcoal cursor-pointer"
+                  className="p-2 -mr-1 text-charcoal/60 hover:text-charcoal transition-colors cursor-pointer rounded-full"
                   aria-label="Close menu"
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -259,47 +263,340 @@ export default function Header({ activePath }: HeaderProps = {}) {
                 </button>
               </div>
 
-              {/* Drawer Links */}
-              <nav className="py-6 space-y-1">
-                {ALL_NAV_LINKS.map((link) => (
+              {/* Quick Search Bar */}
+              <div className="px-5 pt-3 pb-2">
+                <a
+                  href="/collections"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-full bg-sand/60 border border-border/80 text-charcoal/60 text-xs font-sans hover:border-maroon hover:text-charcoal transition-colors text-left"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-charcoal/50 flex-shrink-0">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                  <span className="truncate">Search rare teas, single-origin spices...</span>
+                </a>
+              </div>
+
+              {/* ── Sub-Sections: Curated Collections & Products ── */}
+              <div className="px-5 py-3">
+                <div className="flex items-center justify-between mb-2.5">
+                  <p className="text-[10px] font-sans font-semibold uppercase tracking-[0.14em] text-charcoal/50">
+                    Curated Collections
+                  </p>
                   <a
-                    key={link.label}
-                    href={link.href}
+                    href="/collections"
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`
-                      block py-3 px-3 rounded-md text-sm font-sans font-medium tracking-[0.08em] uppercase
-                      transition-colors
-                      ${link.active
-                        ? "bg-sand text-maroon font-semibold"
-                        : "text-charcoal hover:bg-sand/60 hover:text-maroon"
-                      }
-                    `}
+                    className="text-[10px] font-sans font-semibold uppercase tracking-wider text-maroon hover:underline"
                   >
-                    {link.label}
+                    View All →
                   </a>
-                ))}
-              </nav>
+                </div>
+
+                <div className="space-y-2">
+                  {COLLECTIONS.map((cat) => {
+                    const isExpanded = activeCategorySlug === cat.slug;
+                    const catProducts = PRODUCTS.filter((p) => p.collectionSlug === cat.slug).slice(0, 3);
+
+                    return (
+                      <div
+                        key={cat.id}
+                        className={`border rounded-xl overflow-hidden bg-white/70 transition-all duration-200 ${
+                          isExpanded ? "border-maroon/40 bg-white shadow-xs" : "border-border/70"
+                        }`}
+                      >
+                        {/* Category Accordion Toggle */}
+                        <button
+                          type="button"
+                          onClick={() => setActiveCategorySlug(isExpanded ? null : cat.slug)}
+                          className="w-full flex items-center justify-between p-2.5 text-left cursor-pointer hover:bg-sand/30 transition-colors"
+                        >
+                          <div className="flex items-center gap-3 min-w-0">
+                            <img
+                              src={cat.image || "/pimages/cardamom.jpg"}
+                              alt={cat.name}
+                              className="w-10 h-10 rounded-lg object-cover border border-border/50 flex-shrink-0"
+                              loading="lazy"
+                            />
+                            <div className="truncate">
+                              <span className="block text-xs font-serif font-semibold text-charcoal tracking-wide truncate">
+                                {cat.name}
+                              </span>
+                              <span className="block text-[10px] font-sans text-charcoal/50">
+                                {cat.productCount} {cat.productCount === 1 ? "Harvest" : "Harvests"}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-1.5 text-charcoal/50 pl-2">
+                            <svg
+                              width="15"
+                              height="15"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className={`transition-transform duration-200 ${isExpanded ? "rotate-180 text-maroon" : ""}`}
+                            >
+                              <path d="M6 9l6 6 6-6" />
+                            </svg>
+                          </div>
+                        </button>
+
+                        {/* Nested Sub-Section: Top Products */}
+                        {isExpanded && (
+                          <div className="px-2.5 pb-2.5 pt-1 border-t border-border/40 bg-sand/20 space-y-1.5 animate-fadeIn">
+                            <div className="grid grid-cols-1 gap-1.5 pt-1">
+                              {catProducts.map((prod) => (
+                                <a
+                                  key={prod.id}
+                                  href={`/collections?cat=${cat.slug}`}
+                                  onClick={() => setMobileMenuOpen(false)}
+                                  className="flex items-center justify-between p-2 rounded-lg bg-white border border-border/40 hover:border-maroon/40 transition-colors group"
+                                >
+                                  <div className="flex items-center gap-2.5 min-w-0">
+                                    <img
+                                      src={prod.image || "/pimages/tea.jpg"}
+                                      alt={prod.name}
+                                      className="w-9 h-9 rounded-md object-cover border border-border/40 flex-shrink-0"
+                                      loading="lazy"
+                                    />
+                                    <div className="truncate">
+                                      <span className="block text-[11px] font-sans font-medium text-charcoal group-hover:text-maroon truncate">
+                                        {prod.name}
+                                      </span>
+                                      <span className="block text-[10px] font-sans text-charcoal/50">
+                                        {prod.price}
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <span className="text-[10px] font-sans text-maroon font-medium flex-shrink-0 pl-2">
+                                    View →
+                                  </span>
+                                </a>
+                              ))}
+                            </div>
+
+                            <a
+                              href={`/collections?cat=${cat.slug}`}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className="block text-center py-1.5 text-[11px] font-sans font-semibold text-maroon hover:underline tracking-wider uppercase"
+                            >
+                              Explore All {cat.name} ({cat.productCount}) →
+                            </a>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* ── Curator's Top Reserves Showcase with Images ── */}
+              <div className="px-5 py-4 border-t border-border/60 bg-sand/25">
+                <div className="flex items-center justify-between mb-2.5">
+                  <div>
+                    <p className="text-[10px] font-sans font-semibold uppercase tracking-[0.14em] text-gold">
+                      Single-Estate Picks
+                    </p>
+                    <h4 className="font-serif text-sm font-medium text-charcoal">
+                      Curator's Top Reserves
+                    </h4>
+                  </div>
+                  <span className="text-[10px] font-sans text-charcoal/40">Swipe →</span>
+                </div>
+
+                <div className="flex gap-2.5 overflow-x-auto pb-2 scrollbar-none snap-x snap-mandatory">
+                  {PRODUCTS.filter((p) => p.badge === "bestseller" || p.badge === "organic").slice(0, 4).map((topProd) => (
+                    <a
+                      key={topProd.id}
+                      href={`/collections?cat=${topProd.collectionSlug}`}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex-shrink-0 w-36 bg-white rounded-xl border border-border/70 p-2 shadow-2xs hover:shadow-xs transition-shadow snap-start flex flex-col justify-between"
+                    >
+                      <div className="relative aspect-square rounded-lg overflow-hidden bg-sand/40 mb-2">
+                        <img
+                          src={topProd.image || "/pimages/tea.jpg"}
+                          alt={topProd.name}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                        {topProd.badge && (
+                          <span className="absolute top-1 left-1 px-1.5 py-0.5 rounded-full text-[8px] font-sans font-semibold uppercase tracking-wider bg-maroon text-ivory">
+                            {topProd.badgeLabel || "Reserve"}
+                          </span>
+                        )}
+                      </div>
+                      <div>
+                        <p className="text-[9px] font-sans text-charcoal/50 uppercase tracking-wider truncate">
+                          {topProd.collection}
+                        </p>
+                        <h5 className="text-xs font-serif font-semibold text-charcoal truncate mt-0.5">
+                          {topProd.name}
+                        </h5>
+                        <div className="flex items-center justify-between mt-1.5">
+                          <span className="text-[11px] font-sans font-semibold text-maroon">
+                            {topProd.price}
+                          </span>
+                          <span className="text-[10px] text-gold font-sans">
+                            ★ {topProd.rating}
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* ── House of Henley Sub-Section ── */}
+              <div className="px-5 py-4 border-t border-border/60 space-y-2">
+                <p className="text-[10px] font-sans font-semibold uppercase tracking-[0.14em] text-charcoal/50">
+                  The House of Henley
+                </p>
+                <div className="grid grid-cols-2 gap-2 pt-1">
+                  <a
+                    href="/story"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-2 p-2 rounded-lg bg-white border border-border/50 text-xs font-sans text-charcoal hover:border-maroon hover:text-maroon transition-colors"
+                  >
+                    <span className="text-sm">🏔️</span>
+                    <span className="font-medium text-[11px]">Terroir Story</span>
+                  </a>
+                  <a
+                    href="/journal"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-2 p-2 rounded-lg bg-white border border-border/50 text-xs font-sans text-charcoal hover:border-maroon hover:text-maroon transition-colors"
+                  >
+                    <span className="text-sm">📖</span>
+                    <span className="font-medium text-[11px]">Journal</span>
+                  </a>
+                </div>
+              </div>
             </div>
 
             {/* Drawer Footer */}
-            <div className="pt-6 border-t border-border space-y-3">
-              <a
-                href="/account"
-                className="flex items-center gap-2 text-xs font-sans text-charcoal/70 hover:text-maroon"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                  <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                  <circle cx="12" cy="7" r="4" />
-                </svg>
-                My Account
-              </a>
-              <p className="text-[11px] text-charcoal/40 font-sans">
-                Complimentary shipping on orders over ₹1,999.
+            <div className="p-5 border-t border-border bg-sand/40 space-y-3">
+              <div className="flex items-center justify-between text-[11px] font-sans">
+                <span className="text-charcoal/60">Concierge Desk:</span>
+                <a href="tel:+91800436539" className="font-medium text-maroon hover:underline">
+                  +91 800 436 539
+                </a>
+              </div>
+              <p className="text-[10px] font-sans text-charcoal/50 text-center">
+                Complimentary shipping on orders above ₹1,999
               </p>
+              <a
+                href="/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block w-full py-2.5 text-center text-xs font-sans font-semibold uppercase tracking-wider bg-maroon text-ivory rounded-lg hover:bg-maroon/90 transition-colors shadow-xs"
+              >
+                Sign In / Create Account
+              </a>
             </div>
           </div>
         </div>
       )}
+
+      {/* ── Mobile Bottom Navigation Bar ───────────────────── */}
+      <aside
+        className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-ivory/95 backdrop-blur-md border-t border-border/80 shadow-[0_-4px_20px_rgba(34,26,23,0.06)] pb-[max(0.35rem,env(safe-area-inset-bottom))]"
+        aria-label="Mobile bottom navigation"
+      >
+        <div className="grid grid-cols-4 items-center justify-items-center h-14 px-2">
+          {/* 1. Home */}
+          <a
+            href="/"
+            className={`flex flex-col items-center justify-center w-full h-full text-center transition-colors group relative ${
+              activePath === "/" ? "text-maroon" : "text-charcoal/60 hover:text-maroon"
+            }`}
+            aria-label="Home"
+          >
+            <div className="relative flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={activePath === "/" ? "2.2" : "1.8"} strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
+            </div>
+            <span className={`text-[10px] font-sans ${activePath === "/" ? "font-semibold" : "font-normal"} tracking-wide mt-0.5`}>
+              Home
+            </span>
+            {activePath === "/" && (
+              <span className="absolute bottom-1 w-1 h-1 rounded-full bg-gold"></span>
+            )}
+          </a>
+
+          {/* 2. Collection */}
+          <a
+            href="/collections"
+            className={`flex flex-col items-center justify-center w-full h-full text-center transition-colors group relative ${
+              activePath?.startsWith("/collections") ? "text-maroon" : "text-charcoal/60 hover:text-maroon"
+            }`}
+            aria-label="Collection"
+          >
+            <div className="relative flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={activePath?.startsWith("/collections") ? "2.2" : "1.8"} strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1.5" />
+                <rect x="14" y="3" width="7" height="7" rx="1.5" />
+                <rect x="14" y="14" width="7" height="7" rx="1.5" />
+                <rect x="3" y="14" width="7" height="7" rx="1.5" />
+              </svg>
+            </div>
+            <span className={`text-[10px] font-sans ${activePath?.startsWith("/collections") ? "font-semibold" : "font-normal"} tracking-wide mt-0.5`}>
+              Collection
+            </span>
+            {activePath?.startsWith("/collections") && (
+              <span className="absolute bottom-1 w-1 h-1 rounded-full bg-gold"></span>
+            )}
+          </a>
+
+          {/* 3. Cart */}
+          <button
+            type="button"
+            onClick={openCart}
+            className="flex flex-col items-center justify-center w-full h-full text-center transition-colors group relative text-charcoal/60 hover:text-maroon cursor-pointer"
+            aria-label={`Cart (${itemCount} items)`}
+          >
+            <div className="relative flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <path d="M16 10a4 4 0 01-8 0" />
+              </svg>
+              {itemCount > 0 && (
+                <span className="absolute -top-1 -right-2 min-w-[15px] h-[15px] px-0.5 rounded-full bg-maroon text-ivory text-[9px] font-sans font-bold flex items-center justify-center leading-none">
+                  {itemCount > 9 ? "9+" : itemCount}
+                </span>
+              )}
+            </div>
+            <span className="text-[10px] font-sans font-normal tracking-wide mt-0.5">
+              Cart
+            </span>
+          </button>
+
+          {/* 4. Account */}
+          <a
+            href="/account"
+            className={`flex flex-col items-center justify-center w-full h-full text-center transition-colors group relative ${
+              activePath?.startsWith("/account") || activePath?.startsWith("/login") ? "text-maroon" : "text-charcoal/60 hover:text-maroon"
+            }`}
+            aria-label="Account"
+          >
+            <div className="relative flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={activePath?.startsWith("/account") ? "2.2" : "1.8"} strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </div>
+            <span className={`text-[10px] font-sans ${activePath?.startsWith("/account") ? "font-semibold" : "font-normal"} tracking-wide mt-0.5`}>
+              Account
+            </span>
+            {activePath?.startsWith("/account") && (
+              <span className="absolute bottom-1 w-1 h-1 rounded-full bg-gold"></span>
+            )}
+          </a>
+        </div>
+      </aside>
     </>
   );
 }

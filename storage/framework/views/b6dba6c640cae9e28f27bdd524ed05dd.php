@@ -130,7 +130,7 @@ $jsonLd = [
     <?php echo \Livewire\Mechanisms\FrontendAssets\FrontendAssets::styles(); ?>
 
 </head>
-<body class="min-h-full bg-canvas text-primary font-sans antialiased selection:bg-accent selection:text-inverse flex flex-col justify-between">
+<body class="min-h-full bg-canvas text-primary font-sans antialiased selection:bg-accent selection:text-inverse flex flex-col justify-between overflow-x-hidden">
     <!-- Livewire SPA Loading Bar Indicator -->
     <div wire:loading.class="w-full opacity-100" class="fixed top-0 left-0 h-0.5 bg-accent z-[9999] transition-all duration-300 w-0 opacity-0 pointer-events-none"></div>
 
@@ -180,7 +180,7 @@ if (isset($__slots)) unset($__slots);
 ?>
 
     <!-- Main Content Slot -->
-    <main class="flex-1 w-full">
+    <main class="flex-1 w-full pb-16 lg:pb-0">
         <?php echo e($slot); ?>
 
     </main>
