@@ -18,6 +18,9 @@ class CollectionsPage extends Component
     #[Url(as: 'cat')]
     public ?string $cat = null;
 
+    #[Url(as: 'q')]
+    public ?string $q = null;
+
     public ?string $slug = null;
 
     public function mount(?string $slug = null): void
@@ -55,6 +58,14 @@ class CollectionsPage extends Component
             ->orderByDesc('is_featured')
             ->orderBy('name');
 
+        if ($this->q) {
+            $query->where(function ($sq): void {
+                $sq->where('name', 'ilike', '%' . $this->q . '%')
+                    ->orWhere('short_description', 'ilike', '%' . $this->q . '%')
+                    ->orWhere('description', 'ilike', '%' . $this->q . '%');
+            });
+        }
+
         if ($activeCategory) {
             $query->whereHas('categories', function ($q) use ($activeCategory): void {
                 $q->where('categories.id', $activeCategory->id);
@@ -63,8 +74,16 @@ class CollectionsPage extends Component
 
         $products = $query->paginate(12);
 
-        $pageTitle = $activeCategory ? $activeCategory->name . ' — Curated Collections' : 'Curated Collections';
-        $pageDescription = $activeCategory?->description ?? 'Discover our meticulously crafted blends, single-origin spices, and stoneground flours.';
+        if ($this->q) {
+            $pageTitle = 'Search: "' . $this->q . '"';
+            $pageDescription = 'Showing matching botanical harvests and reserves for "' . $this->q . '".';
+        } elseif ($activeCategory) {
+            $pageTitle = $activeCategory->name . ' — Curated Collections';
+            $pageDescription = $activeCategory->description ?? 'Discover our meticulously crafted blends, single-origin spices, and stoneground flours.';
+        } else {
+            $pageTitle = 'Curated Collections';
+            $pageDescription = 'Discover our meticulously crafted blends, single-origin spices, and stoneground flours.';
+        }
 
         return view('livewire.storefront.collections-page', [
             'activeCategory' => $activeCategory,

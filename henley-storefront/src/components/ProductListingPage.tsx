@@ -168,7 +168,8 @@ export default function ProductListingPage({
         const matchesName = product.name.toLowerCase().includes(q);
         const matchesSub = product.subtitle.toLowerCase().includes(q);
         const matchesCat = product.collection.toLowerCase().includes(q);
-        if (!matchesName && !matchesSub && !matchesCat) return false;
+        const matchesDesc = product.description?.toLowerCase().includes(q);
+        if (!matchesName && !matchesSub && !matchesCat && !matchesDesc) return false;
       }
 
       // Benefit filter
@@ -281,50 +282,6 @@ export default function ProductListingPage({
 
   return (
     <div className="bg-ivory min-h-screen">
-      {/* ── Variant Switcher Rail (For Developer / Reviewer) ── */}
-      <div className="bg-sand/80 border-b border-border py-2 px-4 sticky top-[64px] lg:top-[72px] z-30 shadow-subtle backdrop-blur-sm">
-        <div className="henley-container flex flex-wrap items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-2">
-            <span className="font-mono font-semibold uppercase tracking-wider text-charcoal/60">
-              Template Variant:
-            </span>
-            <div className="flex bg-ivory rounded-full p-0.5 border border-border">
-              {(
-                [
-                  { id: "category", label: "1. Collections" },
-                  { id: "all", label: "2. Shop All" },
-                  { id: "brand", label: "3. Brand Profile" },
-                  { id: "search", label: "4. Search Results" },
-                ] as const
-              ).map((v) => (
-                <button
-                  key={v.id}
-                  onClick={() => {
-                    setActiveVariant(v.id);
-                    clearAllFilters();
-                    if (v.id === "category") setViewMode("collections");
-                    else setViewMode("products");
-                  }}
-                  className={`
-                    px-3 py-1 rounded-full font-sans font-medium transition-colors cursor-pointer
-                    ${
-                      activeVariant === v.id
-                        ? "bg-maroon text-ivory shadow-xs"
-                        : "text-charcoal/70 hover:text-maroon"
-                    }
-                  `}
-                >
-                  {v.label}
-                </button>
-              ))}
-            </div>
-          </div>
-          <span className="text-charcoal/50 text-[11px] hidden sm:inline">
-            5 Collections · 22 Products mapped
-          </span>
-        </div>
-      </div>
-
       {/* ════════════════════════════════════════════════════════
           1. PAGE HEADER BAND
          ════════════════════════════════════════════════════════ */}

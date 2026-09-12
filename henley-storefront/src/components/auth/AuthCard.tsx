@@ -30,43 +30,11 @@ export default function AuthCard({
   eyebrow,
   children,
   footer,
-  showPreviewNav = true,
+  showPreviewNav = false,
   activeScreen,
 }: AuthCardProps) {
   return (
     <div className="min-h-screen bg-ivory flex flex-col justify-between py-8 px-4 sm:px-6">
-      {/* ── Optional Dev / Reviewer Screen Switcher ── */}
-      {showPreviewNav && (
-        <div className="w-full max-w-xl mx-auto mb-6 bg-sand/80 border border-border rounded-full p-1 shadow-subtle flex items-center justify-between text-[11px] overflow-x-auto scrollbar-none">
-          <span className="font-mono font-semibold uppercase tracking-wider text-charcoal/50 px-3 hidden sm:inline">
-            Auth Flow:
-          </span>
-          <div className="flex items-center gap-1 w-full sm:w-auto justify-center">
-            {[
-              { id: "login", label: "1. Login", href: "/login" },
-              { id: "register", label: "2. Register", href: "/register" },
-              { id: "verify-email", label: "3. Verify Email", href: "/verify-email" },
-              { id: "forgot-password", label: "4. Forgot Pwd", href: "/forgot-password" },
-              { id: "reset-password", label: "5. Reset Pwd", href: "/reset-password" },
-            ].map((s) => (
-              <a
-                key={s.id}
-                href={s.href}
-                className={`
-                  px-2.5 py-1 rounded-full font-sans font-medium transition-all whitespace-nowrap
-                  ${
-                    activeScreen === s.id
-                      ? "bg-maroon text-ivory shadow-xs"
-                      : "text-charcoal/70 hover:text-maroon hover:bg-white/60"
-                  }
-                `}
-              >
-                {s.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
 
       {/* ── Main Centered Card Container ── */}
       <div className="w-full max-w-[420px] mx-auto my-auto space-y-5">

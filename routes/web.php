@@ -21,8 +21,13 @@ Route::get('/', HomePage::class)->name('home');
 // Storefront Browse & Collections Catalogue
 Route::get('/collections/{slug?}', CollectionsPage::class)->name('collections.index');
 Route::get('/shop', CollectionsPage::class)->name('shop');
+Route::get('/search', CollectionsPage::class)->name('search');
 
 Route::get('/products/{slug}', function (string $slug) {
+    $product = \App\Models\Product::where('slug', $slug)->first();
+    if ($product && $category = $product->categories->first()) {
+        return redirect()->route('collections.index', ['cat' => $category->slug]);
+    }
     return redirect()->route('collections.index');
 })->name('products.show');
 

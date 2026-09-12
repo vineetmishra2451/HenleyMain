@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Logo from "./Logo";
+import SearchModal from "./SearchModal";
 import { useCart } from "./CartProvider";
 import { COLLECTIONS, PRODUCTS } from "@/data/catalog";
 
@@ -21,22 +22,20 @@ interface NavLink {
 }
 
 const LEFT_NAV_LINKS: NavLink[] = [
-  { label: "SHOP", href: "/shop" },
-  { label: "COLLECTIONS", href: "/collections", active: true },
-  { label: "TEA", href: "/collections?cat=tea" },
-  { label: "HERBS & SPICES", href: "/collections?cat=herbs-spices" },
+  { label: "Shop All", href: "/shop" },
+  { label: "Collections", href: "/collections" },
+  { label: "Our Story", href: "/story" },
 ];
 
 const RIGHT_NAV_LINKS: NavLink[] = [
-  { label: "GRAINS", href: "/collections?cat=flours-grains" },
-  { label: "ESSENTIALS", href: "/collections?cat=cooking-essentials" },
-  { label: "COCOA", href: "/collections?cat=cocoa" },
-  { label: "STORY", href: "/story" },
+  { label: "Apothecary", href: "/brands/henley" },
+  { label: "Journal", href: "/story" },
+  { label: "FAQ", href: "/faq" },
 ];
 
 const ALL_NAV_LINKS: NavLink[] = [...LEFT_NAV_LINKS, ...RIGHT_NAV_LINKS];
 
-interface HeaderProps {
+export interface HeaderProps {
   activePath?: string;
 }
 
@@ -44,7 +43,7 @@ export default function Header({ activePath }: HeaderProps = {}) {
   const [announcementVisible, setAnnouncementVisible] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeCategorySlug, setActiveCategorySlug] = useState<string | null>(null);
-  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchModalOpen, setSearchModalOpen] = useState(false);
   const { open: openCart, itemCount } = useCart();
 
   return (
@@ -130,42 +129,17 @@ export default function Header({ activePath }: HeaderProps = {}) {
 
               {/* Search */}
               <div className="relative">
-                {searchOpen ? (
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="search"
-                      placeholder="Search..."
-                      autoFocus
-                      className="
-                        w-36 lg:w-48 h-9 px-3 text-sm font-sans
-                        bg-sand border border-border rounded-full
-                        text-charcoal placeholder:text-charcoal/40
-                        focus:outline-none focus:border-maroon
-                        transition-all
-                      "
-                    />
-                    <button
-                      onClick={() => setSearchOpen(false)}
-                      className="p-1.5 text-charcoal/60 hover:text-charcoal cursor-pointer"
-                      aria-label="Close search"
-                    >
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                        <path d="M18 6L6 18M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </div>
-                ) : (
-                  <button
-                    onClick={() => setSearchOpen(true)}
-                    className="p-2 text-charcoal hover:text-maroon transition-colors cursor-pointer"
-                    aria-label="Search"
-                  >
-                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="11" cy="11" r="8" />
-                      <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                    </svg>
-                  </button>
-                )}
+                <button
+                  type="button"
+                  onClick={() => setSearchModalOpen(true)}
+                  className="p-2 text-charcoal hover:text-maroon transition-colors cursor-pointer rounded-full"
+                  aria-label="Search catalog"
+                >
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                </button>
               </div>
 
               {/* Account (with dropdown preview) */}
@@ -271,7 +245,7 @@ export default function Header({ activePath }: HeaderProps = {}) {
                   type="button"
                   onClick={() => {
                     setMobileMenuOpen(false);
-                    setSearchOpen(true);
+                    setSearchModalOpen(true);
                   }}
                   className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-full bg-sand/60 border border-border/80 text-charcoal/60 text-xs font-sans hover:border-maroon hover:text-charcoal transition-colors text-left cursor-pointer"
                 >
@@ -639,6 +613,12 @@ export default function Header({ activePath }: HeaderProps = {}) {
           </a>
         </div>
       </aside>
+
+      {/* ── Live Search Modal ───────────────────────────────── */}
+      <SearchModal
+        isOpen={searchModalOpen}
+        onClose={() => setSearchModalOpen(false)}
+      />
     </>
   );
 }

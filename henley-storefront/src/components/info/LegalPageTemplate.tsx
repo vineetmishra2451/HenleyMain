@@ -197,42 +197,6 @@ export default function LegalPageTemplate({
 
   return (
     <div className="bg-ivory min-h-screen">
-      {/* ── Document Switcher Rail (For Reviewer / Dev) ── */}
-      <div className="bg-sand/80 border-b border-border py-2 px-4 sticky top-[64px] lg:top-[72px] z-30 shadow-subtle backdrop-blur-sm">
-        <div className="henley-container flex flex-wrap items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-2">
-            <span className="font-mono font-semibold uppercase tracking-wider text-charcoal/50">
-              Legal Documents:
-            </span>
-            <div className="flex bg-ivory rounded-full p-0.5 border border-border">
-              {[
-                { id: "terms", label: "Terms (10 Sec)", href: "/terms" },
-                { id: "privacy", label: "Privacy (10 Sec)", href: "/privacy" },
-                { id: "shipping", label: "Shipping (4 Sec)", href: "/shipping" },
-              ].map((doc) => (
-                <a
-                  key={doc.id}
-                  href={doc.href}
-                  className={`
-                    px-2.5 py-1 rounded-full font-sans font-medium transition-colors whitespace-nowrap
-                    ${
-                      activeDocument === doc.id
-                        ? "bg-maroon text-ivory shadow-xs"
-                        : "text-charcoal/70 hover:text-maroon"
-                    }
-                  `}
-                >
-                  {doc.label}
-                </a>
-              ))}
-            </div>
-          </div>
-          <span className="text-charcoal/50 text-[11px] hidden sm:inline">
-            Rendering {sections.length} sections
-          </span>
-        </div>
-      </div>
-
       {/* ── Breadcrumb ── */}
       <div className="henley-container pt-6 pb-2">
         <nav
