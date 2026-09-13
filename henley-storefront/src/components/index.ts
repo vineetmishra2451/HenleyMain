@@ -14,5 +14,6 @@ export { default as Footer } from "./Footer";
 export { default as CartDrawer } from "./CartDrawer";
 export { default as SearchModal } from "./SearchModal";
 export { CartProvider, useCart } from "./CartProvider";
+export { default as AccountDashboard } from "./AccountDashboard";
 export * from "./auth";
 export * from "./info";

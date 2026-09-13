@@ -1,10 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "./Logo";
 import SearchModal from "./SearchModal";
+import LocationPromptModal from "./LocationPromptModal";
 import { useCart } from "./CartProvider";
 import { COLLECTIONS, PRODUCTS } from "@/data/catalog";
+import {
+  getSavedLocation,
+  hasBeenPromptedForLocation,
+  LocationServiceResult,
+} from "@/utils/locationService";
+import { captureReferralCodeFromUrl } from "@/utils/referralService";
+import { getAuthenticatedUser, logoutUser, AuthUser } from "@/utils/authService";
 
 /* ================================================================
    HEADER / NAV
@@ -44,23 +52,100 @@ export default function Header({ activePath }: HeaderProps = {}) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeCategorySlug, setActiveCategorySlug] = useState<string | null>(null);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
+  const [locationModalOpen, setLocationModalOpen] = useState(false);
+  const [savedLocation, setSavedLocation] = useState<LocationServiceResult | null>(null);
+  const [referralBannerCode, setReferralBannerCode] = useState<string | null>(null);
+  const [authUser, setAuthUser] = useState<AuthUser | null>(null);
   const { open: openCart, itemCount } = useCart();
+
+  useEffect(() => {
+    // 1. Initial saved location
+    const loc = getSavedLocation();
+    setSavedLocation(loc);
+
+    // 2. Initial auth user
+    setAuthUser(getAuthenticatedUser());
+
+    // 3. Check for referral code in URL (?ref=...)
+    const ref = captureReferralCodeFromUrl();
+    if (ref) {
+      setReferralBannerCode(ref);
+    }
+
+    // 4. Automatically prompt for location on initial visit if not set
+    if (!loc && !hasBeenPromptedForLocation()) {
+      const timer = setTimeout(() => {
+        setLocationModalOpen(true);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleLocationChange = (e: Event) => {
+      const custom = e as CustomEvent<LocationServiceResult>;
+      if (custom.detail) {
+        setSavedLocation(custom.detail);
+      }
+    };
+    const handleAuthChange = (e: Event) => {
+      const custom = e as CustomEvent<AuthUser | null>;
+      setAuthUser(custom.detail);
+    };
+    window.addEventListener("henley-location-changed", handleLocationChange);
+    window.addEventListener("henley-auth-changed", handleAuthChange);
+    return () => {
+      window.removeEventListener("henley-location-changed", handleLocationChange);
+      window.removeEventListener("henley-auth-changed", handleAuthChange);
+    };
+  }, []);
 
   return (
     <>
       <header className="sticky top-0 z-50 bg-ivory">
         {/* ── Announcement Bar ──────────────────────────────── */}
         {announcementVisible && (
-          <div className="relative bg-maroon text-center py-2.5 px-12">
-            <p className="text-gold text-xs font-sans font-medium tracking-[0.08em]">
-              Complimentary shipping on orders over ₹1,999
+          <div className="relative bg-maroon text-center py-2 px-4 sm:px-12 flex flex-col sm:flex-row items-center justify-between gap-1.5 text-[11px] font-sans">
+            {/* Location selector button */}
+            <button
+              type="button"
+              onClick={() => setLocationModalOpen(true)}
+              className="inline-flex items-center gap-1.5 text-gold hover:text-ivory transition-colors cursor-pointer text-left"
+              aria-label="Edit delivery location"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <span>
+                Deliver to:{" "}
+                <strong className="underline underline-offset-2">
+                  {savedLocation ? `${savedLocation.city} (${savedLocation.pincode})` : "Check Pincode"}
+                </strong>
+              </span>
+              <span className="text-[10px] text-ivory/60 hover:text-ivory ml-0.5">(Change)</span>
+            </button>
+
+            {/* Central Promo / Referral message */}
+            <p className="text-gold font-medium tracking-[0.06em]">
+              {referralBannerCode ? (
+                <span>
+                  ✦ Friend Invitation Active: 10% off with code <strong className="text-ivory">{referralBannerCode}</strong>
+                </span>
+              ) : (
+                <span>
+                  Complimentary shipping over ₹1,999 · <a href="/referral" className="underline hover:text-ivory">Refer a Friend (Earn 20%)</a>
+                </span>
+              )}
             </p>
+
+            {/* Dismiss button */}
             <button
               onClick={() => setAnnouncementVisible(false)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-ivory/60 hover:text-ivory transition-colors cursor-pointer"
+              className="hidden sm:inline-flex text-ivory/60 hover:text-ivory transition-colors cursor-pointer"
               aria-label="Dismiss announcement"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <path d="M18 6L6 18M6 6l12 12" />
               </svg>
             </button>
@@ -146,33 +231,70 @@ export default function Header({ activePath }: HeaderProps = {}) {
               <div className="relative group">
                 <a
                   href="/account"
-                  className="p-2 text-charcoal hover:text-maroon transition-colors flex items-center"
+                  className="p-1.5 text-charcoal hover:text-maroon transition-colors flex items-center gap-1.5"
                   aria-label="Account"
                 >
-                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                    <circle cx="12" cy="7" r="4" />
-                  </svg>
+                  {authUser ? (
+                    <div className="w-7 h-7 rounded-full bg-maroon text-gold font-serif text-xs flex items-center justify-center border border-gold/40 shadow-2xs">
+                      {authUser.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")
+                        .slice(0, 2)
+                        .toUpperCase() || "H"}
+                    </div>
+                  ) : (
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  )}
                 </a>
                 {/* Account dropdown */}
                 <div className="
-                  absolute right-0 top-full pt-2 w-48
+                  absolute right-0 top-full pt-2 w-52
                   opacity-0 translate-y-1 pointer-events-none
                   group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto
                   transition-all duration-200 z-50
                 ">
-                  <div className="bg-white rounded-lg shadow-card border border-border/80 py-2">
-                    <a href="/login" className="block px-4 py-2 text-xs font-sans text-charcoal hover:bg-sand/60 hover:text-maroon transition-colors">
-                      Sign In
-                    </a>
-                    <a href="/register" className="block px-4 py-2 text-xs font-sans text-charcoal hover:bg-sand/60 hover:text-maroon transition-colors">
-                      Create Account
-                    </a>
-                    <div className="border-t border-border/50 my-1" />
-                    <a href="/track-order" className="block px-4 py-2 text-xs font-sans text-charcoal/70 hover:bg-sand/60 hover:text-maroon transition-colors">
-                      Order Tracking
-                    </a>
-                  </div>
+                  {authUser ? (
+                    <div className="bg-white rounded-xl shadow-card border border-border/80 p-3 space-y-2">
+                      <div className="pb-2 border-b border-border/60">
+                        <p className="text-xs font-serif font-semibold text-charcoal truncate">{authUser.name}</p>
+                        <span className="text-[10px] font-sans text-maroon font-medium">✦ {authUser.tier || "Patron Reserve"}</span>
+                      </div>
+                      <a href="/account" className="block px-2.5 py-1.5 text-xs font-sans text-charcoal hover:bg-sand/60 hover:text-maroon rounded-md transition-colors">
+                        Patron Dashboard
+                      </a>
+                      <a href="/account" className="block px-2.5 py-1.5 text-xs font-sans text-charcoal hover:bg-sand/60 hover:text-maroon rounded-md transition-colors">
+                        My Consignments (2)
+                      </a>
+                      <a href="/referral" className="block px-2.5 py-1.5 text-xs font-sans text-charcoal hover:bg-sand/60 hover:text-maroon rounded-md transition-colors">
+                        Connoisseur Wallet (₹{authUser.walletBalance || 1200})
+                      </a>
+                      <div className="border-t border-border/50 pt-1" />
+                      <button
+                        type="button"
+                        onClick={() => logoutUser()}
+                        className="w-full text-left px-2.5 py-1.5 text-xs font-sans text-charcoal/70 hover:text-danger hover:bg-danger/5 rounded-md transition-colors cursor-pointer"
+                      >
+                        Sign Out
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="bg-white rounded-xl shadow-card border border-border/80 py-2">
+                      <a href="/account" className="block px-4 py-2 text-xs font-sans text-charcoal hover:bg-sand/60 hover:text-maroon transition-colors">
+                        Sign In
+                      </a>
+                      <a href="/register" className="block px-4 py-2 text-xs font-sans text-charcoal hover:bg-sand/60 hover:text-maroon transition-colors">
+                        Create Account
+                      </a>
+                      <div className="border-t border-border/50 my-1" />
+                      <a href="/track-order" className="block px-4 py-2 text-xs font-sans text-charcoal/70 hover:bg-sand/60 hover:text-maroon transition-colors">
+                        Order Tracking
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -255,6 +377,52 @@ export default function Header({ activePath }: HeaderProps = {}) {
                   </svg>
                   <span className="truncate">Search rare teas, single-origin spices...</span>
                 </button>
+              </div>
+
+              {/* Delivery Destination Card */}
+              <div className="mx-5 my-2 p-3 rounded-xl bg-sand/50 border border-border/80 flex items-center justify-between">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className="w-8 h-8 rounded-full bg-maroon/10 text-maroon flex items-center justify-center flex-shrink-0">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[10px] uppercase font-sans tracking-wider text-charcoal/50">Delivering To</p>
+                    <p className="text-xs font-serif font-semibold text-charcoal truncate">
+                      {savedLocation ? `${savedLocation.city} (${savedLocation.pincode})` : "Check Pincode"}
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setLocationModalOpen(true);
+                  }}
+                  className="px-2.5 py-1 rounded-md bg-white border border-border text-[11px] font-sans text-maroon font-semibold hover:bg-sand transition cursor-pointer flex-shrink-0 ml-2"
+                >
+                  Change
+                </button>
+              </div>
+
+              {/* Referral Banner in Mobile Drawer */}
+              <div className="mx-5 mb-2">
+                <a
+                  href="/referral"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between p-3 rounded-xl bg-maroon text-ivory text-xs font-sans shadow-xs hover:bg-maroon/90 transition-colors"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-gold text-base">🎁</span>
+                    <div>
+                      <p className="font-semibold text-gold">Refer & Earn 20%</p>
+                      <p className="text-[10px] text-ivory/70">Give 10% off on orders above ₹500</p>
+                    </div>
+                  </div>
+                  <span className="text-gold font-bold">→</span>
+                </a>
               </div>
 
               {/* ── Primary Storefront Navigation Links ── */}
@@ -502,13 +670,41 @@ export default function Header({ activePath }: HeaderProps = {}) {
               <p className="text-[10px] font-sans text-charcoal/50 text-center">
                 Complimentary shipping on orders above ₹1,999
               </p>
-              <a
-                href="/login"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block w-full py-2.5 text-center text-xs font-sans font-semibold uppercase tracking-wider bg-maroon text-ivory rounded-lg hover:bg-maroon/90 transition-colors shadow-xs"
-              >
-                Sign In / Create Account
-              </a>
+              {authUser ? (
+                <div className="space-y-2">
+                  <div className="p-2.5 rounded-lg bg-white border border-border/80 flex items-center justify-between">
+                    <div>
+                      <p className="text-xs font-serif font-semibold text-charcoal">{authUser.name}</p>
+                      <p className="text-[10px] text-maroon font-medium">✦ {authUser.tier || "Patron Reserve"}</p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        logoutUser();
+                        setMobileMenuOpen(false);
+                      }}
+                      className="text-[11px] font-sans text-charcoal/60 hover:text-danger cursor-pointer"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
+                  <a
+                    href="/account"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block w-full py-2.5 text-center text-xs font-sans font-semibold uppercase tracking-wider bg-maroon text-ivory rounded-lg hover:bg-maroon/90 transition-colors shadow-xs"
+                  >
+                    Open Patron Dashboard →
+                  </a>
+                </div>
+              ) : (
+                <a
+                  href="/account"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full py-2.5 text-center text-xs font-sans font-semibold uppercase tracking-wider bg-maroon text-ivory rounded-lg hover:bg-maroon/90 transition-colors shadow-xs"
+                >
+                  Sign In / Create Account
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -618,6 +814,12 @@ export default function Header({ activePath }: HeaderProps = {}) {
       <SearchModal
         isOpen={searchModalOpen}
         onClose={() => setSearchModalOpen(false)}
+      />
+
+      {/* ── Delivery Location Selector Modal ────────────────── */}
+      <LocationPromptModal
+        isOpen={locationModalOpen}
+        onClose={() => setLocationModalOpen(false)}
       />
     </>
   );

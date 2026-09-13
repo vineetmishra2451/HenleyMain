@@ -10,6 +10,7 @@ use App\Livewire\Auth\OtpLogin;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\ResetPassword;
 use App\Livewire\Auth\VerifyEmail;
+use App\Livewire\Storefront\AccountPage;
 use App\Livewire\Storefront\CollectionsPage;
 use App\Livewire\Storefront\HomePage;
 use Illuminate\Http\Request;
@@ -47,9 +48,7 @@ Route::get('/cart', function () {
     return redirect()->route('home');
 })->name('cart');
 
-Route::get('/account', function () {
-    return auth()->check() ? redirect()->route('home') : redirect()->route('login');
-})->name('account');
+Route::get('/account', AccountPage::class)->name('account');
 
 // Admin & Vendor Panel Subdomain Shortcuts
 Route::get('/admin', function () {
@@ -93,3 +92,53 @@ if (app()->environment(['local', 'staging', 'testing'])) {
         return view('pages.design-gallery');
     })->name('design.gallery');
 }
+
+// ─────────────────────────────────────────────────────────────
+// Location & Service Availability API
+// ─────────────────────────────────────────────────────────────
+Route::get('/api/check-pincode', function (\Illuminate\Http\Request $request, \App\Services\PostalLocationService $service) {
+    $pincode = (string) $request->query('pincode', '');
+    $result = $service->checkPincode($pincode);
+
+    return response()->json($result)
+        ->header('Access-Control-Allow-Origin', '*')
+        ->header('Access-Control-Allow-Methods', 'GET, OPTIONS');
+})->name('api.check-pincode');
+
+// ─────────────────────────────────────────────────────────────
+// Customer Referral Program API
+// ─────────────────────────────────────────────────────────────
+Route::get('/api/referral/validate', function (\Illuminate\Http\Request $request, \App\Services\ReferralProgramService $service) {
+    $code = (string) $request->query('code', '');
+    $amount = (float) $request->query('amount', 0);
+    $result = $service->validateCode($code, $amount, auth()->id());
+
+    return response()->json($result)
+        ->header('Access-Control-Allow-Origin', '*')
+        ->header('Access-Control-Allow-Methods', 'GET, OPTIONS');
+})->name('api.referral.validate');
+
+Route::post('/api/referral/record', function (\Illuminate\Http\Request $request, \App\Services\ReferralProgramService $service) {
+    $code = (string) $request->input('code', '');
+    $amount = (float) $request->input('amount', 0);
+    $orderId = $request->input('order_id') ? (int) $request->input('order_id') : null;
+
+    try {
+        $referral = $service->recordReferralOrder($code, $amount, $orderId, auth()->id());
+
+        return response()->json([
+            'success' => true,
+            'referral' => $referral,
+        ])->header('Access-Control-Allow-Origin', '*');
+    } catch (\Throwable $e) {
+        return response()->json([
+            'success' => false,
+            'message' => $e->getMessage(),
+        ], 422)->header('Access-Control-Allow-Origin', '*');
+    }
+})->name('api.referral.record');
+
+Route::get('/referral', function () {
+    return redirect()->route('home');
+})->name('referral');
+

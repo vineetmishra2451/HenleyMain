@@ -26,6 +26,7 @@ const FOOTER_COLUMNS = [
     links: [
       { label: "About & Our Story", href: "/story" },
       { label: "Botanical Journal", href: "/journal" },
+      { label: "Refer a Friend (Earn 20%)", href: "/referral" },
       { label: "Contact Concierge", href: "/contact" },
     ],
   },

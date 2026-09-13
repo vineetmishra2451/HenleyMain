@@ -250,6 +250,15 @@ class ManageSettings extends Page
                                             ->label('Enable Cross-Border Worldwide Dispatch')
                                             ->helperText('Allows overseas collectors to place orders with international air freight.'),
                                     ]),
+                                Section::make('Serviceable Territories & Blocklist')
+                                    ->description('Manage restricted delivery zones and non-serviceable postal codes.')
+                                    ->schema([
+                                        Textarea::make('blocked_pincodes')
+                                            ->label('Non-Serviceable Pincodes (Blocklist)')
+                                            ->helperText('Comma or newline separated list of PIN codes where delivery service is suspended or unavailable (e.g. 190001, 795001).')
+                                            ->rows(3)
+                                            ->placeholder("190001, 795001\n796001"),
+                                    ]),
                             ]),
 
                         // Tab 5: Tax
@@ -368,7 +377,7 @@ class ManageSettings extends Page
                 in_array($key, ['store_name', 'brand_tagline', 'store_description', 'contact_email', 'contact_phone', 'support_hours', 'currency_symbol', 'currency_code'], true) => 'general',
                 in_array($key, ['gateway', 'razorpay_key_id', 'razorpay_key_secret', 'razorpay_webhook_secret', 'cod_enabled'], true) => 'payment',
                 in_array($key, ['mail_provider', 'mail_from_name', 'mail_from_address', 'smtp_host', 'smtp_port', 'smtp_username', 'smtp_password'], true) => 'email',
-                in_array($key, ['shipping_origin_country', 'shipping_origin_city', 'free_shipping_threshold_paise', 'standard_shipping_rate_paise', 'express_shipping_rate_paise', 'international_shipping_enabled'], true) => 'shipping',
+                in_array($key, ['shipping_origin_country', 'shipping_origin_city', 'free_shipping_threshold_paise', 'standard_shipping_rate_paise', 'express_shipping_rate_paise', 'international_shipping_enabled', 'blocked_pincodes'], true) => 'shipping',
                 in_array($key, ['tax_calculation_mode', 'default_gst_rate_percent', 'hsn_default_tea', 'gstin_number'], true) => 'tax',
                 in_array($key, ['default_meta_title', 'default_meta_description', 'default_og_image', 'google_analytics_id'], true) => 'seo',
                 in_array($key, ['cache_driver', 'inventory_low_stock_threshold', 'order_auto_archive_days', 'maintenance_mode'], true) => 'system',

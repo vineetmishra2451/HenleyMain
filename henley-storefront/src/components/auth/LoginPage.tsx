@@ -1,25 +1,51 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AuthCard from "./AuthCard";
 import WhatsAppOTP from "./WhatsAppOTP";
 import Button from "../Button";
+import AccountDashboard from "../AccountDashboard";
+import {
+  getAuthenticatedUser,
+  loginUser,
+  logoutUser,
+  DEFAULT_DEMO_USER,
+  AuthUser,
+} from "@/utils/authService";
 
-/* ================================================================
-   LOGIN SCREEN (<LoginPage />)
-   ================================================================
-   - Primary: WhatsApp OTP (Phone + 6-digit verification)
-   - Secondary (Collapsed): Email + Password
-   - Footer: Link to /register
-   ================================================================ */
+export interface LoginPageProps {
+  onLoginSuccess?: (user: AuthUser) => void;
+}
 
-export default function LoginPage() {
+export default function LoginPage({ onLoginSuccess }: LoginPageProps = {}) {
+  const [currentUser, setCurrentUser] = useState<AuthUser | null>(null);
   const [showEmailAuth, setShowEmailAuth] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const user = getAuthenticatedUser();
+    if (user) {
+      setCurrentUser(user);
+    }
+
+    const handleAuthChange = (e: Event) => {
+      const custom = e as CustomEvent<AuthUser | null>;
+      setCurrentUser(custom.detail);
+    };
+    window.addEventListener("henley-auth-changed", handleAuthChange);
+    return () => window.removeEventListener("henley-auth-changed", handleAuthChange);
+  }, []);
+
+  const triggerLoginSuccess = (userData: Partial<AuthUser> = {}) => {
+    const user = loginUser(userData);
+    setCurrentUser(user);
+    if (onLoginSuccess) {
+      onLoginSuccess(user);
+    }
+  };
 
   const handleEmailLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,36 +68,16 @@ export default function LoginPage() {
 
     setTimeout(() => {
       setIsSubmitting(false);
-      setIsLoggedIn(true);
-    }, 700);
+      triggerLoginSuccess({
+        email: email,
+        name: email.split("@")[0].replace(/[._]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
+      });
+    }, 500);
   };
 
-  if (isLoggedIn) {
-    return (
-      <AuthCard
-        title="Welcome Back"
-        subtitle="You have successfully signed into your Henley account."
-        activeScreen="login"
-      >
-        <div className="text-center py-4 space-y-4">
-          <div className="w-12 h-12 mx-auto rounded-full bg-success/15 text-success flex items-center justify-center">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-          </div>
-          <p className="text-xs font-sans text-charcoal/70">
-            Signed in as <span className="font-semibold text-charcoal">{email}</span>
-          </p>
-          <Button
-            variant="primary"
-            className="w-full"
-            onClick={() => (window.location.href = "/collections")}
-          >
-            Continue to Apothecary →
-          </Button>
-        </div>
-      </AuthCard>
-    );
+  // If already authenticated or logged in, render the full Account Dashboard!
+  if (currentUser) {
+    return <AccountDashboard user={currentUser} onLogout={() => setCurrentUser(null)} />;
   }
 
   return (
@@ -89,8 +95,31 @@ export default function LoginPage() {
         </p>
       }
     >
+      {/* ── Demo 1-Click Collector Access ── */}
+      <div className="mb-4">
+        <button
+          type="button"
+          onClick={() => triggerLoginSuccess(DEFAULT_DEMO_USER)}
+          className="w-full py-2.5 px-3 rounded-xl border border-gold/50 bg-sand/40 hover:bg-sand text-xs font-sans text-charcoal font-semibold flex items-center justify-center gap-2 transition cursor-pointer shadow-2xs group"
+        >
+          <span className="text-gold font-bold">⚡</span>
+          <span className="group-hover:text-maroon transition-colors">
+            Instant Demo Sign In (Ananya Singhal · Patron)
+          </span>
+          <span className="text-gold text-[11px]">→</span>
+        </button>
+      </div>
+
       {/* ── Primary Sign-In Path: WhatsApp OTP ── */}
-      <WhatsAppOTP mode="login" />
+      <WhatsAppOTP
+        mode="login"
+        onSuccess={(data) => {
+          triggerLoginSuccess({
+            phone: data.phone,
+            name: data.name || "Ananya Singhal",
+          });
+        }}
+      />
 
       {/* ── Divider ── */}
       <div className="relative my-4">
@@ -140,23 +169,16 @@ export default function LoginPage() {
               <input
                 type="email"
                 value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  setErrors((prev) => ({ ...prev, email: "" }));
-                }}
-                placeholder="alexandra@botanical.com"
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="ananya.singhal@example.com"
                 className={`
-                  w-full px-3.5 py-2.5 text-xs font-sans rounded-lg border bg-white text-charcoal
-                  placeholder:text-charcoal/35 focus:outline-none transition-all
-                  ${
-                    errors.email
-                      ? "border-error bg-error/5 focus:border-error"
-                      : "border-border focus:border-maroon focus:ring-1 focus:ring-maroon/20"
-                  }
+                  w-full h-11 px-3.5 bg-white border rounded-xl text-xs font-sans text-charcoal
+                  placeholder:text-charcoal/40 focus:outline-none focus:border-maroon
+                  ${errors.email ? "border-danger ring-1 ring-danger" : "border-border"}
                 `}
               />
               {errors.email && (
-                <p className="text-[11px] font-sans text-error">{errors.email}</p>
+                <p className="text-[11px] font-sans text-danger">{errors.email}</p>
               )}
             </div>
 
@@ -176,34 +198,26 @@ export default function LoginPage() {
               <input
                 type="password"
                 value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  setErrors((prev) => ({ ...prev, password: "" }));
-                }}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 className={`
-                  w-full px-3.5 py-2.5 text-xs font-sans rounded-lg border bg-white text-charcoal
-                  placeholder:text-charcoal/35 focus:outline-none transition-all
-                  ${
-                    errors.password
-                      ? "border-error bg-error/5 focus:border-error"
-                      : "border-border focus:border-maroon focus:ring-1 focus:ring-maroon/20"
-                  }
+                  w-full h-11 px-3.5 bg-white border rounded-xl text-xs font-sans text-charcoal
+                  placeholder:text-charcoal/40 focus:outline-none focus:border-maroon
+                  ${errors.password ? "border-danger ring-1 ring-danger" : "border-border"}
                 `}
               />
               {errors.password && (
-                <p className="text-[11px] font-sans text-error">{errors.password}</p>
+                <p className="text-[11px] font-sans text-danger">{errors.password}</p>
               )}
             </div>
 
-            {/* Submit Email Login */}
             <Button
+              variant="primary"
               type="submit"
-              variant="secondary"
-              className="w-full !py-2.5 !text-xs"
               disabled={isSubmitting}
+              className="w-full !h-11 !text-xs !tracking-wider"
             >
-              {isSubmitting ? "Signing in..." : "Log In with Email →"}
+              {isSubmitting ? "Authenticating..." : "Sign In with Password →"}
             </Button>
           </form>
         )}

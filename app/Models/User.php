@@ -54,6 +54,8 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail, Two
         'role',
         'vendor_id',
         'is_active',
+        'referral_code',
+        'wallet_balance',
         'last_login_at',
         'two_factor_secret',
         'two_factor_recovery_codes',
@@ -81,6 +83,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail, Two
             'password' => 'hashed',
             'role' => UserRole::class,
             'is_active' => 'boolean',
+            'wallet_balance' => 'decimal:2',
         ];
     }
 
@@ -152,6 +155,48 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail, Two
     public function addresses(): HasMany
     {
         return $this->hasMany(Address::class);
+    }
+
+    /**
+     * @return HasMany<CustomerReferral, $this>
+     */
+    public function referrals(): HasMany
+    {
+        return $this->hasMany(CustomerReferral::class, 'referrer_id');
+    }
+
+    /**
+     * @return HasMany<WalletTransaction, $this>
+     */
+    public function walletTransactions(): HasMany
+    {
+        return $this->hasMany(WalletTransaction::class);
+    }
+
+    public function getOrCreateReferralCode(): string
+    {
+        if (! $this->referral_code) {
+            $cleanName = strtoupper(preg_replace('/[^A-Za-z0-9]/', '', $this->name) ?: 'PATRON');
+            $slug = substr($cleanName, 0, 6);
+            $code = 'HENLEY-' . $slug . '-' . strtoupper(substr(md5((string) $this->id), 0, 4));
+            $this->update(['referral_code' => $code]);
+        }
+
+        return $this->referral_code;
+    }
+
+    public function creditWallet(float $amount, string $description, ?string $referenceId = null): WalletTransaction
+    {
+        $newBalance = (float) $this->wallet_balance + $amount;
+        $this->update(['wallet_balance' => $newBalance]);
+
+        return $this->walletTransactions()->create([
+            'type' => 'credit',
+            'amount' => $amount,
+            'balance_after' => $newBalance,
+            'description' => $description,
+            'reference_id' => $referenceId,
+        ]);
     }
 
     /**

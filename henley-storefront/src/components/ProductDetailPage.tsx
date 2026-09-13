@@ -9,6 +9,12 @@ import Button from "./Button";
 import ProductCard from "./ProductCard";
 import { useCart } from "./CartProvider";
 import { PRODUCTS, findProductBySlug, ProductItem } from "@/data/catalog";
+import {
+  checkPincodeAvailability,
+  getSavedLocation,
+  setSavedLocation,
+  LocationServiceResult,
+} from "@/utils/locationService";
 
 /* ================================================================
    PRODUCT DETAILS PAGE TEMPLATE (<ProductDetailPage />)
@@ -106,6 +112,50 @@ export default function ProductDetailPage({
     setSelectedVariantIndex(0);
     setQuantity(1);
   }, [product.id]);
+
+  // Location & Service Availability Checker State
+  const [deliveryPincode, setDeliveryPincode] = useState("");
+  const [deliveryLocation, setDeliveryLocation] = useState<LocationServiceResult | null>(null);
+  const [isCheckingPincode, setIsCheckingPincode] = useState(false);
+  const [pincodeError, setPincodeError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const saved = getSavedLocation();
+    if (saved) {
+      setDeliveryPincode(saved.pincode);
+      setDeliveryLocation(saved);
+    }
+
+    const handleLocationChange = (e: Event) => {
+      const custom = e as CustomEvent<LocationServiceResult>;
+      if (custom.detail) {
+        setDeliveryPincode(custom.detail.pincode);
+        setDeliveryLocation(custom.detail);
+      }
+    };
+    window.addEventListener("henley-location-changed", handleLocationChange);
+    return () => window.removeEventListener("henley-location-changed", handleLocationChange);
+  }, []);
+
+  const handleCheckDelivery = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    if (!deliveryPincode) return;
+    setPincodeError(null);
+    setIsCheckingPincode(true);
+    try {
+      const res = await checkPincodeAvailability(deliveryPincode);
+      setDeliveryLocation(res);
+      if (res.serviceable) {
+        setSavedLocation(res);
+      } else {
+        setPincodeError(res.message);
+      }
+    } catch {
+      setPincodeError("Unable to verify postal code.");
+    } finally {
+      setIsCheckingPincode(false);
+    }
+  };
 
   const selectedVariant = variants[selectedVariantIndex] || variants[0] || {
     id: "var-0",
@@ -420,10 +470,89 @@ export default function ProductDetailPage({
               </div>
             </div>
 
-            {/* Delivery Note */}
-            <p className="text-xs text-charcoal/55 text-center sm:text-left">
-              Complimentary standard shipping across India on orders over ₹1,999.
-            </p>
+            {/* ── Location-based Service Availability Checker Widget ── */}
+            <div className="p-4 rounded-xl bg-sand/40 border border-border/80 space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-sans font-semibold text-charcoal flex items-center gap-1.5">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-maroon">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  <span>Delivery & Service Availability</span>
+                </span>
+                <span className="text-[10px] uppercase tracking-wider text-charcoal/50 font-sans">
+                  Vault Dispatch
+                </span>
+              </div>
+
+              <form onSubmit={handleCheckDelivery} className="flex gap-2">
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  maxLength={6}
+                  value={deliveryPincode}
+                  onChange={(e) => setDeliveryPincode(e.target.value.replace(/[^0-9]/g, ""))}
+                  placeholder="Enter 6-digit PIN code"
+                  className="flex-1 px-3 py-2 bg-white border border-border rounded-lg text-xs font-sans text-charcoal placeholder:text-charcoal/40 focus:outline-none focus:border-maroon"
+                />
+                <button
+                  type="submit"
+                  disabled={isCheckingPincode || deliveryPincode.length !== 6}
+                  className="px-4 py-2 bg-maroon text-ivory text-xs font-sans font-semibold rounded-lg hover:bg-maroon/90 disabled:opacity-50 transition cursor-pointer flex-shrink-0"
+                >
+                  {isCheckingPincode ? "Checking..." : "Check"}
+                </button>
+              </form>
+
+              {deliveryLocation && (
+                <div
+                  className={`
+                    p-3 rounded-lg border text-xs font-sans space-y-1.5
+                    ${
+                      deliveryLocation.serviceable
+                        ? "bg-white/80 border-success/30 text-charcoal"
+                        : "bg-danger/10 border-danger/30 text-charcoal"
+                    }
+                  `}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold flex items-center gap-1">
+                      {deliveryLocation.serviceable ? (
+                        <span className="text-success font-bold">✓ Available in {deliveryLocation.city}</span>
+                      ) : (
+                        <span className="text-danger font-bold">✕ Service Suspended</span>
+                      )}
+                    </span>
+                    <span className="font-mono text-[10px] text-charcoal/50">PIN {deliveryLocation.pincode}</span>
+                  </div>
+
+                  <p className="text-[11px] text-charcoal/70 leading-relaxed">
+                    {deliveryLocation.message}
+                  </p>
+
+                  {deliveryLocation.serviceable && (
+                    <div className="pt-1.5 border-t border-border/50 grid grid-cols-2 gap-1.5 text-[11px]">
+                      <span className="text-charcoal/75 flex items-center gap-1">
+                        <span className="text-maroon font-bold">⚡</span>
+                        <span>{deliveryLocation.expressAvailable ? "24-48h Express Air" : "3-5 Days Courier"}</span>
+                      </span>
+                      <span className="text-charcoal/75 flex items-center gap-1">
+                        <span className="text-maroon font-bold">💵</span>
+                        <span>{deliveryLocation.codAvailable ? "Cash on Delivery" : "Prepaid Only"}</span>
+                      </span>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {pincodeError && !deliveryLocation && (
+                <p className="text-xs text-danger font-sans">{pincodeError}</p>
+              )}
+
+              <p className="text-[11px] text-charcoal/50">
+                Complimentary shipping across India on orders over ₹1,999.
+              </p>
+            </div>
 
             {/* Scaled-down 4-Icon Trust Row */}
             <div className="pt-4 border-t border-border/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
